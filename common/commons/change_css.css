@@ -1,0 +1,507 @@
+/* h5的css=>小程序(uniapp)
+	1.多个选择器不能一起用
+		未进行仔细探索
+		.row>[class*=tablet-],
+		.row>[class*=col-]{float:left;
+			-moz-box-sizing:border-box;
+			box-sizing:border-box
+		}
+
+
+	    // @import "../static/common/commons/lib/jquery-weui/weui.min.css";
+		.weui-switch-cp__input:checked~.weui-switch-cp__box,.weui-switch:checked {
+			border-color: #04be02;
+			background-color: #04be02
+		}
+
+		.weui-switch-cp__input:checked~.weui-switch-cp__box:before,.weui-switch:checked:before {
+			-webkit-transform: scale(0);
+			transform: scale(0)
+		}
+
+		.weui-switch-cp__input:checked~.weui-switch-cp__box:after,.weui-switch:checked:after {
+			-webkit-transform: translateX(20px);
+			transform: translateX(20px)
+		}
+
+		.weui-search-bar__input:not(:valid)~.weui-icon-clear {
+			display: none
+		}
+
+
+
+	    // @import "../static/common/commons/lib/jquery-weui/jquery-weui.min.css";
+		.weui-row>[class*=col-] {
+			box-sizing: border-box
+		}
+
+
+	2.图片路径
+		../img/xxx
+		../../img/xxx
+		全部换成
+		/static/img/xxx
+		或
+		http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/xxx
+	3.通配符
+		小程序不支持通配符
+		只能用具体标签名进行修改
+		*{}
+		=>
+		html,body
+		,div,span
+		,h1,h2,h3,h4,h5,h6
+		,p,a,img
+		,form,label,table
+		,dl,dt,dd,ol,ul,li,tbody,tfoot,thead,tr,th,td
+		,pre,em
+		,font,strong
+		,applet,object,iframe,blockquote,abbr,acronym
+		,address,big,cite,code,del,dfn,ins,kbd,q,s,samp
+		,small,strike,sub,sup,tt
+		,var,fieldset,legend,caption
+		{}
+	4.图片标签默认值
+		小程序 image 如果使用图片真实宽高
+		如果对image设置宽高auto自适应, 小程序显示为0*0;
+
+		小程序
+			user agent stylesheet 用户代理样式表
+			image {
+				width: 320px;
+				height: 240px;
+				display: inline-block;
+				overflow: hidden;
+			}
+		uniapp将img转换为image, 类名为_img
+			<image class="_img" src="png" role="img" ></image>
+			// 目前使用宽高百分百的方法, 但是此方法需要依赖父级的宽高
+			._img{
+				width: 100%;
+				height: 100%;
+			}
+	5.小程序转化空值
+		html 样式
+			img:not([src]),img[src=""] {opacity: 0;}
+
+		转化后
+
+		小程序 样式
+			img:not([src]),img[src] {opacity: 0;}
+
+	6.行级标签与行块标签需要重新赋值display
+
+		uniapp转化 行级标签 为小程序标签时一般为view._标签名
+
+			._span{
+				display: inline;
+			}
+
+		span标签会被转化为 label._span , 
+			此处需要注意 html中是否设置了 label的样式, 
+			需要用 在原基础上 使用 label._span 去除
+			例如: 
+				样式中设置了
+				.txt-box label{
+					position: absolute;
+				}
+				去除
+				.txt-box label._span{
+					position: relative;
+				}
+
+		会提高html中使用了 标签名 选择器的优先级
+
+			// .jzl-hotPrice-detail-wrap li img{
+			.jzl-hotPrice-detail-wrap ._li ._img{
+			    width: 100%;
+			    height: 160px;
+			    margin-bottom:10px 
+			}
+
+			// .jzl-ht-price .hot-fire{
+			.jzl-ht-price img.hot-fire{
+			    position: absolute;
+			    top:1px;
+			    right: 5px;
+			    float: right;
+			    width: 9px;
+			    height: 11px;
+			}
+
+	7.默认样式不同
+		input在小程序中是
+			display: block;
+		需要添加浏览器的默认样式，注意会有优先级问题
+		input 需要添加样式: 
+
+			display: inline-block;
+
+			vertical-align: middle;
+
+		input[type="button"] 需要添加样式: 
+
+			vertical-align: middle;
+
+		span标签最好加上
+
+	8.小程序中背景图片不可用空: 
+	    background:#fff url('');// 报错
+
+
+
+
+*/
+/* *通配符选择器 ------------------------- */
+
+html,body
+,div,span
+,h1,h2,h3,h4,h5,h6
+,p,a,img
+,form,label,input,textarea
+,table,tbody,tfoot,thead,tr,th,td
+,dl,dt,dd,ol,ul,li
+,pre,em
+,font,strong
+,applet,object,iframe,blockquote,abbr,acronym
+,address,big,cite,code,del,dfn,ins,kbd,q,s,samp
+,small,strike,sub,sup,tt
+,var,fieldset,legend,caption
+{
+    box-sizing: border-box;
+}
+
+/* *通配符选择器 -end ------------------------- */
+
+
+
+
+
+/* 添加浏览器 默认设置 user agent stylesheet ------------------------- */
+
+._em
+,._i
+,._span
+{
+	display: inline;
+
+}
+
+._span
+{
+
+	/* pages/addAlipay */
+	vertical-align: middle;
+
+}
+
+._img{
+	width: 100%;
+	height: 100%;
+}
+
+button
+,input
+{
+	display: inline-block;
+}
+
+input{
+
+	/*display: inline-block;*/
+
+	/* pages/addAlipay */
+	vertical-align: middle;
+
+	/*
+	-webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    */
+}
+
+/* \pages\userOp.vue 获取验证码 */
+/*input[type="button" i] {*/
+input[type="button"] {
+    text-align: center;
+    /*
+    -webkit-appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+    */
+}
+
+/* 添加浏览器 默认设置 user agent stylesheet -end ------------------------- */
+
+/* 排除小程序 默认设置 user agent stylesheet  ------------------------- */
+/* 
+	.wx-loading {
+		position: fixed;
+		z-index: 2000000000;
+		width: 7.6em;
+		min-height: 7.6em;
+		top: 180px;
+		left: 50%;
+		margin-left: -3.8em;
+		background: rgba(40,40,40,.75);
+		text-align: center;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 16px;
+		line-height: normal;
+	}
+*/
+/* 排除小程序 默认设置 user agent stylesheet -end ------------------------- */
+
+
+
+
+
+
+/* 小程序图片不支持默认按比例输出  ------------------------- */
+
+	/*/css/otherCss/cj.css 订单列表页*/
+	.report img{
+		/* 456*353 */
+		/*原有 width: 50%; == 50vw*/
+		height: calc(353 / 456 * 50vw);
+	}
+	/* /css/main.css 个人中心 */
+	.form-list li img{
+		/*width: 1.1rem;*/
+		width: calc(1.1 * 20px);
+		height: calc(1.1 * 20px);
+	}
+	/* /css/otherCss/wq.css 孕婴服务 */
+	.goods-cont img{
+	    /*width: 100%;*/
+	    height: calc(350 / 750 * 100vw);
+
+	}
+
+/* 小程序图片不支持默认按比例输出 -end ------------------------- */
+
+
+
+
+/* 页面全局修改 ------------------------------ */
+	/*h5自定义导航栏*/
+	/*.com-top 设置的高度为44px*/
+	.h5_com_top_1+div{
+		margin-top: 44px;
+	}
+	.h5_com_top_2+div{
+		margin-top: 52px;
+	}
+
+/* 页面全局修改 -end ------------------------------ */
+
+
+
+
+/* 页面单独修改 ------------------------------ */
+
+
+
+/* 文件名.vue/路径 */
+/*
+样式
+*/
+/* 文件名/路径 -end */
+
+
+
+/* 项目/static/common/commons/css/shopCoupon.css */
+/*项目\pages\shopCoupon.vue*/
+/*
+	含有的: 
+	影响: 
+	    项目\static\common\commons\css\otherCss\member.css:
+			51: .memberpay ul li label{
+			52      position:absolute;
+
+		项目\static\common\commons\css\shopCoupon.css
+			156: .txt-box label{
+			157      position:absolute;
+			158      top:50%;
+
+			改成
+				.txt-box label._span{
+					position: static;
+				}
+
+
+	未确定: 
+		项目\static\common\commons\css\otherCss\wq.css
+		.regular-checkbox:checked + label:after {
+		    content: '\2714';
+		    font-size: 12px;
+		    position: absolute;
+		    top: -1px;
+		    left: 2px;
+		    color:#259656;
+		}
+
+	冲突
+		./pages/login/login.wxss: 118
+		./pages/login/login.wxss: 122
+		.new-login {
+			position: absolute;
+			left: calc(4 * 2rpx);
+		}
+
+		.forget-password {
+			position: absolute;
+			right: calc(4 * 2rpx);
+		}
+
+		./pages/newUser1.wxss: 8141
+		.user-agree ._span {
+			font-size: 13px;
+			position: absolute;
+			top: 2px;
+			left: 25px;
+		}
+
+
+label._span{
+	position: static !important;
+}
+label._span.new-login {
+	position: absolute !important;
+}
+label._span.forget-password {
+	position: absolute !important;
+}
+*/
+	.memberpay ul li label._span,
+	.txt-box label._span{
+		position: static;
+	}
+/* 项目/static/common/commons/css/shopCoupon.css -end  */
+
+
+
+
+/* 项目/css/otherCss/wq.css */
+/*
+.submit-content1 img{
+	height: 60px;
+}
+*/
+/* 项目/css/otherCss/wq.css -end  */
+
+
+
+/*@import "../static/common/commons/css/otherCss/jzl.css";*/
+/*
+.jzl-hotPrice-detail-wrap li img{
+    width: 100%;
+    height: 160px;
+    margin-bottom:10px 
+}
+.setting-content div img{
+	width: 1rem;
+	// 未设置高度
+}
+*/
+.setting-content div img{
+	height: 1rem;
+}
+/*@import "../static/common/commons/css/otherCss/jzl.css"; -end  */
+
+
+/* success.vue */
+/*
+.success_img img{
+    width: 56px;
+    height: 56px;
+}
+*/
+/* success.vue -end  */
+
+
+
+/* toexamineSuccess.vue paySuccess.vue */
+/* 1244*60 */
+/*
+*/
+.your-like-top img{
+    height: calc( 60 / 1224 * 0.83 * 100vw );
+}
+/* toexamineSuccess.vue -end */
+
+
+/* editAddress.vue addAddress.vue 
+.list-block{
+	margin-top: 40px;
+}
+*/
+
+/* 项目/css/otherCss/wq.css -end */
+
+
+
+/*项目\pages\walletDetails.vue*/
+/*
+  @import "../static/common/commons/rem_to_vw/light7_20.min.css";
+.points-box{
+  height: 100vh;
+}
+*/
+/*项目\pages\walletDetails.vue -end */
+
+
+
+
+/*项目\pages\wallet.vue*/
+/*
+    .wallet-head {
+        height: calc(9.1 *  20px);
+    }
+    .wallet-recharge img, .wallet-withdraw img{
+        height: 1.45rem;
+    }
+*/
+
+/*项目\pages\wallet.vue -end  */
+
+
+
+
+
+/* 页面单独修改 -end ------------------------------ */
+
+
+
+
+
+

@@ -1,0 +1,134 @@
+
+.to-finish ._a {
+    color: #00b8ee;
+}
+.gainNum-btn,
+.gainNum-button ._a {
+    cursor: pointer;
+}
+.gainNum-button ._a {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    color: #00b8ee;
+}
+.gainNum-top {
+    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/zhuanfenbg.png);
+    background-size: 100% 100%;
+    height: 110px;
+    width: 100%;
+    padding: 22.5px 0 45.5px 0;
+    height: 220px;
+    position: relative;
+}
+.gainNum-list {
+    position: relative;
+    top: 35px;
+    text-align: center;
+}
+.gainNum-list {
+    position: absolute;
+    top: -26px;
+    text-align: center;
+    background: #fff;
+    width: 90%;
+    height: 90px;
+    margin-left: 5%;
+    padding-top: 16px;
+    border-radius: 5px;
+}
+.gainNum-center {
+    background-color: #F3F4F6;
+}
+.gainNum-top .my-num {
+    /* float: left; */
+    position: absolute;
+    left: 15px;
+    bottom: 40px;
+    /* background: #f00; */
+    width: 30%;
+    text-align: left;
+    font-size: 12px;
+}
+.gainNum-top ._span {
+    font-size: 12px;
+    color: #ffffff;
+}
+.gain-data {
+    width: 60%;
+    position: absolute;
+    right: 10px;
+    bottom: 40px;
+    /* background: #f0f; */
+    /* height: 30px; */
+    /* line-height: 30px; */
+    padding-left: 38px;
+    font-size: 12px;
+}
+.gain-data ._span,
+.gain-data ._p {
+    font-size: 12px;
+}
+.gainNum-button {
+    font-size: 13px;
+    border: 1px solid #FF7295;
+    border-radius: 4px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 8px;
+    text-align: center;
+    color: #0a8ddf;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -25px;
+    top: -150px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.gainNum-button ._a {
+
+    color: #FF7295;
+    margin-top: 24px;
+}
+.title-jifen {
+    position: absolute;
+    bottom: 0;
+    left: 43%;
+}
+.gainNum-down {
+    font-size: 13px;
+}
+.gainNum-content {
+    padding: 0;
+    position: relative;
+    padding-top: 6px;
+    margin-right: 30px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    border-bottom: 1px solid #C5C5C5;
+}
+.content1 {
+    background-color: #F3F4F6;
+}
+.to-finish {
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 10px;
+    /* border: solid 1px #00b8ee; */
+    background: #FF7295;
+    position: absolute;
+    top: 8px;
+    right: 0;
+    text-align: center;
+    padding-top: 5px;
+    border: 0;
+}
+.to-finish ._a {
+    color: #fff;
+}
+

@@ -1,0 +1,105 @@
+html,body{height:100%;overflow:hidden}
+.com-top{ border-bottom:1px solid #eee;}
+.content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.bargain-cont{
+    background: #fff;
+}
+.member-rech{
+    padding:0 4%;
+    margin-top:-10px; 
+}
+.member-bg{
+    width:100%;
+    min-height:200px; 
+    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/memberBg.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+.payment-but{
+    text-align:center;
+    width:100%;
+    margin-top:30px; 
+}
+.exit-btn{
+    width: 90%;
+    height:40px;
+    line-height:40px; 
+    background-color: #00b8ee;
+    text-align: center;
+    font-size:14px;
+    color: #ffffff;
+    border-radius: 8px;
+}
+.memberpay ul li{
+    line-height:40px;
+    height: 40px;
+    padding:0 10px;
+    border: 1px solid#e6e6e6;
+    position: relative;
+    margin-bottom:5px;
+}
+.memberpay ul li label{
+    position:absolute;
+    top:3px;
+    right:10px;
+    z-index:299;  
+}
+.pay-img1 {
+    margin-right: 15px;
+    float: left;
+}
+.memberpay ul li img{
+    width: 20px;
+    height: 20px;
+
+}
+.memberpay ul li span {
+    font-size: 14px;
+}
+
+label.bui-radios-label input {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+label.bui-radios-label .bui-radios{
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    border-radius: 50%;
+    vertical-align: -2px;
+}
+label.bui-radios-label input:checked + .bui-radios:after{
+    color: #FFFFFF;
+    font-family: iconfont;
+    content:'✓';
+    width: 10px;
+    height: 10px;
+    font-size: 10px;
+    line-height: 13px;
+    position: absolute;
+    top: 0px;
+    left: 1px;
+}
+label.bui-radios-label input:checked + .bui-radios{
+    background: #00B066;
+    border: 1px solid #00B066;
+}
+
+label.bui-radios-label.bui-radios-anim .bui-radios{
+    -webkit-transition: background-color ease-out .3s;
+    transition: background-color ease-out .3s;
+}

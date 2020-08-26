@@ -1,0 +1,214 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.uni-container.data-v-3f78f9e3 {
+  border-top: 10rpx solid #f1f1f1;
+}
+.uni-container .uni-title.data-v-3f78f9e3 {
+  width: 700rpx;
+  height: 80rpx;
+  padding: 0 25rpx;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.uni-container .uni-title .uni-left.data-v-3f78f9e3 {
+  width: 280rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.uni-container .uni-title .uni-left .logo.data-v-3f78f9e3 {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+.uni-container .uni-title .uni-left .sdName.data-v-3f78f9e3 {
+  font-size: 30rpx;
+}
+.uni-container .uni-title .uni-left .zhixiang.data-v-3f78f9e3 {
+  width: 20rpx;
+  height: 20rpx;
+}
+.uni-container .uni-title .uni-right.data-v-3f78f9e3 {
+  color: red;
+  font-size: 30rpx;
+}
+.uni-container .uni-content.data-v-3f78f9e3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 700rpx;
+  height: 250rpx;
+  padding: 0 25rpx;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  background-color: #efeff4;
+  border-bottom: 4rpx solid #fff;
+}
+.uni-container .uni-content .uni-con-left.data-v-3f78f9e3 {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 30rpx;
+}
+.uni-container .uni-content .uni-con-right.data-v-3f78f9e3 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
+  height: 180rpx;
+  position: relative;
+}
+.uni-container .uni-content .uni-con-right .uni-first.data-v-3f78f9e3 {
+  font-size: 28rpx;
+  color: #6d6d72;
+}
+.uni-container .uni-content .uni-con-right .uni-second.data-v-3f78f9e3 {
+  width: 100%;
+  font-size: 26rpx;
+  color: #bfbfbf;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.uni-container .uni-content .uni-con-right .uni-third.data-v-3f78f9e3 {
+  width: 100%;
+  text-align: right;
+}
+.uni-container .uni-content .uni-con-right .uni-third .right.data-v-3f78f9e3 {
+  position: absolute;
+  right: 10rpx;
+  color: #bfbfbf;
+}
+.uni-container .uni-bottom.data-v-3f78f9e3 {
+  width: 700rpx;
+  height: 60rpx;
+  padding: 10rpx 25rpx;
+  background-color: #fff;
+  text-align: right;
+}
+.uni-container .uni-bottom .word.data-v-3f78f9e3 {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #656565;
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border: 1rpx solid #353535;
+  border-radius: 10rpx;
+}
+.uni-container .uni-bottom .words.data-v-3f78f9e3 {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #656565;
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+.redStyle.data-v-3f78f9e3 {
+  color: #ecd69c;
+}
+.popups.data-v-3f78f9e3 {
+  width: 750rpx;
+  height: 500rpx;
+  background-color: white;
+}
+.popups .pop-title.data-v-3f78f9e3 {
+  width: 750rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #dfdfdf;
+}
+.popups .pop-title .refundReason.data-v-3f78f9e3 {
+  color: #3b3b3b;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.popups .pop-content.data-v-3f78f9e3 {
+  width: 750rpx;
+  height: 400rpx;
+}
+.popups .pop-content .style.data-v-3f78f9e3 {
+  width: 750rpx;
+  height: 90rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 27rpx;
+  border-bottom: 1rpx solid #dfdfdf;
+}
+.popups .pop-content .style .left.data-v-3f78f9e3 {
+  width: 200rpx;
+  margin-left: 20rpx;
+}
+.popups .subBtn.data-v-3f78f9e3 {
+  width: 750rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #FF7599;
+  text-align: center;
+  color: #fff;
+  margin-top: 126rpx;
+}
+

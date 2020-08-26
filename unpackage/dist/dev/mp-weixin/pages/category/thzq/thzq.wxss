@@ -1,0 +1,86 @@
+
+page{
+	background: #F0F0F0;
+}
+.info_wrap{}
+.info_rule_bg{
+	width: 100%;
+	height: 333rpx;
+}
+.info_box{
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+.info_rule{
+	position: absolute;
+	top: 10rpx;
+	right: 20rpx;
+	font-size:26rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(255,255,255,1);
+}
+.info_num{
+	font-size:80rpx;
+	font-family:Microsoft YaHei;
+	font-weight:400;
+	color:rgba(255,255,255,1);
+}
+.info_btns{
+	padding: 47rpx 0;
+}
+.info_btn{
+	width:146rpx;
+	height:60rpx;
+	border:2rpx solid rgba(255,255,255,1);
+	border-radius:30rpx;
+
+	font-size:26rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(255,255,255,1);
+}
+.info_btn+
+.info_btn{
+	margin-left: 45rpx;
+}
+.goods_list{}
+.goods_li{
+	margin-top: 30rpx;
+	margin-left: 30rpx;
+
+	width:330rpx;
+	/*height:442rpx;*/
+	background:rgba(255,255,255,1);
+	border:1px solid rgba(229, 229, 229, 1);
+	border-radius:10rpx;
+	box-sizing: border-box;
+}
+.goods_li_img{
+	width: 320rpx;
+	height: 330rpx;
+	display: block;
+	margin: auto;
+}
+.goods_li_info{
+	padding: 20rpx;
+	padding-top: 0;
+}
+.goods_li_txt{
+	font-size:26rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(51,51,51,1);
+}
+.goods_li_num{
+	font-size:26rpx;
+	font-family:PingFang SC;
+	font-weight:bold;
+	color:rgba(254,94,84,1);
+	margin-top: 16rpx;
+}
+
+

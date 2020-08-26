@@ -1,0 +1,1340 @@
+/* 字体 */
+
+/* @font-face {
+    font-family: 'iconfont'; 
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot');
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.woff') format('woff'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.svg#iconfont') format('svg');
+} */
+.iconfont {
+    font-family: "iconfont";
+    font-size: 26rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-empty:before {
+    content: '\e610';
+	font-size: 160rpx;
+}
+
+/* @font-face {
+    font-family: 'wjw'; 
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot');
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.woff') format('woff'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.svg#iconfont') format('svg');
+} */
+[class^="wjw_"]{
+    font-family: "iconfont";
+    font-size: 26rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.wjw_empty:before {
+    content: '\e610';
+}
+
+/* --------------- 字体 -end ------------------- */
+
+/* mask */
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    background: rgba(0,0,0,0.9);
+}
+
+/* 标签 */
+form{
+    width: 100%;
+    display: block;
+}
+button::after {
+    display: none;
+}
+.reset_btn_sty{
+    padding:0;
+    font-size: inherit;
+    border-radius: 0;
+}
+.reset_btn_sty.button-hover{
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    color: inherit;
+    background-color:inherit;
+}
+image {
+    vertical-align: top;
+}
+
+/* 标签 end */
+
+/* 主色调 .main_color .main_color_bg .main_color_border */
+
+/* .main_color {
+        color: #f9666b;
+    }
+
+    .main_color_bg {
+        background-color: #f9666b;
+    }
+
+    .main_color_border {
+        border-color: #f9666b;
+    } */
+
+/* 主色调 end */
+.button-hover {
+    -webkit-transform: translate(1rpx, 1rpx);
+            transform: translate(1rpx, 1rpx);
+}
+.cross {
+    position: relative;
+    overflow: visible;
+}
+.cross::after, .cross_view {
+    content: '×';
+    background-color: red;
+    color: white;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 40rpx;
+    position: absolute;
+    top: -20rpx;
+    right: -20rpx;
+    text-align: center;
+    border-radius: 50%;
+    /* overflow: hidden; */
+}
+.cross_view::after {
+    content: '×';
+}
+.add_img {
+    display: inline-block;
+    color: rgba(16, 16, 16, 1);
+    text-align: center;
+    border: 1px solid rgba(187, 187, 187, 1);
+    box-sizing: border-box;
+    /* vertical-align: bottom; */
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+}
+.add_img:empty::after {
+    content: '+';
+    font-size: 40rpx;
+}
+
+/* 固定功能按钮 end */
+
+/* 加载动画-start */
+.loading_box {
+    margin-top: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 100rpx 0;
+}
+.loading_box>view {
+    display: inline-block;
+}
+.pulse {
+    width: 8rpx;
+    height: 40rpx;
+    /* background: #1ab394; *//* background: #FF0000; *//* background: #F9666B; */
+    margin: 8rpx;
+    border-radius: 20rpx;
+}
+.pulse_1 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+}
+.pulse_2 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+    -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+}
+.pulse_3 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+}
+.pulse_4 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+}
+@-webkit-keyframes pulse {
+0% {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+}
+100% {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+}
+}
+@keyframes pulse {
+0% {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+}
+100% {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+}
+}
+
+/* 加载动画-end */
+
+/* input全局修改 */
+.body {
+    height: 100%;
+}
+input {
+    /* 解决高度自动对齐=>内容垂直居中 */
+    height: 100%;
+    min-height: 0;
+    /* 解决穿透 */
+    position: relative;
+    z-index: 0;
+}
+input[type=hidden] {
+    width: 0;
+    height: 0;
+
+    /* 
+        小程序 中 input为block, 
+        由h5转化小程序时, 自定义修改为inline-block, 
+        对于隐藏的行块标签, 有占据空白的问题,
+            可以通过设置为block解决, 或者绝对定位
+            注意可能被优先级
+        display: block;// 如果排在行级标签中间, 可能会影响行级布局
+    */
+    position: absolute;
+}
+
+/* input全局修改-end */
+
+/* 相邻 */
+.adjoin {
+}
+.adjoin+.adjoin_after {
+    /* display: none; */
+}
+
+/* 相邻 end */
+
+/* 无内容 */
+
+/* 无数据的样式 */
+
+/* 组件text内容为空时会有个span标签, uniapp是如此的 */
+.empty_list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    font-size: 30rpx;
+    margin: 50% 0;
+    color: #999;
+}
+.empty_list>._i {
+    font-size: 100rpx;
+}
+.empty_data {
+    padding: 20% 0;
+    text-align: center;
+    color: #999;
+}
+
+/* 无数据的样式 end */
+.empty_box:empty{
+	position: relative;
+	background: rgba(0,0,0,0.6);
+	color:white;
+	font-weight: bold;
+}
+.empty_box:empty::after{
+	content:'暂无内容';
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.empty_box:empty[data-tip]::after{
+	content:'暂无'attr(data-tip);
+	/* content:attr(data-tip); */
+}
+.only_content::before {
+    content: '暂无';
+}
+.only_content {
+    display: none;
+}
+
+/* 选择属于其父元素的唯一子元素 */
+.only_content:only-child {
+    display: inline;
+}
+
+/* :after 避免与iconfont字体图标before冲突 */
+
+/* .text_empty:empty{
+        color: gray;
+    }
+    .text_empty[data-content]{
+        color: red;
+    }
+    .text_empty[data-content]:empty{
+        color: blue;
+    }
+    .text_empty:empty[data-content]{
+        color: blue;
+    } */
+.text_empty:empty:after {
+    content: ' 暂无 ';
+}
+
+/* 
+.text_empty[data-content]:after {
+    content: '';
+}
+ */
+.text_empty[data-content]:empty:after {
+    content: attr(data-content);
+}
+.text_empty[data-tip]:empty:after {
+    content: '暂无'attr(data-tip);
+}
+.text_empty[data-tips]:empty:after {
+    content: attr(data-tips);
+}
+
+/* 无内容 end */
+
+/* 注释 */
+.tip {
+    color: gray;
+    /* padding-left: 65rpx; */
+}
+.red_tip, .tips:not(:empty):before, .major_mark:before {
+    color: #fc4d5b;
+    color: red;
+}
+
+/*.tips:not(:empty):before, */
+.major_mark:before {
+    content: '*';
+}
+
+/* 注释 end */
+
+/* 常用 */
+
+/* 宽高 */
+.width_vw {
+    width: 100vw;
+}
+.width_percent, .width_perc {
+    width: 100%;
+}
+.max_width_percent, .max_width_perc {
+    max-width: 100%;
+}
+.height_vw {
+    height: 100vw;
+}
+.height_vh {
+    height: 100vh;
+}
+.mine_height_vh {
+    min-height: 100vh;
+}
+.height_percent {
+    height: 100%;
+}
+.max_height_percent, .max_height_perc {
+    max-height: 100%;
+}
+.view_all {
+    width: 100%;
+    height: 100%;
+}
+.view_all_v {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* 宽度 end */
+
+/* font */
+.bold {
+    font-weight: bold;
+}
+
+/* font end */
+
+/* 颜色 */
+.mask_bg {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.bg_tr {
+    background-color: transparent;
+}
+.bg_white {
+    background-color: white;
+}
+.bg_gray {
+    background-color: #f0ecec;
+}
+.color_white {
+    color: white;
+}
+.color_black {
+    color: black;
+}
+.color_gray {
+    color: #f0ecec;
+}
+.bg_red {
+    background-color: red;
+}
+.bg_yellow {
+    background-color: yellow;
+}
+.bg_blue {
+    background-color: blue;
+}
+
+/* .color_yellow_ {
+            color: #FFD984;
+        } */
+.border_trans {
+    border-color: transparent;
+}
+.opacity_none, .op_none, .op_0 {
+    opacity: 0;
+}
+
+/* 颜色 end */
+
+/* border-radius */
+.radius_tl {
+    border-top-left-radius: 50%;
+}
+.radius_tr {
+    border-top-right-radius: 50%;
+}
+.radius_bl {
+    border-bottom-left-radius: 50%;
+}
+.radius_br {
+    border-bottom-right-radius: 50%;
+}
+.circle {
+    border-radius: 50%;
+    /* overflow: hidden; */
+}
+
+/* border-radius end */
+
+/* position */
+.fixed {
+    position: fixed;
+}
+.relative,
+.p_r {
+    position: relative;
+}
+.p_r_i {
+    position: relative !important;
+}
+.absolute {
+    position: absolute;
+}
+.sticky{
+    position: -webkit-sticky;
+    position: sticky;
+}
+.po_top {
+    top: 0;
+}
+.po_bottom {
+    bottom: 0;
+}
+.po_left {
+    left: 0;
+}
+.po_right {
+    right: 0;
+}
+.z_bottom {
+    z-index: -1;
+}
+.z_1 {
+    z-index: 1;
+}
+.z_999 {
+    z-index: 999;
+}
+.z_1000 {
+    z-index: 1000;
+}
+.page_c,
+.page_center
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.page_b{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+/* position end */
+
+/* float */
+.float_l, .float_left {
+    float: left;
+}
+.float_r, .float_right {
+    float: right;
+}
+
+/* float end */
+
+/* overflow */
+.ov_hid {
+    overflow: hidden;
+}
+.ov_auto {
+    overflow: auto;
+}
+.ov_scr, .scroll {
+    overflow: scroll;
+}
+
+/* overflow end */
+
+/* flex */
+.flex_column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+}
+.flex_c {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.flex_wrap {
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.flex_grow {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
+}
+.flex_shrink {
+    -webkit-flex-shrink: 1;
+            flex-shrink: 1;
+}
+.no_shrink {
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+}
+.flex_jc_a {
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+}
+.flex_jc_c {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+.flex_jc_b {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+}
+.flex_jc_e {
+    -webkit-box-pack: space-evenly;
+    -webkit-justify-content: space-evenly;
+            justify-content: space-evenly;
+}
+.flex_jc_end {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+}
+.flex_align_c {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.flex_align_bet {
+    -webkit-box-align: space-between;
+    -webkit-align-items: space-between;
+            align-items: space-between;
+}
+.flex_align_end {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
+}
+.flex_self_c {
+    -webkit-align-self: center;
+            align-self: center;
+}
+.flex_self_bet {
+    -webkit-align-self: space-between;
+            align-self: space-between;
+}
+.flex_self_end {
+    -webkit-align-self: flex-end;
+            align-self: flex-end;
+}
+
+/* flex end */
+
+/* display */
+.none, 
+.dn {
+    display: none !important;
+}
+.block, 
+.db {
+    display: block !important;
+}
+.inline_block, .ib {
+    display: inline-block !important;
+}
+.inline {
+    display: inline !important;
+}
+.flex, [data-flex] {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+}
+.in_flex {
+    display: -webkit-inline-box !important;
+    display: -webkit-inline-flex !important;
+    display: inline-flex !important;
+}
+
+/* display end */
+
+/* 常用 end */
+
+/*  */
+.scale_0 {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+}
+.scale_1 {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+.trs {
+    -webkit-transition: -webkit-transform 3s;
+    transition: -webkit-transform 3s;
+    transition: transform 3s;
+    transition: transform 3s, -webkit-transform 3s;
+}
+
+/*  */
+
+/* 未确定区分 */
+[data-content]::after {
+    content: attr(data-content);
+    /* 对button效果较差 */
+}
+
+/* warp 弯曲*/
+.txt_over_ell, .txt_over_ell_2, .txt_over_ell_3, .txt_warp, .txt_wrap {
+    /* 有效 */
+    word-break: break-all;
+    /* 无 长 数字/单词 换行效果 *//* word-wrap:break-word; *//* text-wrap:unrestricted; */
+}
+.txt_over_ell, .txt_over_ell_2, .txt_over_ell_3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.txt_over_ell_2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.txt_over_ell {
+    white-space: nowrap;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.pre_line {
+    white-space: pre-line;
+}
+.pre_wrap {
+    white-space: pre-wrap;
+}
+.pre {
+    white-space: pre;
+}
+.va_t {
+    vertical-align: top;
+}
+.va_m {
+    vertical-align: middle;
+}
+.va_b {
+    vertical-align: bottom;
+}
+.margin_auto {
+    margin: auto;
+}
+.height_auto,
+.h_a {
+    height: auto;
+}
+.width_auto,
+.w_a {
+    width: auto;
+}
+.ta_l {
+    text-align: left;
+}
+.ta_c {
+    text-align: center;
+}
+.ta_r {
+    text-align: right;
+}
+.lh_normal {
+    line-height: normal;
+}
+.fz_medium {
+    font-size: medium;
+}
+.page_fz {
+    font-size: 28rpx;
+}
+.warp_btn {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+/* 未确定区分 end */
+
+/* 无数据 */
+.icon_empty {
+    font-size: 95rpx;
+}
+.tr_c {
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+}
+.lh1{
+    line-height: 1;
+}
+
+/*--status-bar-height   系统状态栏高度 系统状态栏高度、nvue注意见下    25px    0*/
+.status_bar {
+    height: 25px;
+    width: 100%;
+}
+
+/*--window-top    内容区域距离顶部的距离 0   0   NavigationBar 的高度*/
+.nav_bar {
+    height: 0px;
+    width: 100%;
+}
+
+/*--window-bottom 内容区域距离底部的距离 0   0   TabBar 的高度*/
+.tabBar_bar {
+    height: 0px;
+    width: 100%;
+}
+.color_i{
+    color: inherit !important;
+}
+
+/* h5的css=>小程序(uniapp)
+	1.多个选择器不能一起用
+		未进行仔细探索
+		.row>[class*=tablet-],
+		.row>[class*=col-]{float:left;
+			-moz-box-sizing:border-box;
+			box-sizing:border-box
+		}
+
+
+	    // @import "../static/common/commons/lib/jquery-weui/weui.min.css";
+		.weui-switch-cp__input:checked~.weui-switch-cp__box,.weui-switch:checked {
+			border-color: #04be02;
+			background-color: #04be02
+		}
+
+		.weui-switch-cp__input:checked~.weui-switch-cp__box:before,.weui-switch:checked:before {
+			-webkit-transform: scale(0);
+			transform: scale(0)
+		}
+
+		.weui-switch-cp__input:checked~.weui-switch-cp__box:after,.weui-switch:checked:after {
+			-webkit-transform: translateX(20px);
+			transform: translateX(20px)
+		}
+
+		.weui-search-bar__input:not(:valid)~.weui-icon-clear {
+			display: none
+		}
+
+
+
+	    // @import "../static/common/commons/lib/jquery-weui/jquery-weui.min.css";
+		.weui-row>[class*=col-] {
+			box-sizing: border-box
+		}
+
+
+	2.图片路径
+		../img/xxx
+		../../img/xxx
+		全部换成
+		/static/img/xxx
+		或
+		http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/xxx
+	3.通配符
+		小程序不支持通配符
+		只能用具体标签名进行修改
+		*{}
+		=>
+		html,body
+		,div,span
+		,h1,h2,h3,h4,h5,h6
+		,p,a,img
+		,form,label,table
+		,dl,dt,dd,ol,ul,li,tbody,tfoot,thead,tr,th,td
+		,pre,em
+		,font,strong
+		,applet,object,iframe,blockquote,abbr,acronym
+		,address,big,cite,code,del,dfn,ins,kbd,q,s,samp
+		,small,strike,sub,sup,tt
+		,var,fieldset,legend,caption
+		{}
+	4.图片标签默认值
+		小程序 image 如果使用图片真实宽高
+		如果对image设置宽高auto自适应, 小程序显示为0*0;
+
+		小程序
+			user agent stylesheet 用户代理样式表
+			image {
+				width: 320px;
+				height: 240px;
+				display: inline-block;
+				overflow: hidden;
+			}
+		uniapp将img转换为image, 类名为_img
+			<image class="_img" src="png" role="img" ></image>
+			// 目前使用宽高百分百的方法, 但是此方法需要依赖父级的宽高
+			._img{
+				width: 100%;
+				height: 100%;
+			}
+	5.小程序转化空值
+		html 样式
+			img:not([src]),img[src=""] {opacity: 0;}
+
+		转化后
+
+		小程序 样式
+			img:not([src]),img[src] {opacity: 0;}
+
+	6.行级标签与行块标签需要重新赋值display
+
+		uniapp转化 行级标签 为小程序标签时一般为view._标签名
+
+			._span{
+				display: inline;
+			}
+
+		span标签会被转化为 label._span , 
+			此处需要注意 html中是否设置了 label的样式, 
+			需要用 在原基础上 使用 label._span 去除
+			例如: 
+				样式中设置了
+				.txt-box label{
+					position: absolute;
+				}
+				去除
+				.txt-box label._span{
+					position: relative;
+				}
+
+		会提高html中使用了 标签名 选择器的优先级
+
+			// .jzl-hotPrice-detail-wrap li img{
+			.jzl-hotPrice-detail-wrap ._li ._img{
+			    width: 100%;
+			    height: 160px;
+			    margin-bottom:10px 
+			}
+
+			// .jzl-ht-price .hot-fire{
+			.jzl-ht-price img.hot-fire{
+			    position: absolute;
+			    top:1px;
+			    right: 5px;
+			    float: right;
+			    width: 9px;
+			    height: 11px;
+			}
+
+	7.默认样式不同
+		input在小程序中是
+			display: block;
+		需要添加浏览器的默认样式，注意会有优先级问题
+		input 需要添加样式: 
+
+			display: inline-block;
+
+			vertical-align: middle;
+
+		input[type="button"] 需要添加样式: 
+
+			vertical-align: middle;
+
+		span标签最好加上
+
+	8.小程序中背景图片不可用空: 
+	    background:#fff url('');// 报错
+
+
+
+
+*/
+
+/* *通配符选择器 ------------------------- */
+page,page,._div,._span,._h1,._h2,._h3,._h4,._h5,._h6,._p,._a,._img,form,label,input,textarea,._table,._tbody,._tfoot,._thead,._tr,._th,._td,._dl,._dt,._dd,._ol,._ul,._li,._pre,._em,font,._strong,applet,._object,._iframe,._blockquote,._abbr,acronym,._address,big,._cite,._code,._del,._dfn,._ins,._kbd,._q,._s,._samp,._small,strike,._sub,._sup,tt,._var,._fieldset,._legend,._caption
+{
+    box-sizing: border-box;
+}
+
+/* *通配符选择器 -end ------------------------- */
+
+/* 添加浏览器 默认设置 user agent stylesheet ------------------------- */
+._em,._i,._span
+{
+	display: inline;
+}
+._span
+{
+
+	/* pages/addAlipay */
+	vertical-align: middle;
+}
+._img{
+	width: 100%;
+	height: 100%;
+}
+button,input
+{
+	display: inline-block;
+}
+input{
+
+	/*display: inline-block;*/
+
+	/* pages/addAlipay */
+	vertical-align: middle;
+
+	/*
+	-webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    */
+}
+
+/* \pages\userOp.vue 获取验证码 */
+
+/*input[type="button" i] {*/
+input[type="button"] {
+    text-align: center;
+    /*
+    -webkit-appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+    */
+}
+
+/* 添加浏览器 默认设置 user agent stylesheet -end ------------------------- */
+
+/* 排除小程序 默认设置 user agent stylesheet  ------------------------- */
+
+/* 
+	.wx-loading {
+		position: fixed;
+		z-index: 2000000000;
+		width: 7.6em;
+		min-height: 7.6em;
+		top: 180px;
+		left: 50%;
+		margin-left: -3.8em;
+		background: rgba(40,40,40,.75);
+		text-align: center;
+		border-radius: 5px;
+		color: #fff;
+		font-size: 16px;
+		line-height: normal;
+	}
+*/
+
+/* 排除小程序 默认设置 user agent stylesheet -end ------------------------- */
+
+/* 小程序图片不支持默认按比例输出  ------------------------- */
+
+/*/css/otherCss/cj.css 订单列表页*/
+.report ._img{
+		/* 456*353 */
+		/*原有 width: 50%; == 50vw*/
+		height: calc(353 / 456 * 50vw);
+}
+
+/* /css/main.css 个人中心 */
+.form-list ._li ._img{
+		/*width: 1.1rem;*/
+		width: calc(1.1 * 20px);
+		height: calc(1.1 * 20px);
+}
+
+/* /css/otherCss/wq.css 孕婴服务 */
+.goods-cont ._img{
+	    /*width: 100%;*/
+	    height: calc(350 / 750 * 100vw);
+}
+
+/* 小程序图片不支持默认按比例输出 -end ------------------------- */
+
+/* 页面全局修改 ------------------------------ */
+
+/*h5自定义导航栏*/
+
+/*.com-top 设置的高度为44px*/
+.h5_com_top_1+._div{
+		margin-top: 44px;
+}
+.h5_com_top_2+._div{
+		margin-top: 52px;
+}
+
+/* 页面全局修改 -end ------------------------------ */
+
+/* 页面单独修改 ------------------------------ */
+
+/* 文件名.vue/路径 */
+
+/*
+样式
+*/
+
+/* 文件名/路径 -end */
+
+/* 项目/static/common/commons/css/shopCoupon.css */
+
+/*项目\pages\shopCoupon.vue*/
+
+/*
+	含有的: 
+	影响: 
+	    项目\static\common\commons\css\otherCss\member.css:
+			51: .memberpay ul li label{
+			52      position:absolute;
+
+		项目\static\common\commons\css\shopCoupon.css
+			156: .txt-box label{
+			157      position:absolute;
+			158      top:50%;
+
+			改成
+				.txt-box label._span{
+					position: static;
+				}
+
+
+	未确定: 
+		项目\static\common\commons\css\otherCss\wq.css
+		.regular-checkbox:checked + label:after {
+		    content: '\2714';
+		    font-size: 12px;
+		    position: absolute;
+		    top: -1px;
+		    left: 2px;
+		    color:#259656;
+		}
+
+	冲突
+		./pages/login/login.wxss: 118
+		./pages/login/login.wxss: 122
+		.new-login {
+			position: absolute;
+			left: calc(4 * 2rpx);
+		}
+
+		.forget-password {
+			position: absolute;
+			right: calc(4 * 2rpx);
+		}
+
+		./pages/newUser1.wxss: 8141
+		.user-agree ._span {
+			font-size: 13px;
+			position: absolute;
+			top: 2px;
+			left: 25px;
+		}
+
+
+label._span{
+	position: static !important;
+}
+label._span.new-login {
+	position: absolute !important;
+}
+label._span.forget-password {
+	position: absolute !important;
+}
+*/
+.memberpay ._ul ._li label._span,
+	.txt-box label._span{
+		position: static;
+}
+
+/* 项目/static/common/commons/css/shopCoupon.css -end  */
+
+/* 项目/css/otherCss/wq.css */
+
+/*
+.submit-content1 img{
+	height: 60px;
+}
+*/
+
+/* 项目/css/otherCss/wq.css -end  */
+
+/*@import "../static/common/commons/css/otherCss/jzl.css";*/
+
+/*
+.jzl-hotPrice-detail-wrap li img{
+    width: 100%;
+    height: 160px;
+    margin-bottom:10px 
+}
+.setting-content div img{
+	width: 1rem;
+	// 未设置高度
+}
+*/
+.setting-content ._div ._img{
+	height: 1rem;
+}
+
+/*@import "../static/common/commons/css/otherCss/jzl.css"; -end  */
+
+/* success.vue */
+
+/*
+.success_img img{
+    width: 56px;
+    height: 56px;
+}
+*/
+
+/* success.vue -end  */
+
+/* toexamineSuccess.vue paySuccess.vue */
+
+/* 1244*60 */
+
+/*
+*/
+.your-like-top ._img{
+    height: calc( 60 / 1224 * 0.83 * 100vw );
+}
+
+/* toexamineSuccess.vue -end */
+
+/* editAddress.vue addAddress.vue 
+.list-block{
+	margin-top: 40px;
+}
+*/
+
+/* 项目/css/otherCss/wq.css -end */
+
+/*项目\pages\walletDetails.vue*/
+
+/*
+  @import "../static/common/commons/rem_to_vw/light7_20.min.css";
+.points-box{
+  height: 100vh;
+}
+*/
+
+/*项目\pages\walletDetails.vue -end */
+
+/*项目\pages\wallet.vue*/
+
+/*
+    .wallet-head {
+        height: calc(9.1 *  20px);
+    }
+    .wallet-recharge img, .wallet-withdraw img{
+        height: 1.45rem;
+    }
+*/
+
+/*项目\pages\wallet.vue -end  */
+
+/* 页面单独修改 -end ------------------------------ */
+page{
+		height:100%;
+}
+.title_li{
+		margin: 30rpx 0rpx;
+}
+.title_li_divider{
+		height: 1rpx;
+		background: #ff0149;
+}
+.title_li_img{
+		width: 36rpx;
+		height: 36rpx;
+		margin: 0 5rpx;
+}
+.title_li_name{
+		font-size:30rpx;
+		font-family:PingFang SC;
+		font-weight:500;
+		color:rgba(0,0,0,1);
+}
+.play_box{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+}
+.play_icon{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: calc(40 / 750 * 100vw);
+		height: calc(40 / 750 * 100vw);
+}
+.page{
+		display: block !important;
+}
+.page_btn{
+		border-radius: 0;
+		background: #36acf7;
+		color: #fff;
+		line-height: 51px;
+		font-size: 15px;
+		font-family: PingFang SC;
+		font-weight: 500;
+		color: #fff;
+
+		width: 90vw;
+		margin: 5vw;
+}
+.mt0{
+		margin-top: 0 !important;
+}
+

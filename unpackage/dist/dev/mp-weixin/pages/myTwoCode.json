@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "邀请好友",
+  "usingComponents": {
+    "my-two-code": "/component/css/page/myTwoCode",
+    "wq": "/component/css/wq",
+    "main": "/component/css/main",
+    "light7_min": "/component/css/light7_min"
+  }
+}

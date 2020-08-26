@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;wEAAA,qBACA,sBACA,6H,mDACAA,EAAWC,a","file":"pages/messsage-detail.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/messsage-detail.vue'\ncreatePage(Page)"],"sourceRoot":""}

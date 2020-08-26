@@ -1,0 +1,61 @@
+
+.font{ font-size:0.24rem }
+.font1{font-size:0.3rem }
+.color1{ color:#cb0e0e}
+
+
+.bargain-box li .product-img{ width:100%; max-height:3.5rem }
+.bargain-box .box-cont{ padding:0.1rem .26rem 0.2rem;}
+.bargain-box .box-title{ margin-bottom:0.3rem; font-size:0.28rem; }
+.bargain-box .box-take{ margin-bottom:0.16rem; }
+.bargain-box .box-price label{
+    margin-right:0.26rem; 
+}
+.bargain-box a.link{
+    width:100%;
+    display:inline-block; 
+}
+
+.bargain-box a.goods{
+    display: block;
+    width: 1.6rem;
+    height: 0.48rem; 
+    position: absolute;
+    bottom:0.2rem;
+    right:0.2rem;
+    z-index:5 ; 
+      
+}
+.bargain-box a.goods img{
+    width:100%;
+    height:100%; 
+}
+.bargain-wr{
+    width:100%;
+    overflow: hidden;
+    position: relative; 
+}
+
+.bargain-top img {
+    width: 100%;
+}
+.bargain-text {
+    background-color: #ffffff;
+    width: 100%;
+    height: .64rem;
+    margin-top: -4px;
+    text-align: center;
+    font-size:0.32rem;
+    line-height: .68rem;
+}
+
+.bargain-box li{ 
+ margin-bottom:0.18rem; 
+ position: relative;
+ background: #fff; 
+ width:100%; 
+}
+figure{text-align: center;}
+figure img{width:100%;}
+
+

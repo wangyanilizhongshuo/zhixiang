@@ -1,0 +1,858 @@
+/* 字体 */
+
+@font-face {
+    font-family: 'iconfont'; /* project id 682670 */
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot');
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.woff') format('woff'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.svg#iconfont') format('svg');
+}
+.iconfont {
+    font-family: "iconfont";
+    font-size: 26rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-empty:before {
+    content: '\e610';
+	font-size: 160rpx;
+}
+@font-face {
+    font-family: 'wjw'; /* project id 682670 */
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot');
+    src: url('//at.alicdn.com/t/font_682670_7f75fafh0jq.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.woff') format('woff'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_682670_7f75fafh0jq.svg#iconfont') format('svg');
+}
+[class^="wjw_"]{
+    font-family: "iconfont";
+    font-size: 26rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.wjw_empty:before {
+    content: '\e610';
+}
+/* --------------- 字体 -end ------------------- */
+
+/* mask */
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.9);
+}
+
+
+/* 标签 */
+form{
+    width: 100%;
+    display: block;
+}
+button::after {
+    display: none;
+}
+.reset_btn_sty{
+    padding:0;
+    font-size: inherit;
+    border-radius: 0;
+}
+.reset_btn_sty.button-hover{
+    transform: translate(0);
+    color: inherit;
+    background-color:inherit;
+
+}
+
+image {
+    vertical-align: top;
+}
+
+/* 标签 end */
+
+/* 主色调 .main_color .main_color_bg .main_color_border */
+
+/* .main_color {
+        color: #f9666b;
+    }
+
+    .main_color_bg {
+        background-color: #f9666b;
+    }
+
+    .main_color_border {
+        border-color: #f9666b;
+    } */
+
+/* 主色调 end */
+
+.button-hover {
+    transform: translate(1rpx, 1rpx);
+}
+
+.cross {
+    position: relative;
+    overflow: visible;
+}
+
+.cross::after, .cross_view {
+    content: '×';
+    background-color: red;
+    color: white;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 40rpx;
+    position: absolute;
+    top: -20rpx;
+    right: -20rpx;
+    text-align: center;
+    border-radius: 50%;
+    /* overflow: hidden; */
+}
+
+.cross_view::after {
+    content: '×';
+}
+
+.add_img {
+    display: inline-block;
+    color: rgba(16, 16, 16, 1);
+    text-align: center;
+    border: 1px solid rgba(187, 187, 187, 1);
+    box-sizing: border-box;
+    /* vertical-align: bottom; */
+    flex-shrink: 0;
+}
+
+.add_img:empty::after {
+    content: '+';
+    font-size: 40rpx;
+}
+
+/* 固定功能按钮 end */
+
+/* 加载动画-start */
+
+.loading_box {
+    margin-top: 50%;
+    width: 100%;
+    text-align: center;
+    padding: 100rpx 0;
+}
+
+.loading_box>view {
+    display: inline-block;
+}
+
+.pulse {
+    width: 8rpx;
+    height: 40rpx;
+    /* background: #1ab394; *//* background: #FF0000; *//* background: #F9666B; */
+    margin: 8rpx;
+    border-radius: 20rpx;
+}
+
+.pulse_1 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+}
+
+.pulse_2 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+    animation-delay: 0.1s;
+}
+
+.pulse_3 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+    animation-delay: 0.2s;
+}
+
+.pulse_4 {
+    -webkit-animation: pulse 0.5s linear infinite alternate;
+    animation: pulse 0.5s linear infinite alternate;
+    animation-delay: 0.3s;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(0);
+    }
+}
+
+/* 加载动画-end */
+
+/* input全局修改 */
+
+.body {
+    height: 100%;
+}
+
+input {
+    /* 解决高度自动对齐=>内容垂直居中 */
+    height: 100%;
+    min-height: 0;
+    /* 解决穿透 */
+    position: relative;
+    z-index: 0;
+}
+
+input[type=hidden] {
+    width: 0;
+    height: 0;
+
+    /* 
+        小程序 中 input为block, 
+        由h5转化小程序时, 自定义修改为inline-block, 
+        对于隐藏的行块标签, 有占据空白的问题,
+            可以通过设置为block解决, 或者绝对定位
+            注意可能被优先级
+        display: block;// 如果排在行级标签中间, 可能会影响行级布局
+    */
+    position: absolute;
+}
+
+/* input全局修改-end */
+
+
+/* 相邻 */
+
+.adjoin {
+}
+
+.adjoin+.adjoin_after {
+    /* display: none; */
+}
+
+/* 相邻 end */
+
+/* 无内容 */
+
+/* 无数据的样式 */
+/* 组件text内容为空时会有个span标签, uniapp是如此的 */
+.empty_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30rpx;
+    margin: 50% 0;
+    color: #999;
+}
+
+.empty_list>i {
+    font-size: 100rpx;
+}
+
+.empty_data {
+    padding: 20% 0;
+    text-align: center;
+    color: #999;
+}
+/* 无数据的样式 end */
+
+.empty_box:empty{
+	position: relative;
+	background: rgba(0,0,0,0.6);
+	color:white;
+	font-weight: bold;
+}
+.empty_box:empty::after{
+	content:'暂无内容';
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.empty_box:empty[data-tip]::after{
+	content:'暂无'attr(data-tip);
+	/* content:attr(data-tip); */
+}
+
+.only_content::before {
+    content: '暂无';
+}
+
+.only_content {
+    display: none;
+}
+/* 选择属于其父元素的唯一子元素 */
+.only_content:only-child {
+    display: inline;
+}
+
+/* :after 避免与iconfont字体图标before冲突 */
+
+/* .text_empty:empty{
+        color: gray;
+    }
+    .text_empty[data-content]{
+        color: red;
+    }
+    .text_empty[data-content]:empty{
+        color: blue;
+    }
+    .text_empty:empty[data-content]{
+        color: blue;
+    } */
+
+.text_empty:empty:after {
+    content: ' 暂无 ';
+}
+/* 
+.text_empty[data-content]:after {
+    content: '';
+}
+ */
+.text_empty[data-content]:empty:after {
+    content: attr(data-content);
+}
+.text_empty[data-tip]:empty:after {
+    content: '暂无'attr(data-tip);
+}
+.text_empty[data-tips]:empty:after {
+    content: attr(data-tips);
+}
+
+/* 无内容 end */
+
+/* 注释 */
+
+.tip {
+    color: gray;
+    /* padding-left: 65rpx; */
+}
+
+.red_tip, .tips:not(:empty):before, .major_mark:before {
+    color: #fc4d5b;
+    color: red;
+}
+
+.tips:not(:empty):before, .major_mark:before {
+    content: '*';
+}
+
+/* 注释 end */
+
+/* 常用 */
+
+/* 宽高 */
+
+.width_vw {
+    width: 100vw;
+}
+
+.width_percent, .width_perc {
+    width: 100%;
+}
+.max_width_percent, .max_width_perc {
+    max-width: 100%;
+}
+
+
+.height_vw {
+    height: 100vw;
+}
+
+.height_vh {
+    height: 100vh;
+}
+
+.mine_height_vh {
+    min-height: 100vh;
+}
+
+.height_percent {
+    height: 100%;
+}
+.max_height_percent, .max_height_perc {
+    max-height: 100%;
+}
+
+.view_all {
+    width: 100%;
+    height: 100%;
+}
+
+.view_all_v {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* 宽度 end */
+
+/* font */
+
+.bold {
+    font-weight: bold;
+}
+
+/* font end */
+
+/* 颜色 */
+
+.mask_bg {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bg_tr {
+    background-color: transparent;
+}
+
+.bg_white {
+    background-color: white;
+}
+
+.bg_gray {
+    background-color: #f0ecec;
+}
+
+.color_white {
+    color: white;
+}
+
+.color_black {
+    color: black;
+}
+
+.color_gray {
+    color: #f0ecec;
+}
+
+.bg_red {
+    background-color: red;
+}
+
+.bg_yellow {
+    background-color: yellow;
+}
+
+.bg_blue {
+    background-color: blue;
+}
+
+/* .color_yellow_ {
+            color: #FFD984;
+        } */
+
+.border_trans {
+    border-color: transparent;
+}
+
+.opacity_none, .op_none, .op_0 {
+    opacity: 0;
+}
+
+/* 颜色 end */
+
+/* border-radius */
+
+.radius_tl {
+    border-top-left-radius: 50%;
+}
+
+.radius_tr {
+    border-top-right-radius: 50%;
+}
+
+.radius_bl {
+    border-bottom-left-radius: 50%;
+}
+
+.radius_br {
+    border-bottom-right-radius: 50%;
+}
+
+.circle {
+    border-radius: 50%;
+    /* overflow: hidden; */
+}
+
+/* border-radius end */
+
+/* position */
+
+.fixed {
+    position: fixed;
+}
+
+.relative,
+.p_r {
+    position: relative;
+}
+.p_r_i {
+    position: relative !important;
+}
+
+.absolute {
+    position: absolute;
+}
+.sticky{
+    position: sticky;
+}
+
+.po_top {
+    top: 0;
+}
+
+.po_bottom {
+    bottom: 0;
+}
+
+.po_left {
+    left: 0;
+}
+
+.po_right {
+    right: 0;
+}
+
+.z_bottom {
+    z-index: -1;
+}
+
+.z_1 {
+    z-index: 1;
+}
+
+.z_999 {
+    z-index: 999;
+}
+.z_1000 {
+    z-index: 1000;
+}
+.page_c,
+.page_center
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.page_b{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+/* position end */
+
+/* float */
+
+.float_l, .float_left {
+    float: left;
+}
+
+.float_r, .float_right {
+    float: right;
+}
+
+/* float end */
+
+/* overflow */
+
+.ov_hid {
+    overflow: hidden;
+}
+
+.ov_auto {
+    overflow: auto;
+}
+
+.ov_scr, .scroll {
+    overflow: scroll;
+}
+
+/* overflow end */
+
+/* flex */
+
+.flex_column {
+    flex-direction: column;
+}
+
+.flex_c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_wrap {
+    flex-wrap: wrap;
+}
+
+.flex_grow {
+    flex-grow: 1;
+}
+
+.flex_shrink {
+    flex-shrink: 1;
+}
+
+.no_shrink {
+    flex-shrink: 0;
+}
+
+.flex_jc_a {
+    justify-content: space-around;
+}
+
+.flex_jc_c {
+    justify-content: center;
+}
+
+.flex_jc_b {
+    justify-content: space-between;
+}
+
+.flex_jc_e {
+    justify-content: space-evenly;
+}
+
+.flex_jc_end {
+    justify-content: flex-end;
+}
+
+.flex_align_c {
+    align-items: center;
+}
+
+.flex_align_bet {
+    align-items: space-between;
+}
+
+.flex_align_end {
+    align-items: flex-end;
+}
+
+.flex_self_c {
+    align-self: center;
+}
+
+.flex_self_bet {
+    align-self: space-between;
+}
+
+.flex_self_end {
+    align-self: flex-end;
+}
+
+/* flex end */
+
+/* display */
+
+.none, 
+.dn {
+    display: none !important;
+}
+
+.block, 
+.db {
+    display: block !important;
+}
+
+.inline_block, .ib {
+    display: inline-block !important;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.flex, [data-flex] {
+    display: flex !important;
+}
+
+.in_flex {
+    display: inline-flex !important;
+}
+
+/* display end */
+
+/* 常用 end */
+
+/*  */
+
+.scale_0 {
+    transform: scale(0);
+}
+
+.scale_1 {
+    transform: scale(1);
+}
+
+.trs {
+    transition: transform 3s;
+}
+
+/*  */
+
+/* 未确定区分 */
+
+[data-content]::after {
+    content: attr(data-content);
+    /* 对button效果较差 */
+}
+
+/* warp 弯曲*/
+.txt_over_ell, .txt_over_ell_2, .txt_over_ell_3, .txt_warp, .txt_wrap {
+    /* 有效 */
+    word-break: break-all;
+    /* 无 长 数字/单词 换行效果 *//* word-wrap:break-word; *//* text-wrap:unrestricted; */
+}
+
+.txt_over_ell, .txt_over_ell_2, .txt_over_ell_3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.txt_over_ell_2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.txt_over_ell {
+    white-space: nowrap;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.pre_line {
+    white-space: pre-line;
+}
+
+.pre_wrap {
+    white-space: pre-wrap;
+}
+
+.pre {
+    white-space: pre;
+}
+
+.va_t {
+    vertical-align: top;
+}
+
+.va_m {
+    vertical-align: middle;
+}
+
+.va_b {
+    vertical-align: bottom;
+}
+
+.margin_auto {
+    margin: auto;
+}
+
+.height_auto,
+.h_a {
+    height: auto;
+}
+
+.width_auto,
+.w_a {
+    width: auto;
+}
+
+.ta_l {
+    text-align: left;
+}
+
+.ta_c {
+    text-align: center;
+}
+
+.ta_r {
+    text-align: right;
+}
+
+.lh_normal {
+    line-height: normal;
+}
+
+.fz_medium {
+    font-size: medium;
+}
+
+.page_fz {
+    font-size: 28rpx;
+}
+
+.warp_btn {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+/* 未确定区分 end */
+
+/* 无数据 */
+
+.icon_empty {
+    font-size: 95rpx;
+}
+
+.tr_c {
+    transform-origin: center center;
+}
+.lh1{
+    line-height: 1;
+}
+
+/*--status-bar-height   系统状态栏高度 系统状态栏高度、nvue注意见下    25px    0*/
+.status_bar {
+    height: var(--status-bar-height);
+    width: 100%;
+}
+/*--window-top    内容区域距离顶部的距离 0   0   NavigationBar 的高度*/
+.nav_bar {
+    height: var(--window-top);
+    width: 100%;
+}
+/*--window-bottom 内容区域距离底部的距离 0   0   TabBar 的高度*/
+.tabBar_bar {
+    height: var(--window-bottom);
+    width: 100%;
+}
+.color_i{
+    color: inherit !important;
+}

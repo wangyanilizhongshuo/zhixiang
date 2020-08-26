@@ -1,0 +1,347 @@
+﻿  
+    .packets i, .packets em {
+        font-style: normal
+    }
+    
+    .packets-save a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .app-cont {
+        margin-top: 44px;
+    }
+    .packets .tab {
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+        display: flex;
+    }
+
+    .packets .tab .tab-box {
+        width: 50%;
+        text-align: center;
+    }
+
+    .packets .tab .tab-box a {
+        width:100%; 
+        font-size: calc( 0.26 / 7.5 * 100vw  );
+        display: inline-block;
+        height: calc( 0.73 / 7.5 * 100vw  );
+        line-height: calc( 0.73 / 7.5 * 100vw  );
+    }
+
+    .packets .tab .tab-box .atian {
+        color: #f00;
+        border-bottom: 1.5px solid #f00;
+    }
+
+  .packets .tab-cont {
+        width: 100%;
+        margin-top: calc( 0.2 / 7.5 * 100vw  );
+        padding: 0 calc( 0.02 / 7.5 * 100vw  );
+        overflow: scroll;
+    }
+
+    .tab-cont li {
+        width: 100%;
+        margin-bottom: calc( 0.3 / 7.5 * 100vw  );
+        height: calc( 2.3 / 7.5 * 100vw  );
+        overflow: hidden;
+        background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/coupons.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+    }
+
+    .cont-txt {
+        width: 100%;
+        display: flex;
+    }
+
+    .cont-font {
+        height: calc( 0.4 / 7.5 * 100vw  );
+        line-height: calc( 0.4 / 7.5 * 100vw  );
+        position: absolute;
+        padding-left: calc( 0.7 / 7.5 * 100vw  );
+        font-size: calc( 0.24 / 7.5 * 100vw  );
+        bottom: calc( 0.12 / 7.5 * 100vw  );
+        left: 0;
+        color: #a2a2a2;
+        z-index: 99;
+    }
+
+    .coupon-color {
+        color: #a2a2a2;
+        font-size: calc( 0.24 / 7.5 * 100vw  );
+        height: calc( 0.35 / 7.5 * 100vw  );
+    }
+
+    .txt-box {
+        width: 50%;
+        padding-left: calc( 0.7 / 7.5 * 100vw  );
+        padding-top: calc( 0.3 / 7.5 * 100vw  );
+        position: relative;
+    }
+
+    .txt-box p {
+        margin-top: calc( 0.05 / 7.5 * 100vw  );
+    }
+
+    .coupon-name {
+        color: #000;
+        font-size: calc( 0.28 / 7.5 * 100vw  );
+    }
+
+    .price {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        bottom: calc(  0 / 7.5 * 100vw  );
+
+    }
+
+    .color1 {
+        color: #f00;
+    }
+
+    .color2 {
+        color: #a2a2a2;
+    }
+
+    .price span {
+        font-size: calc( 0.24 / 7.5 * 100vw  );
+    }
+
+    .price-one {
+        margin: 0 calc( 0.1 / 7.5 * 100vw  );
+        font-size: calc( 0.7 / 7.5 * 100vw  );
+    }
+
+    .price-two {
+        font-size: calc( 0.5 / 7.5 * 100vw  );
+    }
+
+    .bottom-fell {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 110;
+        width: 100%;
+        border-top: 1px solid #e6e6e6;
+        height: calc( 0.88 / 7.5 * 100vw  );
+        background: #fff;
+    }
+
+    .bottom-fell .fell-box {
+        width: 50%;
+        text-align: center;
+        float: left;
+    }
+
+    .bottom-fell .fell-box a {
+        line-height: calc( 0.88 / 7.5 * 100vw  );
+        font-size: calc( 0.31 / 7.5 * 100vw  );
+        display: inline-block;
+        width: 100%;
+    }
+/**单选框**/
+.bui-checkbox-label,.bui-radios-label{
+    width:100%;
+    height:100%;
+    display: inline-block; 
+    position: relative;
+    cursor: pointer;
+}
+.position{
+    position: absolute;
+    top:50%;
+    left:10px;
+    z-index:999; 
+}
+.bui-radios-label input[type="radio"]{
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 16px;
+    height: 16px;
+    margin-right:10px;
+    margin-top:6px; 
+    background: #fff;
+    border: 1px solid #ccc;
+    position: relative;
+    
+}
+.bui-radios-label input[type="radio"]:checked::after {
+    color: #FFFFFF;
+    font-family: iconfont;
+    content:'✓';
+    width: 13px;
+    height: 13px;
+    font-size: 12px;
+    line-height: 15px;
+    position: absolute;
+    top: 0px;
+    left: 2px;
+}
+
+.bui-checkbox-label input:checked + .bui-checkbox,.bui-radios-label input[type="radio"]:checked{
+    background: #00B066;
+    border: 1px solid #00B066;
+}
+
+.bui-radios-label input[type="radio"],.bui-radios-label input[type="radio"]:checked::after {
+    border-radius: 50%;
+}
+
+bui-checkbox-label.bui-checkbox-anim .bui-checkbox,.bui-radios-label input[type="radio"]:checked{
+    -webkit-transition: background-color ease-out .3s;
+    transition: background-color ease-out .3s;
+}
+
+/**复选框***/
+label.bui-checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+label.bui-checkbox-label .bui-checkbox {
+    display: inline-block;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    border-radius: 50%;
+    vertical-align: -2px;
+}
+label.bui-checkbox-label input:checked + .bui-checkbox:after{
+    color: #FFFFFF;
+    font-family: iconfont;
+    content:'✓';
+    width: 13px;
+    height: 13px;
+    font-size: 12px;
+    line-height: 15px;
+    position: absolute;
+    top: 0px;
+    left: 2px;
+}
+
+
+
+
+
+/**复选框**/
+.txt-box input[type="checkbox"] {
+    background-color: initial;
+    cursor: default;
+    margin: 3px 0.5ex;
+    padding: initial;
+    border: initial;
+} 
+
+
+
+
+
+
+.packets-top{
+    height:calc( 0.88 / 7.5 * 100vw  );
+    width: 100%;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:2101;
+}
+.packets-arrow{
+    width: 50px;
+    line-height: 44px;
+    text-align: center;
+    font-size:15px; 
+    position: absolute;
+    left: calc( 0 / 7.5 * 100vw  );
+    top: 0;
+    color: #000;
+}
+.packets-top .packets-title {
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 17px;
+}
+.packets-save{
+    font-size: 14px;
+    color: #414141;
+    position: absolute;
+    height: 44px;
+    top: 0;
+    line-height: 50px;
+    right: 0;
+    text-align: center;
+    padding: 0 10px;
+}
+.mui-switch {
+    width: 60px;
+    height: 31px;
+    margin-top:3px;
+    position: relative;
+    border: 1px solid #dfdfdf;
+    background-color: #fdfdfd;
+    box-shadow: #dfdfdf 0 0 0 0 inset;
+    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-clip: content-box;
+    display: inline-block;
+    -webkit-appearance: none;
+    user-select: none;
+    outline: none; }
+    .mui-switch:before {
+      content: '';
+      width: 29px;
+      height: 29px;
+      position: absolute;
+      top: 0px;
+      left: 0;
+      border-radius: 20px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
+    .mui-switch:checked {
+      border-color: #64bd63;
+      box-shadow: #64bd63 0 0 0 16px inset;
+      background-color: #64bd63; }
+      .mui-switch:checked:before {
+        left: 21px; }
+    .mui-switch.mui-switch-animbg {
+      transition: background-color ease 0.4s; }
+      .mui-switch.mui-switch-animbg:before {
+        transition: left 0.3s; }
+      .mui-switch.mui-switch-animbg:checked {
+        box-shadow: #dfdfdf 0 0 0 0 inset;
+        background-color: #64bd63;
+        transition: border-color 0.4s, background-color ease 0.4s; }
+        .mui-switch.mui-switch-animbg:checked:before {
+          transition: left 0.3s; }
+    .mui-switch.mui-switch-anim {
+      transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s; }
+      .mui-switch.mui-switch-anim:before {
+        transition: left 0.3s; }
+      .mui-switch.mui-switch-anim:checked {
+        box-shadow: #64bd63 0 0 0 16px inset;
+        background-color: #64bd63;
+        transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s; }
+        .mui-switch.mui-switch-anim:checked:before {
+          transition: left 0.3s; }
+
+.envelopes{ line-height:40px;}
+.envelopes img{ width:20px; height:20px; margin-top:-5px; }

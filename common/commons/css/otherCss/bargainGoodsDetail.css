@@ -1,0 +1,222 @@
+.ma-top15{
+    margin-top:15px 
+}
+.info-titel{
+    border-bottom:1px solid #e6e6e6;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-size:15px; 
+} 
+.progress{
+    border-radius:4px;
+    height:17px;
+    background: #e6e6e6;
+    width:100%; 
+    position: relative;
+}
+.progress-bg{
+    background: #f00;
+    border-radius: 7px;
+    height:100%;
+   
+}
+.progress .cutPrice{
+    width:30%;
+    height:100%;
+    position: absolute;
+    top: 0;
+    left:2px;
+    font-size: 9px;
+    z-index:99; 
+    color: #fff;
+}
+.schedule-title{
+  font-size:13px; 
+  margin-bottom: 6px;
+  line-height:19px;
+  color:#f00; 
+}
+.bidmain-title{
+  font-size:13px; 
+  margin-bottom: 6px;
+  line-height:19px;
+}
+#bargainimg{
+ width:15px; 
+ height:15px; 
+ margin-right:7px; 
+ margin-top:-3px;
+}
+.info-cont{
+    width:100%;
+    height: auto; 
+}
+.cut-fc{
+    color:#f00; 
+    font-size:14px;
+    margin-right:10%;  
+}
+.cut-fc1{
+    font-size:10px;
+    color: #aaaaaa;
+}
+.cut-fc2{
+    font-size:14px;
+    color: #aaaaaa;
+}
+.goods-price2{
+    line-height:26px; 
+}
+
+.bargain-bton { width:100%}
+#purchase,#bargain,#auction{
+    float: left;
+     height:100%; 
+      display: block;
+      text-align: center;
+      line-height:40px; 
+      font-size:15px;
+      cursor: pointer;
+}
+ #purchase{
+     width: 30%; 
+      color: #fff;
+      background: #f00; 
+   }
+   #bargain{
+     width: 70%;
+    color: #00b8ee;
+ }
+#auction{
+    width:100%;
+    color: #fff;
+    background: #f00; 
+}
+#auction-bg{
+    width:100%;
+    color: #fff;
+    line-height: 40px;
+    font-size: 15px;
+    text-align: center;
+    background: #a2a2a291;
+    display: none;
+
+}
+ .bargain-box {
+    position: fixed;
+    top: 0;
+    left:0; 
+    background-color: rgba(0, 0, 0, 0.43);
+    width: 100%;
+    height: 100%;
+    z-index: 2100;
+    cursor: pointer;
+}
+.bargain-modal{
+    position: fixed;
+    top:25%;
+    left:0; 
+    width:100%;
+    height:13rem; 
+    z-index: 2200;
+}
+.modal-bg{
+    width:75%;
+    height:100%;
+    margin:0 auto;
+    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/bargain_succeed.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    position: relative;
+    text-align: center;
+}
+.fund-wull{
+    position: absolute;
+    left:30%; 
+    bottom:50px; 
+}
+.cut-but-fund{
+    color: #fff;
+    margin:10px 0 15px; 
+}
+.fund-money{
+    color:#ebc919;
+    font-size:1rem;
+    margin:0 5px;
+    font-weight:600; 
+}
+.cut-but{
+    color: #fff;
+    font-size:15px; 
+}
+.cut-but button{
+    line-height:32px; 
+    border-radius:2px;
+    text-align: center;
+    width:80%; 
+    border:1px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+/**竞拍详情**/
+.old-point,.bidMain-Price{
+    color: #f00;
+    font-size:13px; 
+
+}
+
+.modal-Start{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    word-break: break-all;
+    z-index: 10002;
+}
+.start-cont{
+    width: 100%;
+    height:100%;
+    position: relative;
+    padding-top:50px; 
+}
+
+.modal-Start .num-area {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    position: relative;
+    margin: 0 auto;
+    border-top:none;
+}
+.modal-Start .btn-area{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    height: 30px;
+    transform: translateY(-15px);
+    font-size: 13px;
+    display: flex;
+}
+
+.modal-Start .btn-ok {
+    width: 100%;
+    height:45px;
+    background-color: #ff4d49;
+    color: #ffffff;
+    text-align: center;
+    line-height: 45px;
+    font-size: 15px;
+    font-family: "microsoft yahei";
+}
+
+.start-rule{
+    padding:0 4%; 
+    font-size:14px;
+    margin-bottom:3px;
+    color: #f00;  
+}

@@ -1,0 +1,165 @@
+<template>
+	<view>
+		
+	</view>
+</template>
+
+<script>
+	export default {}
+</script>
+
+<style>
+	.weui-cell {
+	    padding: 10px 15px;
+	    position: relative;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    display: flex;
+	    -webkit-box-align: center;
+	    -webkit-align-items: center;
+	    align-items: center;
+	}
+
+	.weui-cell:first-child:before {
+	    display: none;
+	}
+	.weui-cell:before {
+	    content: " ";
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    right: 0;
+	    height: 1px;
+	    border-top: 1px solid #e5e5e5;
+	    color: #e5e5e5;
+	    -webkit-transform-origin: 0 0;
+	    transform-origin: 0 0;
+	    -webkit-transform: scaleY(.5);
+	    transform: scaleY(.5);
+	    left: 15px;
+	    z-index: 2;
+	}
+
+	.weui-label {
+	    display: block;
+	    width: 105px;
+	    word-wrap: break-word;
+	    word-break: break-all;
+	}
+	.weui-cell__bd {
+	    -webkit-box-flex: 1;
+	    -webkit-flex: 1;
+	    flex: 1;
+	}
+
+	.weui-cells_form input, .weui-cells_form label[for], .weui-cells_form textarea {
+	    -webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	.weui-input {
+	    width: 100%;
+	    border: 0;
+	    outline: 0;
+	    -webkit-appearance: none;
+	    background-color: transparent;
+	    font-size: inherit;
+	    color: inherit;
+	    height: 1.47058824em;
+	    line-height: 1.47058824;
+	}
+	.weui-switch-cp__box:before, .weui-switch:before {
+	    content: " ";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 50px;
+	    height: 30px;
+	    border-radius: 15px;
+	    background-color: #fdfdfd;
+	    -webkit-transition: -webkit-transform .35s cubic-bezier(.45,1,.4,1);
+	    transition: -webkit-transform .35s cubic-bezier(.45,1,.4,1);
+	    transition: transform .35s cubic-bezier(.45,1,.4,1);
+	    transition: transform .35s cubic-bezier(.45,1,.4,1),-webkit-transform .35s cubic-bezier(.45,1,.4,1);
+	}
+	.weui-switch-cp__box:after, .weui-switch:after {
+	    content: " ";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 15px;
+	    background-color: #fff;
+	    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+	    -webkit-transition: -webkit-transform .35s cubic-bezier(.4,.4,.25,1.35);
+	    transition: -webkit-transform .35s cubic-bezier(.4,.4,.25,1.35);
+	    transition: transform .35s cubic-bezier(.4,.4,.25,1.35);
+	    transition: transform .35s cubic-bezier(.4,.4,.25,1.35),-webkit-transform .35s cubic-bezier(.4,.4,.25,1.35);
+	}
+	.weui-cells_form input, .weui-cells_form label[for], .weui-cells_form textarea {
+	    -webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	.weui-switch, .weui-switch-cp__box {
+	    position: relative;
+	    width: 52px;
+	    height: 32px;
+	    border: 1px solid #dfdfdf;
+	    outline: 0;
+	    border-radius: 16px;
+	    box-sizing: border-box;
+	    background-color: #dfdfdf;
+	    -webkit-transition: background-color .1s,border .1s;
+	    transition: background-color .1s,border .1s;
+	}
+	.weui-switch {
+	    -webkit-appearance: none;
+	    appearance: none;
+	}
+	.weui-switch-cp__box:before, .weui-switch:before {
+	    content: " ";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 50px;
+	    height: 30px;
+	    border-radius: 15px;
+	    background-color: #fdfdfd;
+	    -webkit-transition: -webkit-transform .35s cubic-bezier(.45,1,.4,1);
+	    transition: -webkit-transform .35s cubic-bezier(.45,1,.4,1);
+	    transition: transform .35s cubic-bezier(.45,1,.4,1);
+	    transition: transform .35s cubic-bezier(.45,1,.4,1),-webkit-transform .35s cubic-bezier(.45,1,.4,1);
+	}
+
+	.weui-switch-cp__box:after, .weui-switch:after {
+	    content: " ";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 15px;
+	    background-color: #fff;
+	    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+	    -webkit-transition: -webkit-transform .35s cubic-bezier(.4,.4,.25,1.35);
+	    transition: -webkit-transform .35s cubic-bezier(.4,.4,.25,1.35);
+	    transition: transform .35s cubic-bezier(.4,.4,.25,1.35);
+	    transition: transform .35s cubic-bezier(.4,.4,.25,1.35),-webkit-transform .35s cubic-bezier(.4,.4,.25,1.35);
+	}
+	.weui-switch:checked {
+	    border-color: #04be02;
+	    background-color: #04be02;
+	}
+
+
+	.weui-cells_form {
+	    padding-left: 3%
+	}
+	
+	.weui-cell {
+	    border-bottom: 1px solid #e7e7e7;
+	}
+	.list-block {
+	    margin-top: 50px;
+	}
+</style>

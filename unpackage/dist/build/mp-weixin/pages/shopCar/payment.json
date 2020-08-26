@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "支付",
+  "usingComponents": {
+    "password-input": "/components/password-input/password-input",
+    "number-keyboard": "/components/number-keyboard/number-keyboard",
+    "payment": "/component/css/page/payment",
+    "wq": "/component/css/wq",
+    "main": "/component/css/main",
+    "light7_swiper_min": "/component/css/light7_swiper_min",
+    "light7_min": "/component/css/light7_min"
+  }
+}

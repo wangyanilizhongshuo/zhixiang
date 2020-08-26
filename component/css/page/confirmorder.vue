@@ -1,0 +1,86 @@
+<template>
+	<view>
+		
+	</view>
+</template>
+
+<script>
+	export default {}
+</script>
+
+<style>
+	em {
+	    font-style: normal
+	}
+
+	.addrder {
+	    display: inline-block;
+	    width: 100%;
+	    height: 100%;
+	}
+
+	.confirmorder-middle2 {
+	    position: relative;
+	    width: 100%;
+	    height: 110px;
+	    background-color: #fff;
+	    margin-top: 10px;
+	}
+
+	.confirmorder-middle2>img {
+	    position: absolute;
+	    width: 24%;
+	    height: 90px;
+	    left: 4%;
+	    top: 10px;
+	}
+
+	.mask-layer {
+	    z-index: 10
+	}
+
+	.page-main {
+	    padding-bottom: 90px;
+	}
+
+	.infinite-scroll-preloader {
+	    margin: calc( 0.3 / 7.5 * 100vw  );
+	    text-align: center
+	}
+
+	.infinite-scroll-preloader .preloader {
+	    width: calc( 0.65 / 7.5 * 100vw  );
+	    height: calc( 0.65 / 7.5 * 100vw  );
+	    margin: 0 auto;
+	}
+
+	.preloader:after {
+	    display: block;
+	    width: 100%;
+	    height: 100%;
+	    content: "";
+	    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/load.gif);
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+	}
+
+
+	.packets {
+	    position: fixed;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: 2100;
+	    cursor: pointer;
+	    display: none;
+	    background: #fff;
+	}
+
+	.cr1 {
+	    color: #bfbfbf
+	}
+
+	.ren {
+	    color: #f000
+	}
+</style>

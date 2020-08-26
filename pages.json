@@ -1,0 +1,549 @@
+{
+	// 已确定流程
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+			// 已确定流
+			{
+				"path": "pages/login/login",
+				"style": {
+					"navigationBarTitleText": "登录"
+				}
+			},
+			{
+				"path": "pages/index/index",
+				"style": {
+					"navigationBarTitleText": "商城首页"
+				},
+				"permission": {
+					"scope.userLocation": {
+						"desc": "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
+					}
+				}
+			},
+			
+			
+			{
+				"path": "pages/QRcode/QRcode",
+				"style": {
+					"navigationBarTitleText": "面对面邀请"
+				}
+			},
+			
+			{
+				"path": "pages/orderMsg/goodsEvaluate",
+				"style": {
+					"navigationBarTitleText": "评价"
+				}
+			},
+		
+			
+			
+			{
+			    "path" : "pages/orderMsg/orderMsg",
+			    "style": {
+			    	"navigationBarTitleText": "订单详情"
+			    }
+			},
+			{
+				"path": "pages/index/quickBuy",
+				"style": {
+					"navigationBarTitleText": "快速抢购"
+
+				}
+			},
+		
+			// 登录 -----------------------
+
+			
+			{
+				"path": "pages/red_page/active/active",
+				"style": {
+					"navigationBarTitleText": "天天领红包" // -活动
+						,
+					"navigationBarBackgroundColor": "#FD942B",
+					"navigationBarTextStyle": "white"
+
+				}
+			},
+
+			{
+				"path": "pages/login/newUser1"
+					,
+				"style": {
+					"navigationBarTitleText": "新用户注册"
+					// ,"styleIsolation": "shared"// 无效
+				}
+			},
+			{
+				"path": "pages/resetPwd",
+				"style": {
+					"navigationBarTitleText": "重置密码"
+				}
+			},
+			// 登录 -end -----------------------
+
+
+			/*
+			 */
+			// 首页 -----------------------
+
+
+			{
+				"path": "pages/category/hot/hot",
+				"style": {
+					"navigationBarTitleText": "热销爆品"
+
+				}
+			},
+			{
+				"path": "pages/category/hot/search",
+				"style": {
+					"navigationBarTitleText": "搜索"
+
+				}
+			}, {
+				"path": "pages/category/childServe/childServe",
+				"style": {
+					"navigationBarTitleText": "孕婴服务"
+				}
+			},
+
+			// 天天领红包
+			{
+				"path": "pages/red_page/red_page",
+				"style": {
+					"navigationBarTitleText": "天天领红包",
+					"navigationBarBackgroundColor": "#E0604C",
+					"navigationBarTextStyle": "#FED3A7"
+
+				}
+			}, {
+				"path": "pages/red_page/cash/cash",
+				"style": {
+					"navigationBarTitleText": "提现申请",
+					"navigationBarBackgroundColor": "#FF7599",
+					"navigationBarTextStyle": "white"
+
+				}
+			}
+			// 天天领红包
+			// 类别
+			, {
+				"path": "pages/category/category",
+				"style": {
+					"navigationBarTitleText": "类别"
+				}
+			},
+
+			// 母婴百科
+			{
+				"path": "pages/category/mybk/mybk",
+				"style": {
+					"navigationBarTitleText": "母婴百科"
+				}
+			}, {
+				"path": "pages/category/mybk/wiki/info/info",
+				"style": {
+					"navigationBarTitleText": "百科详情"
+				}
+			}, {
+				"path": "pages/category/mybk/wiki/wiki",
+				"style": {
+					"navigationBarTitleText": "推荐百科"
+				}
+			}, {
+				"path": "pages/category/mybk/prof/prof",
+				"style": {
+					"navigationBarTitleText": "专家列表"
+				}
+			}, {
+				"path": "pages/category/mybk/prof/info/info",
+				"style": {
+					"navigationBarTitleText": "专家详情"
+				}
+			}, {
+				"path": "pages/category/mybk/prof/consult/consult",
+				"style": {
+					"navigationBarTitleText": "我的咨询"
+				}
+			}, {
+				"path": "pages/category/mybk/prof/consult/record/record",
+				"style": {
+					"navigationBarTitleText": "咨询记录"
+				}
+			}, {
+				"path": "pages/category/mybk/prof/consult/submit/submit",
+				"style": {
+					"navigationBarTitleText": "问题提交"
+				}
+			}, {
+				"path": "pages/category/mybk/prof/consult/info/info",
+				"style": {
+					"navigationBarTitleText": "咨询留言"
+				}
+			},
+			// 母婴百科
+			// 特惠赚钱
+			{
+				"path": "pages/category/thzq/thzq",
+				"style": {
+					"navigationBarTitleText": "特惠赚钱"
+				}
+			}, {
+				"path": "pages/category/thzq/log",
+				"style": {
+					"navigationBarTitleText": "记录明细"
+				}
+			}, {
+				"path": "pages/category/thzq/invest",
+				"style": {
+					"navigationBarTitleText": "我要充值"
+				}
+			},
+			// 特惠赚钱
+			{
+				"path": "pages/allMyOrder",
+				"name": "我的订单" // 订单列表页
+			},
+			// 类别
+
+
+
+			// 产品分类 -----------------------
+
+			{
+				"path": "pages/allClassify/allClassify",
+				"style": {
+					"navigationBarTitleText": "产品分类"
+					// ,"navigationStyle": "custom"
+				}
+			},
+
+			{
+				"path": "pages/goods/goods",
+				"style": {
+					"navigationBarTitleText": "商品详情"
+				}
+			},
+			{
+				"path": "pages/confirmorder",
+				"style": {
+					"navigationBarTitleText": "确认订单"
+				}
+			},
+			{
+				"path": "pages/shopCar/payment",
+				"style": {
+					"navigationBarTitleText": "支付"
+				}
+			},
+			{
+				"path": "pages/setPayPassword",
+				"style": {
+					"navigationBarTitleText": "设置支付密码"
+				}
+			},
+			{
+				"path": "pages/gainNum",
+				"style": {
+					"navigationBarTitleText": "赚取积分"
+				}
+			},
+
+			// 购物车 -----------------------
+
+			{
+				"path": "pages/shopCar/shopCar",
+				"style": {
+					"navigationBarTitleText": "购物车"
+					//"navigationStyle": "custom"
+				}
+			},
+
+			// 购物车 -end -----------------------
+
+			// 我的 -----------------------
+			{
+				"path": "pages/personCenter/personCenter",
+				"style": {
+					"navigationBarTitleText": "我的"
+					// ,"navigationStyle": "custom"
+				}
+			},
+
+			{
+				"path": "pages/personCenter/setting",
+				"style": {
+					"navigationBarTitleText": "设置"
+				}
+			},
+
+
+
+			{
+				"path": "pages/personData",
+				"style": {
+					"navigationBarTitleText": "个人资料"
+				}
+			},
+
+
+			{
+				"path": "pages/addressManage",
+				"style": {
+					"navigationBarTitleText": "地址管理"
+				}
+			},
+			{
+				"path": "pages/addAddress",
+				"style": {
+					"navigationBarTitleText": "新增地址"
+				}
+			},
+			{
+				"path": "pages/editAddress",
+				"style": {
+					"navigationBarTitleText": "编辑地址"
+				}
+			},
+
+
+			{
+				"path": "pages/personCenter/accountSafe",
+				"style": {
+					"navigationBarTitleText": "账号安全"
+				}
+			},
+			{
+				"path": "pages/login/loginPasswordModify",
+				"style": {
+					"navigationBarTitleText": "登陆密码修改" // 修改后->重新登录
+				}
+			},
+			{
+				"path": "pages/pay/paymentPasswordModify",
+				"style": {
+					"navigationBarTitleText": "修改支付密码"
+				}
+			},
+			{
+				"path": "pages/setPassword",
+				"style": {
+					"navigationBarTitleText": "设置密码"
+				}
+			},
+
+			{
+				"path": "pages/setPasswordSecond",
+				"style": {
+					"navigationBarTitleText": "设置密码-再次输入" // 修改后->首页
+				}
+			},
+			{
+				"path": "pages/alterSuccess",
+				"style": {
+					"navigationBarTitleText": "支付密码修改成功" // 您的支付密码已修改成功
+				}
+			},
+
+			{
+				"path": "pages/personCenter/newsCenter",
+				"style": {
+					"navigationBarTitleText": "消息中心" // 此页面有侧滑, 需要添加功能
+				}
+			},
+			{
+				"path": "pages/personCenter/newsCenter-details",
+				"style": {
+					"navigationBarTitleText": "消息中心-详情"
+				}
+			},
+			
+			{
+				"path": "pages/onlinePay",
+				"style": {
+					"navigationBarTitleText": "我的积分"
+				}
+			},
+			{
+				"path": "pages/onlinePayDetails",
+				"style": {
+					"navigationBarTitleText": "积分明细"
+				}
+			},
+
+
+			{
+				"path": "pages/personCenter/shopCoupon",
+				"style": {
+					"navigationBarTitleText": "我的红包"
+				}
+			},
+
+
+			{
+				"path": "pages/myTwoCode",
+				"style": {
+					"navigationBarTitleText": "邀请好友"
+				}
+			},
+			
+			{
+				"path": "pages/personCenter/myOpinion",
+				"style": {
+					"navigationBarTitleText": "我的意见"
+				}
+			},
+
+
+			{
+				"path": "pages/allMyOrder-Retreat",
+				"style": {
+					"navigationBarTitleText": "退货售后" // 入口: personCenter-个人中心
+				}
+			},
+			{
+				"path": "pages/allMyOrder-Retreat-suborder",
+				"style": {
+					"navigationBarTitleText": "退货信息"
+				}
+			},
+		
+			{
+				"path": "pages/Pendingpayment",
+				"style": {
+					"navigationBarTitleText": "订单详情//待付款 " //  订单详情//待付款 
+				}
+			},
+			
+			 {
+				"path": "pages/video/video",
+				"style": {
+					"navigationBarTitleText": "视频列表"
+				}
+			},
+			{
+				"path": "pages/video/detail",
+				"style": {
+					"navigationBarTitleText": "视频详情"
+				}
+			}
+
+			, {
+				"path": "pages/personCenter/appDownload",
+				"style": {
+					"navigationBarTitleText": "APP下载"
+				}
+			}	
+			, {
+				"path": "pages/red_page/facetofaceCode/facetofaceCode",
+				"style": {}
+			},
+			
+			{
+				"path": "pages/orderMsg/afterSales",
+				"style": {
+					"navigationBarTitleText": "退款售后"
+				}
+			},
+			{
+				"path": "pages/index/search",
+				"style": {
+					"navigationBarTitleText": "搜索商品"
+				}
+			},
+			{
+				"path": "pages/index/searchDetail",
+				"style": {
+					"navigationBarTitleText": "搜索商品列表"
+				}
+			}			
+		   
+        ,{
+            "path" : "pages/personCenter/wallet/wallet",
+            "style" : {
+				"navigationBarTitleText": "我的钱包"
+			}
+        },
+		{
+		    "path" : "pages/personCenter/wallet/details",
+		    "style" : {
+				"navigationBarTitleText": "明细列表"
+			}
+		},
+		{
+		    "path" : "pages/personCenter/wallet/reCharge",
+		    "style" : {
+				"navigationBarTitleText": "充值"
+			}
+		},
+		{
+		    "path" : "pages/personCenter/wallet/Withdrawal",
+		    "style" : {
+				"navigationBarTitleText": "提现"
+			}
+		},
+		
+		{
+		    "path" : "pages/login/forgetPassword",
+		    "style" : {
+				"navigationBarTitleText": "忘记密码"
+			}
+		}
+    ]
+		// ,"styleIsolation": "shared"// 无效
+		,
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "智享婴品",
+		"navigationBarBackgroundColor": "#FF7599",
+		"navigationBarTextStyle": "white" // 导航栏标题颜色，仅支持 black / white
+	},
+	"tabBar": {
+		"color": "#929292",
+		"selectedColor": "#f31641",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			// 
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/img/tabbar/home.png",
+				"selectedIconPath": "static/img/tabbar/homes.png",
+				"text": "商城首页"
+			}, {
+				"pagePath": "pages/allClassify/allClassify",
+				"iconPath": "static/img/tabbar/allClassify.png",
+				"selectedIconPath": "static/img/tabbar/allClassifys.png",
+				"text": "产品分类"
+			}
+
+			, {
+				"pagePath": "pages/shopCar/shopCar",
+				"iconPath": "static/img/tabbar/shopCar.png",
+				"selectedIconPath": "static/img/tabbar/shopCars.png",
+				"text": "购物车"
+			}, {
+				"pagePath": "pages/personCenter/personCenter",
+				"iconPath": "static/img/tabbar/personCenter.png",
+				"selectedIconPath": "static/img/tabbar/personCenters.png",
+				"text": "我的"
+			}
+		]
+	}
+
+	//    ,"condition": { //模式配置，仅开发期间生效
+	//        "current": 0 //当前激活的模式(list 的索引项)
+	//        ,"list": [
+
+	//        	/*
+	//         */
+	// 		{
+	//             "path": "pages/login/login"
+	//             ,"name": "登录"
+	//             ,"query": ""
+	//         }
+	//    	    ,
+
+
+	
+}

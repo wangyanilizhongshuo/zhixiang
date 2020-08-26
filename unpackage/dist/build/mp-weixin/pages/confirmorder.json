@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "confirmorder": "/component/css/page/confirmorder",
+    "red_packets": "/component/css/red_packets",
+    "cj_1": "/component/css/cj_1",
+    "cj": "/component/css/cj",
+    "reset1": "/component/css/reset1",
+    "styel": "/component/css/styel",
+    "main": "/component/css/main"
+  }
+}

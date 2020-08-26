@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "退款售后",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup"
+  }
+}

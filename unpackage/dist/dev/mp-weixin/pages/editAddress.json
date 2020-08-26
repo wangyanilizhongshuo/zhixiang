@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "编辑地址",
+  "usingComponents": {
+    "add-address": "/component/css/page/addAddress",
+    "site": "/component/css/site",
+    "jzl": "/component/css/jzl",
+    "main": "/component/css/main"
+  }
+}

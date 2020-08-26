@@ -1,0 +1,216 @@
+<!-- 循环星星 -->
+<!-- 
+    <view 
+            class="iconfont {{item.score>=index+1?'icon-selectstar':'icon-selectstar1'}}" 
+            wx:for='{{5}}' wx:key wx:for-item='score' 
+    />
+-->
+
+<!-- 列表循环 -->
+<!-- 
+    wx:for='{{list}}' wx:key wx:for-item='items'
+    {{item.title}}
+    
+<view class='ul' wx:for='{{list}}' wx:key wx:for-item='items'>
+    <view class='li' wx:for='{{items}}' wx:key bindtap='{{item.event}}' data-param='{{item.param}}'>
+        <view class='li_left'>{{item.title}}</view>
+        <view class='li_right'>
+            <image class='li_img' wx:if='{{item.img}}' src='{{item.img||user_info[item.prop]}}' mode='aspectFill' />
+            <text class='li_info' wx:else>{{item.info||user_info[item.prop]}}</text>
+            <text class='li_icon' wx:if='{{item.event}}'>{{'>'}}</text>
+        </view>
+    </view>
+</view>
+    
+    // 价格
+    <view 
+            class="money" 
+            wx:if='{{ item.money*0!=0}}' 
+            bindtap='jump' data-url='/pages/common/login/index'
+        >
+        {{ item.money}}
+    </view>
+    <view class="money" wx:else>
+        ¥ {{ item.money - item.money%1 }}.
+        <text style="font-size: 24rpx;">{{
+                item.money*1000%1000/10<10
+                ?
+                '0'+item.money*1000%1000/10
+                :
+                item.money*1000%1000/10
+            }}</text>
+
+            
+        <text style="font-size: 24rpx;">{{item.money[item.money.length-2] + item.money[item.money.length-1] }}</text>
+    </view>
+-->
+
+<!-- 暂无数据 -->
+<!-- 
+    <template is="empty_data" data='{{loading, list, title}}' />
+-->
+<template name="empty_data">
+    <view class="empty_data" wx:if="{{!( loading || list.length )}}">
+        <view>
+            <i class="iconfont icon-empty"></i>
+        </view>抱歉！暂无{{title||'数据'}}
+    </view>
+</template>
+
+<!-- 正在加载 列表 -->
+<!-- 
+    <template is="loading" data='{{loading}}' />
+-->
+<template name="loading">
+    <view class="weui-loadmore" wx:if="{{loading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+</template>
+
+<!-- 正在加载 页面 -->
+<!-- 
+    <template is="page_loading" data='{{remind}}' wx:if="{{remind}}" />
+    <template is="page_loading" data='{{remind}}' />
+    
+    // 页面初次渲染
+    onReady() {
+        console.log('onReady 页面初次渲染');
+        setTimeout(res=> {
+            this.setData({
+                remind: true
+            });
+        }, 800);
+    },
+-->
+<template name="page_loading">
+    <!--  wx:if="{{remind}}" -->
+    <view class="loading_box">
+        <view class="pulse main_color_bg pulse_1"></view>
+        <view class="pulse main_color_bg pulse_2"></view>
+        <view class="pulse main_color_bg pulse_3"></view>
+        <view class="pulse main_color_bg pulse_4"></view>
+    </view>
+</template>
+
+<!-- --搜索框-- -->
+<!-- 
+    <template is="search" data='{{search_box_class, search_box_style, search_class, search_style, search_show, search_placeholder, page_data, search_val, search_event}}' />
+    page_data.search_merch_title
+-->
+<template name="search">
+        <view class='search_box {{search_box_class||""}}' style='{{search_box_style||""}}'>
+
+            <!-- 假 -->
+            <view class='virtual_search {{search_class||""}}' style='{{search_style||""}}' bindtap="trigger" data-name='search_show' hidden='{{search_show||search_val}}'>
+                <icon class="search_icon" type="search" size="16"></icon>{{search_placeholder||page_data.search_merch_title}}
+            </view>
+
+            <!-- 真 search -->
+            <view class='virtual_search {{search_class||""}}' style='{{search_style||""}}' hidden='{{!search_show&&!search_val}}'>
+
+                <!-- 放大镜 -->
+                <!-- <icon class="search_icon" type="search" size="16"></icon> -->
+
+                <!-- 输入框  -->
+                <input type="text" class='search_input' 
+					adjust-position='{{false}}'
+                    focus='{{search_show}}' 
+                    placeholder='{{search_placeholder||page_data.search_merch_title}}' 
+                    value='{{search_val}}' 
+                    bindinput='input_set_value' 
+                    data-name='{{search_val_name||"search_val"}}'
+                />
+                <!-- bindconfirm="{{search_val.length?'jump':'showToast'}}"  -->
+
+
+                <!-- 清除 -->
+                <!-- <icon type="clear" size="18" class="clear_icon" hidden="{{!search_val.length}}" bindtap="set_value" data-name='search_val' /> -->
+            </view>
+
+            <!-- 尾部搜索按钮 -->
+                <!-- 放大镜 -->
+                <!-- <icon class="search_icon searchBtn {{search_class||''}}" style='{{search_style||""}}' type="search" size="16" 
+                    hidden='{{!search_show&&!search_val}}' 
+                    bindtap="{{search_val.length?search_event||'jump':'showToast'}}" 
+                    data-url='/{{page_data.pages.clear_clear_search}}' 
+                    data-value='{{search_val}}'
+                    data-title='请输入搜索关键词' 
+                /> -->
+                <!-- 文字按钮 -->
+                <view class='searchBtn {{search_class||""}}' style='line-height:50rpx;{{search_style||""}}' 
+                        hidden='{{!search_show&&!search_val}}' 
+                        bindtap="{{search_val.length?search_event||'jump':'showToast'}}" 
+                        data-url='/{{page_data.pages.clear_clear_search}}' 
+                        data-value='{{search_val}}'
+                        data-title="{{search_val.length?'':'请输入搜索关键词'}}"
+                    >
+                    搜索
+                </view>
+        </view>
+</template>
+
+<!-- 授权当前位置 -->
+<!-- <template is="authorize_map" data="{{isShow}}" /> -->
+<template name="authorize_map">
+
+    <view hidden='{{!isShow}}'>
+        <view class="authorize_modal">
+            <view class='authorize_modal-content'>
+                <view class='authorize_modal-top'>
+                    <view class='authorize_header'>是否授权当前位置</view>
+                </view>
+                <view class='authorize_modal-body'>
+                    <text> 需要获取您的地理位置，请确认授权，否则无法获取您所需数据</text>
+                </view>
+                <view class='authorize_modal-footer'>
+                    <text class='authorize_cancle' catchtap='hideModal'>取消</text>
+                    <button class='authorize_sure' open-type="openSetting" bindopensetting="openSet">确定</button>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</template>
+
+
+
+<!-- 订单按钮模块 -->
+<!-- <template is="order_btns" data="{{order, ...order_btns[type-1]}}" /> -->
+<template name="order_btns">
+<!--  wx:if='{{!(hidden&&order[hidden]==hidden_value)}}' -->
+    <view class="{{class_name||'btn-refund'}}" catchtap='{{event||"jump"}}' data-url='{{url}}' data-id='{{order.id}}' data-evaluate_id='{{order.evaluate_id}}' data-param='{{param}}' data-phone_check='{{phone_check}}' wx:if='{{show?order[show]==show_value:true}}'>
+        <button>{{name}}</button>
+    </view>
+</template>
+
+
+<!-- 购物车 -->
+
+<!-- 小球 add_pend->添加小球 -->
+<!-- <template is="cart_add_pend" data="{{cart_pends, pend_options:{x,y}, cart_options:{x,y}}" /> -->
+<template name="cart_add_pend">
+    <view class='cart_pend_box' wx:for='{{cart_pends}}' wx:key style='top:0px;left:calc({{item.clientX||0}}px - {{pend_options.x||0}}rpx); '>
+        <view class='cart_pend' style='top:calc({{item.clientY||0}}px - {{pend_options.y||0}}rpx);left:0px; '>1</view>
+    </view>
+</template>
+
+<!-- 购物车弹窗 -->
+<template name="cart">
+    <view class='cart_wrap'>
+        <view class='cart_nav'>
+            <view class='cart_content'>
+                <view class='cart_logo' />
+                <view class='cart_total_price'>￥{{total_price}}</view>
+                <view class='cart_freight' wx:if='{{freight}}'>运费： ￥{{freight}}</view>
+            </view>
+            <view class='cart_btn'></view>
+        </view>
+        <view class='cart_popup_wrap'>
+            <view class='cart_popup'>
+            
+            </view>
+        </view>
+
+    </view>
+</template>

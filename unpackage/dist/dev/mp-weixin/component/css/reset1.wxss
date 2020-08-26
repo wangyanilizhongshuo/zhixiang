@@ -1,0 +1,62 @@
+/**********
+ * reset
+ *********/
+page,
+._dl,
+._dt,
+._dd,
+._ul,
+._ol,
+._li,
+._h1,
+._h2,
+._h3,
+._h4,
+._h5,
+._h6,
+._pre,
+._code,
+form,
+._fieldset,
+._legend,
+input,
+textarea,
+._p,
+._blockquote,
+._th,
+._td,
+._hr,
+button,
+._article,
+._aside,
+._details,
+._figcaption,
+._figure,
+._footer,
+._header,
+._menu,
+._nav,
+._section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 11px;
+}
+/* 默认不要下划线 */
+._a {text-decoration: none;
+    color: #000;}
+/* 按钮文本不可选 */
+button {-webkit-user-select: none;user-select: none;}
+._img {vertical-align: middle;}
+/* 加载不出来的图片不要显示灰色边框 */
+/*img:not([src]),img[src=""] {opacity: 0;}*/
+._img:not([src]){opacity: 0;}
+._ul, ._ol {list-style: none;}
+._table {border-collapse: collapse; border-spacing: 0;}
+input, ._select, button, textarea {font-size: 100%; font: inherit;}
+.AddTheaddress{
+    text-align: center;
+    height:70px;
+    line-height:70px;
+}
+

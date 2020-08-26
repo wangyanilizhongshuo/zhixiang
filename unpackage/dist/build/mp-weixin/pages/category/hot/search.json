@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "搜索",
+  "usingComponents": {
+    "search": "/component/css/page/search",
+    "jzl": "/component/css/jzl",
+    "wq": "/component/css/wq",
+    "main_20": "/component/css/main_20",
+    "light7_min": "/component/css/light7_min"
+  }
+}
