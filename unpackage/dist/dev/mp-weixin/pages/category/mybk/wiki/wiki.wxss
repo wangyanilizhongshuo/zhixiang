@@ -108,16 +108,9 @@ page{
 	font-weight:bold;
 	color:rgba(255,112,145,1);
 }
-.wiki_list_wrap{}
-.wiki_list_head{}
-.wiki_list_title{}
 .wiki_list_title_icon{
 	width: 34rpx;
 	height: 36rpx;
-}
-.wiki_list_more{}
-.wiki_list{
-	padding-bottom: 60rpx;
 }
 .wiki_li{
 	margin-top: 60rpx;

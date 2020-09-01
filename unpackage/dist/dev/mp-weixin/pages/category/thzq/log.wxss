@@ -4,7 +4,7 @@ page{
 }
 .log_list{}
 .log_li{
-	height:120rpx;
+	height:122rpx;
 	background:rgba(255,255,255,1);
 	padding: 0 30rpx;
 }

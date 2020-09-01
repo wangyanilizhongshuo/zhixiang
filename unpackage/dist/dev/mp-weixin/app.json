@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/index/index",
+    "pages/login/login",
     "pages/QRcode/QRcode",
     "pages/orderMsg/goodsEvaluate",
     "pages/orderMsg/orderMsg",
@@ -65,7 +65,6 @@
     "pages/index/search",
     "pages/index/searchDetail",
     "pages/personCenter/wallet/wallet",
-    "pages/personCenter/wallet/details",
     "pages/personCenter/wallet/reCharge",
     "pages/personCenter/wallet/Withdrawal",
     "pages/login/forgetPassword"

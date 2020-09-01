@@ -80,6 +80,13 @@
 			this.getList();
 			 
 		},
+		onShareAppMessage: function () {
+		    let _this = this;
+		    return {
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams()
+		    };
+		},
 		components:{
 			uniPopup		
 		},

@@ -3,7 +3,7 @@
 		<div class="log_list bg_white">
 			<div class="log_li flex lh1" v-for="(item,index) in recordList" :key='index'>
 				<div class="log_li_left flex_grow">
-					<div class="log_li_txt">下级 13788880999充值 500</div>
+					<div class="log_li_txt">{{item.changeTypeDesc}}  充值 {{item.changeSpecialBalance}}</div>
 					<div class="log_li_tip">余额：{{item.beforeSpecialBalance}}</div>
 				</div>
 				<div class="log_li_right ta_r">
@@ -18,31 +18,42 @@
 	export default {
 		data() {
 			return {
-				recordList:[]
+				recordList:[],
+				pageSize:1,
+				page:1
 			}
 		},
 		onLoad(){
 			this.getRecord()
 		},
+		onReachBottom(){
+			if(this.pageSize>this.page){
+				this.page=this.page+1;
+				this.getRecord()
+			}
+		},
 		methods: {
 			getRecord(){
+				let that =this;
 				let id =wx.getStorageSync('user').id;
 				uni.wjw_http({
-					url:'vbx',
+					url:'app/cduserspecialbalancechangerecord/list',
 					type:'get',
 					data:{
-						userId:id
+						userId:id,
+						page:this.page,
+						pageSize:10
 					}
 				}).then(res=>{
 				     if(res.code ==0){
+						that.pageSize=res.data.totalPage;
 						let aa=res.data.list;
-						for( let i in aa){
+						for(let i in aa){
 							 let a = new Date(aa[i].createTime);
-						     aa[i].createTime=a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')
-							} 
-						this.recordList=aa;
-						console.log(this.recordList)
-						
+							aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')+" "+a.getHours().toString().padStart(2,'0')+"-"+a.getMinutes().toString().padStart(2,'0')+"-"+a.getSeconds().toString().padStart(2,'0')
+						}
+						let bb =that.recordList;	
+						that.recordList=bb.concat(aa);
 					 }
 				})
 			}
@@ -57,7 +68,7 @@
 	
 	.log_list{}
 	.log_li{
-		height:120rpx;
+		height:122rpx;
 		background:rgba(255,255,255,1);
 		padding: 0 30rpx;
 	}

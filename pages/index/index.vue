@@ -177,7 +177,6 @@
 				red_page_show: false,
 				num: 0,
 				search_input: false,
-
 				search_value: '',
 				// 轮播图
 				bannar: [],
@@ -237,27 +236,43 @@
 					'9月平台充值上线啦，充值现金大送活动------------',
 					'xxxxxxxxxxxxxxxxxx',
 				],
-
-
 				active_list: [
 
 				],
+				invite_id:'',
+				openId:'',
+				code:''
 			}
 		},
 		onLoad(options) {
-			//  console.log('onLoad 页面加载', options);
-			// 轮播图
-
+            let that=this;
+			this.setData(options);
 			this.get_banner();
 			// 公告
 			this.getNews();
 			this.quickVIP();
-			
 			this.getActivityTopic();
 			this.getAllGoodsClassificate();
 			this.delColor(1);
-		
-
+		    // console.log(this.invite_id+'inviteId')
+			if(this.invite_id){
+				console.log('获取code ')
+				uni.login({
+					  provider: 'weixin',
+					  success: function (res) {
+						   that.code=res.code;
+						   that.getOpenId(); 
+					  }
+					  })	
+			}
+			
+		},
+		onShareAppMessage: function () {
+		    let _this = this;
+		    return {
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams()
+		    };
 		},
 		onShow(){
 			if(wx.getStorageSync('token')){
@@ -265,9 +280,11 @@
 				this.videoList();
 				this.huodong();
 				this.videoFlag=true;
-				
 			}
-			
+			if(wx.getStorageSync('token') && this.invite_id ){
+				  // 绑定上下级关系
+				  this.getOpenId();
+			}
 		},
 		components: {
 
@@ -307,6 +324,60 @@
 					console.log(res.msg)
 				})
 			
+			},
+			// 绑定上下级关系
+			bindRelation(){
+				let that=this;
+				let  id =wx.getStorageSync('user').id;
+				console.log('调用函数bindrelation')
+				uni.wjw_http({
+					// header:{
+					// 	 'content-type':'application/json;charset=UTF-8'
+					// },
+					url:'app/cduserspecialbalance/update',
+					type:'get',
+					data:{
+						userId:id,
+						openId:this.openId,
+						supUserId:this.invite_id
+					}
+				}).then(res=>{
+					if(res.code ==0){
+						console.log('上下级关系成功')
+					}
+				}).catch(res=>{
+					console.log(res)
+				})
+				
+			},
+			// 获取openId
+			getOpenId(){	
+				let that=this;
+				uni.wjw_http({
+					header:{
+						 'content-type':'application/json;charset=UTF-8'
+					},
+					url:'app/wechat/getOpenId',
+					type:'post',
+					data:{
+						appId:'wx74605d2c3744958c',
+						code:that.code
+					}
+				}).then(res=>{
+					if(res.code ==0){
+						this.openId=res.data.openid;
+						// 判断用户是否登录
+						console.log('openId 获取之后，进行下一步调用函数')
+						if(wx.getStorageSync('user')){
+							console.log('连接上下级的关系 ，调用函数')
+							this.bindRelation();
+						}
+						
+					
+					}
+				}).catch(res=>{
+					
+				})
 			},
 			// 调用地图
 			getMap() {

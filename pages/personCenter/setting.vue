@@ -25,7 +25,7 @@
 			 
 		 </view>
 		 <view class="btn"  @click='jump' data-url='/pages/login/login'>
-		   退出登录
+		   去登录
 		 </view>
     </view>
 </template>

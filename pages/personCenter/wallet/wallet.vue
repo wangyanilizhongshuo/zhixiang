@@ -3,7 +3,7 @@
 		<view class="uni-title">
 			<view class="firsts">账户余额  (元)</view>
 			<view class="second">{{extra/100}}</view>
-			<view class="detailed" @tap.stop="jump" data-url='/pages/personCenter/wallet/details'>明细</view>
+			<view class="detailed" @tap.stop="jump" data-url='/pages/category/thzq/log'>明细</view>
 		</view>
 		<view class="uni-second-title">当前可提现余额{{extra/100}}</view>
 		<view class="uni-content">

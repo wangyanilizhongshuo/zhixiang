@@ -116,11 +116,12 @@
                             <div class="server-icon"></div>客服
                         </a></li> -->
 						<li class="btn-server">
-							<button hover-class="none" class="btns"  >
-							<!-- <button hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp"> -->
-								<a :href="'tel:'+phone" id="service">
-								        <view class="server-icon"></view>客服
-								    </a>
+							<!-- <button hover-class="none" class="btns"  > -->
+							<button hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp">
+								<a :href="'tel:'+phone" id="service" style="border: 3rpx solid white;">
+								       <view class="server-icon"></view>
+										客服
+								 </a>
 							</button>
 						</li>
                     <li class="btn-addCart" @click='popup_num_show=true'>加入购物车 </li>
@@ -262,6 +263,13 @@ export default {
     	this.amount=1;
 		
     },
+	onShareAppMessage: function () {
+	    let _this = this;
+	    return {
+	      title: "智享婴品",
+	      path: "/pages/index/index?" + _this.getShareUrlParams()
+	    };
+	},
     onLoad(options) {
         console.log('onLoad 页面加载', options);
         this.setData(options);

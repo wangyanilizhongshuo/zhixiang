@@ -216,7 +216,7 @@ const https = ({ type = 'POST',method = type, url = '', data = {},param = data, 
                         token_false(res);
                         reject(res);
                     } else 
-					if (res.data.status==0|| res.data.code==0) {
+					if (res.data.status==0|| res.data.code==0 ||res.statusCode ==200) {
 					    resolve(res.data)
 					} 
 					// res.data.status ==-96|| res.data.status==-11 ||res.data.status ==-97 ||
@@ -349,18 +349,19 @@ function isCardNo(card) {
           }
         });
     }
- function getUserId() {
-      return wx.getStorageSync('user').id;
-  }
-   /**
-   * 生成转发的url参数
-   */
-function  getShareUrlParams(params) {
-      let _this = this;
-       return util.urlEncode(Object.assign({
-         invite_id: _this.getUserId()
-       }, params));
-  }
+	function getUserId() {
+	      return wx.getStorageSync('user').id;
+	  }
+	   /**
+	   * 生成转发的url参数getShareUrlParams
+	   */
+	function  getShareUrlParams(params) {
+	      let _this = this;
+	       return urlEncode(Object.assign({
+	         invite_id: getUserId()
+	       }, params));
+	  }
+
 
 module.exports = {
     https,

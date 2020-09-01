@@ -54,7 +54,7 @@
 				  })	
 				  if(e.up_id){
 					  this.up_id=e.up_id;
-					  this.getMsg()
+					  // this.getMsg()
 				  }
 		},
 		onReachBottom(){
@@ -66,15 +66,9 @@
 		// 分享
 		onShareAppMessage: function () {
 		    let _this = this;
-			let id=wx.getStorageSync('user').id;
-		    // 构建页面参数
-		    let params = this.getShareUrlParams({
-		      'up_id': id
-		    });
 		    return {
-		      // title: _this.detail.title,
-			  path: '/pages/category/thzq/thzq?'+params
-		      // path: "/pages/assemble/detail/detail?" + params
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams()
 		    };
 		},
 		
@@ -152,30 +146,7 @@
 					console.log(res)
 				})
 			},
-			// 上下级的关系
-			getMsg(){
-				let that=this;
-				let  id =wx.getStorageSync('user').id;
-				uni.wjw_http({
-					// header:{
-					// 	 'content-type':'application/json;charset=UTF-8'
-					// },
-					url:'app/cduserspecialbalance/update',
-					type:'get',
-					data:{
-						userId:id,
-						openId:this.openId,
-						supUserId:this.up_id
-					}
-				}).then(res=>{
-					if(res.code ==0){
-						console.log(52345)
-						console.log(res)
-					}
-				}).catch(res=>{
-					console.log(res)
-				})
-			},
+		
 			
 		}
 	}

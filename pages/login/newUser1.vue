@@ -131,15 +131,13 @@
 				}).then(res=>{
 					if(res.status ==0){
 						uni.showToast({
-							title:'密码重置成功',
+							title:'注册成功',
 							duration:2000
+						})					
+						uni.reLaunch({
+						   url:'/pages/login/login'
 						})
-						setTimeout(()=>{
-							uni.reLaunch({
-							   url:'/pages/index/index'
-						    })
-						},3000)
-						
+
 					}
 				}).catch(res=>{
 					uni.showToast({

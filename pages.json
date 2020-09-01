@@ -2,12 +2,7 @@
 	// 已确定流程
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 			// 已确定流
-			{
-				"path": "pages/login/login",
-				"style": {
-					"navigationBarTitleText": "登录"
-				}
-			},
+			
 			{
 				"path": "pages/index/index",
 				"style": {
@@ -19,7 +14,12 @@
 					}
 				}
 			},
-			
+			{
+				"path": "pages/login/login",
+				"style": {
+					"navigationBarTitleText": "登录"
+				}
+			},
 			
 			{
 				"path": "pages/QRcode/QRcode",
@@ -464,12 +464,12 @@
 				"navigationBarTitleText": "我的钱包"
 			}
         },
-		{
-		    "path" : "pages/personCenter/wallet/details",
-		    "style" : {
-				"navigationBarTitleText": "明细列表"
-			}
-		},
+		// {
+		//     "path" : "pages/personCenter/wallet/details",
+		//     "style" : {
+		// 		"navigationBarTitleText": "明细列表"
+		// 	}
+		// },
 		{
 		    "path" : "pages/personCenter/wallet/reCharge",
 		    "style" : {

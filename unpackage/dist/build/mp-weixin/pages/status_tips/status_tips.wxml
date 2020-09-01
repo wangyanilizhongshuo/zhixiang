@@ -1,1 +1,0 @@
-<view><view class="{{['_div',style]}}"><view class="ta_c _div"><image class="succimg_cls _img" src="{{img}}"></image></view><view class="pre_line status_tips ta_c _div">{{content}}</view><view class="ta_c _div"><button data-event-opts="{{[['tap',[['do_fn',['$0'],['btn_fn']]]]]}}" class="button_cls flex_c" bindtap="__e">{{btn_txt}}</button></view></view></view>

@@ -1,8 +1,8 @@
 <template>
-	<view class="uni-active" style="background-color: #ee5b4e;">
-		 <!-- v-if="videoMask && redRainFlag && videoFlag" -->
+	<view class="uni-active" style="background-color: #ee5b4e;" :style="maskOnMove?'height:100vh;overflow:hidden;':'height:100%'">
+		 <!-- v-if="videoMask && redRainFlag && videoFlag" || redRainAllSumFlag|| videoConFlag -->
 		<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/red_page_active_bg.png"
-		 alt="" class="active_bg">
+		 alt="" class="active_bg"  :style="maskOnMove?'position:fixed;':'position:absolute'" >
 		<div  class="active_content relative ta_c  ">
 			<div class="active_top_info_box ov_hid">
 				<div class="active_all_price">今日已送出现金 ¥ 18398233</div>
@@ -24,20 +24,21 @@
 						<div class="active_price_bd margin_auto "></div>
 						<div class="active_time">{{djsTime}}后现金将失效</div>
 					</div>
-					<div class="active_share_btn flex_c margin_auto">分享给好友，再领一次现金</div>
+					<button  open-type="share"  class="active_share_btn flex_c margin_auto">分享给好友，再领一次现金</button>
 					<div class="active_rule">规则说明</div>
 				</div>
 			</div>
 			<div class="active_category_list flex flex_jc_e">
-				<div class="active_category_li" @tap.stop="videoOccur">
+				<div class="active_category_li" @tap.stop="videoOccur" >
 					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/watch_veido@2x.png"
 					 alt="" class="active_category_li_img">
 				</div>
-				<div class="active_category_li" @tap.stop="redRainOccur">
+				<div class="active_category_li" @tap.stop="redRainOccur" >
 					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/redbag_rain@2x.png"
-					 alt="" class="active_category_li_img">
+					 alt="" class="active_category_li_img" >
 				</div>
-				<div class="active_category_li" @tap.stop="inviteFlag=true">
+				<div class="active_category_li" @tap.stop="inviteFlag=true,
+				QRflag=true,maskOnMove=true" >
 					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/scan_qrcode@2x.png"
 					 alt="" class="active_category_li_img">
 				</div>
@@ -66,7 +67,7 @@
 		<view class="rainMaskssss"  v-if="rainflagsss"></view>
 		<view class="uni-redRainMask" v-if="!videoMask">
 			<view class="uni-content">
-				<image src="../../../static/cancel.png" class="uni-cancel" @tap.stop="videoMask=true,rainflagsss=false"></image>
+				<image src="../../../static/cancel.png" class="uni-cancel" @tap.stop="videoMask=true,rainflagsss=false,maskOnMove=false"></image>
 				<image class="uni-image" src="http://zxyp.hzbixin.cn/files/13521597214805445.jpg"></image>
 				<view class="uni-btn" @click="beginBattle">开始挑战</view>
 			</view>
@@ -75,7 +76,7 @@
 		     <view class="videooooMask" v-if="videoFlags"></view>
 		    <view class="uni-videoMask" v-if="!videoFlag">
 			<view class="uni-content" v-if="videoConFlag">
-				<image class="cancel " src="../../../static/cancel.png" @tap.stop="videoFlag=true,videoFlags=false"></image>
+				<image class="cancel " src="../../../static/cancel.png" @tap.stop="videoFlag=true,videoFlags=false,maskOnMove=false"></image>
 				<view class="uni-video">
 					<video class="video" @timeupdate="autoEnd" autoplay page-gesture controls id="myVideo" src="http://zxyp.hzbixin.cn/files/64101595293657312.mp4"></video>
 				</view>
@@ -106,7 +107,7 @@
 		<!-- 红包雨结束之后弹出的框 结算总金额 -->
 		<view class="uni-RedRainAllSum" id="animation" v-if="redRainAllSumFlag">
 			<image class="cancel " src="../../../static/cancel.png" @tap.stop="redRainAllSumFlag=false,videoMask=true,redRainFlag=true,
-			rainflagsss=false"></image>
+			rainflagsss=false,maskOnMove=false"></image>
 			<image class="image" src="http://zxyp.hzbixin.cn/files/78781597215788808.jpg"></image>
 			<view class="content">
 				<!-- <view class="first">恭喜获得<text class="money">0.12</text>元现金</view> -->
@@ -114,7 +115,7 @@
 				<view class="second">已存入现金账户</view>
 				<view class="third">¥<text class="nn">{{redSmallMoney}}</text></view>
 			</view>
-			<button class="bottom" open-type="share">
+			<button class="bottom" open-type="share" >
 				<image class="logo" src="http://zxyp.hzbixin.cn/files/25481597217656399.jpg"></image>
 				<view class="go">分享给好友</view>
 			</button>
@@ -122,7 +123,7 @@
            <!-- 视频里面相应的弹框 -->
 		   <!-- <view class="uni-RedRainAllSumss"></view> -->
 		   <view class="uni-RedRainAllSum" id="animation"  v-if="videoMoneyFlag">
-				<image class="cancel " src="../../../static/cancel.png" @tap.stop="videoMask=true,videoFlags=false,redRainFlag=true,videoMoneyFlag=false,videoFlag=true"></image>
+				<image class="cancel " src="../../../static/cancel.png" @tap.stop="videoMask=true,videoFlags=false,redRainFlag=true,videoMoneyFlag=false,videoFlag=true,maskOnMove=false"></image>
 				<image class="image" src="http://zxyp.hzbixin.cn/files/86041597371670973.jpg"></image>
 				<view class="content">
 		   		<!-- <view class="first">恭喜获得<text class="money">0.12</text>元现金</view> -->
@@ -131,19 +132,19 @@
 					<view class="third">¥<text class="nn">{{videoMoney}}</text></view>
 		    	</view>
 				<button class="bottom" open-type="share">
-					<!-- <image class="logo" src="http://zxyp.hzbixin.cn/files/25481597217656399.jpg"></image> -->
-					<image class="logo" src="data:image/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACb0lEQVQ4T62UPWhTURTHf+e99Au7KCqF0qWgBRWKeVSokzqIFh1EK9KkqOjQQQdpXungUPBjaFIcdFGhi41VCw4OLbjUoZMkqRURFysOrW5SwY80effIe0lD2qYfQu/27v2f3z3n/O95whYvWcnrzFzfVWVqj1hok4EqVOftapl60pr4spm7S8DOdzcaq/OhQeC8CKHyYEVVkEmD6XvqDKXXAwfAyHRvG8YaF9i5nliVvIheG3ESD9fSiV9ijdZ+AHYr5EV5jtAONBeCNIfIqBo9KiJNgFFjTiXbhiYqQSWScROi9AahMJl04sei0+5VDI8LezKRdAY7oik3hhAv6j4lnfi+QsjyJdG0+3kpG79XwGuBAyCNRanx9wAHdEGxJlGT8yzrzrPw4PwqYCTl5laaUKGUr4KfnbYqchpoCDSic6LW2N9sLjF2+N5csBVNu99KgkpNUWZV9L4gd4G6imYIP9QzEb+vEk3HhkEur+muar+K3BYIoXwH/YnI3qJ+VlWrfLNU9Y+lHJKu9/3NksvPCFK/GqozCvOCnCw63uN53pRth/xXgYrpKFRujRfM0pfBO4ym3RMK/seykhSG/WOB6uJlvxWyAtuLbi+A2kvJKCyUJqUr5XZawosVWT4CrgD2eg++7OxXCRhJubdE6DbKA0uCDFqADHAWCG8KqPjTVliRlHt8sW7bm7H9A4vlwd2Z2AVVGd0YqFnLDrWv+ttUCiyfpjXAOYSLI+H46KaAQQXp2BlBbip6UJClOH+KPODViBM/Fzi+cSnLFZfeug1Z8i1YlpdfNB9ratih2H17wvU9AzJg/hu4UQJbDvwHe1HobjCwx2QAAAAASUVORK5CYII="></image>
+					<image class="logo" src="http://zxyp.hzbixin.cn/files/25481597217656399.jpg"></image>
+					<!-- <image class="logo" src="data:image/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACb0lEQVQ4T62UPWhTURTHf+e99Au7KCqF0qWgBRWKeVSokzqIFh1EK9KkqOjQQQdpXungUPBjaFIcdFGhi41VCw4OLbjUoZMkqRURFysOrW5SwY80effIe0lD2qYfQu/27v2f3z3n/O95whYvWcnrzFzfVWVqj1hok4EqVOftapl60pr4spm7S8DOdzcaq/OhQeC8CKHyYEVVkEmD6XvqDKXXAwfAyHRvG8YaF9i5nliVvIheG3ESD9fSiV9ijdZ+AHYr5EV5jtAONBeCNIfIqBo9KiJNgFFjTiXbhiYqQSWScROi9AahMJl04sei0+5VDI8LezKRdAY7oik3hhAv6j4lnfi+QsjyJdG0+3kpG79XwGuBAyCNRanx9wAHdEGxJlGT8yzrzrPw4PwqYCTl5laaUKGUr4KfnbYqchpoCDSic6LW2N9sLjF2+N5csBVNu99KgkpNUWZV9L4gd4G6imYIP9QzEb+vEk3HhkEur+muar+K3BYIoXwH/YnI3qJ+VlWrfLNU9Y+lHJKu9/3NksvPCFK/GqozCvOCnCw63uN53pRth/xXgYrpKFRujRfM0pfBO4ym3RMK/seykhSG/WOB6uJlvxWyAtuLbi+A2kvJKCyUJqUr5XZawosVWT4CrgD2eg++7OxXCRhJubdE6DbKA0uCDFqADHAWCG8KqPjTVliRlHt8sW7bm7H9A4vlwd2Z2AVVGd0YqFnLDrWv+ttUCiyfpjXAOYSLI+H46KaAQQXp2BlBbip6UJClOH+KPODViBM/Fzi+cSnLFZfeug1Z8i1YlpdfNB9ratih2H17wvU9AzJg/hu4UQJbDvwHe1HobjCwx2QAAAAASUVORK5CYII="></image> -->
 					<view class="go">分享给好友</view>
 				</button>
 		   </view>
 
 		<!-- 面对面邀请 -->
-		<view class="uni-invite-code" v-if="inviteFlag">
-              <view class="uni-code-content">
-				 <image class="img" src="http://zxyp.hzbixin.cn/files/37291597214656386.jpg"></image> 
-				 <image class="cancel" src="../../../static/cancel.png" @tap="inviteFlag=false"></image>
-				 <image class="erweima" src="http://zxyp.hzbixin.cn/files/17631597216155587.jpg"></image>
-			  </view>
+		<view class="uni-invite-code" v-if="inviteFlag" >  
+		</view>
+		<view class="uni-code-invite-content" v-if="inviteFlag" >
+			 <image class="img" src="http://zxyp.hzbixin.cn/files/37291597214656386.jpg"></image> 
+			 <image class="cancel" src="../../../static/cancel.png" @tap="inviteFlag=false,maskOnMove=false"></image>
+			 <image  class="erweima" :src="urlSrc"></image>			
 		</view>
 		<view v-if="hbyOccur" class="hbystyle">  
 		</view>
@@ -155,6 +156,9 @@
 				  <view> {{item.startTime}}</view>  ~
 				  <view>{{item.endTime}}</view>
 			</view>
+		</view>
+		<view class="hbyOccurFlag" v-if="hbyNumFlag">
+			<view class="">一天仅限领取三次</view>
 		</view>
 	</view>
 </template>
@@ -199,13 +203,20 @@
 				rainflagsss:false,
 				// 红包雨 没有的时候 提示
 				hbyOccur:false,
-				
 				timeList:[],
 				// 红包总金额
-				sumMoney:'',
+				sumMoney:'', 
 				// 失效的时间
 				sxtime:'',
-				djsTime:''
+				djsTime:'',
+				ewmPicture:'',
+				token:'',
+				pagess:'pages/QRcode/QRcode',
+				urlSrc:'',
+				// 红包雨的次数 一天三次 限制
+				hbyNum:0,
+				hbyNumFlag:false,
+				maskOnMove:false
 
 			}
 		},
@@ -229,16 +240,25 @@
 				let bb =parseInt((this.sxtime-aa)/1000)
 				let h=parseInt(bb/(60*60)%24);
 				let m=parseInt(bb/60%60);
-				let s=(bb%60);
+				let s=((bb%60));
+				
 				this.djsTime=h+':'+m+':'+s;		
 			}
+			this.token=wx.getStorageSync('token')
 		},
-		onShareAppMessage() {
-			return {
-				path: "/pages/red_page/active/active"
-			};
+		onShareAppMessage: function (res) {
+		    let _this = this;
+			 if (res.from === 'button' || res.from ==='menu' ) {// 来自页面内分享按钮
+			     return {
+			       title: "智享婴品",
+			       path: "/pages/index/index?" + _this.getShareUrlParams()
+			     };
+			    }
 		},
 		methods: {
+			moveHandle(){
+				console.log(35125)
+			},
 			// 红包雨开始挑战
 			beginBattle() {
 				// 红包雨提示的信息去掉
@@ -249,16 +269,27 @@
 			},
 			// 红包雨 是否在启动的时间内
 			redRainOccur() {
-				if (this.rainOccurFlag == true) {
-					this.videoMask = false;
-					this.rainflagsss=true;
-					this.getRedRainMoneny()
-				}else{
-					this.hbyOccur=true;
-					setTimeout(()=>{
-						this.hbyOccur=false;
-					},3000)
-				}
+				this.maskOnMove=true;
+				// hbynum限制次数 一共三次
+				  this.hbyNum=this.hbyNum+1;
+				  if(this.hbyNum<4){
+					  if (this.rainOccurFlag == true) {
+					  	this.videoMask = false;
+					  	this.rainflagsss=true;
+					  	this.getRedRainMoneny()
+					  }else{
+					  	this.hbyOccur=true;
+					  	setTimeout(()=>{
+					  		this.hbyOccur=false;
+					  	},3000)
+					  }
+				  }else{
+					  this.hbyNumFlag=true;
+					  setTimeout(()=>{
+						  this.hbyNumFlag=false;
+					  },3000)
+				  }
+				
 			},
 			// 红包雨打开
 			redRain() {
@@ -383,14 +414,6 @@
 							let min2 = Timeinit.split(':')[1];
 							let sec2 = Timeinit.split(':')[2];
 							let nowTime = Number(hour2 * 3600) + Number(min2 * 60) + Number(sec2);				
-							// if (nowTime >= startTime && nowTime <= endTime) {
-							// 	this.rainOccurFlag = true;
-							// 	console.log(this.rainOccurFlag )
-							// } else {
-							// 	this.rainOccurFlag = false;
-							// 	console.log(this.rainOccurFlag )
-						
-							// }
 							return (nowTime >= startTime && nowTime <= endTime) 
 						})
 						
@@ -418,7 +441,8 @@
 					if (res.code == 0) {
 						this.personMsg = res.data;
 						// 个人信息出来 获取二维码
-						// this.getQRerweima();
+						let id =this.personMsg.id;
+						this.urlSrc='https://zxyp.hzbixin.cn/app/cduserredenvelope/getQrCode?token='+this.token+'&page='+this.pagess+'&scene='+id	
 					}
 				})
 			},
@@ -442,9 +466,9 @@
 			},
 			// 点击视频
 			videoOccur() {
+				this.maskOnMove=true;
 				this.videoFlag = false;
-				this.videoFlags=true;
-				
+				this.videoFlags=true;				
 			},
 			// 得到视频的列表
 			getVideo() {
@@ -501,25 +525,11 @@
 					this.videoConFlag=false;
 					this.videoFlag=true;
 				})
-			},
-			// 二维码
-			// getQRerweima(){
-			// 	let a = this.personMsg;
-			// 	let id =wx.getStorageSync('user').id;
-			// 	uni.wjw_http({
-			// 		url:'app/cduserredenvelope/getQrCode',
-			// 		data:{
-			// 			page:'pages/index/index',
-			// 			scene:a.id
-			// 		}
-			// 	}).then(res=>{
-			// 		console.log(res)
-			// 	})
-			// }
+			}
+			
 		}
 	}
 </script>
-
 <style scoped lang="scss">
 	.hbystyle{
 		position: fixed;
@@ -632,7 +642,7 @@
 		}
 		.uni-content {
 			width: 700rpx;
-			margin-top: 254rpx;
+			margin-top: 300rpx;
 			margin-left:25rpx;
 			
 			.cancel {
@@ -815,38 +825,42 @@
 	     bottom: 0;
 	     z-index: 10;
 	     background-color: #000;
-	     opacity: 0.9;
-		 .uni-code-content{
+	     opacity: 0.7;	
+	}
+	.uni-code-invite-content{
+		position: fixed;
+		top: 300rpx;
+		left: 30rpx;
+		right: 0;
+		bottom: 0;
+		z-index: 11;
+		width:672rpx;
+		height:642rpx;
+		
+		text-align: center;
+		.img{
 			width:672rpx;
 			height:642rpx;
-			margin-left:40rpx;
-			margin-top:150rpx;
-			text-align: center;
-			.img{
-				width:672rpx;
-				height:642rpx;
-			}
-			.erweima{
-				width:270rpx;
-				height:270rpx;
-				position:absolute;
-				top:325rpx;
-				left:262rpx;
-			}
-			.cancel{
-				width:40rpx;
-				height:40rpx;
-				margin-top:23rpx;
-			}
-		 }
-			
+		}
+		.erweima{
+			width:270rpx;
+			height:270rpx;
+			position:absolute;
+			top:175rpx;
+			left:223rpx;
+		}
+		.cancel{
+			width:40rpx;
+			height:40rpx;
+			margin-top:23rpx;
+		}
 	}
 
 	.uni-active {
 		width: 750rpx;
-		position: relative;
-		top: 0rpx;
-		left: 0rpx;
+		// position: relative;
+		// top: 0rpx;
+		// left: 0rpx;
 	}
 	.active_bg {
 		/* 750 * 1700 */
@@ -1031,6 +1045,19 @@
 		font-size: 26rpx;
 		font-family: PingFang SC;
 		font-weight: bold;
-		color: rgba(255, 245, 174, 1);
+		color: rgba(255, 245, 174, 1); 
+	}
+	.hbyOccurFlag{
+		position: absolute;
+		top:400rpx;
+		left:250rpx;
+		background-color: green;
+		width:300rpx;height:130rpx;
+		line-height: 130rpx;
+		background-color: #000;
+		color:#fff;
+		text-align: center;
+		opacity: 0.7;
+		border-radius: 20rpx;
 	}
 </style>

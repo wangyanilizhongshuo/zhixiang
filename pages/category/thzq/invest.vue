@@ -45,7 +45,6 @@
 						},
 						fail: data => {
 							console.log(data)	
-							console.log(222222)
 						}
 					});
 				};

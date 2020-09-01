@@ -747,17 +747,7 @@ function http_dataset(e) {
 
 }
 
-// 确认对话框 catch bindtap='show_modal' data-title='title' data-content='' data-confirm='' data-cancel=''
-/*
-    data-show-cancel='{{false}}' data-cancel='show_modal'
-    this.show_modal(this.create_dataset({
-        title:'',
-        contents:'',
-        confirm:'',
-        cancel:'show_modal',
-        showCancel: false,
-    }))
-*/
+
 function show_modal(e) {
     console.log('确认对话框', e);
     var obj = dataset(e);
@@ -783,45 +773,10 @@ function show_modal(e) {
 // 获取地址
 function get_addr(e) {
     console.log('获取地址', e);
-    // var {
-    //     glo,
-    // } = dataset(e);
+  
 }
 
-// 根据 经纬度 获取地址
-// function get_addr_info({
-//     latitude,
-//     longitude,
-//     back_fn,
-// }) {
-//     console.log('根据 经纬度 获取地址', {
-//         latitude,
-//         longitude
-//     });
-//     util.https('map/getAddress', {
-//         latitude,
-//         longitude
-//     }).then(res => {
-//         console.log('根据 经纬度 获取地址 接口调取成功', res);
-//         var title = res.data.result.formatted_addresses.recommend,
-//             city = res.data.result.address_component.city,
-//             area = res.data.result.address_component.district,
-//             latitude = res.data.result.location.lat,
-//             longitude = res.data.result.location.lng;
 
-//         var location = {
-//             title,
-//             city,
-//             area,
-//             latitude,
-//             longitude,
-//         };
-
-//         typeof back_fn === 'function' && back_fn(location);
-//     }).catch(e => {
-//         console.log('根据 经纬度 获取地址 报错', e);
-//     })
-// }
 
 //页面加载完成函数
 function onReady() {
@@ -888,54 +843,6 @@ function popup_fn(e) {
 }
 
 
-//默认表单提交事件 
-// this.submit(this.create_dataset({})) 
-// 空值的属性名  this.submit_false_name
-/*
-    if( this.submit(this.create_dataset(obj)) ){
-        // 空值的属性名  this.submit_false_name
-        var name_txt = {
-            "companyName": "公司名称",
-        }
-        // this.submit_false_name
-        console.log(this.submit_false_name);
-        this.toastTip('请完善 '+(name_txt[this.submit_false_name]||'信息'));
-    }
-*/
-// function submit(e) {
-//     console.log('默认表单提交事件', e, e.detail.value);
-
-//     var that = this;
-//     var form_data = e.detail.value;
-//     var {
-//         form_data_require = 'all',
-//     } = this.$data;
-
-//     var require_data = Array.isArray(form_data_require) ? form_data_require : form_data_require == 'all' ? Object.keys(
-//         form_data) : [];
-//     console.log(require_data);
-//     var require = require_data.some(item => {
-//         console.log(item);
-//         var items = form_data[item];
-//         var back = items === '' || (Array.isArray(items) && !items.length);
-//         // console.log(item, back);
-//         back && (this.submit_false_name = item);
-//         return back
-//     });
-//     console.log(require);
-
-//     if (require) {
-//         console.log('请完善信息');
-//         toastTip('请完善信息');
-//         // return;
-//         // } else if (123) {
-//     } else {
-//         console.log('信息已完善');
-//         // toastTip('信息已完善');
-//     }
-//     return !require;
-// }
-
 
 // 判断授权 
 function judge_auth(back_fn) {
@@ -988,23 +895,7 @@ function judge_auth(back_fn) {
     })
 }
 
-//  使用app方法
-// function do_app_fn(e) {
-//     console.log('使用app方法', e);
-//     var {
-//         fn
-//     } = dataset(e);
-//     if (fn && getApp()[fn]) {
-//         getApp()[fn](e);
-//     } else {
-//         console.log('为传入函数名或者无该方法', fn, getApp()[fn]);
-//     }
-// }
-//  使用app多个方法
-// function do_app_fns(e) {
-//     console.log('使用app方法', e);
-//     do_fns.call(getApp(), e)
-// }
+
 
 
 
@@ -1030,79 +921,6 @@ function get_codes(e) {
 }
 
 
-// 设置缓存
-// function set_stro(e) {
-//     console.log('设置缓存', e);
-//     var {
-//         name,
-//         value,
-//     } = dataset(e);
-//     if (name && value) {
-//         uni.setStorageSync(name, value)
-//     } else {
-//         console.log('设置缓存失败，数据缺失', {
-//             name,
-//             value,
-//         });
-//     }
-// }
-
-// 使用微信的方法
-// function do_wx(e) {
-//     console.log('使用微信的方法', e);
-//     var {
-//         wx_fn,
-//     } = dataset(e);
-//     var data = dataset(e);
-//     if (wx_fn && uni[wx_fn]) {
-//         console.log('使用微信的方法 wx_fn', wx_fn, data);
-//         uni[wx_fn](data)
-//     } else {
-//         console.log('使用微信的方法 数据不全', {
-//             wx_fn
-//         });
-//     }
-// }
-
-
-
-//毫数转格式 【yyyy-MM-dd】 
-// alert(format(1396178344662, 'yyyy-MM-dd HH:mm:ss')); 
-// var format = function(time, format) {
-//     typeof time == 'string' && (time = time.replace(/-/g, '/'));
-//     var t = time?new Date(time):new Date();
-//     var tf = function(i) {
-//         return (i < 10 ? '0' : '') + i
-//     };
-//     return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a) {
-//         switch (a) {
-//             case 'yyyy':
-//                 return tf(t.getFullYear());
-//                 break;
-//             case 'MM':
-//                 return tf(t.getMonth() + 1);
-//                 break;
-//             case 'mm':
-//                 return tf(t.getMinutes());
-//                 break;
-//             case 'dd':
-//                 return tf(t.getDate());
-//                 break;
-//             case 'HH':
-//                 return tf(t.getHours());
-//                 break;
-//             case 'ss':
-//                 return tf(t.getSeconds());
-//                 break;
-//         };
-//     });
-// };
-
-
-// new Date().format("yyyy-MM-dd hh:mm:ss");
-///CreateDate： /date(xxxxxxxxxx)/
-// var newDate = eval('new ' + CreateDate.substr(1, CreateDate.length - 2)); //new Date()
-// new Date().Format("yyyy-MM-dd hh:mm:ss")
 Date.prototype.Format = function(fmt) { //author: meizz 
     var o = {
         "M+": this.getMonth() + 1, //月份 
@@ -1187,51 +1005,6 @@ function set_navName(e) {
 }
 
 
-// 选择相册
-// function choose_img(e) {
-
-//     console.log('选择相册', e);
-//     var {
-//         name='imgs',
-//         count = 1,
-//         is_new=true,//替换 逻辑为数组
-//     } = dataset(e);
-//     uni.chooseImage({
-//         count: count-0, //默认9 类型number
-//         success: (res) => {
-//             console.log('从本地相册选择图片或使用相机拍照', res, JSON.stringify(res.tempFilePaths));
-
-//             res.tempFilePaths.length > count && (res.tempFilePaths.length = count);
-
-//             this.choose_img_data||(this.choose_img_data=[]);
-
-//             if(!is_new){
-//                 // this.$data name
-//                 var data_v = var_path_split.call(this, {
-//                     path: name,
-//                     start: this.$data
-//                 })||[];
-//                 data_v.push(res.tempFilePaths);
-//                 this.choose_img_data=data_v;
-//             }else{
-//                 this.choose_img_data= count == 1 ? res.tempFilePaths[0] : res.tempFilePaths;
-//                 Array.isArray(this.choose_img_data) && this.choose_img_data.length > count && (this.choose_img_data.length = count);
-//             }
-//             setData.call(this, {
-//                 [name]: this.choose_img_data,
-//             });
-//             this.choose_img_back();
-
-//         },
-//     })
-
-// }
-
-// 选择相册_回调
-// function choose_img_back(e) {
-
-//     console.log('选择相册_回调', e);
-// }
 
 
 // 选择_返回操作

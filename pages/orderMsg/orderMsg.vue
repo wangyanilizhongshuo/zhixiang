@@ -151,6 +151,13 @@
 		components:{
 			uniPopup		
 		},
+		onShareAppMessage: function () {
+		    let _this = this;
+		    return {
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams()
+		    };
+		},
 		onLoad(options){
 			this.msg=wx.getStorageSync('goodDetail');
 			this.type=wx.getStorageSync('types');

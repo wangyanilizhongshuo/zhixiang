@@ -4,12 +4,12 @@
 				v-for="(item,index) in getRecordList" :key='index'>	
 				<!-- @click='jump' data-url='/pages/category/mybk/prof/consult/info/info' -->
 		     <!-- <text>客服帮助</text> -->
-			    <button hover-class="none" class="btn uni-left"    >
-			    <!-- <button hover-class="none" class="btn uni-left"    open-type="contact" sessionFrom="weapp"> -->
+			    <!-- <button hover-class="none" class="btn uni-left"    > -->
+			    <button hover-class="none" class="btn uni-left"    open-type="contact" sessionFrom="weapp">
 				    <img :src="item.expertCover" alt="" class="consult_li_img ">
 				</button>
-				<button hover-class="none" class="btn uni-right"   >
-				<!-- <button hover-class="none" class="btn uni-right"    open-type="contact" sessionFrom="weapp"> -->
+				<!-- <button hover-class="none" class="btn uni-right"   > -->
+				<button hover-class="none" class="btn uni-right"    open-type="contact" sessionFrom="weapp">
 					<view class="uni-up ">
 						  <view  class="name">{{item.expertName}}</view>
 						 <view class="time">{{item.createTime}}</view>

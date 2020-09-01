@@ -59,6 +59,13 @@
 			// type ==1 是评价的内容
 			this.setData(options)
 		},
+		onShareAppMessage: function () {
+		    let _this = this;
+		    return {
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams();
+		    };
+		},
 		methods:{
 			back(){
 				uni.reLaunch({

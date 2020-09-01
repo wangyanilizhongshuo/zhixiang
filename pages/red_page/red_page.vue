@@ -11,7 +11,7 @@
 					<img src="http://zxyp.hzbixin.cn/files/73041598325949807.jpg" alt="" class="red_page_cash_box_bg" />
 					<div class="red_page_cash_box_info relative">
 						<view class="uni-signal">
-							<view class="uni-left">{{numericalValue}}</view>
+							<view class="uni-left">{{numericalValue }}</view>
 							<view class="uni-right">
 								<view class="top">待提现</view>
 								<view class="down">元</view>
@@ -44,7 +44,7 @@
 				<!--  flex flex_jc_c -->
 				<div class="red_page_info_price_box lh1">
 					<span class="red_page_info_price_icon">¥</span>
-					<span class="red_page_info_price_num"> {{redDetail.currentAmount}}</span>
+					<span class="red_page_info_price_num"> {{redDetail.currentAmount ||0.00}}</span>
 				</div>
 				<div class="red_page_info_price_btn" @tap.stop='nowWithDrawl'>立即提现</div>
 			</div>
@@ -68,15 +68,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="received_li flex"  v-for="(item,index) in 15" :key='index' >
+				<div class="received_li flex"  v-for="(item,index) in redRecord" :key='index' >
 					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_head1.png" alt="" class="received_li_img no_shrink">
 					<div class="received_li_info_box flex_grow flex lh1">
 						<div class="received_li_info flex_grow">
 							<div class="received_li_name">大胖胖</div>
-							<div class="received_li_time">10:20</div>
+							<div class="received_li_time">{{item.createTime}}</div>
 						</div>
 						<div class="received_li_price_box no_shrink">
-							<div class="received_li_price_num">283.67元</div>
+							<div class="received_li_price_num">{{item.assistanceAmount}}元</div>
 							<div class="received_li_price_tip_box flex flex_c">
 								<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/crown@2x.png" alt="" class="received_li_price_tip_icon no_shrink">
 								<div class="received_li_price_tip_txt">手气最佳</div>
@@ -110,11 +110,23 @@
 			this.getRedRecord();
 			this.getBalance();
 			this.getAdd();
+			// let id =wx.getStorageSync('user').id;
+			// uni.wjw_http({
+			// 					url: 'app/cduserredenvelopeassistance/assistance',
+			// 					type: 'post',
+			// 					data: {
+			// 						 userId: id,
+			// 						 envelopeId: 31,
+			// 						 assistanceType: 4
+			// 					}
+			//  }).then(res => {
+			// 	 console.log('success')
+			//  })
 		},
 		methods: {
 			// 领取红包
 			getRed(){
-				let id =wx.getStorageSync('user').id
+				let id =wx.getStorageSync('user').id;
 				uni.wjw_http({
 					url:'app/cduserredenvelope/getRed',
 					type:'post',
@@ -123,21 +135,25 @@
 					}
 				}).then(res=>{
 					if(res.code ==0){
-						
+						this.getRedDetail();
 					}
 				}).catch(res=>{
 					// console.log(res)
-				})
-				
+				})				
 			},
 			// 计算还需要砍价多少 以及 进度条的长度                            
 			nowWithDrawl(){
-				this.red_page_cash_show=true;
 				let a=this.redDetail.currentAmount;
 				let b=this.numericalValue;
-				this.percents=((a/b)*100);
-				this.cPrice=(b-a).toFixed(2);
-				
+				if(a==b){
+					uni.navigateTo({
+						url:'/pages/red_page/cash/cash'
+					})
+				}else{
+					this.red_page_cash_show=true;
+					this.percents=((a/b)*100);
+					this.cPrice=(b-a).toFixed(2);
+				}
 			},
 			// 红包得详情
 			getRedDetail(){
@@ -151,12 +167,23 @@
 				}).then(res=>{
 					if(res.code ==0){
 						this.redDetail=res.data;
-						let aa=(new Date()).valueOf();					
+						let aa=(new Date()).valueOf();		
 						// 监测红包是否失效 失效的话不要限制领取
-						if(this.redDetail.expirationTime <aa){
+					
+						if(this.redDetail){
+							if(this.redDetail.expirationTime <aa){
+								console.log(this.redDetail.expirationTime)
+								console.log(aa)
+								console.log('重新领取红包')
+								this.getRed();
+							}
+						}else{
+							// 用户初次登陆
 							this.getRed();
-						}else{							
-						}							
+							
+							
+						}
+													
 					}
 				})
 			},
@@ -171,27 +198,19 @@
 					}
 				}).then(res=>{
 					if(res.code ==0){
-						this.redRecord=res.data;
 						
+						let aa=res.data.list;
+						for(let i in aa){
+							 let a = new Date(aa[i].createTime);
+							aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
+						}
+						this.redRecord=aa;
 					}
 				})
 			},
 			// 红包助力 面对面扫码
 			getAdd(){
-				// let id =wx.getStorageSync('user').id
-				// uni.wjw_http({
-				// 	url:'app/cduserredenvelopeassistance/assistance',
-				// 	type:'post',
-				// 	data:{
-				// 		userId:id,
-				// 		envelopeId:31,
-				// 		assistanceType:3					
-				// 	}
-				// }).then(res=>{
-				// 	if(res.code ==0){					
-				// 		 this.getRedDetail()		
-				// 	}
-				// })
+				
 			},
 			// 获取最终余额
 			getBalance(){
@@ -206,6 +225,7 @@
 					if(res.code ==0){
 						this.numericalValue=res.data;
 						
+						
 					}
 				}).catch(res=>{
 					
@@ -214,6 +234,9 @@
 			//跳转到获取红包的页面
 			jumpNext(){
 				this.red_page_cash_show=false;
+				 if(this.numericalValue ){
+					 
+				 }
 				uni.navigateTo({
 					url:'/pages/red_page/active/active?sumMoney='+this.numericalValue+'&sxtime='+this.redDetail.expirationTime
 				})

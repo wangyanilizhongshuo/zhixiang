@@ -32,7 +32,6 @@
   bottom: 0;
   z-index: 10;
   background-color: #000;
-  opacity: 0.5;
 }
 .uni-img.data-v-7ddb5206 {
   width: 500rpx;

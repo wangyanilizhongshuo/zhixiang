@@ -182,7 +182,6 @@
 				orderList:'',
 				refundNum:'',
 				hasSureLength:'',
-
 				notice_list: [
 					'恭喜您的下级  王小二  卖出商品【欢恩宝奶粉 500ml】，您获得佣金8元',
 					'9月平台充值上线啦，充值现金大送活动------------',
@@ -198,6 +197,14 @@
 			this.getOrder();
 			this.getRufundLength();
 			this.getSureOrder();
+			this.setData(options);
+		},
+		onShareAppMessage: function () {
+		    let _this = this;
+		    return {
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams()
+		    };
 		},
 		onShow(){
 			// 获取用户信息

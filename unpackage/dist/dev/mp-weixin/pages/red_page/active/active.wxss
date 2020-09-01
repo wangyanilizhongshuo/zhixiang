@@ -135,7 +135,7 @@
 }
 .uni-content.data-v-6bf2c256 {
   width: 700rpx;
-  margin-top: 254rpx;
+  margin-top: 300rpx;
   margin-left: 25rpx;
 }
 .uni-content .cancel.data-v-6bf2c256 {
@@ -305,36 +305,37 @@
   bottom: 0;
   z-index: 10;
   background-color: #000;
-  opacity: 0.9;
+  opacity: 0.7;
 }
-.uni-invite-code .uni-code-content.data-v-6bf2c256 {
+.uni-code-invite-content.data-v-6bf2c256 {
+  position: fixed;
+  top: 300rpx;
+  left: 30rpx;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
   width: 672rpx;
   height: 642rpx;
-  margin-left: 40rpx;
-  margin-top: 150rpx;
   text-align: center;
 }
-.uni-invite-code .uni-code-content .img.data-v-6bf2c256 {
+.uni-code-invite-content .img.data-v-6bf2c256 {
   width: 672rpx;
   height: 642rpx;
 }
-.uni-invite-code .uni-code-content .erweima.data-v-6bf2c256 {
+.uni-code-invite-content .erweima.data-v-6bf2c256 {
   width: 270rpx;
   height: 270rpx;
   position: absolute;
-  top: 325rpx;
-  left: 262rpx;
+  top: 175rpx;
+  left: 223rpx;
 }
-.uni-invite-code .uni-code-content .cancel.data-v-6bf2c256 {
+.uni-code-invite-content .cancel.data-v-6bf2c256 {
   width: 40rpx;
   height: 40rpx;
   margin-top: 23rpx;
 }
 .uni-active.data-v-6bf2c256 {
   width: 750rpx;
-  position: relative;
-  top: 0rpx;
-  left: 0rpx;
 }
 .active_bg.data-v-6bf2c256 {
   /* 750 * 1700 */
@@ -516,5 +517,19 @@
   font-family: PingFang SC;
   font-weight: bold;
   color: #fff5ae;
+}
+.hbyOccurFlag.data-v-6bf2c256 {
+  position: absolute;
+  top: 400rpx;
+  left: 250rpx;
+  background-color: green;
+  width: 300rpx;
+  height: 130rpx;
+  line-height: 130rpx;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  opacity: 0.7;
+  border-radius: 20rpx;
 }
 

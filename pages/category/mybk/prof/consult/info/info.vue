@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<button   >
+		<button    open-type="contact" sessionFrom="weapp">>
 		<!-- <button   open-type="contact" sessionFrom="weapp"> -->
 		      <text>客服帮助</text> 
 		</button>

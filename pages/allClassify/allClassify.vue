@@ -76,7 +76,13 @@ export default {
             goods_list: [],
         }
     },
-
+    onShareAppMessage: function () {
+		    let _this = this;
+		    return {
+		      title: "智享婴品",
+		      path: "/pages/index/index?" + _this.getShareUrlParams()
+		    };
+		},
     onLoad(options) {
         console.log('onLoad 页面加载', options);
 

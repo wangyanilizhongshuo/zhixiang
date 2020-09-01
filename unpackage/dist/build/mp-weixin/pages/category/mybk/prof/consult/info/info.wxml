@@ -1,1 +1,1 @@
-<view><button><text>客服帮助</text></button></view>
+<view><button open-type="contact" sessionFrom="weapp">><text>客服帮助</text></button></view>

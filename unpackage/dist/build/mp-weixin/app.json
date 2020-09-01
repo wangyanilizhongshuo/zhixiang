@@ -1,14 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/orderMsg/goodsEvaluate",
     "pages/login/login",
     "pages/QRcode/QRcode",
+    "pages/orderMsg/goodsEvaluate",
     "pages/orderMsg/orderMsg",
     "pages/index/quickBuy",
     "pages/red_page/active/active",
-    "pages/newUser1",
-    "pages/forgetPwd",
+    "pages/login/newUser1",
     "pages/resetPwd",
     "pages/category/hot/hot",
     "pages/category/hot/search",
@@ -29,7 +28,6 @@
     "pages/category/thzq/log",
     "pages/category/thzq/invest",
     "pages/allMyOrder",
-    "pages/status_tips/status_tips",
     "pages/allClassify/allClassify",
     "pages/goods/goods",
     "pages/confirmorder",
@@ -63,14 +61,13 @@
     "pages/video/detail",
     "pages/personCenter/appDownload",
     "pages/red_page/facetofaceCode/facetofaceCode",
-    "pages/orderMsg/successPage",
     "pages/orderMsg/afterSales",
     "pages/index/search",
     "pages/index/searchDetail",
     "pages/personCenter/wallet/wallet",
-    "pages/personCenter/wallet/details",
     "pages/personCenter/wallet/reCharge",
-    "pages/personCenter/wallet/Withdrawal"
+    "pages/personCenter/wallet/Withdrawal",
+    "pages/login/forgetPassword"
   ],
   "subPackages": [],
   "window": {
@@ -115,6 +112,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

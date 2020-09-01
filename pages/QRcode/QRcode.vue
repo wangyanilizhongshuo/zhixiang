@@ -2,27 +2,25 @@
 	<view  class="uni-call">
 		<view class="mask"></view>
 			<image class="uni-img" @tap.stop="decision"  src="http://zxyp.hzbixin.cn/files/27351597214998680.jpg"></image>
-		
 	</view>
-	
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				scene:33
+				scene:''
 			}
 		},
 		onLoad(options){
 			this.setData(options);
-			
 		},
 		methods: {
 			// 助力成功的红包
 			getRed(){
 				 let that = this;
 				 let a = wx.getStorageSync('user').id;
+				 let sceneid=wx.getStorageSync('sceneId');
 				 uni.wjw_http({
 					url: 'app/cduserredenvelopeassistance/assistance',
 					type: 'post',
@@ -41,12 +39,17 @@
 						setTimeout(()=>{
 							this.getMyself();
 						},3000)
-					}
-					
+					}else{
+						uni.showToast({
+							title:'每个会员只可以邀请一次!',
+							duration:2500
+						});
+						uni.reLaunch({
+							url:'/pages/index/index'
+						})
+					}					
 				 }).catch(res=>{
-					
-				 })
-				
+				 })				
 			},
 			// 判断跳转登录还是index 页面
 			decision(){
@@ -54,9 +57,10 @@
 					this.getRed();
 
 				}else if(!wx.getStorageSync('user')){
-					uni.navigateTo({
-						url:'/pages/login/login?help='+1
-					})
+					this.jump(this.create_dataset({
+					    url: '/pages/login/login',
+					    scene: this.scene,
+					}))
 				}
 			},
 			// 初次自己领取了多少红包
@@ -96,7 +100,7 @@
 		bottom: 0;
 		z-index: 10;
 		background-color: #000;
-		opacity: 0.5;
+		
 		 }
 		.uni-img{
 			width: 500rpx;

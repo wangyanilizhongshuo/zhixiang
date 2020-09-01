@@ -42,16 +42,18 @@
 				pwd: '',
 				code:'',
 				QRcode:'',
-				help:''
+				scene:''
 			}
 		},
-		onLoad(options) {
-			this.setData(options)
+		
+		onLoad(options){
+			this.setData(options);
 		},
+		
 		methods: {
 			// 登录
 			login(e) {
-			    
+			     let that =this;
 			    if(this.phone == "" && this.pwd == ""){
                     this.toastTip("信息未输入完整！");
                     return false;
@@ -76,16 +78,21 @@
 						wx.setStorageSync('token', res.result.token);
 			            wx.setStorageSync('user', res.result.user);
 			            wx.setStorageSync('userData', res.result);
-						if(!this.QRcode){
-							this.jump(this.create_dataset({
+						// if(!this.QRcode){
+						
+						// }
+						console.log(this.scene+'this.scene')
+						 if(that.scene){
+							// help  ==1是从 面对面邀请过来的flag
+							uni.navigateTo({
+								url:'/pages/QRcode/QRcode?scene='+this.scene
+							})	
+						}else{
+							that.jump(this.create_dataset({
 							    url: '/pages/index/index',
 							    type: '3',
 							}))
-						}else if(this.help==1){
-							// help  ==1是从 面对面邀请过来的flag
-							uni.navigateTo({
-								url:'/pages/QRcode/QRcode'
-							})
+							
 						}					
 					}  
 			    }).catch(res=>{
@@ -95,7 +102,6 @@
 
 			},
 			enter(){
-				console.log(12324)
 				if(this.phone == "" && this.pwd == ""){
 				    this.toastTip("信息未输入完整！");
 				    return false;
@@ -110,12 +116,7 @@
 </script>
 
 <style>
-	/* @import url("../../common/main.css"); */
-	/* @import url('../../common/commons/light7/light7.min.css'); */
-	/* @import url('../../common/commons/css/main.css'); */
-	/* @import url('../../common/commons/css/otherCss/wq.css'); */
-
-	/* @import url("../../common/main.css"); */
+	
 
 
 	.login-list img,
