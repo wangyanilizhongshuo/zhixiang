@@ -12,7 +12,7 @@
             </div>
             <div class="classify-area">
                 <div class="left-area">
-                    <ul class="nav-bar">
+                    <ul class="nav-bar" style="height: 100vh;">
                     	<block
                     	>
                     	
@@ -84,7 +84,7 @@ export default {
 		    };
 		},
     onLoad(options) {
-        console.log('onLoad 页面加载', options);
+        // console.log('onLoad 页面加载', options);
 
         // 商品分类列表
          this.get_goodsclass_list();
@@ -102,7 +102,7 @@ export default {
                 data: {
                 },
             }).then(res => {
-                console.log('商品分类列表 接口 请求成功', res);
+                // console.log('商品分类列表 接口 请求成功', res);
              
                 this.goodsclass_list = res.result;
 

@@ -8834,11 +8834,11 @@ function set_value(e) {var _this2 = this;var _dataset2 =
 
 
   dataset(e),name = _dataset2.name,_dataset2$value = _dataset2.value,value = _dataset2$value === void 0 ? '' : _dataset2$value,_dataset2$index = _dataset2.index,index = _dataset2$index === void 0 ? 0 : _dataset2$index,method = _dataset2.method,no_report = _dataset2.no_report;
-  console.log('设置属性值', e, {
-    name: name,
-    value: value,
-    method: method });
-
+  // console.log('设置属性值', e, {
+  //     name,
+  //     value,
+  //     method,
+  // });
   var name_arr = name.split(/ *[,， ] */g);
   var value_arr = [];
   if (typeof value == 'string') {
@@ -8958,8 +8958,8 @@ function showToast(e) {
 
 // 执行多个方法 bindtap="do_fns" data-fns='fn1 fn2'
 function do_fns(e) {var _this3 = this;
-  console.log('执行多个方法', e);var _dataset5 =
-
+  // console.log('执行多个方法', e);
+  var _dataset5 =
 
   dataset(e),fns = _dataset5.fns;
   var fn_arr = fns.split(/ *[,， ] */g);

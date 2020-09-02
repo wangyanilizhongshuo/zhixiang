@@ -214,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onLoad: function onLoad(options) {
-    console.log('onLoad 页面加载', options);
+    // console.log('onLoad 页面加载', options);
 
     // 商品分类列表
     this.get_goodsclass_list();
@@ -232,7 +232,7 @@ __webpack_require__.r(__webpack_exports__);
         data: {} }).
 
       then(function (res) {
-        console.log('商品分类列表 接口 请求成功', res);
+        // console.log('商品分类列表 接口 请求成功', res);
 
         _this2.goodsclass_list = res.result;
 

@@ -451,11 +451,11 @@ function set_value(e) {
         method,
         no_report,
     } = dataset(e);
-    console.log('设置属性值', e, {
-        name,
-        value,
-        method,
-    });
+    // console.log('设置属性值', e, {
+    //     name,
+    //     value,
+    //     method,
+    // });
     var name_arr = name.split(/ *[,， ] */g);
     var value_arr = [];
     if (typeof value == 'string') {
@@ -575,7 +575,7 @@ function showToast(e) {
 
 // 执行多个方法 bindtap="do_fns" data-fns='fn1 fn2'
 function do_fns(e) {
-    console.log('执行多个方法', e);
+    // console.log('执行多个方法', e);
     var {
         fns,
     } = dataset(e);
