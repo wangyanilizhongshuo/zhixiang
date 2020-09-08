@@ -353,6 +353,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -406,7 +407,10 @@ var _default =
       // 红包雨的次数 一天三次 限制
       hbyNum: 0,
       hbyNumFlag: false,
-      maskOnMove: false };
+      maskOnMove: false,
+      videoUrl: '',
+      redRecord: [] };
+
 
 
   },
@@ -423,6 +427,7 @@ var _default =
     this.getPerson();
     this.getRedRainDetail();
     this.getVideo();
+    this.getRedRecord();
     this.setData(options);
     // 失效的时间
     var aa = new Date().valueOf(); //25 16-34-07
@@ -446,8 +451,25 @@ var _default =
     }
   },
   methods: {
-    moveHandle: function moveHandle() {
-      console.log(35125);
+
+    // 红包助力列表
+    getRedRecord: function getRedRecord() {var _this2 = this;
+      var id = wx.getStorageSync('user').id;
+      uni.wjw_http({
+        url: 'app/cduserredenvelope/list',
+        type: 'get' }).
+
+      then(function (res) {
+        if (res.code == 0) {
+
+          var aa = res.data;
+          for (var i in aa) {
+            var a = new Date(aa[i].createTime);
+            aa[i].createTime = a.getHours().toString().padStart(2, '0') + ":" + a.getMinutes().toString().padStart(2, '0');
+          }
+          _this2.redRecord = aa;
+        }
+      });
     },
     // 红包雨开始挑战
     beginBattle: function beginBattle() {
@@ -458,7 +480,7 @@ var _default =
       this.redRain();
     },
     // 红包雨 是否在启动的时间内
-    redRainOccur: function redRainOccur() {var _this2 = this;
+    redRainOccur: function redRainOccur() {var _this3 = this;
       this.maskOnMove = true;
       // hbynum限制次数 一共三次
       this.hbyNum = this.hbyNum + 1;
@@ -470,13 +492,13 @@ var _default =
         } else {
           this.hbyOccur = true;
           setTimeout(function () {
-            _this2.hbyOccur = false;
+            _this3.hbyOccur = false;
           }, 3000);
         }
       } else {
         this.hbyNumFlag = true;
         setTimeout(function () {
-          _this2.hbyNumFlag = false;
+          _this3.hbyNumFlag = false;
         }, 3000);
       }
 
@@ -570,7 +592,7 @@ var _default =
       this.redFlag = true;
     },
     // 红包雨的时长
-    getRedRainDetail: function getRedRainDetail() {var _this3 = this;
+    getRedRainDetail: function getRedRainDetail() {var _this4 = this;
       uni.wjw_http({
         url: 'app/cdredenveloperain/list',
         type: 'get' }).
@@ -579,7 +601,7 @@ var _default =
 
           // 红包雨的开始和 结束时间 转化为秒进行对比
           var aa = res.data;
-          _this3.timeList = aa;
+          _this4.timeList = aa;
           var flag = aa.some(function (res) {
             var start = res.startTime;
             var end = res.endTime;
@@ -608,10 +630,10 @@ var _default =
           });
 
           if (flag == true) {
-            _this3.rainOccurFlag = true;
+            _this4.rainOccurFlag = true;
 
           } else {
-            _this3.rainOccurFlag = false;
+            _this4.rainOccurFlag = false;
 
           }
 
@@ -619,7 +641,7 @@ var _default =
       });
     },
     // 获取个个领取红包的id
-    getPerson: function getPerson() {var _this4 = this;
+    getPerson: function getPerson() {var _this5 = this;
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
         url: 'app/cduserredenvelope/redInfo',
@@ -629,15 +651,15 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
-          _this4.personMsg = res.data;
+          _this5.personMsg = res.data;
           // 个人信息出来 获取二维码
-          var _id = _this4.personMsg.id;
-          _this4.urlSrc = 'https://zxyp.hzbixin.cn/app/cduserredenvelope/getQrCode?token=' + _this4.token + '&page=' + _this4.pagess + '&scene=' + _id;
+          var _id = _this5.personMsg.id;
+          _this5.urlSrc = 'https://zxyp.hzbixin.cn/app/cduserredenvelope/getQrCode?token=' + _this5.token + '&page=' + _this5.pagess + '&scene=' + _id;
         }
       });
     },
     // 红包雨结束之后 获取的红包	
-    getRedRainMoneny: function getRedRainMoneny() {var _this5 = this;
+    getRedRainMoneny: function getRedRainMoneny() {var _this6 = this;
       var that = this;
       var a = that.personMsg;
       uni.wjw_http({
@@ -650,7 +672,7 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
-          _this5.redSmallMoney = res.data;
+          _this6.redSmallMoney = res.data;
         }
       });
     },
@@ -661,7 +683,7 @@ var _default =
       this.videoFlags = true;
     },
     // 得到视频的列表
-    getVideo: function getVideo() {var _this6 = this;
+    getVideo: function getVideo() {var _this7 = this;
       uni.wjw_http({
         url: 'app/cduserredvideoconfig/list',
         type: 'get',
@@ -670,8 +692,12 @@ var _default =
           limit: 3 } }).
 
       then(function (res) {
-        _this6.videoList = res.data.list[0];
-        _this6.watchTimes = res.data.list[0].watchTime / 1000;
+        if (res.code == 0) {
+          _this7.videoList = res.data.list[0];
+          _this7.watchTimes = res.data.list[0].watchTime / 1000;
+          _this7.videoUrl = 'https://zxyp.hzbixin.cn' + res.data.list[0].videoLink;
+        }
+
       });
     },
     // 监测 观看视频的时长
@@ -687,7 +713,7 @@ var _default =
       }
     },
     // 观看视频的btn
-    videoBtn: function videoBtn() {var _this7 = this;
+    videoBtn: function videoBtn() {var _this8 = this;
       var a = this.personMsg;
       var videoId = this.videoList.id;
       uni.wjw_http({
@@ -701,19 +727,18 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
-          _this7.videoMoney = res.data;
-          _this7.videoMoneyFlag = true;
-          _this7.videoConFlag = false;
-          _this7.videoFlag = false;
+
+          _this8.videoMoney = res.data;
+          _this8.videoMoneyFlag = true;
+          _this8.videoConFlag = false;
+          _this8.videoFlag = false;
         } else {
-          _this7.videoMoneyFlag = false;
-          _this7.videoConFlag = false;
-          _this7.videoFlag = true;
+          _this8.videoMoneyFlag = false;
+          _this8.videoConFlag = false;
+          _this8.videoFlag = true;
         }
       }).catch(function (res) {
-        _this7.videoMoneyFlag = false;
-        _this7.videoConFlag = false;
-        _this7.videoFlag = true;
+
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -3,7 +3,7 @@
 		<view class="content">
 		    <view class="header-wrap " style="background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/mineBg.png) no-repeat center;background-size: 100%;background-size: 100% 120%;height: 210px;">
 		       
-		        <view class="user-icon">
+		        <view class="user-icon" @tap="jump"  data-url='/pages/personData'>
 		        	<!-- personalcenter_head personalcenter_nohead -->
 		            <img :src="user_info.head_photo||'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png'" >
 		            <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png"  style="display: none"><!--未登录时的头像-->

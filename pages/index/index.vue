@@ -5,9 +5,9 @@
 		<view class="red_page_mask z_1000 mask mask_bg" v-if='red_page_show' @click='red_page_show=false'>
 			<!-- @click.stop -->
 			<view class="red_page_box relative" @click='jump' data-url='/pages/red_page/red_page'>
-				
-				<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/redbag1@2x.png" alt=""
-				class="red_page_box_bg" >
+				<image class="red_page_box_bg"  src="../../static/redbag.png" mode=""></image>
+				<!-- <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/redbag1@2x.png" alt=""
+				class="red_page_box_bg" > -->
 				<view class="red_page_box_info">
 					<img :src="user_info.head_photo||'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png'"
 					 class="red_page_box_img">

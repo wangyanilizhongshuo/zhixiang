@@ -220,7 +220,7 @@
 	 background-color:#aaa;
  }
  .passInput{
-	 margin-top:100rpx;
+	 padding-top:100rpx;
  }
  .btnPassword{
 	 width:700rpx;

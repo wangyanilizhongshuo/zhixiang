@@ -247,19 +247,6 @@ var _default =
     this.getRedDetail();
     this.getRedRecord();
     this.getBalance();
-    this.getAdd();
-    // let id =wx.getStorageSync('user').id;
-    // uni.wjw_http({
-    // 					url: 'app/cduserredenvelopeassistance/assistance',
-    // 					type: 'post',
-    // 					data: {
-    // 						 userId: id,
-    // 						 envelopeId: 31,
-    // 						 assistanceType: 4
-    // 					}
-    //  }).then(res => {
-    // 	 console.log('success')
-    //  })
   },
   methods: {
     // 领取红包
@@ -329,15 +316,13 @@ var _default =
     getRedRecord: function getRedRecord() {var _this3 = this;
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
-        url: 'app/cduserredenvelopeassistance/list',
-        type: 'get',
-        data: {
-          userId: id } }).
+        url: 'app/cduserredenvelope/list',
+        type: 'get' }).
 
       then(function (res) {
         if (res.code == 0) {
 
-          var aa = res.data.list;
+          var aa = res.data;
           for (var i in aa) {
             var a = new Date(aa[i].createTime);
             aa[i].createTime = a.getHours().toString().padStart(2, '0') + ":" + a.getMinutes().toString().padStart(2, '0');
@@ -346,16 +331,14 @@ var _default =
         }
       });
     },
-    // 红包助力 面对面扫码
-    getAdd: function getAdd() {
 
-    },
     // 获取最终余额
     getBalance: function getBalance() {var _this4 = this;
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
         url: 'app/cduserredenvelope/finalAmount',
         type: 'get',
+
         data: {
           userId: id } }).
 

@@ -3,7 +3,7 @@
 		 <!-- v-if="videoMask && redRainFlag && videoFlag" || redRainAllSumFlag|| videoConFlag -->
 		<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/red_page_active_bg.png"
 		 alt="" class="active_bg"  :style="maskOnMove?'position:fixed;':'position:absolute'" >
-		<div  class="active_content relative ta_c  ">
+		<div  class="active_content relative ta_c  " >
 			<div class="active_top_info_box ov_hid">
 				<div class="active_all_price">今日已送出现金 ¥ 18398233</div>
 				<div class="active_info_box">
@@ -43,20 +43,20 @@
 					 alt="" class="active_category_li_img">
 				</div>
 			</div>
-			<div class="record_list_warp">
+			<div class="record_list_warp" style="background-color:#f26945 ;">
 				<div class="record_list_title record_bd ">现金记录</div>
 				<div class="record_list_tip record_mg ">帮好友助力也可以领到现金噢</div>
 				<div class="record_list record_mg ">
-					<div class="record_li flex best_record_li record_bd_top ta_l " v-for="(item,index) in 15" :key='index'>
-						<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_head1.png" alt=""
+					<div class="record_li flex best_record_li record_bd_top ta_l " v-for="(item,index) in redRecord" :key='index'>
+						<img :src="item.headPhoto"  alt=""
 						 class="record_li_img no_shrink">
 						<div class="record_li_info_box flex_grow flex lh1">
 							<div class="record_li_info flex_grow flex flex_column flex_jc_b">
-								<div class="record_li_name">大胖胖</div>
-								<div class="record_li_time">天天领红包，好运永不停</div>
+								<div class="record_li_name">{{item.nickname}}</div>
+								<div class="record_li_time">{{item.createTime}}</div>
 							</div>
 							<div class="record_li_price_box no_shrink flex_c">
-								<div class="record_li_price_num">已获得283.76元</div>
+								<div class="record_li_price_num">{{item.currentAmount}}元</div>
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 			<view class="uni-content" v-if="videoConFlag">
 				<image class="cancel " src="../../../static/cancel.png" @tap.stop="videoFlag=true,videoFlags=false,maskOnMove=false"></image>
 				<view class="uni-video">
-					<video class="video" @timeupdate="autoEnd" autoplay page-gesture controls id="myVideo" src="http://zxyp.hzbixin.cn/files/64101595293657312.mp4"></video>
+					<video  class="video" @timeupdate="autoEnd" autoplay page-gesture controls id="myVideo" :src="videoUrl"></video>
 				</view>
 				<view class="btn" v-if="videoBtnFlag">看完领红包({{(watchTimes) ||15}}s)</view>
 				<view class="btn btnStyle" v-if="!videoBtnFlag" @tap.stop="videoBtn" >立即领取</view>
@@ -92,13 +92,15 @@
 		</view>
 		<!-- 点击红包的div -->
 		<view class="uni-clickRed" v-if="redFlag">
-			<image class="red" src="http://zxyp.hzbixin.cn/files/89271597215516079.jpg" @tap.stop="redSmallMoneyFlag=true,redFlag=false">
+			<!-- <image class="red" src="http://zxyp.hzbixin.cn/files/89271597215516079.jpg" @tap.stop="redSmallMoneyFlag=true,redFlag=false"> -->
+			<image class="red" src="../../../static/click-redBag-1.jpg" @tap.stop="redSmallMoneyFlag=true,redFlag=false">
 			</image>
 		</view>
 		<!-- 点击红包之后的金额显示 -->
 		<view class=" uni-clickRedOpen" v-if="redSmallMoneyFlag">
 			<!-- <image class="cancel" src="../../../static/cancel.png" @tap.stop="redSmallMoneyFlag=false"></image> -->
-			<image class="red" src="http://zxyp.hzbixin.cn/files/41481597215595070.jpg" @tap.stop="redSmallMoneyFlag=false"></image>
+			<image class="red" src="../../../static/click-redBag-2.jpg" @tap.stop="redSmallMoneyFlag=false"></image>
+			<!-- <image class="red" src="http://zxyp.hzbixin.cn/files/41481597215595070.jpg" @tap.stop="redSmallMoneyFlag=false"></image> -->
 			<view class="uni-title"@tap.stop="redSmallMoneyFlag=false">
 				<view class="word">恭喜获得</view>
 				<view class="word">此红包</view>
@@ -121,7 +123,6 @@
 			</button>
 		</view>
            <!-- 视频里面相应的弹框 -->
-		   <!-- <view class="uni-RedRainAllSumss"></view> -->
 		   <view class="uni-RedRainAllSum" id="animation"  v-if="videoMoneyFlag">
 				<image class="cancel " src="../../../static/cancel.png" @tap.stop="videoMask=true,videoFlags=false,redRainFlag=true,videoMoneyFlag=false,videoFlag=true,maskOnMove=false"></image>
 				<image class="image" src="http://zxyp.hzbixin.cn/files/86041597371670973.jpg"></image>
@@ -216,7 +217,10 @@
 				// 红包雨的次数 一天三次 限制
 				hbyNum:0,
 				hbyNumFlag:false,
-				maskOnMove:false
+				maskOnMove:false,
+				videoUrl:'',
+				redRecord:[]
+				
 
 			}
 		},
@@ -233,6 +237,7 @@
 			this.getPerson();
 			this.getRedRainDetail();
 			this.getVideo();
+			this.getRedRecord();
             this.setData(options);
 		     // 失效的时间
 			 let aa=(new Date()).valueOf();//25 16-34-07
@@ -256,8 +261,25 @@
 			    }
 		},
 		methods: {
-			moveHandle(){
-				console.log(35125)
+			
+			// 红包助力列表
+			getRedRecord(){
+				let id =wx.getStorageSync('user').id
+				uni.wjw_http({
+					url:'app/cduserredenvelope/list',
+					type:'get',
+					
+				}).then(res=>{
+					if(res.code ==0){
+						
+						let aa=res.data;
+						for(let i in aa){
+							 let a = new Date(aa[i].createTime);
+							aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
+						}
+						this.redRecord=aa;
+					}
+				})
 			},
 			// 红包雨开始挑战
 			beginBattle() {
@@ -480,8 +502,12 @@
 						limit: 3
 					}
 				}).then(res => {
-					this.videoList = res.data.list[0]
-					this.watchTimes=(res.data.list[0].watchTime)/1000
+					if(res.code ==0){
+						this.videoList = res.data.list[0];
+					    this.watchTimes=(res.data.list[0].watchTime)/1000;
+						this.videoUrl='https://zxyp.hzbixin.cn'+res.data.list[0].videoLink;
+					}
+					
 				})
 			},
 			// 监测 观看视频的时长
@@ -511,7 +537,8 @@
 					}
 				}).then(res => {
 					if (res.code == 0) {
-						this.videoMoney=res.data
+						
+						this.videoMoney=res.data;
 						this.videoMoneyFlag=true;
 						this.videoConFlag=false;
 						this.videoFlag=false;
@@ -521,9 +548,7 @@
 						this.videoFlag=true;
 					}
 				}).catch(res=>{
-					this.videoMoneyFlag=false;
-					this.videoConFlag=false;
-					this.videoFlag=true;
+					
 				})
 			}
 			
@@ -649,8 +674,8 @@
 				width: 60rpx;
 				height: 60rpx;
 				position: absolute;
-				top: 127rpx;
-				right: 60rpx;
+				top: 210rpx;
+				right: 28rpx;
 			}
 			.uni-video {
 				.video {
@@ -986,10 +1011,11 @@
 		height: 100%;
 	}
 	.record_list_warp {
-		margin: 0 30rpx;
-		background: rgba(255, 255, 255, 0.1);
-		border-radius: 16rpx;
-	}
+		width: 750rpx;
+		box-sizing: border-box;
+		// margin: 0 30rpx;
+		background:#f36b44;
+		}
 	.record_bd {
 		border-bottom: 1rpx solid rgba(255, 139, 120, 1);
 	}

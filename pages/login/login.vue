@@ -7,7 +7,7 @@
 				<view class="login-box">
 					<view class="form-input form_input_box flex flex_align_c">
 						<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/id.png" class="no_shrink">
-						<input type="text" id="phone" class="input-style flex_grow"  confirm-type="search" placeholder="请输入手机号" @confirm="enter" v-model='phone' >
+						<input type="number" id="phone" class="input-style flex_grow"  confirm-type="search" placeholder="请输入手机号" @confirm="enter" v-model='phone' >
 					</view>
 					<view class="form-input form_input_box flex flex_align_c">
 						<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/password.png" class="no_shrink" >

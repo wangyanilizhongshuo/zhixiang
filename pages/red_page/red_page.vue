@@ -50,9 +50,9 @@
 			</div>
 		</div>
 		<div class="received_list_wrap">
-			<div class="received_list_title">已领取15570个</div>
+			<div class="received_list_title">已领取{{redRecord.length}}个</div>
 			<div class="received_list">
-				<div class="received_li flex best_received_li" >
+				<!-- <div class="received_li flex best_received_li" >
 					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_head1.png" alt="" class="received_li_img no_shrink">
 					<div class="received_li_info_box flex_grow flex lh1">
 						<div class="received_li_info flex_grow">
@@ -67,16 +67,16 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="received_li flex"  v-for="(item,index) in redRecord" :key='index' >
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_head1.png" alt="" class="received_li_img no_shrink">
+					<img :src="item.headPhoto" class="received_li_img no_shrink">
 					<div class="received_li_info_box flex_grow flex lh1">
 						<div class="received_li_info flex_grow">
-							<div class="received_li_name">大胖胖</div>
+							<div class="received_li_name">{{item.nickname}}</div>
 							<div class="received_li_time">{{item.createTime}}</div>
 						</div>
 						<div class="received_li_price_box no_shrink">
-							<div class="received_li_price_num">{{item.assistanceAmount}}元</div>
+							<div class="received_li_price_num">{{item.currentAmount}}元</div>
 							<div class="received_li_price_tip_box flex flex_c">
 								<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/crown@2x.png" alt="" class="received_li_price_tip_icon no_shrink">
 								<div class="received_li_price_tip_txt">手气最佳</div>
@@ -109,19 +109,6 @@
 			this.getRedDetail();
 			this.getRedRecord();
 			this.getBalance();
-			this.getAdd();
-			// let id =wx.getStorageSync('user').id;
-			// uni.wjw_http({
-			// 					url: 'app/cduserredenvelopeassistance/assistance',
-			// 					type: 'post',
-			// 					data: {
-			// 						 userId: id,
-			// 						 envelopeId: 31,
-			// 						 assistanceType: 4
-			// 					}
-			//  }).then(res => {
-			// 	 console.log('success')
-			//  })
 		},
 		methods: {
 			// 领取红包
@@ -191,15 +178,13 @@
 			getRedRecord(){
 				let id =wx.getStorageSync('user').id
 				uni.wjw_http({
-					url:'app/cduserredenvelopeassistance/list',
+					url:'app/cduserredenvelope/list',
 					type:'get',
-					data:{
-						userId:id
-					}
+					
 				}).then(res=>{
 					if(res.code ==0){
 						
-						let aa=res.data.list;
+						let aa=res.data;
 						for(let i in aa){
 							 let a = new Date(aa[i].createTime);
 							aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
@@ -208,16 +193,14 @@
 					}
 				})
 			},
-			// 红包助力 面对面扫码
-			getAdd(){
-				
-			},
+		
 			// 获取最终余额
 			getBalance(){
 				let id =wx.getStorageSync('user').id
 				uni.wjw_http({
 					url:'app/cduserredenvelope/finalAmount',
 					type:'get',
+					
 					data:{
 						userId:id
 					}
