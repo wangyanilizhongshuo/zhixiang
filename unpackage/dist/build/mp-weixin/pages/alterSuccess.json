@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "支付密码修改成功",
-  "usingComponents": {
-    "wq": "/component/css/wq",
-    "main": "/component/css/main",
-    "light7_swiper_min": "/component/css/light7_swiper_min",
-    "light7_min": "/component/css/light7_min"
-  }
-}

@@ -39,11 +39,11 @@
 		},
 		onReachBottom(){
 			
-			// if(this.totalPage>this.pagess){
-			// 	 this.pagess+=1;
-			// 	 this.getNews()
+			if(this.totalPage>this.pagess){
+				 this.pagess+=1;
+				 this.getNews()
 			
-			// } 
+			} 
 			   
 		},
         methods: {
@@ -56,20 +56,19 @@
 					 type:'post',
 					 data:{
 						 page:that.pagess,
-						 pageSize:100,
+						 pageSize:15,
 						 userId:id 
 					 }
 				 }).then(res=>{
 					 if(res.status ==0){
-						 that.totalPage=res.result.pages
-						 // let aa=res.result.list;
-						 // let bb =that.messageList;				
-						  let  aa =res.result.list
+						 that.totalPage=res.result.pages;	
+						  let  aa =res.result.list;
+						  let bb=that.messageList;
 						 for(let i in aa){
 						 	 let a = new Date(aa[i].create_time);
 						 	aa[i].create_time= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')+" "+a.getHours().toString().padStart(2,'0')+"-"+a.getMinutes().toString().padStart(2,'0')+"-"+a.getSeconds().toString().padStart(2,'0')
 						 }
-						 that.messageList=aa
+						 that.messageList=bb.concat(aa)
 					 }
 				 })
 			 },
@@ -183,6 +182,13 @@
 				margin-right: 20rpx;
 			}
 		}
+	}
+	.down{
+		width:500rpx;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		
 	}
    
 </style>

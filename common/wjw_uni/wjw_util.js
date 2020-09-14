@@ -331,11 +331,14 @@ function isCardNo(card) {
           fail: () => {},
           complete: () => {},
         }, option);
+		 // "prepay_id="+
+		 console.log(options.result);
+		 console.log('wangyanizhifdsfa ufsdf ');
         uni.requestPayment({
 		  'appId':options.result.appId,
           'timeStamp': options.result.timeStamp,
           'nonceStr': options.result.nonceStr,
-          'package':'prepay_id='+options.result.prepayId,
+          'package': options.result.prepayId,
           'signType': 'MD5',
           'paySign': options.result.sign,
           success(res) {

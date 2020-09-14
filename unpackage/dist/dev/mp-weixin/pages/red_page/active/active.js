@@ -354,6 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -409,7 +410,9 @@ var _default =
       hbyNumFlag: false,
       maskOnMove: false,
       videoUrl: '',
-      redRecord: [] };
+      redRecord: [],
+      seeMovie: false,
+      seeMpvieMsg: '' };
 
 
 
@@ -491,13 +494,13 @@ var _default =
           this.getRedRainMoneny();
         } else {
           this.hbyOccur = true;
-          setTimeout(function () {
+          setInterval(function () {
             _this3.hbyOccur = false;
           }, 3000);
         }
       } else {
         this.hbyNumFlag = true;
-        setTimeout(function () {
+        setInterval(function () {
           _this3.hbyNumFlag = false;
         }, 3000);
       }
@@ -732,10 +735,17 @@ var _default =
           _this8.videoMoneyFlag = true;
           _this8.videoConFlag = false;
           _this8.videoFlag = false;
+          _this8.videoFlags = false;
         } else {
           _this8.videoMoneyFlag = false;
           _this8.videoConFlag = false;
           _this8.videoFlag = true;
+          _this8.videoFlags = false;
+          _this8.seeMovie = true;
+          setInterval(function () {
+            _this8.seeMovie = false;
+          }, 2500);
+          _this8.seeMpvieMsg = res.msg;
         }
       }).catch(function (res) {
 

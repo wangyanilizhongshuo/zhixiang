@@ -133,10 +133,10 @@
 			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my22.png" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">我的二维码</view>
 		    	</view>
-		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/appDownload' >
+		    <!-- 	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/appDownload' >
 			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/report@2x.png" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">APP下载</view>
-		    	</view>
+		    	</view> -->
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/myOpinion' >
 			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my24.png" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">意见反馈</view>

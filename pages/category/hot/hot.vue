@@ -79,6 +79,7 @@
 		 onLoad(){
 			 this.getAllGoodsClassificate();
 			 this.delColor(1);
+			 // this.category(1,1);
 		 },
 		onReachBottom(){  
 			 // 所有商品 以及其分类后的数据的上拉加载
@@ -113,8 +114,10 @@
             		data:{}
             	}).then(res=>{
 					if(res.status ==0){
+						
 						that.allGoodsCateList=res.result.map(item=>item.class_name);
             		    that.allGoodsCateIdList=res.result.map(item=>item.id);
+						
 					}
             		
             	})
@@ -180,6 +183,7 @@
             		}
             	}).then(res=>{
 					if(res.status ==0){
+						
 						this.pageallSizes=res.result.pages;
 						if(pages !=1){
             			let ii =res.result.list;

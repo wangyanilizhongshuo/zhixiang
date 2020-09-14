@@ -451,11 +451,11 @@ function set_value(e) {
         method,
         no_report,
     } = dataset(e);
-    // console.log('设置属性值', e, {
-    //     name,
-    //     value,
-    //     method,
-    // });
+    console.log('设置属性值', e, {
+        name,
+        value,
+        method,
+    });
     var name_arr = name.split(/ *[,， ] */g);
     var value_arr = [];
     if (typeof value == 'string') {
@@ -575,7 +575,7 @@ function showToast(e) {
 
 // 执行多个方法 bindtap="do_fns" data-fns='fn1 fn2'
 function do_fns(e) {
-    // console.log('执行多个方法', e);
+    console.log('执行多个方法', e);
     var {
         fns,
     } = dataset(e);
@@ -1072,14 +1072,14 @@ function judge_login_back(judge) {
 
 
         //时间戳转时间
-        timestampToTim: function timestampToTime(timestamp) {
+       timestampToTime(timestamp) {
             var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-            Y = date.getFullYear() + '-';
-            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-            D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
-            h =(date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
-            m =(date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
-            s =(date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            var D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+            var h =(date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+            var m =(date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+            var s =(date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
             return Y+M+D+h+m+s;
         },
 
@@ -1123,7 +1123,7 @@ function judge_login_back(judge) {
                 },
             }).then(res => {
                 console.log('获取地址列表 接口 请求成功', res);
-
+                  
                 this.articleList = res.result||[];
                 
                 this.addlist_back && this.addlist_back(res);

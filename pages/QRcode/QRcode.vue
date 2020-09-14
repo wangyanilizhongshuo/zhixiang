@@ -36,7 +36,7 @@
 							title:'邀请成功!',
 							duration:2500
 						})
-						setTimeout(()=>{
+						setInterval(()=>{
 							this.getMyself();
 						},3000)
 					}else{

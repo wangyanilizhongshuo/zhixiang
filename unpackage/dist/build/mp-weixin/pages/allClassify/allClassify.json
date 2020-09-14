@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "产品分类",
-  "usingComponents": {
-    "all-classify": "/component/css/page/allClassify",
-    "main": "/component/css/main",
-    "light7_min": "/component/css/light7_min",
-    "reset1": "/component/css/reset1"
-  }
-}

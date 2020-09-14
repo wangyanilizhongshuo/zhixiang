@@ -161,6 +161,7 @@
 		<view class="hbyOccurFlag" v-if="hbyNumFlag">
 			<view class="">一天仅限领取三次</view>
 		</view>
+		<view class="hbyOccurFlag" v-if="seeMovie">{{seeMpvieMsg}}</view>
 	</view>
 </template>
 
@@ -219,7 +220,9 @@
 				hbyNumFlag:false,
 				maskOnMove:false,
 				videoUrl:'',
-				redRecord:[]
+				redRecord:[],
+				seeMovie:false,
+				seeMpvieMsg:''
 				
 
 			}
@@ -301,13 +304,13 @@
 					  	this.getRedRainMoneny()
 					  }else{
 					  	this.hbyOccur=true;
-					  	setTimeout(()=>{
+					  	setInterval(()=>{
 					  		this.hbyOccur=false;
 					  	},3000)
 					  }
 				  }else{
 					  this.hbyNumFlag=true;
-					  setTimeout(()=>{
+					  setInterval(()=>{
 						  this.hbyNumFlag=false;
 					  },3000)
 				  }
@@ -542,10 +545,17 @@
 						this.videoMoneyFlag=true;
 						this.videoConFlag=false;
 						this.videoFlag=false;
+						this.videoFlags=false;
 					}else{
 						this.videoMoneyFlag=false;
 						this.videoConFlag=false;
 						this.videoFlag=true;
+						this.videoFlags=false;
+						this.seeMovie=true;
+						setInterval(()=>{
+							this.seeMovie=false;
+						},2500)
+						this.seeMpvieMsg=res.msg;
 					}
 				}).catch(res=>{
 					

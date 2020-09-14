@@ -37,13 +37,45 @@
 				bodyPhotoUrl: [],
 				content: '',
 				zhifuCode: '',
-				upUrlList: []
+				upUrlList: [],
+				code:'',
+				openId:''
 			}
 		},
 		onLoad(options) {
 			this.setData(options);
+			let that=this;
+			uni.login({
+				  provider: 'weixin',
+				  success: function (res) {
+					   that.code=res.code;
+					   that.getOpenId(); 
+				  }
+		    })
 		},
 		methods: {
+			getOpenId(){
+				let that=this;
+				uni.wjw_http({
+					header:{
+						 'content-type':'application/json;charset=UTF-8'
+					},
+					url:'app/wechat/getOpenId',
+					type:'post',
+					data:{
+						appId:'wx74605d2c3744958c',
+						code:that.code
+					}
+				}).then(res=>{
+					if(res.code ==0){
+						this.openId=res.data.openid;
+						// this.sessionKey=res.data.sessionKey;
+						// this.getMsg();
+					}
+				}).catch(res=>{
+					console.log(res)
+				})
+			},
 			submitMes() {
 				let that = this;
 				let a = that.bodyPhotoUrl;
@@ -52,7 +84,7 @@
 					// 发起微信支付
 					// console.log(data)
 					that.wxPayment({
-						result: data.data,
+						result: data,
 						success: data => {
 
 							//跳转到订单页面
@@ -77,17 +109,27 @@
 							issues: that.content,
 							userId: userId,
 							// token:token,
+							openId:that.openId,
 							picture: that.upUrlList
 						},
 					}).then(res => {
 						if (res.code == 0) {
-							uni.showToast({
-								title: '提交成功',
-								duration: 2000
-							});
+							// uni.showToast({
+							// 	title: '提交成功',
+							// 	duration: 2000
+							// });
 							that.zhifuCode = res.data;
 							if (res.data) {
-								callback(res)
+								let aa = res.data;
+								let bb = {};
+								bb.appId = aa.appId;
+								bb.timeStamp = aa.timeStamp;
+								bb.nonceStr = aa.nonceStr;
+								bb.prepayId = aa.packageValue;
+								 // bb.sign = aa.signType;
+								bb.sign = aa.paySign;
+								callback(bb);
+
 							}
 
 						}

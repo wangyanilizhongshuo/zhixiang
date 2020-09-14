@@ -7767,7 +7767,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 563:
+/***/ 567:
 /*!***************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/uni-popup/popup.js ***!
   \***************************************************************************/
@@ -7775,7 +7775,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 564));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 568));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -7802,7 +7802,7 @@ var config = {
 
 /***/ }),
 
-/***/ 564:
+/***/ 568:
 /*!*****************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/uni-popup/message.js ***!
   \*****************************************************************************/
@@ -7833,7 +7833,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 740:
+/***/ 744:
 /*!*****************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/e-picker/e-picker.js ***!
   \*****************************************************************************/
@@ -8185,11 +8185,14 @@ function wxPayment(option) {
     fail: function fail() {},
     complete: function complete() {} },
   option);
+  // "prepay_id="+
+  console.log(options.result);
+  console.log('wangyanizhifdsfa ufsdf ');
   uni.requestPayment({
     'appId': options.result.appId,
     'timeStamp': options.result.timeStamp,
     'nonceStr': options.result.nonceStr,
-    'package': 'prepay_id=' + options.result.prepayId,
+    'package': options.result.prepayId,
     'signType': 'MD5',
     'paySign': options.result.sign,
     success: function success(res) {
@@ -8232,7 +8235,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 830:
+/***/ 834:
 /*!***************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/uni-icons/icons.js ***!
   \***************************************************************************/
@@ -8834,11 +8837,11 @@ function set_value(e) {var _this2 = this;var _dataset2 =
 
 
   dataset(e),name = _dataset2.name,_dataset2$value = _dataset2.value,value = _dataset2$value === void 0 ? '' : _dataset2$value,_dataset2$index = _dataset2.index,index = _dataset2$index === void 0 ? 0 : _dataset2$index,method = _dataset2.method,no_report = _dataset2.no_report;
-  // console.log('设置属性值', e, {
-  //     name,
-  //     value,
-  //     method,
-  // });
+  console.log('设置属性值', e, {
+    name: name,
+    value: value,
+    method: method });
+
   var name_arr = name.split(/ *[,， ] */g);
   var value_arr = [];
   if (typeof value == 'string') {
@@ -8958,8 +8961,8 @@ function showToast(e) {
 
 // 执行多个方法 bindtap="do_fns" data-fns='fn1 fn2'
 function do_fns(e) {var _this3 = this;
-  // console.log('执行多个方法', e);
-  var _dataset5 =
+  console.log('执行多个方法', e);var _dataset5 =
+
 
   dataset(e),fns = _dataset5.fns;
   var fn_arr = fns.split(/ *[,， ] */g);
@@ -9455,14 +9458,14 @@ var project_fn = {
 
 
   //时间戳转时间
-  timestampToTim: function timestampToTime(timestamp) {
+  timestampToTime: function timestampToTime(timestamp) {
     var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-    Y = date.getFullYear() + '-';
-    M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-    D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
-    h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-    m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-    s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
+    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+    var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+    var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
     return Y + M + D + h + m + s;
   },
 

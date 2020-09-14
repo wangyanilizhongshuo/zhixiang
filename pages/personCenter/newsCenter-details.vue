@@ -52,7 +52,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		border-bottom: 2rpx solid #e5e5e5;
+		// border-bottom: 2rpx solid #e5e5e5;
 		.uni-left{
 			position: relative;
 			margin-right:30rpx;

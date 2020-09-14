@@ -385,7 +385,8 @@ var _default =
 
       invite_id: '',
       openId: '',
-      code: '' };
+      code: '',
+      addresslist: '' };
 
   },
   onLoad: function onLoad(options) {
@@ -525,18 +526,36 @@ var _default =
     },
     // 调用地图
     getMap: function getMap() {
+      var that = this;
       uni.getLocation({
         success: function success(res) {
           uni.openLocation({
             latitude: res.latitude,
             longitude: res.longitude,
-            scale: 18 });
+            scale: 18,
+            success: function success(data) {
+              console.log(data);
+              console.log('getLocation');
+            },
+            fail: function fail() {
+              uni.showModal({
+                title: '温馨提示',
+                content: '您已拒绝定位,请开启',
+                confirmText: '去设置',
+                success: function success(res) {
+                  if (res.confirm) {
+                    //打开授权设置
+                    uni.openSetting();
+                  }
+                } });
+
+            } });
 
         } });
 
     },
     // 获取店名字
-    getAddress: function getAddress() {
+    getAddress: function getAddress() {var _this4 = this;
       var that = this;
       var id = wx.getStorageSync('user').mer_id;
       uni.wjw_http({
@@ -545,8 +564,11 @@ var _default =
       then(function (res) {
         if (res.status == 0) {
           that.addressName = res.result.shop_name;
+          _this4.addresslist = res.result;
+          // console.log(111)
+          // console.log(res)
         }
-        // console.log(res)
+
       });
       this.$forceUpdate();
     },
@@ -605,15 +627,15 @@ var _default =
 
     },
     // 轮播图
-    get_banner: function get_banner(e) {var _this4 = this;
+    get_banner: function get_banner(e) {var _this5 = this;
       uni.wjw_http({
         url: "banner/list",
         data: {} }).
       then(function (res) {
         // console.log(res);
         if (res.status == 0) {
-          _this4.bannar = res.result.map(function (item) {return item.photo;});
-          _this4.bannerLink = res.result.map(function (item) {return item.id;});
+          _this5.bannar = res.result.map(function (item) {return item.photo;});
+          _this5.bannerLink = res.result.map(function (item) {return item.id;});
         }
 
       });
@@ -642,7 +664,7 @@ var _default =
 
     },
     // 公告
-    getNews: function getNews(e) {var _this5 = this;
+    getNews: function getNews(e) {var _this6 = this;
       uni.wjw_http({
         url: "bannermsg/list",
         method: 'post',
@@ -651,7 +673,7 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          _this5.notice_list = res.result.map(function (item) {return item.title;});
+          _this6.notice_list = res.result.map(function (item) {return item.title;});
         }
       });
     },
@@ -683,7 +705,7 @@ var _default =
 
     },
     // 获取所有商品的分类
-    getAllGoodsClassificate: function getAllGoodsClassificate() {var _this6 = this;
+    getAllGoodsClassificate: function getAllGoodsClassificate() {var _this7 = this;
       var that = this;
       uni.wjw_http({
         url: 'goodsclass/list' }).
@@ -691,7 +713,7 @@ var _default =
         if (res.status == 0) {
           that.allGoodsCateList = res.result.map(function (item) {return item.class_name;});
           that.allGoodsCateIdList = res.result.map(function (item) {return item.id;});
-          _this6.$forceUpdate();
+          _this7.$forceUpdate();
         }
       });
     },
@@ -735,7 +757,7 @@ var _default =
       });
       // 全部列表的内容 删除
     },
-    delColor: function delColor(pages1) {var _this7 = this;
+    delColor: function delColor(pages1) {var _this8 = this;
       this.cateFlag = false;
       this.sels = 1;
       this.sel = -3;
@@ -751,7 +773,7 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          _this7.pageallSizes = res.result.pages;
+          _this8.pageallSizes = res.result.pages;
           if (pages != 1) {
             var ii = res.result.list;
             var jj = that.allGoodsList;

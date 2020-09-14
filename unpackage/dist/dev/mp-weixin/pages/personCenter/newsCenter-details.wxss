@@ -40,7 +40,6 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  border-bottom: 2rpx solid #e5e5e5;
 }
 .uni-message .uni-left.data-v-0a1aa239 {
   position: relative;

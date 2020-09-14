@@ -302,7 +302,7 @@
 											duration:2000											
 										})
 					            		let types=5;
-										setTimeout(()=>{
+										setInterval(()=>{
 											uni.navigateTo({
 					            			   url:'/pages/orderMsg/successPage?type='+types
 					            		      })
@@ -341,7 +341,7 @@
 								duration:2000											
 							})
 							let types=4;
-							setTimeout(()=>{
+							setInterval(()=>{
 								uni.navigateTo({
 								   url:'/pages/orderMsg/successPage?type='+types
 							    })

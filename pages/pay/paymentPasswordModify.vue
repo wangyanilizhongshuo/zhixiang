@@ -172,7 +172,7 @@
 <style scoped lang="scss">
 	.uni-payPassword{
 		background-color: #f1f1f1;
-		height: 100%;
+		height: 100vh;
 	}
    .yz{
 	   position: relative;

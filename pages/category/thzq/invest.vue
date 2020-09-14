@@ -25,10 +25,38 @@
 		onLoad(options){
 			
 			this.setData(options);
-			
+			let that=this;
+			uni.login({
+				  provider: 'weixin',
+				  success: function (res) {
+					   that.code=res.code;
+					   that.getOpenId(); 
+				  }
+				  })
 		},
 		methods: {
-			
+			getOpenId(){
+				let that=this;
+				uni.wjw_http({
+					header:{
+						 'content-type':'application/json;charset=UTF-8'
+					},
+					url:'app/wechat/getOpenId',
+					type:'post',
+					data:{
+						appId:'wx74605d2c3744958c',
+						code:that.code
+					}
+				}).then(res=>{
+					if(res.code ==0){
+						this.openId=res.data.openid;
+						// this.sessionKey=res.data.sessionKey;
+						// this.getMsg();
+					}
+				}).catch(res=>{
+					console.log(res)
+				})
+			},
 			// 提交数据
 			submit(){
 				let  id =wx.getStorageSync('user').id;
@@ -44,7 +72,8 @@
 							})
 						},
 						fail: data => {
-							console.log(data)	
+							console.log(data)
+								console.log(22222)
 						}
 					});
 				};
@@ -57,16 +86,16 @@
 					}
 				}).then(res=>{
 					 if(res.code==0){
-						  let aa = res.data;
-						  let bb = this.filed;
-						  bb.appId = aa.appId;
-						  bb.timeStamp = aa.timeStamp;
-						  bb.nonceStr = aa.nonceStr;
-						  bb.prepayId = aa.prepayId;
-						  bb.sign = aa.sign;
-						  this.filed = bb;
-						  callback(this.filed);
-						  console.log(res)
+						    let aa = res.data;
+						    let bb = {};
+							bb.appId = aa.appId;
+							bb.timeStamp = aa.timeStamp;
+							bb.nonceStr = aa.nonceStr;
+							bb.prepayId = aa.packageValue;
+							bb.sign = aa.paySign;
+							callback(bb);
+						  
+						 
 						 
 					 }
 				})

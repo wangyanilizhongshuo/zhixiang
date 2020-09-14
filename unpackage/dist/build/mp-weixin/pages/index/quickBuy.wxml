@@ -1,1 +1,0 @@
-<view class="quick-contnet data-v-096f866e"><block wx:for="{{quickgetList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view data-event-opts="{{[['tap',[['detailJump',['$0'],[[['quickgetList','',index]]]]]]]}}" class="uni-list data-v-096f866e" bindtap="__e"><image class="uni-image data-v-096f866e" src="{{item.photo}}"></image></view></block></view>

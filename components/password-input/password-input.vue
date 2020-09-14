@@ -57,6 +57,7 @@
     height: 80rpx;
     border-left: 1px solid #ccc;
     line-height: 1;
+	background-color: #f2f2f2;;
   }
 
   .psdTtemTxt {

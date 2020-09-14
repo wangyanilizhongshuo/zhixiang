@@ -27,6 +27,7 @@
 			<number-keyboard tabBar ref='KeyboarHid' @input='clickInput' psdLength='6'></number-keyboard>
 			<view class="btnPassword" @click="pay(3)">确定</view>
 		</view>
+		<view class="hbyOccurFlag"  v-if="signalFlag">{{signalMsg}}</view>
 	</view>
 </template>
 <script>
@@ -71,7 +72,9 @@
 				// 继续支付的时候的订单号
 				orderId: '',
 				isSelfTake:'',
-				memo:''
+				memo:'',
+				signalFlag:false,
+				signalMsg:''
 
 			}
 		},
@@ -150,6 +153,13 @@
 							  uni.navigateTo({
 								url:'/pages/orderMsg/successPage?type='+types
 							  })
+						}else{
+							this.signalFlag=true;
+							this.signalMsg=res.msg;
+							setInterval(()=>{
+								this.signalFlag=false
+							},2500);
+							
 						}						
 					}
 					else if(sss ==1){
@@ -157,9 +167,10 @@
 						let aa = res.result.payInfo ||res.result;
 						let bb = that.filed;
 						bb.appId = aa.appid;
-						bb.timeStamp = aa.timestamp;
 						bb.nonceStr = aa.noncestr;
-						bb.prepayId = aa.prepayid;
+						bb.timeStamp = aa.timestamp;
+						// bb.prepayId =aa.package;
+						 bb.prepayId ="prepay_id="+ aa.prepayid;
 						bb.sign = aa.sign;
 						that.filed = bb;
 						that.password = ''
@@ -167,7 +178,7 @@
 					  }
 					}					
 				}).catch(res => {					
-					setTimeout(() => {
+					setInterval(() => {
 						uni.navigateBack({
 							delta: 2
 						})
@@ -204,4 +215,19 @@
 		margin-top: 270rpx;
 		color: #fff;
 	}
+	.hbyOccurFlag{
+			position: absolute;
+			top:400rpx;
+			left:250rpx;
+			background-color: green;
+			width:300rpx;height:130rpx;
+			line-height: 130rpx;
+			background-color: #000;
+			color:#fff;
+			text-align: center;
+			opacity: 0.7;
+			border-radius: 20rpx;
+			
+		}
+
 </style>

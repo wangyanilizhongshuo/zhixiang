@@ -9,6 +9,7 @@
     "pages/red_page/active/active",
     "pages/login/newUser1",
     "pages/resetPwd",
+    "pages/orderMsg/successPage",
     "pages/category/hot/hot",
     "pages/category/hot/search",
     "pages/category/childServe/childServe",
@@ -112,5 +113,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap39.json"
 }

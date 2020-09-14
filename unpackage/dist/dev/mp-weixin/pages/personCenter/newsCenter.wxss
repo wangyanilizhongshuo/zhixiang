@@ -98,4 +98,10 @@
 .uni-right .up .timer.data-v-00fbfb44 {
   margin-right: 20rpx;
 }
+.down.data-v-00fbfb44 {
+  width: 500rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 

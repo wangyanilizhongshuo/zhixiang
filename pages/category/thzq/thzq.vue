@@ -139,7 +139,7 @@
 				}).then(res=>{
 					if(res.code ==0){
 						this.openId=res.data.openid;
-						this.sessionKey=res.data.sessionKey;
+						// this.sessionKey=res.data.sessionKey;
 						// this.getMsg();
 					}
 				}).catch(res=>{

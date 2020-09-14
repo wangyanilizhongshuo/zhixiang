@@ -5,7 +5,9 @@
            
             <view class="content">
                 <view class="choose-address-list">
-                    <view class="list-box"  v-for="(info,index) in articleList" :key="index" @click='types=="choose"?choose($event):""' :data-id='info.id' >
+                    <!-- <view class="list-box"  v-for="(info,index) in articleList" :key="index" @click='types=="choose"?choose($event):""' :data-id='info.id' >
+					 -->
+					 <view class="list-box"  v-for="(info,index) in articleList" :key="index" @click='choose($event)' >
                         <view class="box-detail">
                             <p class="list-box-info">
                                 <span class="receive-name">收货人： {{info.addressee}}</span>
@@ -105,13 +107,14 @@
 
             // 选择地址
             choose(e) {
-                console.log('选择地址', arguments);
+               
                 var {id} = this.dataset(e);
                 var pages = getCurrentPages();
                 pages.pop();
                 var page = pages.pop().$vm;
                 page.addressid=id;
                 // page.addlist_back();
+				 console.log('选择某个地址')
                 wx.navigateBack();
             },
 			address_edit(id,addressee,phone,province_name,city_name,area_name,address,is_default){

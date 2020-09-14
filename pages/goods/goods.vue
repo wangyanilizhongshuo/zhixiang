@@ -286,7 +286,7 @@ export default {
 		wx.removeStorageSync('sumMoney');
 	    wx.removeStorageSync('sunJifen');
 	    wx.removeStorageSync('cartBuy');
-		console.log(options)
+		// console.log(options)
     },
     methods: {
 
@@ -437,7 +437,7 @@ export default {
                 // console.log('确定加入购物车 接口 请求成功', res);
 		        this.cmBtn1_show=true;
 				this.getCarList()
-		        setTimeout(res=>{
+		        setInterval(res=>{
 		        	this.cmBtn1_show=false;
 		        },500)
             }).catch(res=>{

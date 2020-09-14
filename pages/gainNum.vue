@@ -42,7 +42,7 @@
                             <p>完善资料</p>
                             <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sign_point.png">
                             <span>+2000</span>
-                            <div class="to-finish" v-if="!unFinish"><a class="bockactive" href="personData.html" url="pages/personCenter/personData" >去完成</a></div>
+                            <div class="to-finish" v-if="!unFinish" @tap="jumpPerson" ><a class="bockactive"   >去完成</a></div>
                             <div class="to-finish" v-if="unFinish"><a class="bockactive"  style="color:#bfbfbf" >已完成</a></div>
 						</div>
                     </div>
@@ -101,6 +101,7 @@
                 <div class="gainNum-btn" @click='jifen_show=false' >确定</div>
             </div>
         </div>
+		<view class="hbyOccurFlag"  v-if="signalFlag">{{signalMsg}}</view>
     </view>
 </template>
 <script>
@@ -119,7 +120,9 @@
             light7_min,
         },
         data() {
-            return {               
+            return {    
+				signalFlag:false,
+				signalMsg:'',
                 jifen_show: false,
 				// 个人详细信息
 				personlist:'',
@@ -141,6 +144,12 @@
 		},
 		
         methods: {
+			jumpPerson(){
+				// console.log(fasdf)
+				uni.navigateTo({
+					url:'/pages/personData'
+				})
+			},
 			 // 得到开始的数据
                  getData(){
 					 let  that =this;
@@ -191,6 +200,13 @@
 						 if(res.status ==0){
 							that.jifen= res.result;
 							that.jifen_show=true;
+						 }else{
+							 this.signalFlag=true;
+							 this.signalMsg=res.msg;
+							 setInterval(()=>{
+								 this.signalFlag=false;
+							 },2500)
+							 // console.log(res)
 						 }
 						
 					 }).catch(res=>{
@@ -203,5 +219,18 @@
 <style scoped lang="scss">
 	.ma-top44{
 		margin-top: 0rpx!important;
+	}
+	.hbyOccurFlag{
+		position: absolute;
+		top:400rpx;
+		left:250rpx;
+		background-color: green;
+		width:300rpx;height:130rpx;
+		line-height: 130rpx;
+		background-color: #000;
+		color:#fff;
+		text-align: center;
+		opacity: 0.7;
+		border-radius: 20rpx;
 	}
 </style>

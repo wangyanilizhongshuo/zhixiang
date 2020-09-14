@@ -227,6 +227,7 @@
 
 			<input type="hidden" id="status" value="0">
 		</view>
+		<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
 	</view>
 </template>
 <script module="wjw_wxs" lang="wxs" src="@/common/wjw_uni/wjw_com.wxs"></script>
@@ -254,6 +255,8 @@
 
 		data() {
 			return {
+				signalFlag:false,
+				signalMsg:'',
 				packets_show: false,
 				jifen_show: false,
 				type: 0, // 0-商品详情页的商品 1-购物车的商品
@@ -334,6 +337,7 @@
 			//获得红包列表
 			// this.CarList();
 			this.$forceUpdate();
+			this.addlist();
 		},
 		methods: {
 			//商品详情页的商品
@@ -375,7 +379,12 @@
 			// 获取地址列表_回调
 			addlist_back(res) {
 				console.log('获取地址列表_回调', res);
-					this.addressid || (this.addressid = this.articleList[0].id);
+				// if(this.articleList.length>0){
+				// 	this.addressid = this.articleList[0].id
+				// }else{
+				// 	this.addressid = this.addressid;
+				// }
+				 this.addressid || (this.addressid = this.articleList[0].id);
 			
 				if (this.type == "0") {
 					var repIds = this.id2;
@@ -421,6 +430,12 @@
 						this.orderNumber=data.order_code
 						that.createExpressOk(data);
 						console.log(res)
+					}else{
+						that.signalMsg=res.msg;
+						that.signalFlag=true;
+						setInterval(()=>{
+							this.signalFlag=false;
+						},2500)
 					}
 					
 				}).catch(res=>{
@@ -479,10 +494,23 @@
 						isFirst: 1
 					},
 				}).then(res => {
-					console.log('获取运费信息-砍价商品 接口 请求成功', res);
-					var data = res;
-					// bargainExpressOk
-					this.createExpressOk(data);
+					if(res.status ==0){
+						console.log('获取运费信息-砍价商品 接口 请求成功', res);
+						var data = res;
+						// bargainExpressOk
+						this.createExpressOk(data);
+					}else{
+						
+						this.signalMsg=res.msg;
+						this.signalFlag=true;
+						setInterval(()=>{
+							this.signalFlag=false;
+						},2500)
+					}
+					
+					
+					
+					
 				})
 			},
 			//商品详情过来商品运费调用快递函数成功回调
@@ -607,10 +635,10 @@
 			},
 			// 结算 去付钱
 			payMoney(){
+				this.jifen_show=false;
 				this.addlist_back();
 				uni.navigateTo({
 					url:'/pages/shopCar/payment?money='+this.totalmPrice+'&orderNumber='+ this.orderNumber+'&memo='+ this.memo+'&isSelfTake='+ this.isSelfTake+'&repIds='+ this.repIds+'&id='+ this.id+'&addressId='+this.addressid+'&cartId='+this.cartid+'&type='+this.type+'&counts='+this.num
-					
 				})
 			}
 		},
@@ -659,4 +687,18 @@
 	.position{
 		top:50rpx!important;
 	}
+	
+	.hbyOccurFlag{
+			position: absolute;
+			top:400rpx;
+			left:250rpx;
+			background-color: green;
+			width:300rpx;height:130rpx;
+			line-height: 130rpx;
+			background-color: #000;
+			color:#fff;
+			text-align: center;
+			opacity: 0.7;
+			border-radius: 20rpx;
+		}
 </style>

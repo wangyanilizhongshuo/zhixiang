@@ -112,7 +112,7 @@
 							title:'密码重置成功',
 							duration:2000
 						})
-						setTimeout(()=>{
+						setInterval(()=>{
 							uni.reLaunch({
 							   url:'/pages/index/index'
 						    })

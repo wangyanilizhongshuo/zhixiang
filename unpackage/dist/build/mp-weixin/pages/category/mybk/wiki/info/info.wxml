@@ -1,1 +1,0 @@
-<view><view class="info_title all_pd">{{title+''}}</view><view class="info_item all_pd">{{time}}</view><view class="info_txt all_pd">{{content}}</view></view>

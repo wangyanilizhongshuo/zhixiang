@@ -241,7 +241,8 @@
 				],
 				invite_id:'',
 				openId:'',
-				code:''
+				code:'',
+				addresslist:''
 			}
 		},
 		onLoad(options) {
@@ -381,12 +382,30 @@
 			},
 			// 调用地图
 			getMap() {
+				let that=this;
 				uni.getLocation({
 					success: res => {
 						uni.openLocation({
 							latitude: res.latitude,
 							longitude: res.longitude,
-							scale: 18
+							scale: 18,
+							success:(data)=>{
+								console.log(data);
+								console.log('getLocation')
+							},
+							fail:()=>{
+								uni.showModal({
+								    title: '温馨提示',
+								    content: '您已拒绝定位,请开启',
+								    confirmText: '去设置',
+								    success(res){
+								        if (res.confirm) {
+								            //打开授权设置
+								            uni.openSetting();
+								        }
+								    }
+								})
+							}
 						})
 					}
 				});
@@ -401,8 +420,11 @@
 				}).then(res => {
 					if (res.status == 0) {
 						that.addressName = res.result.shop_name;
+						this.addresslist=res.result;
+						// console.log(111)
+						// console.log(res)
 					}
-					// console.log(res)
+					
 				})
 				this.$forceUpdate()
 			},

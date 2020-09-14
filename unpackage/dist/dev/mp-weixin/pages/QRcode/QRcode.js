@@ -168,7 +168,7 @@ var _default =
             title: '邀请成功!',
             duration: 2500 });
 
-          setTimeout(function () {
+          setInterval(function () {
             _this.getMyself();
           }, 3000);
         } else {
