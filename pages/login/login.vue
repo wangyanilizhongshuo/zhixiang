@@ -23,6 +23,7 @@
 				</view>
 			</view>
 		</view>
+		<view class="hbyOccurFlag" v-if="seeMovieFlag">{{seeMpvieMsg}}</view>
 	</view>
 </template>
 
@@ -38,6 +39,8 @@
 
 		data() {
 			return {
+				seeMovieFlag:false,
+				seeMpvieMsg:'',
 				phone: '',
 				pwd: '',
 				code:'',
@@ -71,17 +74,11 @@
 			        	password: this.pwd,
 			        },
 			    }).then(res => {
-					uni.showToast({
-						title:res
-					})
+					
 					if(res.status ==0){
 						wx.setStorageSync('token', res.result.token);
 			            wx.setStorageSync('user', res.result.user);
 			            wx.setStorageSync('userData', res.result);
-						// if(!this.QRcode){
-						
-						// }
-						console.log(this.scene+'this.scene')
 						 if(that.scene){
 							// help  ==1是从 面对面邀请过来的flag
 							uni.navigateTo({
@@ -95,6 +92,14 @@
 							
 						}					
 					}  
+					else{
+						this.seeMovieFlag=true;
+						this.seeMpvieMsg=res.msg;
+						setInterval(()=>{
+							this.seeMovieFlag=false;
+						},2000)
+					
+					}
 			    }).catch(res=>{
 					console.log(res)
 					console.log('请求失败')
@@ -160,6 +165,19 @@
 		width: 100%;
 		line-height: calc(45 * 2rpx);
 		/*text-indent: calc(40 * 2rpx);*/
+	}
+	.hbyOccurFlag{
+		position: absolute;
+		top:400rpx;
+		left:250rpx;
+		background-color: green;
+		width:300rpx;height:130rpx;
+		line-height: 130rpx;
+		background-color: #000;
+		color:#fff;
+		text-align: center;
+		opacity: 0.7;
+		border-radius: 20rpx;
 	}
 
 	.login-content {

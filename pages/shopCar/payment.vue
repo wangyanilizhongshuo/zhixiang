@@ -74,14 +74,44 @@
 				isSelfTake:'',
 				memo:'',
 				signalFlag:false,
-				signalMsg:''
+				signalMsg:'',
+				code:'',
+				openId:""
 
 			}
 		},
 		onLoad(options) {
-			this.setData(options)
+			this.setData(options);
+			let that=this;
+			uni.login({
+				  provider: 'weixin',
+				  success: function (res) {
+					   that.code=res.code;
+					   that.getOpenId(); 
+				  }
+			})
 		},
 		methods: {
+			getOpenId(){
+				let that=this;
+				uni.wjw_http({
+					header:{
+						 'content-type':'application/json;charset=UTF-8'
+					},
+					url:'app/wechat/getOpenId',
+					type:'post',
+					data:{
+						appId:'wx74605d2c3744958c',
+						code:that.code
+					}
+				}).then(res=>{
+					if(res.code ==0){
+						this.openId=res.data.openid;
+					}
+				}).catch(res=>{
+					console.log(res)
+				})
+			},
 			pay(sss) {
 			         // 发起微信支付
 				let callback = data => {					
@@ -96,6 +126,7 @@
 						},
 						fail: data => {
 							console.log(data)	
+							console.log('支付失败！')
 						}
 					});
 				};
@@ -114,7 +145,8 @@
 							cartIds: that.cartId,
 							memo:that.memo,
 							isSelfTake:that.isSelfTake,
-							repIds:that.repIds
+							repIds:that.repIds,
+							openid:that.openId
 						}	
 				}
 				// 直接过来的付款
@@ -130,6 +162,7 @@
 						addressId: that.addressId,
 						isSelfTake:that.isSelfTake,
 						repIds:that.repIds,
+						openid:that.openId,
 						memo:that.memo
 					}
 				}
@@ -140,6 +173,7 @@
 						userId: id,
 						merOrderId:that.orderId,
 						password:that.password,
+						openid:that.openId,
 						payType: sss
 					}
 				}
@@ -163,18 +197,20 @@
 						}						
 					}
 					else if(sss ==1){
+						let appids='wx74605d2c3744958c';
 						if (res.status == 0) {
 						let aa = res.result.payInfo ||res.result;
 						let bb = that.filed;
-						bb.appId = aa.appid;
-						bb.nonceStr = aa.noncestr;
-						bb.timeStamp = aa.timestamp;
-						// bb.prepayId =aa.package;
-						 bb.prepayId ="prepay_id="+ aa.prepayid;
-						bb.sign = aa.sign;
+						bb.appId = appids;
+						bb.nonceStr = aa.nonceStr;
+						bb.timeStamp = aa.timeStamp;
+						bb.prepayId =aa.packageValue;
+						bb.sign = aa.paySign;
 						that.filed = bb;
-						that.password = ''
+						that.password = '';
+						
 						callback(that.filed);	
+						
 					  }
 					}					
 				}).catch(res => {					
@@ -202,7 +238,6 @@
 	.passInput {
 		margin-top: 100rpx;
 	}
-
 	.btnPassword {
 		width: 700rpx;
 		height: 100rpx;

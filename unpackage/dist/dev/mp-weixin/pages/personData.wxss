@@ -41,9 +41,23 @@
   width: 650rpx;
   margin-left: 50rpx;
 }
-.personWrap .change-name-btn.data-v-3de1c350 {
+.personWrap .changeBtn.data-v-3de1c350 {
   width: 750rpx;
-  margin-left: 0 !important;
-  padding-left: 0 !important;
+  background-color: #FF7599;
+  text-align: center;
+  color: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.chanNameInput.data-v-3de1c350 {
+  background-color: #fff;
+  width: 750rpx !important;
+  margin-left: 0rpx !important;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  text-indent: 0 !important;
 }
 

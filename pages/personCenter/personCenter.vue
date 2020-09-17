@@ -3,10 +3,10 @@
 		<view class="content">
 		    <view class="header-wrap " style="background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/mineBg.png) no-repeat center;background-size: 100%;background-size: 100% 120%;height: 210px;">
 		       
-		        <view class="user-icon" @tap="jump"  data-url='/pages/personData'>
-		        	<!-- personalcenter_head personalcenter_nohead -->
-		            <img :src="user_info.head_photo||'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png'" >
-		            <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png"  style="display: none"><!--未登录时的头像-->
+		        <view class="user-icon"@tap="jump"  data-url='/pages/personData'>
+		        
+		            <img style="width:95%;height: 95%;;" :src="user_info.head_photo||'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png'" >
+		            <!-- <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png"  style="display: none"><!未登录时的头像--> 
 		            <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/vip@2x.png" alt="" class="vip_icon" @click='showToast' data-title='请前往APP内进行开通' v-if='user_info.is_vip'>
 		        </view>
 		        <view class="user-inform" @click='jump' data-url='/pages/personData'>

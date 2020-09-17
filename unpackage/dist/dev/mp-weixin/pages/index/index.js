@@ -108,6 +108,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
+      $event.stopPropagation()
       _vm.red_page_show = false
     }
   }

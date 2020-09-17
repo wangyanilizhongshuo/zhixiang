@@ -1,13 +1,13 @@
 <template>
-    <view>
+    <view class=" uni-addAdresss">
         <!-- 你的html代码 -->
-        <view class="page">
+        <view class="page" >
            
             <view class="content">
                 <view class="choose-address-list">
                     <!-- <view class="list-box"  v-for="(info,index) in articleList" :key="index" @click='types=="choose"?choose($event):""' :data-id='info.id' >
 					 -->
-					 <view class="list-box"  v-for="(info,index) in articleList" :key="index" @click='choose($event)' >
+					 <view class="list-box"  v-for="(info,index) in articleList" :key="index" @click='choose($event,info)' >
                         <view class="box-detail">
                             <p class="list-box-info">
                                 <span class="receive-name">收货人： {{info.addressee}}</span>
@@ -38,7 +38,7 @@
 
                 </view>
 
-                <button class="page_btn" @click='jump' data-url='/pages/addAddress'>新增地址</button>
+                <view class="page_btn" style="" @click='jump' data-url='/pages/addAddress'>新增地址</view>
             </view>
         </view>
 
@@ -99,23 +99,37 @@
                  }).then(res => {
 					 if(res.status ==0){
 						  this.articleList = res.result||[];
-						  // console.log(this.articleList)
-						  // console.log(31332346)
 					 }
                  })
              },
 
             // 选择地址
-            choose(e) {
-               
+            choose(e,msg) {
+				let message=msg;
                 var {id} = this.dataset(e);
                 var pages = getCurrentPages();
                 pages.pop();
                 var page = pages.pop().$vm;
                 page.addressid=id;
-                // page.addlist_back();
-				 console.log('选择某个地址')
-                wx.navigateBack();
+				let userId=wx.getStorageSync('user').id;
+				 uni.wjw_http({
+					 url:'address/update',
+					 data:{
+						 id:message.id,
+						 userId:userId,
+						 addressee:message.addressee,
+						 address:message.address,
+						 phone:message.phone,
+						 is_default:1,
+						 province_id:message.province_id,
+						 city_id:message.city_id,
+						 area_id:message.area_id 
+					 }
+				 }).then(res=>{
+					 if(res.status ==0){
+						wx.navigateBack();
+					 }
+				 })
             },
 			address_edit(id,addressee,phone,province_name,city_name,area_name,address,is_default){
 				let aa =province_name+city_name+area_name+address;
@@ -124,8 +138,7 @@
             //更换默认地址
             //编辑地址
             address_update(e) {
-				
-                console.log('编辑地址', arguments);
+              
                 var {index,type} = this.dataset(e);
 
                 var userData = wx.getStorageSync('userData');
@@ -205,11 +218,10 @@
     }
 </script>
 
-<style >
- 
-
-  
-
+<style  scoped>
+	button::after{
+		border:none;
+	}
     label.label-checkbox input[type=checkbox][data-checked=true]+.item-media i.icon-form-checkbox, 
     label.label-checkbox input[type=radio][data-checked=true]+.item-media i.icon-form-checkbox 
     {
@@ -229,5 +241,23 @@
 
  .operate{
 	 display: flex;
+ }
+ .uni-addAdresss{
+	 width: 750rpx;
+	 height: 100vh;
+	position: relative;;
+	 left:0;
+	 top:0;
+ }
+ .page_btn{
+	 width: 750rpx!important;
+	 border-radius: 0!important;
+	 background-color: #FF7599;
+	 text-align: center;
+	 border-radius: 40rpx;
+	 position: absolute;
+	 left:0;
+	 bottom:0;
+	 margin:0!important;
  }
 </style>

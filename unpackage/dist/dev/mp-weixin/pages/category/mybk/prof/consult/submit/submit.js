@@ -246,10 +246,6 @@ var _default = { data: function data() {return { userId: '', bodyPhotoUrl: [], c
 
         then(function (res) {
           if (res.code == 0) {
-            // uni.showToast({
-            // 	title: '提交成功',
-            // 	duration: 2000
-            // });
             that.zhifuCode = res.data;
             if (res.data) {
               var aa = res.data;

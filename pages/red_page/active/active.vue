@@ -164,7 +164,6 @@
 		<view class="hbyOccurFlag" v-if="seeMovie">{{seeMpvieMsg}}</view>
 	</view>
 </template>
-
 <script>
 	export default {
 		data() {

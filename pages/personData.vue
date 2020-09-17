@@ -1,7 +1,5 @@
 <template>
     <view>
-
-
         <!-- 你的html代码 -->
         <view class="page" id="page-datetime-picker">
             <view class="content">
@@ -27,7 +25,7 @@
 					</view>	
 					
                     <view class="bind-phone"><a class="external" href="">
-                            <p>手机</p><input style="text-align: right;" class="person-small-phonetitle" v-model="personList.phone"  />
+                            <p>手机</p><input :disabled="disabled" style="text-align: right;" class="person-small-phonetitle" v-model="personList.phone"  />
                         </a></view>
                     <a class="external" href="addressManage.html" url="addressManage">
                         <view class="address-manage">
@@ -49,13 +47,11 @@
             </view>
         </view>
         <input type="hidden" id="name-img" value="">
-
-        <view class="changeN-box" style="display: block;" v-if='jifen_show' ><!--修改昵称-->
-            
-            <view class="changeN-wrap personWrap ma-top52">
-                <input type="text" v-model="personList.nickname"  id="name" placeholder="请输入您的昵称">
-                <view class="change-name-btn">
-                    <a href="" @click='repairName()'>保存</a>
+        <view class="changeN-box" style="display: block;" v-if='jifen_show' ><!--修改昵称-->   
+            <view class="changeN-wrap personWrap ma-top52"  style="height: 100vh;position: relative;left:0;top:0">
+                <input class="chanNameInput"  type="text" v-model="personList.nickname"  id="name"  placeholder="请输入的说法您的昵称">
+                <view class="changeBtn"  @tap='repairName'>
+                    保存
                 </view>
             </view>
 			
@@ -130,8 +126,6 @@
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album', 'camera'], //从相册选择
 					success: function(res) {
-						// console.log('success')
-						// console.log(res)
 						uni.uploadFile({
 							 url:'http://zxyptest.hzbixin.cn/file/upload',
 							 filePath:res.tempFilePaths[0],
@@ -175,7 +169,7 @@
 				}).then(res=>{
 					if(res.status ==0){
 						uni.showToast({
-						    title: '生日日期修改成功',
+						    title: '修改成功',
 						    duration: 1000
 						});
 						this.jifen_show=false;
@@ -232,14 +226,28 @@
 			margin-left:50rpx;
 			
 		}
-		.change-name-btn{
+		.changeBtn{
 			width:750rpx;
-			margin-left:0!important;
-			padding-left: 0!important;
+			background-color:#FF7599 ;
+			text-align: center;
+			color:#fff;
+			height: 100rpx;
+			line-height: 100rpx;
+			position: absolute;
+			left:0;
+			bottom:0;
+			
 		}
 		
 	}
-    
+  .chanNameInput{
+	  background-color: #fff;
+	  width:750rpx!important;
+	  margin-left:0rpx!important;
+	  padding-left:30rpx;
+	  box-sizing: border-box;
+	  text-indent: 0!important;
+  }  
 
 </style>
 

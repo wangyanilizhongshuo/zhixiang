@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   ePicker: function() {
-    return Promise.all(/*! import() | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then(__webpack_require__.bind(null, /*! @/components/e-picker/e-picker.vue */ 739))
+    return Promise.all(/*! import() | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then(__webpack_require__.bind(null, /*! @/components/e-picker/e-picker.vue */ 741))
   }
 }
 var render = function() {
@@ -139,11 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 571));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mobiscroll = function mobiscroll() {__webpack_require__.e(/*! require.ensure | component/css/mobiscroll */ "component/css/mobiscroll").then((function () {return resolve(__webpack_require__(/*! @/component/css/mobiscroll */ 745));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 585));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var jzl = function jzl() {__webpack_require__.e(/*! require.ensure | component/css/jzl */ "component/css/jzl").then((function () {return resolve(__webpack_require__(/*! @/component/css/jzl */ 613));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var personData = function personData() {__webpack_require__.e(/*! require.ensure | component/css/personData */ "component/css/personData").then((function () {return resolve(__webpack_require__(/*! @/component/css/personData */ 752));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ePicker = function ePicker() {Promise.all(/*! require.ensure | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then((function () {return resolve(__webpack_require__(/*! ./../components/e-picker/e-picker.vue */ 739));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 573));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mobiscroll = function mobiscroll() {__webpack_require__.e(/*! require.ensure | component/css/mobiscroll */ "component/css/mobiscroll").then((function () {return resolve(__webpack_require__(/*! @/component/css/mobiscroll */ 747));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 587));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var jzl = function jzl() {__webpack_require__.e(/*! require.ensure | component/css/jzl */ "component/css/jzl").then((function () {return resolve(__webpack_require__(/*! @/component/css/jzl */ 615));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var personData = function personData() {__webpack_require__.e(/*! require.ensure | component/css/personData */ "component/css/personData").then((function () {return resolve(__webpack_require__(/*! @/component/css/personData */ 754));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ePicker = function ePicker() {Promise.all(/*! require.ensure | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then((function () {return resolve(__webpack_require__(/*! ./../components/e-picker/e-picker.vue */ 741));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -271,8 +267,6 @@ __webpack_require__.r(__webpack_exports__);
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], //从相册选择
         success: function success(res) {
-          // console.log('success')
-          // console.log(res)
           uni.uploadFile({
             url: 'http://zxyptest.hzbixin.cn/file/upload',
             filePath: res.tempFilePaths[0],
@@ -316,7 +310,7 @@ __webpack_require__.r(__webpack_exports__);
       then(function (res) {
         if (res.status == 0) {
           uni.showToast({
-            title: '生日日期修改成功',
+            title: '修改成功',
             duration: 1000 });
 
           _this2.jifen_show = false;

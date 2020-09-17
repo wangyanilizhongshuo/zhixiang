@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniPopup: function() {
-    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 562))
+    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 564))
   }
 }
 var render = function() {
@@ -140,10 +140,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniPopup = function uniPopup() {Promise.all(/*! require.ensure | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 562));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniPopup = function uniPopup() {Promise.all(/*! require.ensure | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 564));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -280,13 +277,16 @@ __webpack_require__.r(__webpack_exports__);
     return {
       msg: '',
       type: '',
+      textareaFlag: false,
       addRess: '',
       textContent: '',
+      seeMovie: false,
+      seeMpvieMsg: '',
       idss: 0,
       idssss: 0,
       popsContents: '',
-      reasonList: [{ num: 1, value: '拍错/勿拍', choiceFlag: true }, { num: 2, value: '信息填写错误,重新拍', choiceFlag: true },
-      { num: 3, value: '我不想买了', choiceFlag: true }, { num: 4, value: '其他原因', choiceFlag: true }] };
+      reasonList: [{ num: 1, value: '拍错/勿拍', choiceFlag: true, occur: true }, { num: 2, value: '信息填写错误,重新拍', choiceFlag: true, occur: true },
+      { num: 3, value: '我不想买了', choiceFlag: true, occur: true }, { num: 4, value: '其他原因', choiceFlag: true, occur: true }] };
 
 
   },
@@ -312,7 +312,8 @@ __webpack_require__.r(__webpack_exports__);
       this.msg.is_self_take = '自提';
     }
     this.getAddress();
-    console.log(this.msg);
+    //          this.$refs.popup.close();
+    // this.$refs.popups.close();
   },
   methods: {
     // 获取地址 匹配
@@ -354,7 +355,16 @@ __webpack_require__.r(__webpack_exports__);
 
             then(function (res) {
               if (res.status == 0) {
+                uni.showToast({
+                  title: '取消成功' });
+
                 uni.navigateBack();
+              } else {
+                that.seeMovie = true;
+                that.seeMpvieMsg = res.msg;
+                setInterval(function () {
+                  that.seeMovie = false;
+                }, 2500);
               }
             });
           } else if (data.cancel) {
@@ -374,6 +384,10 @@ __webpack_require__.r(__webpack_exports__);
     openPop: function openPop(ems) {
       this.$refs.popup.open();
       this.idss = ems;
+      this.reasonList.map(function (res) {
+        res.occur = true;
+      });
+      this.textareaFlag = false;
     },
     // 选择某一项 退款的原因
     choiceReason: function choiceReason(item, index) {
@@ -381,8 +395,12 @@ __webpack_require__.r(__webpack_exports__);
         res.choiceFlag = true;
       });
       this.reasonList[index].choiceFlag = false;
-
-      this.$forceUpdate();
+      if (index == 3) {
+        this.textareaFlag = true;
+        this.reasonList.map(function (res) {
+          res.occur = false;
+        });
+      }
     },
     // textarea内容
     contents: function contents(e) {
@@ -415,6 +433,7 @@ __webpack_require__.r(__webpack_exports__);
       then(function (res) {
         if (res.status == 0) {
           _this3.$refs.popup.close();
+          _this3.textareaFlag = false;
           var types = 4;
           uni.navigateTo({
             url: '/pages/orderMsg/successPage?type=' + types });
@@ -491,7 +510,7 @@ __webpack_require__.r(__webpack_exports__);
 
         }
       }).catch(function (res) {
-        console.log(res);
+        // console.log(res)
       });
     },
     // 去评价

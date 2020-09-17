@@ -49,15 +49,12 @@
 					 <view class="money" v-if="item.status ==1" >退款中</view>
 				 </view> 
 				 <view class="uni-refundMoney" v-if="type==4">
-					  <!-- v-if="item.status ==0" -->
-					 
 				 	  <view class="money" v-if="item.status ==1"  >已评价</view>
 					  <view class="money" v-if="item.status ==0" @tap.stop="goEvaluate(item)" >去评价</view>
 				 </view> 
 			</view>
 			<view class="uni-bottom-third">
 				<view class="left">共计商品 <text style="color:#FE5E54;">{{msg.total_num}}</text>件</view>
-				<!-- {{(item.total_price/100)}}.00 -->
 				<view class="right">合计:<text  class="num">￥{{(msg.total_price/100)}}.00  积分{{msg.total_points}}</text></view>
 			</view>
 		</view>
@@ -90,7 +87,7 @@
 		</view>
         <view class="uni-chioce" v-if="type==1">
 			 <view class="cancel sty" @tap.stop="cancelOrder(msg.id)">取消订单</view>
-			 <view class="toPay sty" @tap.stop="toPay(msg.id,msg.total_price)">去付款</view>
+			 <view class="toPay sty"  @tap.stop="toPay(msg.id,msg.total_price)">去付款</view>
 		</view>
 		<view class="uni-chioce" v-if="type==2">
 			 <view class="" >实付金额 : <text style="color:#FE5E54">￥{{(msg.total_price/100)}}.00</text></view>
@@ -104,14 +101,13 @@
 				  <text class="refundReason">退款原因</text>
 			    </view>
 				<view class="pop-content">
-                     <view class="pop-list" v-for="(item,index) in reasonList" :key="index">
-						 <image  class="img" v-if="item.choiceFlag" @tap.stop="choiceReason(item,index)" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"></image>
-					     <image class="img"  v-if="!item.choiceFlag" @tap.stop="item.choiceFlag=true" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"></image>
-						  <text class="word">{{item.value}}</text>
+                     <view class="pop-list" v-for="(item,index) in reasonList" :key="index" :style="item.occur ==true? 'display:block':'display:none'">
+						 <image  class="img"  v-if="item.choiceFlag " @tap.stop="choiceReason(item,index)" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"></image>
+					     <image class="img"   v-if="!item.choiceFlag" @tap.stop="item.choiceFlag=true" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"></image>
+						  <text  class="word" v-if="item.occur" >{{item.value}}</text>
 					 </view>
-						 <textarea  class="poptextarea" :value="textContent" @blur="contents" ></textarea> 
+						<textarea  v-if="textareaFlag"  focus class="poptextarea poptextareas" :value="textContent" @blur="contents" ></textarea> 
 						 <view class="subBtn"   @tap.stop="refundSubmit">确定</view>
-					
 				</view>
 			</view>
 		</uni-popup>
@@ -121,12 +117,13 @@
 				  <text class="refundReason">退款原因</text>
 			    </view>
 				<view class="pop-content">
-						 <textarea  class="poptextarea" style="height:260rpx;"   :value="popsContents" @blur="contentss" ></textarea> 
-						 <view class="subBtn" style="margin-top: 37rpx;"  @tap.stop="popsRefundSubmit">确定</view>
-					
+					<textarea class="poptextarea"    :value="popsContents" @blur="contentss" ></textarea>
+						  <!-- <textarea   class="poptextarea" style="height:260rpx;"   :value="popsContents" @blur="contentss" ></textarea> -->
+						  <view class="subBtn" style="margin-top: 37rpx;"  @tap.stop="popsRefundSubmit">确定</view>
 				</view>
 			</view>
 		</uni-popup>
+		<view class="hbyOccurFlag" v-if="seeMovie">{{seeMpvieMsg}}</view>
 	</view>
 </template>
 
@@ -138,13 +135,16 @@
 			return {
 				msg:'',
 				type:'',
+				textareaFlag:false,
 				addRess:'',
 				textContent:'',
+				seeMovie:false,
+				seeMpvieMsg:'',
 				idss:0,
 				idssss:0,
 				popsContents:'',
-				reasonList:[{num:1,value:'拍错/勿拍',choiceFlag:true},{num:2,value:'信息填写错误,重新拍',choiceFlag:true},
-				{num:3,value:'我不想买了',choiceFlag:true},{num:4,value:'其他原因',choiceFlag:true}]
+				reasonList:[{num:1,value:'拍错/勿拍',choiceFlag:true,occur:true},{num:2,value:'信息填写错误,重新拍',choiceFlag:true,occur:true},
+				{num:3,value:'我不想买了',choiceFlag:true,occur:true},{num:4,value:'其他原因',choiceFlag:true,occur:true}]
 				
 			}
 		},
@@ -170,7 +170,8 @@
 				this.msg.is_self_take ='自提'
 			}
 			this.getAddress();
-			console.log(this.msg)
+   //          this.$refs.popup.close();
+			// this.$refs.popups.close();
 		},
 		methods: {
 			// 获取地址 匹配
@@ -212,8 +213,17 @@
 				 				}
 				 			}).then(res => {
 				 				if (res.status == 0) {
+									uni.showToast({
+										title:'取消成功'
+									})
 				 					uni.navigateBack()
-				 				}
+				 				}else{
+									that.seeMovie=true;
+									that.seeMpvieMsg=res.msg;
+									setInterval(()=>{
+										 that.seeMovie=false;
+									},2500)
+								}
 				 			})
 				 		} else if (data.cancel) {
 				 			console.log('用户点击取消');
@@ -232,6 +242,10 @@
 			  openPop(ems){
 				   this.$refs.popup.open();
 				   this.idss=ems;
+				   this.reasonList.map(res=>{
+				   		res.occur=true;
+				   });
+				   this.textareaFlag=false;
 			  },
 			  // 选择某一项 退款的原因
 			  choiceReason(item,index){
@@ -239,18 +253,22 @@
 					   res.choiceFlag=true;
 				   })
 				  this.reasonList[index].choiceFlag=false;
-				 
-				  this.$forceUpdate()
+				 if(index==3){
+					 this.textareaFlag=true;
+					 this.reasonList.map(res=>{
+					 		res.occur=false;
+					 })
+				 }
 			  },
 			  // textarea内容
 			  contents(e){
-				 this.textContent= e.detail.value
+				 this.textContent= e.detail.value;
 			  },
 			  contentss(e){
 				 this.popsContents= e.detail.value
 			  },
 				// 退款
-				refundSubmit(){
+			   refundSubmit(){
 					let useid=wx.getStorageSync('user').id;
 					let reason='';
 					this.reasonList.map(res=>{
@@ -273,6 +291,7 @@
 					}).then(res=>{
 						if(res.status==0){
 							 this.$refs.popup.close();
+							 this.textareaFlag=false;
 							let types=4;
 							uni.navigateTo({
 								url:'/pages/orderMsg/successPage?type='+types
@@ -349,7 +368,7 @@
 							
 						}
 					}).catch(res=>{
-						console.log(res)
+						// console.log(res)
 					})
 				},
 				// 去评价
@@ -535,20 +554,22 @@
 }
 .uni-chioce{
 	width: 750rpx;
-	height:60rpx;
+	height:90rpx;
 	display: flex;
 	align-items: center;
 	padding-left:500rpx;
 	padding-right:15rpx;
 	box-sizing: border-box;
-	font-size: 20rpx;
+	font-size: 26rpx;
+	
 	.sty{
 		border:1rpx solid #505050;
 		border-radius: 8rpx;;
-		height:35rpx;
-		line-height: 35rpx;
+		height:55rpx;
+		line-height: 55rpx;
 		text-align: center;
-		width:150rpx;
+		width: 240rpx;
+      
 	}
 	.cancel{
 		border:1rpx solid  #FE5E54;
@@ -579,7 +600,7 @@
 //弹框
 .popups{
 	width: 750rpx;
-	height:700rpx;
+	height:900rpx;
 	background-color: white;
 	.pop-title{
 		width: 750rpx;
@@ -617,12 +638,17 @@
 		}
 	    .poptextarea{
 			width:600rpx;
-			height: 160rpx;
+			height: 260rpx;
 			background-color: #f2f2f2;
 			text-indent: 20rpx;
 			margin:0 auto;
 			border-radius: 15rpx;
 			font-size: 26rpx;
+			padding: 20rpx;
+			box-sizing: border-box;
+		}
+		.poptextareas{
+			height: 280rpx;
 		}
 		
 	}
@@ -632,14 +658,28 @@
 	font-size:300rpx
 }
 .subBtn{
-	width:670rpx;
+	width:750rpx;
 	height:80rpx;
 	line-height:80rpx;
 	background-color: #FF7599;
 	text-align: center;
 	color:#fff;
-	margin-top: 30rpx;
-	border-radius: 15rpx;
-	
+	position: absolute;
+	left: 0rpx;;
+	bottom:0rpx;
 }
+.hbyOccurFlag{
+		position: absolute;
+		top:400rpx;
+		left:250rpx;
+		background-color: green;
+		width:300rpx;height:130rpx;
+		line-height: 130rpx;
+		background-color: #000;
+		color:#fff;
+		text-align: center;
+		opacity: 0.7;
+		border-radius: 20rpx;
+	}
+
 </style>

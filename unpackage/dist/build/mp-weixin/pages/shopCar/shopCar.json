@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "shop-car": "/component/css/page/shopCar",
+    "jzl": "/component/css/jzl",
+    "main": "/component/css/main",
+    "light7_swiper_min": "/component/css/light7_swiper_min",
+    "light7_swipeout": "/component/css/light7_swipeout",
+    "light7_min": "/component/css/light7_min"
+  }
+}

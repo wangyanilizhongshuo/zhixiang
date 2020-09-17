@@ -349,11 +349,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 
 {
   data: function data() {
     return {
+      seeMovie: false,
+      seeMpvieMsg: '',
       types: 0,
       noPayList: [], //未付款
       hasPayList: [], //已付款
@@ -361,11 +364,13 @@ var _default =
       hasSendList: [], // 已经发货
       hasSureList: [],
       page: 1,
-      pageNum: '' };
+      pageNum: '',
+      cancelFlag: false };
 
   },
 
   onReachBottom: function onReachBottom() {
+    console.log('onreacth bottom');
     if (this.types == 0) {
       this.page += 1;
       if (this.pageNum >= this.page) {
@@ -373,16 +378,28 @@ var _default =
       }
     } else
     if (this.types == 1) {
-      this.getNoPayList();
+      this.page += 1;
+      if (this.pageNum >= this.page) {
+        this.getNoPayList();
+      }
     } else
     if (this.types == 2) {
-      this.getHasPayList();
+      this.page += 1;
+      if (this.pageNum >= this.page) {
+        this.getHasPayList();
+      }
     } else
     if (this.types == 3) {
-      this.getSend();
+      this.page += 1;
+      if (this.pageNum >= this.page) {
+        this.getSend();
+      }
     } else
     if (this.types == 4) {
-      this.getFinish();
+      this.page += 1;
+      if (this.pageNum >= this.page) {
+        this.getSend();
+      }
     }
   },
   // 页面加载 
@@ -459,15 +476,21 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          // that.noPayList = res.result.list;
           that.pageNum = res.result.pages;
           var aa = res.result.list;
           var bb = that.noPayList;
-          that.noPayList = bb.concat(aa);
+          if (that.cancelFlag) {
+            that.noPayList = res.result.list;
+            that.cancelFlag = false;
+          } else {
+            that.noPayList = bb.concat(aa);
+          }
+
+
         }
       });
     },
-    // 未付款跳到详情页
+
     noPayDetail: function noPayDetail(e, type) {
       var types = type;
       // 对所有订单里面的数据进行 分开
@@ -505,7 +528,6 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          // that.hasPayList = res.result.list;
           that.pageNum = res.result.pages;
           var aa = res.result.list;
           var bb = that.hasPayList;
@@ -521,7 +543,7 @@ var _default =
       uni.showModal({
         title: '提示',
         content: '确定取消此订单',
-        success: function success(data) {var _this = this;
+        success: function success(data) {
           if (data.confirm) {
             uni.wjw_http({
               url: 'api/closeOrder',
@@ -531,11 +553,19 @@ var _default =
 
             then(function (res) {
               if (res.status == 0) {
-                that.$nextTick(function () {
-                  _this.getNoPayList();
-                });
+                uni.showToast({
+                  title: '取消成功' });
+
+                that.cancelFlag = true;
+                that.getNoPayList();
 
 
+              } else {
+                that.seeMovie = true;
+                that.seeMpvieMsg = res.msg;
+                setInterval(function () {
+                  that.seeMovie = false;
+                }, 2500);
               }
             });
           } else if (data.cancel) {
@@ -553,7 +583,7 @@ var _default =
 
     },
     // 全部列表
-    getAllList: function getAllList() {var _this2 = this;
+    getAllList: function getAllList() {var _this = this;
       var that = this;
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
@@ -565,7 +595,7 @@ var _default =
       then(function (res) {
         if (res.status == 0) {
           // this.allLists=res.result.list;
-          _this2.pageNum = res.result.pages;
+          _this.pageNum = res.result.pages;
           var aa = res.result.list;
           var bb = that.allLists;
           that.allLists = bb.concat(aa);
@@ -573,7 +603,7 @@ var _default =
       });
     },
     //已经发货
-    getSend: function getSend() {var _this3 = this;
+    getSend: function getSend() {var _this2 = this;
       var id = wx.getStorageSync('user').id;
       var that = this;
       uni.wjw_http({
@@ -586,7 +616,7 @@ var _default =
       then(function (res) {
         if (res.status == 0) {
           // this.hasSendList=res.result.list;
-          _this3.pageNum = res.result.pages;
+          _this2.pageNum = res.result.pages;
           var aa = res.result.list;
           var bb = that.hasSendList;
           that.hasSendList = bb.concat(aa);

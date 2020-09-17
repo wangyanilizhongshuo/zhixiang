@@ -158,6 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 
 
@@ -170,6 +171,8 @@ var _default =
 
   data: function data() {
     return {
+      seeMovieFlag: false,
+      seeMpvieMsg: '',
       phone: '',
       pwd: '',
       code: '',
@@ -203,17 +206,11 @@ var _default =
           password: this.pwd } }).
 
       then(function (res) {
-        uni.showToast({
-          title: res });
 
         if (res.status == 0) {
           wx.setStorageSync('token', res.result.token);
           wx.setStorageSync('user', res.result.user);
           wx.setStorageSync('userData', res.result);
-          // if(!this.QRcode){
-
-          // }
-          console.log(_this.scene + 'this.scene');
           if (that.scene) {
             // help  ==1是从 面对面邀请过来的flag
             uni.navigateTo({
@@ -226,6 +223,14 @@ var _default =
 
 
           }
+        } else
+        {
+          _this.seeMovieFlag = true;
+          _this.seeMpvieMsg = res.msg;
+          setInterval(function () {
+            _this.seeMovieFlag = false;
+          }, 2000);
+
         }
       }).catch(function (res) {
         console.log(res);

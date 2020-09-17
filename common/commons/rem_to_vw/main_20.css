@@ -123,7 +123,7 @@ table {border-collapse: collapse; border-spacing: 0;}
     height: calc( 4.5 * 20px);
     display: inline-block;
     margin-top: calc( 1.375 * 20px);
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     border-radius: 50%;
 }
 .header-wrap  .user-icon img{

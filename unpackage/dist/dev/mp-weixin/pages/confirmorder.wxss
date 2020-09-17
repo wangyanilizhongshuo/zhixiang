@@ -72,8 +72,8 @@
   left: 250rpx;
   background-color: green;
   width: 300rpx;
-  height: 130rpx;
-  line-height: 130rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   background-color: #000;
   color: #fff;
   text-align: center;

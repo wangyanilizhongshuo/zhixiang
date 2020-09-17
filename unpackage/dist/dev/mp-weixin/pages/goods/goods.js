@@ -217,7 +217,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 571));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 585));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 592));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var cdn_swiper_min = function cdn_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/cdn_swiper_min */ "component/css/cdn_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/cdn_swiper_min */ 641));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsDetail = function goodsDetail() {__webpack_require__.e(/*! require.ensure | component/css/page/goodsDetail */ "component/css/page/goodsDetail").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/goodsDetail */ 648));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 573));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 587));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 594));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var cdn_swiper_min = function cdn_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/cdn_swiper_min */ "component/css/cdn_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/cdn_swiper_min */ 643));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsDetail = function goodsDetail() {__webpack_require__.e(/*! require.ensure | component/css/page/goodsDetail */ "component/css/page/goodsDetail").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/goodsDetail */ 650));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -500,7 +500,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getContent();
     // 购物车的数量
     this.getCarList();
-
+    console.log('商品详情页');
 
     wx.removeStorageSync('sumMoney');
     wx.removeStorageSync('sunJifen');
@@ -590,24 +590,16 @@ __webpack_require__.r(__webpack_exports__);
 
     // 选择规格
     standrd: function standrd(e) {
-
       //console.log('选择规格', e);
       var _dataset = this.dataset(e);
       var id2 = _dataset.id;
       var name = _dataset.name;
       var price = _dataset.price;
       var points = _dataset.points;
-      // window.localStorage.id2 = id2;
-      // window.localStorage.name = name;
-      // window.localStorage.price = price;
-      // $(".info-price").html("￥"+price)
-      // $(".current-choose").html("已选择"+'"'+name+'"');
-      // $(".points-num").html("积分"+points);
       this.id2 = id2;
       this.price = price;
       this.name = name;
       this.points = points;
-      //console.log(price);
       this.standrd_index = _dataset.index;
 
     },
@@ -625,7 +617,6 @@ __webpack_require__.r(__webpack_exports__);
       then(function (res) {
         if (res.status == 0) {
           _this5.amounts = res.result.length;
-          console.log(_this5.amounts + '4275437545');
           _this5.carList = res.result;
 
         }
@@ -636,13 +627,9 @@ __webpack_require__.r(__webpack_exports__);
     cmBtn1_fn: function cmBtn1_fn(e) {var _this6 = this;
       // console.log('确定加入购物车');
       var userData = wx.getStorageSync('userData');
-      // this.carList.map(res=>{
-      // 	if(res){
-
-      // 	}else{
-
-      // 	}
-      // })
+      if (this.id2 == '') {
+        this.id2 = this.goods_info.repertory[0].id;
+      }
       uni.wjw_http({
         url: 'shoppingcart/save',
         method: 'post',

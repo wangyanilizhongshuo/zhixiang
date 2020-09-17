@@ -26,7 +26,7 @@
     width: 67.5px;
     height: 67.5px;
     display: inline-block;
-    background-color: #ffffff;
+   /* background-color: #ffffff; */
     border-radius: 50%;
     position: absolute;
     margin: 0;
@@ -2306,7 +2306,7 @@ line-height: 16px;
 .myTwoCode-page{
     width: 100%;
     height: 100%;
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/Inviting_friends_bg@2x.png");
+   /* background-image: url("../../../../static/codeBg.png"); */
     background-size: 100% 100%;
 }
 .myTwoCode-img {

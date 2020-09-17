@@ -1,0 +1,2 @@
+page{background:#f0f0f0}.log_li{height:122rpx;background:#fff;padding:0 30rpx}.log_li+
+.log_li{border-top:1px solid #f0f0f0}.log_li_txt{font-size:28rpx;font-family:PingFang SC;font-weight:500;color:#000;margin-top:24rpx}.log_li_tip{font-size:24rpx;font-family:PingFang SC;font-weight:500;color:#000;margin-top:24rpx}.log_li_time{font-size:24rpx;font-family:PingFang SC;font-weight:500;color:#bfbfbf;margin-top:24rpx}.log_li_num{font-size:28rpx;font-family:PingFang SC;font-weight:700;color:#000;margin-top:32rpx}

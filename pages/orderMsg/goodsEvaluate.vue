@@ -143,7 +143,7 @@
 <style scoped lang="scss">
 .uni-evaluate{
 	width: 750rpx;
-	border-top:20rpx solid #f1f1ef;
+	// border-top:20rpx solid #f1f1ef;
 	
 }
 .uni-title{

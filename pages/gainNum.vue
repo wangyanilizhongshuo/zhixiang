@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gainNum-content">
+                   <!-- <div class="gainNum-content">
                         <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sign_fill_data.png">
                         <div class="gainNum-item">
                             <p class="title-2">音频答题</p>
@@ -67,8 +67,8 @@
                                 <a class="bockactive">去完成</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="gainNum-content">
+                    </div> -->
+                   <!-- <div class="gainNum-content">
                         <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sign_lucky_runner.png">
                         <div class="gainNum-item">
                             <p class="title-2">幸运大转盘</p>
@@ -78,7 +78,7 @@
                                 <a class="bockactive" >去完成</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="gainNum-content">
                         <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sign_qr_code.png">
                         <div class="gainNum-item">
@@ -131,8 +131,6 @@
 				jifen:'',
 				// 个人资料没有完成
 				unFinish:false
-				
-
             }
         },
 		onLoad(){

@@ -24,6 +24,12 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.uni-opinion.data-v-2d2818ac {
+  height: 100vh;
+  position: relative;
+  left: 0;
+  right: 0;
+}
 .myReport-content.data-v-2d2818ac {
   margin-top: 0 !important;
   height: 400rpx;
@@ -33,9 +39,11 @@
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
-  margin-top: 40rpx;
   color: #fff;
   background-color: #FF7599;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 .textarea.data-v-2d2818ac {
   height: 400rpx;

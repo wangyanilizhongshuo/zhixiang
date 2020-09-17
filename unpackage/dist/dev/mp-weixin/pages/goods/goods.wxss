@@ -39,21 +39,4 @@
 .num-choose-wrap .right.data-v-5566b618 {
   border-right: 2rpx solid rgba(0, 0, 0, 0.2);
 }
-.btns.data-v-5566b618 {
-  background-color: white !important;
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border-radius: 0;
-  background-color: transparent;
-  line-height: inherit;
-  width: -webkit-max-content;
-  width: max-content;
-}
-.btns.data-v-5566b618::after {
-  border: none;
-}
-.btns.data-v-5566b618 {
-  background-color: white !important;
-}
 

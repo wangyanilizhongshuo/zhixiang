@@ -142,7 +142,7 @@
 								   }
 							   }).then(res=>{
 								   if(res.status ==0){
-									   uni.navigateTo({
+									   uni.reLaunch({
 									   	url:'/pages/index/index'
 									   })
 									 

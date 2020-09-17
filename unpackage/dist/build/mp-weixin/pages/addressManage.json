@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "地址管理",
+  "usingComponents": {
+    "address-manage": "/component/css/page/addressManage",
+    "ljh_main": "/component/css/ljh_main",
+    "main": "/component/css/main",
+    "light7_swiper_min": "/component/css/light7_swiper_min",
+    "light7_min": "/component/css/light7_min"
+  }
+}

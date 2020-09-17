@@ -243,7 +243,7 @@
 }
 .uni-chioce.data-v-501c73e6 {
   width: 750rpx;
-  height: 60rpx;
+  height: 90rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -253,15 +253,15 @@
   padding-left: 500rpx;
   padding-right: 15rpx;
   box-sizing: border-box;
-  font-size: 20rpx;
+  font-size: 26rpx;
 }
 .uni-chioce .sty.data-v-501c73e6 {
   border: 1rpx solid #505050;
   border-radius: 8rpx;
-  height: 35rpx;
-  line-height: 35rpx;
+  height: 55rpx;
+  line-height: 55rpx;
   text-align: center;
-  width: 150rpx;
+  width: 240rpx;
 }
 .uni-chioce .cancel.data-v-501c73e6 {
   border: 1rpx solid  #FE5E54;
@@ -293,7 +293,7 @@
 }
 .popups.data-v-501c73e6 {
   width: 750rpx;
-  height: 700rpx;
+  height: 900rpx;
   background-color: white;
 }
 .popups .pop-title.data-v-501c73e6 {
@@ -338,25 +338,45 @@
 }
 .popups .pop-content .poptextarea.data-v-501c73e6 {
   width: 600rpx;
-  height: 160rpx;
+  height: 260rpx;
   background-color: #f2f2f2;
   text-indent: 20rpx;
   margin: 0 auto;
   border-radius: 15rpx;
   font-size: 26rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.popups .pop-content .poptextareas.data-v-501c73e6 {
+  height: 280rpx;
 }
 .placeTextarea.data-v-501c73e6 {
   color: red !important;
   font-size: 300rpx;
 }
 .subBtn.data-v-501c73e6 {
-  width: 670rpx;
+  width: 750rpx;
   height: 80rpx;
   line-height: 80rpx;
   background-color: #FF7599;
   text-align: center;
   color: #fff;
-  margin-top: 30rpx;
-  border-radius: 15rpx;
+  position: absolute;
+  left: 0rpx;
+  bottom: 0rpx;
+}
+.hbyOccurFlag.data-v-501c73e6 {
+  position: absolute;
+  top: 400rpx;
+  left: 250rpx;
+  background-color: green;
+  width: 300rpx;
+  height: 130rpx;
+  line-height: 130rpx;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  opacity: 0.7;
+  border-radius: 20rpx;
 }
 

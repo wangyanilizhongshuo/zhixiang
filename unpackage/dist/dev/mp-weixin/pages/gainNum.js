@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 571));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 585));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 592));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var gainNum = function gainNum() {__webpack_require__.e(/*! require.ensure | component/css/page/gainNum */ "component/css/page/gainNum").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/gainNum */ 711));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 573));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 587));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 594));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var gainNum = function gainNum() {__webpack_require__.e(/*! require.ensure | component/css/page/gainNum */ "component/css/page/gainNum").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/gainNum */ 713));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -268,8 +268,6 @@ __webpack_require__.r(__webpack_exports__);
       jifen: '',
       // 个人资料没有完成
       unFinish: false };
-
-
 
   },
   onLoad: function onLoad() {

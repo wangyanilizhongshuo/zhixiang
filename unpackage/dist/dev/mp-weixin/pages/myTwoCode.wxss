@@ -24,11 +24,46 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.myCode-VX-img1.data-v-4d2af464 {
-  left: 325rpx !important;
+.uni-code.data-v-4d2af464 {
+  position: relative;
+  left: 0;
+  top: 0;
 }
-.myTwoCode-img .image.data-v-4d2af464 {
-  width: 340rpx;
-  height: 382rpx;
+.imgsBg.data-v-4d2af464 {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.contents.data-v-4d2af464 {
+  width: 580rpx;
+  position: absolute;
+  z-index: 10;
+  left: 85rpx;
+  top: 833rpx;
+  color: #FF9E4B;
+  font-weight: bold;
+  font-size: 32rpx;
+  text-align: center;
+}
+.contents .imgCon.data-v-4d2af464 {
+  display: block;
+  width: 580rpx;
+  height: 108rpx;
+}
+.contents .codenum.data-v-4d2af464 {
+  position: absolute;
+  left: 115rpx;
+  top: 36rpx;
+}
+.contents .invite.data-v-4d2af464 {
+  margin: 43rpx 0;
+}
+.contents .imgsss.data-v-4d2af464 {
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+}
+.contents .share.data-v-4d2af464 {
+  margin-bottom: 50rpx;
 }
 

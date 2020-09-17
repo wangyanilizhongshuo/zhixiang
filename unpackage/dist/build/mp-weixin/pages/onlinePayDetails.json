@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "积分明细",
+  "usingComponents": {
+    "main": "/component/css/main",
+    "light7_swiper_min": "/component/css/light7_swiper_min",
+    "light7_min": "/component/css/light7_min"
+  }
+}

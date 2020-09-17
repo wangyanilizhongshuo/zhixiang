@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "赚取积分",
+  "usingComponents": {
+    "gain-num": "/component/css/page/gainNum",
+    "wq": "/component/css/wq",
+    "main": "/component/css/main",
+    "light7_min": "/component/css/light7_min"
+  }
+}

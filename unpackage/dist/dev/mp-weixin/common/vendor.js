@@ -7767,7 +7767,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 567:
+/***/ 569:
 /*!***************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/uni-popup/popup.js ***!
   \***************************************************************************/
@@ -7775,7 +7775,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 568));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 570));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -7802,7 +7802,7 @@ var config = {
 
 /***/ }),
 
-/***/ 568:
+/***/ 570:
 /*!*****************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/uni-popup/message.js ***!
   \*****************************************************************************/
@@ -7833,7 +7833,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 744:
+/***/ 746:
 /*!*****************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/e-picker/e-picker.js ***!
   \*****************************************************************************/
@@ -7901,7 +7901,7 @@ function token_false(res) {
   uni.clearStorageSync();
   uni.showToast({
     // title: res.data.msg,
-    title: '请登录',
+    title: '请重新登录',
     icon: 'none' });
 
   setTimeout(function (res) {
@@ -8059,7 +8059,6 @@ var https = function https() {var _ref = arguments.length > 0 && arguments[0] !=
         if (res.statusCode >= 200 && res.statusCode < 300) {
 
           if (!judge_url_pre(getUrl(url))) {
-
             resolve(res.data);
             return;
           }
@@ -8086,7 +8085,8 @@ var https = function https() {var _ref = arguments.length > 0 && arguments[0] !=
               // 测试 购物车没有id   的返回值  是500 
               else {
                   res.data.msg && uni.showToast({
-                    title: res.data.msg,
+                    // title: res.data.msg,
+                    title: '请重新登录',
                     icon: 'none' });
 
                   reject(res);
@@ -8186,8 +8186,6 @@ function wxPayment(option) {
     complete: function complete() {} },
   option);
   // "prepay_id="+
-  console.log(options.result);
-  console.log('wangyanizhifdsfa ufsdf ');
   uni.requestPayment({
     'appId': options.result.appId,
     'timeStamp': options.result.timeStamp,
@@ -8235,7 +8233,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 834:
+/***/ 829:
 /*!***************************************************************************!*\
   !*** C:/Users/19217/Desktop/works/zhixiang/components/uni-icons/icons.js ***!
   \***************************************************************************/

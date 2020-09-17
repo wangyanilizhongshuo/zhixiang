@@ -64,6 +64,12 @@
 </script>
 
 <style scoped lang="scss">
+	.uni-opinion{
+		height: 100vh;
+		position: relative;
+		left:0;
+		right:0;
+	}
     .myReport-content{
 		margin-top:0!important;
 		height: 400rpx;;
@@ -73,9 +79,12 @@
 		height:100rpx;
 		line-height: 100rpx;
 		text-align: center;
-		margin-top:40rpx;
+		
 		color:#fff;
 		background-color: #FF7599;
+		position: absolute;
+		left:0;
+		bottom:0;
 	}
 	.textarea{
 		height: 400rpx;

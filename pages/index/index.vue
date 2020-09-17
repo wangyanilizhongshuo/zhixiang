@@ -1,13 +1,11 @@
 <template>
 	<view class="uni-index">
 		<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/red_bagicon@2x.png"
-		 alt="" class="red_bagicon z_999" @click='get_user_info'>
-		<view class="red_page_mask z_1000 mask mask_bg" v-if='red_page_show' @click='red_page_show=false'>
+		 alt="" class="red_bagicon z_999" @tap.stop='get_user_info'>
+		<view class="red_page_mask z_1000 mask mask_bg" v-if='red_page_show' @tap.stop='red_page_show=false'>
 			<!-- @click.stop -->
-			<view class="red_page_box relative" @click='jump' data-url='/pages/red_page/red_page'>
+			<view class="red_page_box relative" @tap.stop='jump' data-url='/pages/red_page/red_page'>
 				<image class="red_page_box_bg"  src="../../static/redbag.png" mode=""></image>
-				<!-- <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/redbag1@2x.png" alt=""
-				class="red_page_box_bg" > -->
 				<view class="red_page_box_info">
 					<img :src="user_info.head_photo||'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png'"
 					 class="red_page_box_img">
@@ -20,8 +18,8 @@
 		<view class="top_nav_box sticky ov_hid z_999 ">
 			<!-- <view class="status_bar"></view> -->
 			<view class="top_nav_addr_box flex flex_align_c">
-				<img class="top_nav_addr_img" @click="getMap" src='http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/loaction.png' />
-				<view class="top_nav_addr_txt" @click="getMap">{{addressName}}</view>
+				<img class="top_nav_addr_img" @tap.stop="getMap" src='http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/loaction.png' />
+				<view class="top_nav_addr_txt" @tap.stop="getMap">{{addressName}}</view>
 			</view>
 			<view class="top_nav_search_box ">
 				<!-- <view class="top_nav_search_occupy flex_c height_percent" @click='search_input=true' v-else> -->
@@ -33,14 +31,14 @@
 		</view>
 		<view class="bannar_wrap relative ov_hid">
 			<swiper class="bannar_box" circular>
-				<swiper-item class="bannar_item " v-for="(item,index) in bannar" :key='index' @click='bannerJump(index)'>
+				<swiper-item class="bannar_item " v-for="(item,index) in bannar" :key='index' @tap.stop='bannerJump(index)'>
 					<img class="bannar_img" :src="item" />
 				</swiper-item>
 			</swiper>
 			<view class="bannar_bottom"></view>
 		</view>
 		<view class="category_list flex flex_wrap">
-			<view class="category_li" v-for="(item,index) in category_list" :key='index' @click='jump' :data-url='item.url'>
+			<view class="category_li" v-for="(item,index) in category_list" :key='index'@tap.stop='jump' :data-url='item.url'>
 				<img class="category_li_img no_shrink" :src='item.img' />
 				<view class="category_li_name">{{item.name}}</view>
 			</view>
@@ -71,7 +69,7 @@
 			<swiper-item class="classify_box  nowrap swi1" v-for="(item,index) in quickgetVipURl" :key='index'>
 				<!-- <view class="swiper-item uni-bg-red">A</view> -->
 				<view style="margin-right:30rpx;">
-					<image class="active_img swi2" :src="item.photo" @click="quickList(item.id)" />
+					<image class="active_img swi2" :src="item.photo" @tap.stop="quickList(item.id)" />
 				</view>
 
 			</swiper-item>
@@ -108,8 +106,10 @@
 			<view class=" flex_grow"></view>
 		</view>
 		<view class="category_goods_list flex flex_wrap">
-			<view class="category_goods_box" v-for="(item,index) in active_list" :key='index' @click='jump' data-url='/pages/goods/goods'>
-				<img class="category_goods_img" @click='actiTop(item.id)' :src="item.pic" />
+			<!-- quickList(item.id) -->
+			<!-- <view class="category_goods_box" v-for="(item,index) in active_list" :key='index' @tap='jump' data-url='/pages/goods/goods'> -->
+		<view class="category_goods_box" v-for="(item,index) in active_list" :key='index'  > 
+				<img class="category_goods_img" @tap.stop='actiTop(item.id)' :src="item.pic" />
 				<!-- <view class="category_goods_name txt_over_ell">{{item.name}}</view> -->
 			</view>
 		</view>

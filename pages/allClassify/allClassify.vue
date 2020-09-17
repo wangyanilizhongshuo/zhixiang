@@ -15,7 +15,6 @@
                     <ul class="nav-bar" style="height: 100vh;">
                     	<block
                     	>
-                    	
 	                        <li 
 	                        	v-for="(item,index) in goodsclass_list" 
 	                        	:key='index+"goodsclass_list"' 

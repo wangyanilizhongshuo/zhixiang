@@ -47,7 +47,7 @@ function token_false(res){
     uni.clearStorageSync();
     uni.showToast({
         // title: res.data.msg,
-		title: '请登录',
+		title: '请重新登录',
         icon: 'none', 
     });
     setTimeout(res=>{
@@ -205,7 +205,6 @@ const https = ({ type = 'POST',method = type, url = '', data = {},param = data, 
                 if (res.statusCode >= 200 && res.statusCode < 300) {
 					
                     if(!judge_url_pre(getUrl(url)) ){
-                        
                         resolve(res.data)
                         return;
                     }
@@ -232,7 +231,8 @@ const https = ({ type = 'POST',method = type, url = '', data = {},param = data, 
 					// 测试 购物车没有id   的返回值  是500 
 					else {
 						res.data.msg && uni.showToast({
-						    title: res.data.msg,
+						    // title: res.data.msg,
+							title: '请重新登录',
 							icon: 'none', 
 						});
 					    reject(res)
@@ -332,8 +332,6 @@ function isCardNo(card) {
           complete: () => {},
         }, option);
 		 // "prepay_id="+
-		 console.log(options.result);
-		 console.log('wangyanizhifdsfa ufsdf ');
         uni.requestPayment({
 		  'appId':options.result.appId,
           'timeStamp': options.result.timeStamp,

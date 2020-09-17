@@ -1,0 +1,18 @@
+
+function toFixed(num, length){
+    console.log('toFixed', JSON.stringify(arguments));
+    console.log('toFixed return', num.toFixed?num.toFixed(length):false);
+    return num.toFixed?num.toFixed(length):false;
+}
+
+function split(str, judeg){
+    console.log('split', JSON.stringify(arguments));
+    console.log('split return',  str.split?str.split(judeg):false);
+    return str.split?str.split(judeg):false;
+}
+
+
+module.exports = {
+	toFixed: toFixed,
+	split: split,
+}

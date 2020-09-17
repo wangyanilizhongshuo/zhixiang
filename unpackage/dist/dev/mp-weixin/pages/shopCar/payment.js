@@ -94,10 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   passwordInput: function() {
-    return __webpack_require__.e(/*! import() | components/password-input/password-input */ "components/password-input/password-input").then(__webpack_require__.bind(null, /*! @/components/password-input/password-input.vue */ 690))
+    return __webpack_require__.e(/*! import() | components/password-input/password-input */ "components/password-input/password-input").then(__webpack_require__.bind(null, /*! @/components/password-input/password-input.vue */ 692))
   },
   numberKeyboard: function() {
-    return __webpack_require__.e(/*! import() | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then(__webpack_require__.bind(null, /*! @/components/number-keyboard/number-keyboard.vue */ 697))
+    return __webpack_require__.e(/*! import() | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then(__webpack_require__.bind(null, /*! @/components/number-keyboard/number-keyboard.vue */ 699))
   }
 }
 var render = function() {
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 571));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 578));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 585));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 592));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var payment = function payment() {__webpack_require__.e(/*! require.ensure | component/css/page/payment */ "component/css/page/payment").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/payment */ 704));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var numberKeyboard = function numberKeyboard() {__webpack_require__.e(/*! require.ensure | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then((function () {return resolve(__webpack_require__(/*! @/components/number-keyboard/number-keyboard.vue */ 697));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var passwordInput = function passwordInput() {__webpack_require__.e(/*! require.ensure | components/password-input/password-input */ "components/password-input/password-input").then((function () {return resolve(__webpack_require__(/*! @/components/password-input/password-input.vue */ 690));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 573));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 580));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 587));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 594));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var payment = function payment() {__webpack_require__.e(/*! require.ensure | component/css/page/payment */ "component/css/page/payment").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/payment */ 706));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var numberKeyboard = function numberKeyboard() {__webpack_require__.e(/*! require.ensure | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then((function () {return resolve(__webpack_require__(/*! @/components/number-keyboard/number-keyboard.vue */ 699));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var passwordInput = function passwordInput() {__webpack_require__.e(/*! require.ensure | components/password-input/password-input */ "components/password-input/password-input").then((function () {return resolve(__webpack_require__(/*! @/components/password-input/password-input.vue */ 692));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -218,15 +218,45 @@ __webpack_require__.r(__webpack_exports__);
       isSelfTake: '',
       memo: '',
       signalFlag: false,
-      signalMsg: '' };
+      signalMsg: '',
+      code: '',
+      openId: "" };
 
 
   },
   onLoad: function onLoad(options) {
     this.setData(options);
+    var that = this;
+    uni.login({
+      provider: 'weixin',
+      success: function success(res) {
+        that.code = res.code;
+        that.getOpenId();
+      } });
+
   },
   methods: {
-    pay: function pay(sss) {var _this = this;
+    getOpenId: function getOpenId() {var _this = this;
+      var that = this;
+      uni.wjw_http({
+        header: {
+          'content-type': 'application/json;charset=UTF-8' },
+
+        url: 'app/wechat/getOpenId',
+        type: 'post',
+        data: {
+          appId: 'wx74605d2c3744958c',
+          code: that.code } }).
+
+      then(function (res) {
+        if (res.code == 0) {
+          _this.openId = res.data.openid;
+        }
+      }).catch(function (res) {
+        console.log(res);
+      });
+    },
+    pay: function pay(sss) {var _this2 = this;
       // 发起微信支付
       var callback = function callback(data) {
         that.wxPayment({
@@ -240,6 +270,7 @@ __webpack_require__.r(__webpack_exports__);
           },
           fail: function fail(data) {
             console.log(data);
+            console.log('支付失败！');
           } });
 
       };
@@ -258,7 +289,8 @@ __webpack_require__.r(__webpack_exports__);
           cartIds: that.cartId,
           memo: that.memo,
           isSelfTake: that.isSelfTake,
-          repIds: that.repIds };
+          repIds: that.repIds,
+          openid: that.openId };
 
       }
       // 直接过来的付款
@@ -273,7 +305,8 @@ __webpack_require__.r(__webpack_exports__);
             password: that.password,
             addressId: that.addressId,
             isSelfTake: that.isSelfTake }, _defineProperty(_datas, "repIds",
-          that.repIds), _defineProperty(_datas, "memo",
+          that.repIds), _defineProperty(_datas, "openid",
+          that.openId), _defineProperty(_datas, "memo",
           that.memo), _datas);
 
         }
@@ -284,6 +317,7 @@ __webpack_require__.r(__webpack_exports__);
               userId: id,
               merOrderId: that.orderId,
               password: that.password,
+              openid: that.openId,
               payType: sss };
 
           }
@@ -298,27 +332,29 @@ __webpack_require__.r(__webpack_exports__);
               url: '/pages/orderMsg/successPage?type=' + types });
 
           } else {
-            _this.signalFlag = true;
-            _this.signalMsg = res.msg;
+            _this2.signalFlag = true;
+            _this2.signalMsg = res.msg;
             setInterval(function () {
-              _this.signalFlag = false;
+              _this2.signalFlag = false;
             }, 2500);
 
           }
         } else
         if (sss == 1) {
+          var appids = 'wx74605d2c3744958c';
           if (res.status == 0) {
             var aa = res.result.payInfo || res.result;
             var bb = that.filed;
-            bb.appId = aa.appid;
-            bb.nonceStr = aa.noncestr;
-            bb.timeStamp = aa.timestamp;
-            // bb.prepayId =aa.package;
-            bb.prepayId = "prepay_id=" + aa.prepayid;
-            bb.sign = aa.sign;
+            bb.appId = appids;
+            bb.nonceStr = aa.nonceStr;
+            bb.timeStamp = aa.timeStamp;
+            bb.prepayId = aa.packageValue;
+            bb.sign = aa.paySign;
             that.filed = bb;
             that.password = '';
+
             callback(that.filed);
+
           }
         }
       }).catch(function (res) {

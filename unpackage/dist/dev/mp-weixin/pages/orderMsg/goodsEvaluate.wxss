@@ -26,7 +26,6 @@
 /* 文章场景相关 */
 .uni-evaluate.data-v-2b98548c {
   width: 750rpx;
-  border-top: 20rpx solid #f1f1ef;
 }
 .uni-title.data-v-2b98548c {
   width: 750rpx;

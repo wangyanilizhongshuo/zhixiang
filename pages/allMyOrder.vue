@@ -215,6 +215,7 @@
 				</view>
 			</view>
 		</view>
+		<view class="hbyOccurFlag" v-if="seeMovie">{{seeMpvieMsg}}</view>
 	</view>
 </template>
 <script>
@@ -222,6 +223,8 @@
 	export default {
 		data() {
 			return {
+				seeMovie:false,
+				seeMpvieMsg:'',
 				types: 0,
 				noPayList: [], //未付款
 				hasPayList: [] ,//已付款
@@ -229,11 +232,13 @@
 				hasSendList:[],// 已经发货
 				hasSureList:[],
 				page:1,
-				pageNum:''
+				pageNum:'',
+				cancelFlag:false
 			}
 		},
 		
 		onReachBottom(){
+			console.log('onreacth bottom')
 			if(this.types == 0){
 				this.page+=1;
 				 if(this.pageNum>=this.page){
@@ -241,16 +246,28 @@
 				 }
 			}
 			else if (this.types == 1) {
-				this.getNoPayList()
+				this.page+=1;
+				 if(this.pageNum>=this.page){
+					  this.getNoPayList();
+				 }
 			}
 			else if(this.types ==2){
-				this.getHasPayList();
+				this.page+=1;
+				 if(this.pageNum>=this.page){
+					 this.getHasPayList();
+				 }
 			}
 			else if(this.types ==3){
-				this.getSend();
+				this.page+=1;
+				 if(this.pageNum>=this.page){
+					 this.getSend();
+				 }
 			}
 			else if(this.types ==4){
-				this.getFinish();
+				this.page+=1;
+				 if(this.pageNum>=this.page){
+					 this.getSend();
+				 }
 			}
 		},
 		// 页面加载 
@@ -327,15 +344,21 @@
 					}
 				}).then(res => {
 					if (res.status == 0) {
-						// that.noPayList = res.result.list;
 						that.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.noPayList;
-						that.noPayList = bb.concat(aa)
+						if(that.cancelFlag){
+							that.noPayList=res.result.list; 
+							that.cancelFlag=false;
+						}else{
+							that.noPayList = bb.concat(aa)			 
+						}
+						
+						
 					}
 				})
 			},
-			// 未付款跳到详情页
+		
 			noPayDetail(e,type) {
 				let types =type;
 				// 对所有订单里面的数据进行 分开
@@ -373,7 +396,6 @@
 					}
 				}).then(res => {
 					if (res.status == 0) {
-						// that.hasPayList = res.result.list;
 						that.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.hasPayList;
@@ -399,11 +421,19 @@
 								}
 							}).then(res => {
 								if (res.status == 0) {
-									that.$nextTick(()=>{
-									  this.getNoPayList();
+									uni.showToast({
+										title:'取消成功'
 									})
+									  that.cancelFlag=true;
+									  that.getNoPayList();
 									
-									
+
+								}else{
+									that.seeMovie=true;
+									that.seeMpvieMsg=res.msg;
+									setInterval(()=>{
+										that.seeMovie=false;
+									},2500)
 								}
 							})
 						} else if (data.cancel) {
@@ -701,4 +731,18 @@
 		border:1rpx solid #ff0000!important;
 		font-size: 23rpx!important;
 	}
+	.hbyOccurFlag{
+			position: absolute;
+			top:400rpx;
+			left:250rpx;
+			background-color: green;
+			width:300rpx;height:130rpx;
+			line-height: 130rpx;
+			background-color: #000;
+			color:#fff;
+			text-align: center;
+			opacity: 0.7;
+			border-radius: 20rpx;
+		}
+
 </style>

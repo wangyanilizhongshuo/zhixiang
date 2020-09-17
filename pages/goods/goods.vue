@@ -281,7 +281,7 @@ export default {
         this.getContent();
 		// 购物车的数量
 		this.getCarList();
-		
+		console.log('商品详情页')
 		
 		wx.removeStorageSync('sumMoney');
 	    wx.removeStorageSync('sunJifen');
@@ -370,25 +370,17 @@ export default {
         },
 
         // 选择规格
-        standrd(e) {
-			
+        standrd(e) {			
             //console.log('选择规格', e);
     		var _dataset = this.dataset(e);
     		var id2 = _dataset.id;
     		var name = _dataset.name;
     		var price = _dataset.price;
     		var points = _dataset.points;
-    		// window.localStorage.id2 = id2;
-    		// window.localStorage.name = name;
-    		// window.localStorage.price = price;
-    		// $(".info-price").html("￥"+price)
-    		// $(".current-choose").html("已选择"+'"'+name+'"');
-    		// $(".points-num").html("积分"+points);
     		this.id2=id2;
     		this.price=price;
     		this.name=name;
     		this.points=points;
-    		//console.log(price);
     		this.standrd_index=_dataset.index;
     		
         },
@@ -406,7 +398,6 @@ export default {
 				}).then(res=>{
 					if(res.status ==0){
 					    this.amounts=res.result.length;
-						console.log(this.amounts+'4275437545')
 						this.carList=res.result;
 						
 					}
@@ -417,13 +408,9 @@ export default {
         cmBtn1_fn(e) {
            // console.log('确定加入购物车');
             var userData = wx.getStorageSync('userData');
-			// this.carList.map(res=>{
-			// 	if(res){
-					
-			// 	}else{
-					
-			// 	}
-			// })
+			if(this.id2==''){
+				this.id2=this.goods_info.repertory[0].id;
+			}
             uni.wjw_http({
             	url: 'shoppingcart/save',
                 method: 'post',
@@ -475,20 +462,20 @@ export default {
 	}
  
    .btns{
- 		background-color:white!important;
- 		 margin: 0;
- 		  padding: 0;
- 		  outline: none;
- 		  border-radius: 0;
- 		  background-color: transparent;
- 		  line-height: inherit;
- 		  width: max-content;
+ 		// background-color:white!important;
+ 		 // margin: 0;
+ 		 //  padding: 0;
+ 		 //  outline: none;
+ 		 //  border-radius: 0;
+ 		 //  background-color: transparent;
+ 		 //  line-height: inherit;
+ 		 //  width: max-content;
  	}
  .btns::after {
- 	  border: none;
+ 	  // border: none;
  	}
  	.btns{
- 		background-color:white!important;
+ 		// background-color:white!important;
  		
  	}
 </style>

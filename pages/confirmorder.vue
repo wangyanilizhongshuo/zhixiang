@@ -227,7 +227,7 @@
 
 			<input type="hidden" id="status" value="0">
 		</view>
-		<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
+		<view class="hbyOccurFlag" v-if="signalFlag">请重新登录</view>
 	</view>
 </template>
 <script module="wjw_wxs" lang="wxs" src="@/common/wjw_uni/wjw_com.wxs"></script>
@@ -304,6 +304,15 @@
 
 		onLoad(options) {
 			 this.setData(options);
+			 // let User=wx.getStorageSync('user').id;
+			 // console.log(3152345)
+			 // if(User == ''){
+				//  this.signalFlag=true;
+				//  this.signalMsg='请重新登录';
+				//  setInterval(()=>{
+				// 	 this.signalFlag=false;
+				//  },2500)
+			 // }else{}
 			 if(wx.getStorageSync('cartBuy')){
 				  this.carList = wx.getStorageSync('cartBuy');
 				  this.carList.map(res=>{
@@ -311,16 +320,7 @@
 				  })
 			     this.cartid= this.idss.join(',');
 			 }
-			 // 购物车Id 
-			// var str = this.cartid.toString(); //数字转成字符串
-			// // console.log('str this.cartid.toString()', str);
-			// if (str.indexOf(",") > 0) {
-			// 	var indexcartid = cartid.split(",");
-			// } else {
-			// 	var indexcartid = str.split(",").notempty().join(",");
-			// }
-			// this.indexcartid = indexcartid;
-			// 商品详情
+			
 			this.goodsDetail();
 			this.CarList();
 			this.get_redList();
@@ -693,8 +693,9 @@
 			top:400rpx;
 			left:250rpx;
 			background-color: green;
-			width:300rpx;height:130rpx;
-			line-height: 130rpx;
+			width:300rpx;
+			height:100rpx;
+			line-height: 100rpx;
 			background-color: #000;
 			color:#fff;
 			text-align: center;

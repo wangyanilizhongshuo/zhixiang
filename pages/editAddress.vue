@@ -1,19 +1,9 @@
 <template>
-    <view>
-
-
+    <view class="uni-editAddress"> 
         <!-- 你的html代码 -->
         <div class="page">
             <div class="content">
-                <!-- 
-                <div class="com-top">
-                    <div class="arrow-l" @click='jump' data-url=' ' data-type='6'></div>
-                    <div class="page-title">新增地址</div>
-                    <div class="save-1">
-                        <a class="addsiteserve" href="javascript:;"  @click='jump' data-url=' ' data-type='6' >保存</a>
-                    </div>
-                </div>
-                 -->
+             
                 <div class="list-block mt0">
                     <ul>
                             <li>
@@ -88,7 +78,7 @@
                             </li>
                             </ul>
 
-                <button class="page_btn" @click='address_save' >保存</button>
+                <view class="page_btn" @click='address_save' >保存</view>
 
             </div>
         </div>
@@ -224,7 +214,24 @@
 </script>
 
 <style scoped lang="scss">
-
+ .uni-editAddress{
+	 height: 100vh;
+	 position: relative;
+	 top:0;
+	 left:0;
+ }
+ .page_btn{
+	 width: 750rpx;
+	 height: 100rpx;
+	 line-height: 100rpx;
+	 text-align: center;
+	 background-color: #FF7599;
+	 color: #fff;
+	 position: absolute;
+	 bottom: 0;
+	 left: 0;
+	 margin:0!important;
+ }
 
 
 </style>
