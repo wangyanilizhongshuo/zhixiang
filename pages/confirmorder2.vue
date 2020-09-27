@@ -24,7 +24,7 @@
 </style>
 <div class="confirmorder-top">
    </div>
-<div class="address_bar"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/address_bar.png" alt="" ></div>
+<div class="address_bar"><img src="http://zxyp.hzbixin.cn/files/39001600416127908.jpg" alt="" ></div>
 
 <div id="concon"></div>
 <div class="confirmorder-send">
@@ -89,27 +89,18 @@
                     articleHtml +=
                        ' <p  class="confirmorder-top-per">收货人:&nbsp;'+info.addressee+'</p>' +
                         '    <span class="confirmorder-top-tel">'+info.phone+'</span>' +
-                        '    <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/order_add_icon.png" >\n' +
+                        '    <img src="http://zxyp.hzbixin.cn/files/14481600416169315.jpg" >\n' +
                         '    <p class="confirmorder-top-add">'+info.province_name+info.city_name+info.area_name+info.address+'</p>'
                 }
                 if(i==addressnum){
                     articleHtml +=
                         ' <p  class="confirmorder-top-per">收货人:&nbsp;'+info.addressee+'</p>' +
                         '    <span class="confirmorder-top-tel">'+info.phone+'</span>' +
-                        '    <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/order_add_icon.png" >\n' +
+                        '    <img src="http://zxyp.hzbixin.cn/files/14481600416169315.jpg" >\n' +
                         '    <p class="confirmorder-top-add">'+info.province_name+info.city_name+info.area_name+info.address+'</p>'
                 }
 
-                // if(i>=1) {
-                //     articleHtml +=
-                //         '<div class="choose-address-wrap wrap" data-id="'+i+'">' +
-                //         '<div class="address-detail">' +
-                //         '<span class="receive-name">收货人：'+info.addressee+'</span>' +
-                //         '  <span class="receive-phone">'+info.phone+'</span>' +
-                //         '   <p class="address-val">'+info.province_name+info.city_name+info.area_name+info.address+'</p>' +
-                //         '            </div>' +
-                //         '        </div>'
-                // }
+      
 
             })
             $("body").on("click",".choose-address-wrap",function () {
@@ -164,10 +155,7 @@
             })
 
             $("#concon").append(carHtml)
-            // if(data.result.hasNextPage == true){
-            //     console.log(page+1)
-            //     new getshopCarList(page+1);
-            // }
+          
         }
     }
 

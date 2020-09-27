@@ -29,7 +29,7 @@
     <div class="content">
         <div class="pay-way">
             <div class="pay-way3 pay-way-list" >
-                <div class="pay-img1"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/wechat_icon.png"></div>
+                <div class="pay-img1"><img src="http://zxyp.hzbixin.cn/files/54881600417780274.jpg"></div>
                 <span>微信</span>
                 <label for="s1" class="bui-radios-label bui-radios-anim">
                         <input type="radio" name="memberpay" class="choose choice" value="0" checked typeof="0" id="s1">

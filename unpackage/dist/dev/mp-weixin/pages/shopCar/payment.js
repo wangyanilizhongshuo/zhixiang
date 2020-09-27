@@ -94,10 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   passwordInput: function() {
-    return __webpack_require__.e(/*! import() | components/password-input/password-input */ "components/password-input/password-input").then(__webpack_require__.bind(null, /*! @/components/password-input/password-input.vue */ 692))
+    return __webpack_require__.e(/*! import() | components/password-input/password-input */ "components/password-input/password-input").then(__webpack_require__.bind(null, /*! @/components/password-input/password-input.vue */ 661))
   },
   numberKeyboard: function() {
-    return __webpack_require__.e(/*! import() | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then(__webpack_require__.bind(null, /*! @/components/number-keyboard/number-keyboard.vue */ 699))
+    return __webpack_require__.e(/*! import() | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then(__webpack_require__.bind(null, /*! @/components/number-keyboard/number-keyboard.vue */ 668))
   }
 }
 var render = function() {
@@ -142,7 +142,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 573));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 580));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 587));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 594));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var payment = function payment() {__webpack_require__.e(/*! require.ensure | component/css/page/payment */ "component/css/page/payment").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/payment */ 706));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var numberKeyboard = function numberKeyboard() {__webpack_require__.e(/*! require.ensure | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then((function () {return resolve(__webpack_require__(/*! @/components/number-keyboard/number-keyboard.vue */ 699));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var passwordInput = function passwordInput() {__webpack_require__.e(/*! require.ensure | components/password-input/password-input */ "components/password-input/password-input").then((function () {return resolve(__webpack_require__(/*! @/components/password-input/password-input.vue */ 692));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 563));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 675));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 598));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 577));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var payment = function payment() {__webpack_require__.e(/*! require.ensure | component/css/page/payment */ "component/css/page/payment").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/payment */ 682));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var numberKeyboard = function numberKeyboard() {__webpack_require__.e(/*! require.ensure | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then((function () {return resolve(__webpack_require__(/*! @/components/number-keyboard/number-keyboard.vue */ 668));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var passwordInput = function passwordInput() {__webpack_require__.e(/*! require.ensure | components/password-input/password-input */ "components/password-input/password-input").then((function () {return resolve(__webpack_require__(/*! @/components/password-input/password-input.vue */ 661));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
 
 
 
@@ -220,7 +225,8 @@ __webpack_require__.r(__webpack_exports__);
       signalFlag: false,
       signalMsg: '',
       code: '',
-      openId: "" };
+      openId: "",
+      specialMakeMoney: 1 };
 
 
   },
@@ -234,6 +240,7 @@ __webpack_require__.r(__webpack_exports__);
         that.getOpenId();
       } });
 
+    console.log(options);
   },
   methods: {
     getOpenId: function getOpenId() {var _this = this;
@@ -254,6 +261,34 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).catch(function (res) {
         console.log(res);
+      });
+    },
+    sepcialPay: function sepcialPay() {var _data;
+      var that = this;
+      var id = wx.getStorageSync('user').id;
+      uni.wjw_http({
+        url: 'api/createOrder',
+        data: (_data = {
+          userId: id,
+          id: that.id,
+          payType: 4,
+          repIds: that.repIds,
+          counts: that.counts,
+          password: that.password,
+          addressId: that.addressId,
+          isSelfTake: that.isSelfTake }, _defineProperty(_data, "repIds",
+        that.repIds), _defineProperty(_data, "openid",
+        that.openId), _defineProperty(_data, "memo",
+        that.memo), _data) }).
+
+      then(function (res) {
+        if (res.status == 0) {
+          var types = 5;
+          uni.navigateTo({
+            url: '/pages/orderMsg/successPage?type=' + types });
+
+
+        }
       });
     },
     pay: function pay(sss) {var _this2 = this;
@@ -296,6 +331,7 @@ __webpack_require__.r(__webpack_exports__);
       // 直接过来的付款
       else if (that.type == 0) {var _datas;
           urls = 'api/createOrder';
+
           datas = (_datas = {
             userId: id,
             id: that.id,
@@ -312,6 +348,7 @@ __webpack_require__.r(__webpack_exports__);
         }
         // 继续付款
         else if (that.type == 11) {
+            console.log('继续支付');
             urls = 'api/payOrder';
             datas = {
               userId: id,
@@ -326,6 +363,7 @@ __webpack_require__.r(__webpack_exports__);
         data: datas }).
       then(function (res) {
         if (sss == 3) {
+          // 余额支付
           if (res.status == 0) {
             var types = 2;
             uni.navigateTo({
@@ -334,13 +372,14 @@ __webpack_require__.r(__webpack_exports__);
           } else {
             _this2.signalFlag = true;
             _this2.signalMsg = res.msg;
-            setInterval(function () {
+            setTimeout(function () {
               _this2.signalFlag = false;
             }, 2500);
 
           }
         } else
         if (sss == 1) {
+          console.log('ssss调起微信 支付1');
           var appids = 'wx74605d2c3744958c';
           if (res.status == 0) {
             var aa = res.result.payInfo || res.result;
@@ -352,13 +391,12 @@ __webpack_require__.r(__webpack_exports__);
             bb.sign = aa.paySign;
             that.filed = bb;
             that.password = '';
-
             callback(that.filed);
 
           }
         }
       }).catch(function (res) {
-        setInterval(function () {
+        setTimeout(function () {
           uni.navigateBack({
             delta: 2 });
 

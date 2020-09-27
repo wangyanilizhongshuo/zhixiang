@@ -9,12 +9,12 @@
 					<view class="yzm" v-if="isSendCode" @tap.stop="getCode" :class="yzphone==true?'yamTrue':'yamFalse'">获取验证码</view>
 				    <view class="yzm yamFalse" v-if="!isSendCode"  ><text style="font-size: 32rpx;">{{sendCodeTime}}</text>s后重试</view>
 				</view>
-				<view class="btn"  @click="submit">下一步</view>
+				<view class="btn"  @tap="submit">下一步</view>
             </view> 
 			 <view v-else @tap='KeyboarOpen'  class="passInput">
 				 <password-input :numLng='password'></password-input>
 				 <number-keyboard tabBar ref='KeyboarHid' @input='clickInput' psdLength='6'></number-keyboard>
-			     <view class="btnPassword" @click="submitPassword">确定</view>
+			     <view class="btnPassword" @tap="submitPassword">确定</view>
 			 </view>
     </view>
 </template>

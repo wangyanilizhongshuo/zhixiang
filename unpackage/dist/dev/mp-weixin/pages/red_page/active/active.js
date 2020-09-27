@@ -453,7 +453,12 @@ var _default =
     }
   },
   methods: {
+    // 跳转到提现的页面
+    withDrawals: function withDrawals() {
+      uni.redirectTo({
+        url: '/pages/red_page/cash/cash' });
 
+    },
     // 红包助力列表
     getRedRecord: function getRedRecord() {var _this2 = this;
       var id = wx.getStorageSync('user').id;
@@ -493,13 +498,13 @@ var _default =
           this.getRedRainMoneny();
         } else {
           this.hbyOccur = true;
-          setInterval(function () {
+          setTimeout(function () {
             _this3.hbyOccur = false;
           }, 3000);
         }
       } else {
         this.hbyNumFlag = true;
-        setInterval(function () {
+        setTimeout(function () {
           _this3.hbyNumFlag = false;
         }, 3000);
       }
@@ -541,7 +546,7 @@ var _default =
       // 初始化动画执行当前索引
       var tempIndex = 0;
       // 开始定时器，每隔1秒掉落一次红包
-      that.showInter = setInterval(function () {
+      that.showInter = setTimeout(function () {
         // 生成当前掉落红包的个数，1-3个
         var showNum = Math.ceil(Math.random() * 2);
         // 防止数组越界
@@ -741,7 +746,7 @@ var _default =
           _this8.videoFlag = true;
           _this8.videoFlags = false;
           _this8.seeMovie = true;
-          setInterval(function () {
+          setTimeout(function () {
             _this8.seeMovie = false;
           }, 2500);
           _this8.seeMpvieMsg = res.msg;

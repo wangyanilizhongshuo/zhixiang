@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<view class="info_wrap relative">
-			<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/thzq_bg@2x.png" alt="" class="info_rule_bg">
+			<img src="http://zxyp.hzbixin.cn/files/70321600409493830.jpg" alt="" class="info_rule_bg">
 			<view class="info_box flex flex_column ">
 				<view class="info_rule">规则说明</view>
 				<view class="info_num flex_grow flex_c" v-if="!zqExtra">00.00元</view>
 				<view class="info_num flex_grow flex_c" v-if="zqExtra">{{zqExtra}}.00元</view>
 				<view class="info_btns flex_c">
-					<view class="info_btn flex_c" @click='jump' data-url='/pages/category/thzq/log'>记录明细</view>
+					<view class="info_btn flex_c" @tap='jump' data-url='/pages/category/thzq/log'>记录明细</view>
 					<view class="info_btn flex_c" @tap.stop="addMoney">我要充值</view>
 				</view>
 			</view>
@@ -80,13 +80,14 @@
 					url:'saleevent/listByPage',
 					data:{
 						page:that.pages,
-						pageSize:6
+						pageSize:6,
+						is_special:1
 
 						}
 					}).then(res=>{					
 						if(res.status ==0){
 							that.pageSizes=res.result.pages;
-							 let ii =res.result.list;							
+							let ii =res.result.list;							
 							let jj =that.allGoodList;						
 							jj=jj.concat(ii);
 							that.allGoodList=jj;	
@@ -96,8 +97,9 @@
 			},
 		    // 跳转到详情页
 			jumpDetail(ids){
+				console.log(ids+'id')
 				uni.navigateTo({
-					url:'/pages/goods/goods?id='+ids
+					url:'/pages/goods/goods?id='+ids+'&specialMakeMoney='+4
 				})
 			},
 			// 跳转---充钱

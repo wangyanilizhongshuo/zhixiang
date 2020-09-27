@@ -36,7 +36,6 @@
                     <tr><td date="0">取消</td><td date="1">0</td><td date="-1">X</td></tr>
                 </table>
             </div>
-            <!--        <img class="code-cancel" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cancel.png" alt="">-->
         </div>
     </div>
 </div>

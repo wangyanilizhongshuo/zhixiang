@@ -4,11 +4,10 @@
         <view class="page page-current">
             <view class="content">     
 				<view class="save-1 sousuo" @click="sousuo()" style="display:none;">
-					<img class="search" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/search.png" alt="sing_icon">
+					<img class="search" src="http://zxyp.hzbixin.cn/files/86791600408807854.jpg" alt="sing_icon">
 				</view>
                 <view class="jzl-hotProducts-bigpic ">
-                    <!-- <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/home_hotsell_banner.png" alt=""> -->
-                    <img class="img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/baoBanner.png" alt="">
+                    <img class="img" src="http://zxyp.hzbixin.cn/files/s_1401600408956166.jpg" alt="">
                 </view>
 				
                <scroll-view class="nowrap scrollBg" :class="fixedFlag == true?'classify_box':'classify_boxfix'" scroll-x>

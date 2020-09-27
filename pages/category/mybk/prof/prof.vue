@@ -3,7 +3,7 @@
 		<view class="prof_list ov_hid">
 			<view class="prof_li flex all_ma"
 				v-for="(item,index) in expertList" :key='index' 
-	 			@click='details(item.id)' 
+	 			@tap.stop='details(item.id)' 
 				>
 				<img :src="item.cover" alt="" class="prof_li_img no_shrink">
 				<view class="prof_li_info">
@@ -13,7 +13,7 @@
 					<view class="prof_li_b flex flex_c ">
 						<view class="prof_li_price ta_r flex_grow ">咨询价格:  ¥ {{item.price}}</view>
 						<view class="prof_li_btn no_shrink flex_c"
-							@click='AskQuesExpert()'
+							@tap.stop='AskQuesExpert(item.id)'
 						>问专家</view>
 					</view>
 				</view>
@@ -68,7 +68,6 @@
 						  let b =that.expertList;
 						  this.expertList=b.concat(a);
 				   }
-				  
 				})
 			},
 			details(ids){
@@ -76,11 +75,9 @@
 					url:'/pages/category/mybk/prof/info/info?id='+ids 
 				})
 			},
-			
-			AskQuesExpert(){
-				let user=uni.getStorageSync('user').id;
+			AskQuesExpert(msg){
 				uni.navigateTo({
-					url:'/pages/category/mybk/prof/consult/submit/submit?userId='+user
+					url:'/pages/category/mybk/prof/consult/submit/submit?userId='+msg
 				})
 		  }
 		}

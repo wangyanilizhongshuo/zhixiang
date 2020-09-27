@@ -5,7 +5,7 @@ body{
 .top{
     width: 100%;
     height:70px;
-    background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/odder_bg@2x.png) 0 0 no-repeat;
+    background: url(http://zxyp.hzbixin.cn/files/58721600419478321.jpg) 0 0 no-repeat;
     position: relative;
     background-size: 100% 90px;
 }
@@ -395,7 +395,7 @@ body{
     height: 45px;
 
     border-bottom: 1px solid #f1f1f1;
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_cancel@2x.png") no-repeat #fff 96.6% 15px;
+    background: url("http://zxyp.hzbixin.cn/files/87991600419513637.jpg") no-repeat #fff 96.6% 15px;
     background-size: 4% 15px;
     line-height: 45px;
     font-size: 14px;
@@ -585,7 +585,7 @@ body{
     float: left;
     width: 20px;
     height: 20px;
-    background: url('http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/evaluate_star2.png');
+    background: url('http://zxyp.hzbixin.cn/files/39051600419549506.jpg');
     background-size: 100%;
 }
 
@@ -596,7 +596,7 @@ body{
     float: left;
     width: 20px;
     height: 20px;
-    background: url('http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/evaluate_star1.png');
+    background: url('http://zxyp.hzbixin.cn/files/60411600419585789.jpg');
     background-size: 100%;
 }
 .order-load-btn{

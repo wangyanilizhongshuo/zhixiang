@@ -68,7 +68,7 @@
     height: 2.5rem;
     position: absolute;
     border-bottom: .025rem #e1e1e1 solid;
-    background:#fff url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 96% 50%;
+    background:#fff url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 96% 50%;
     background-size: .3rem;
 }
 .person-message .nick-name{
@@ -146,7 +146,7 @@
     margin-right: 8.666%;
 }
 .receiver-address{
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 96% 50% #ffffff;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 96% 50% #ffffff;
     background-size: .35rem .65rem;
 }
 .receiver-wrap, .receiver-phone, .receiver-address, .receiver-set-address{
@@ -537,7 +537,7 @@
     margin-right: .3rem;
 }
 .setting-safe, .setting-message, .setting-safe2{
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 93% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 93% 50%;
     background-size: .35rem;
 }
 .exit-btn{
@@ -589,7 +589,7 @@
     left: .75rem;
 }
 .loginPassword-modify,.paymentPassword-modify{
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 93% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 93% 50%;
     background-size: .35rem;
 }
 /*设置密码setPassword.html*/

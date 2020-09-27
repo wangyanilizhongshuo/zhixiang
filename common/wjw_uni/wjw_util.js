@@ -353,13 +353,21 @@ function isCardNo(card) {
 	function getUserId() {
 	      return wx.getStorageSync('user').id;
 	  }
+	  function getMerId() {
+		  
+	        return wx.getStorageSync('user').mer_id ||0;
+	    }
 	   /**
 	   * 生成转发的url参数getShareUrlParams
 	   */
 	function  getShareUrlParams(params) {
 	      let _this = this;
+		   // console.log(getMerId())
 	       return urlEncode(Object.assign({
-	         invite_id: getUserId()
+	         invite_id: getUserId(),
+			 mer_id:getMerId()
+			 // mer_id:getMerId()
+			
 	       }, params));
 	  }
 

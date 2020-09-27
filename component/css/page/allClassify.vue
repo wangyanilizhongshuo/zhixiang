@@ -10,7 +10,7 @@
 
 <style>
 	.left-area .nav-bar {
-	    width: 100%;
+	    width: 180rpx;
 	    height: 100%;
 	    background-color: #FFF6F8 !important;
 	    overflow-y: scroll;
@@ -33,9 +33,11 @@
 	}
 
 	.classify-area .left-area .nav-item {
-	    width: 4.1rem;
-	    height: 2.4rem;
-	    line-height: 2.4rem;
+	  /*  width: 4.1rem;
+	    height: 2.4rem; */
+		width: 180rpx!important;
+		height: 100rpx!important;
+	    line-height: 100rpx;
 	    text-align: center;
 	    font-size: .7rem;
 	    position: relative;

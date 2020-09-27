@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniPopup: function() {
-    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 564))
+    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 554))
   }
 }
 var render = function() {
@@ -140,7 +140,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniPopup = function uniPopup() {Promise.all(/*! require.ensure | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 564));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniPopup = function uniPopup() {Promise.all(/*! require.ensure | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 554));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -320,6 +320,7 @@ __webpack_require__.r(__webpack_exports__);
     getAddress: function getAddress() {var _this2 = this;
       var that = this;
       var mm = that.msg;
+      console.log(this.msg);
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
         url: 'address/list',
@@ -328,13 +329,16 @@ __webpack_require__.r(__webpack_exports__);
 
       then(function (res) {
         var a = res.result;
-        var cc = 0;
+        var cc = '';
+        // console.log(res.result)
         a.map(function (res) {
           if (mm.address_id == res.id) {
             cc = res;
           }
         });
         _this2.addRess = cc;
+        // console.log('get address');
+        // console.log(this.addRess)
 
       });
     },
@@ -358,11 +362,13 @@ __webpack_require__.r(__webpack_exports__);
                 uni.showToast({
                   title: '取消成功' });
 
-                uni.navigateBack();
+                setTimeout(function () {
+                  uni.navigateBack();
+                }, 3000);
               } else {
                 that.seeMovie = true;
                 that.seeMpvieMsg = res.msg;
-                setInterval(function () {
+                setTimeout(function () {
                   that.seeMovie = false;
                 }, 2500);
               }
@@ -463,7 +469,7 @@ __webpack_require__.r(__webpack_exports__);
                   duration: 2000 });
 
                 var types = 5;
-                setInterval(function () {
+                setTimeout(function () {
                   uni.navigateTo({
                     url: '/pages/orderMsg/successPage?type=' + types });
 
@@ -502,7 +508,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 2000 });
 
           var types = 4;
-          setInterval(function () {
+          setTimeout(function () {
             uni.navigateTo({
               url: '/pages/orderMsg/successPage?type=' + types });
 

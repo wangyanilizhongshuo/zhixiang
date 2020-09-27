@@ -4,7 +4,7 @@
 			 <view class="read" @click="allRead">全部已读</view>
 			 <view class="uni-message" v-for="(item,index) in messageList" :key="index" @click='jumpDetail(item.id,item.content,item.create_time)'>
 				 <view class="uni-left">
-					 <image class="img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sys_msg.png"></image>
+					 <image class="img" src="http://zxyp.hzbixin.cn/files/63851600411584627.jpg"></image>
 				     <text v-if="item.unread ==0" class="spot"></text>
 				 </view>
 				 <view class="uni-right">

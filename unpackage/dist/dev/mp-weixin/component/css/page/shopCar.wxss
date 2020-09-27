@@ -1,17 +1,19 @@
 
 .Noexist ._p{ text-align:center; margin-bottom:15px; font-size:14px;}
 .Noexist-img ._img{ 
-    width:4rem ;
+        width:4rem ;
 }
 .settle-accounts-wrap{
-	bottom: 0;
+    	bottom: 0;
 }
 .cart-img {
-	width: 40rpx;
-	height: 40rpx;
+		display: block;
+    	width: 40rpx;
+    	height: 40rpx;
 }
 .check-all{
-	width: 40rpx;
-	height: 40rpx;
+    	width: 40rpx!important;
+    	height: 40rpx;
+    	display: inline-block;
 }
 

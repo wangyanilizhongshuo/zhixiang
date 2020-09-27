@@ -8,23 +8,23 @@
 		  <view class="uni-question">
 			 <view class="uni-title">{{detailData.question}}</view>
 			 <view class="list">
-					<img class="image"  @tap="choice(1)" v-if="chioceFlag1" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"
+					<img class="image"  @tap="choice(1)" v-if="chioceFlag1" src="http://zxyp.hzbixin.cn/files/55921600414667652.jpg"
 					 >
-					<img class="image" @tap="choice(1)" v-if="!chioceFlag1" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"
+					<img class="image" @tap="choice(1)" v-if="!chioceFlag1" src="http://zxyp.hzbixin.cn/files/39771600414731408.jpg"
 					>
 					<text class="uni-text">{{detailData.answer1}}</text>
 			 </view>
 			 <view class="list">
-						<img  class="image" @tap="choice(2)" v-if="chioceFlag2" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"
+						<img  class="image" @tap="choice(2)" v-if="chioceFlag2" src="http://zxyp.hzbixin.cn/files/55921600414667652.jpg"
 						 >
-						<img class="image" @tap="choice(2)" v-if="!chioceFlag2" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"
+						<img class="image" @tap="choice(2)" v-if="!chioceFlag2" src="http://zxyp.hzbixin.cn/files/39771600414731408.jpg"
 						>
 						<text class="uni-text">{{detailData.answer2}}</text>
 			 </view>
 			 <view class="list">
-						<img class="image"  @tap="choice(3)" v-if="chioceFlag3" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"
+						<img class="image"  @tap="choice(3)" v-if="chioceFlag3" src="http://zxyp.hzbixin.cn/files/55921600414667652.jpg"
 						 >
-						<img class="image" @tap="choice(3)" v-if="!chioceFlag3" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"
+						<img class="image" @tap="choice(3)" v-if="!chioceFlag3" src="http://zxyp.hzbixin.cn/files/39771600414731408.jpg"
 						>
 						<text class="uni-text">{{detailData.answer3}}</text>
 			 </view>

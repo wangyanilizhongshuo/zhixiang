@@ -3,7 +3,7 @@
         <view class="uni-content">
 			 <view class="uni-message" >
 				 <view class="uni-left">
-					 <image class="img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sys_msg.png"></image>
+					 <image class="img" src="http://zxyp.hzbixin.cn/files/63931600411911684.jpg"></image>
 				 </view>
 				 <view class="uni-right">
 					 <view class="up">

@@ -18,12 +18,13 @@
     	bottom: 0;
     }
     .cart-img {
+		display: block;
     	width: 40rpx;
     	height: 40rpx;
     }
     .check-all{
-    	width: 40rpx;
+    	width: 40rpx!important;
     	height: 40rpx;
-    	
+    	display: inline-block;
     }
 </style>

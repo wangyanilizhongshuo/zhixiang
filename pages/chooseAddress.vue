@@ -5,13 +5,7 @@
         <!-- 你的html代码 -->
         <div class="page">
             <div class="content">
-                <!-- 
-                <div class="com-top">
-                    <div class="arrow-l" @click='jump' data-url=' ' data-type='6'></div>
-                    <div class="page-title">选择地址</div>
-                    <div class="save-2">地址管理</div>
-                </div>
-                 -->
+               
                 <div class="choose-address-list">
                     <div class="choose-address-wrap wrap" data-add="1635" data-id="0">
                         <div class="address-detail"><span class="receive-name">收货人：测试</span> <span class="receive-phone">15868382139</span>

@@ -49,7 +49,7 @@
 							title:'意见提交成功',
 							duration:3000
 						})
-						setInterval(()=>{
+						setTimeout(()=>{
 							uni.navigateBack()
 						},2000)
 						

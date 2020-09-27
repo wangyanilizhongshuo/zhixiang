@@ -5,7 +5,7 @@
 		<div class="red_page_cash_mask z_1000 mask mask_bg" v-if='red_page_cash_show' @tap.stop='red_page_cash_show=false'>
 			<div class="red_page_cash_warp">
 				<div class="red_page_cash_false ov_hid">
-					<img @tap.stop="jumpNext"  src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cancel@2x.png" alt="" class="red_page_cash_false_img"  />
+					<img @tap.stop="jumpNext"  src="http://zxyp.hzbixin.cn/files/95061600400579273.jpg" alt="" class="red_page_cash_false_img"  />
 				</div>
 				<div class="red_page_cash_box relative" @tap.stop="jumpNext"  >
 					<img src="http://zxyp.hzbixin.cn/files/73041598325949807.jpg" alt="" class="red_page_cash_box_bg" />
@@ -18,13 +18,13 @@
 							</view>
 						</view>
 						<div class="red_page_cash_tip_box flex_c ">
-							<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/wechatpay_icon@2x.png" alt="" class="red_page_cash_tip_icon" />
+							<img src="http://zxyp.hzbixin.cn/files/14341600400382526.jpg" alt="" class="red_page_cash_tip_icon" />
 							<div class="red_page_cash_tip_txt">累计到{{numericalValue}}元就能提现</div>
 						</div>
 						<div class="red_page_cash_progress_box relative">
 							<div class="red_page_cash_progress relative" :style="'width:'+percents+'%'">
 								<div class="red_page_cash_progress_tip_box width_percent">
-									<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/dialog_box@2x.png" alt="" class="red_page_cash_progress_bg float_r" />
+									<img src=" http://zxyp.hzbixin.cn/files/46021600400803422.jpg" alt="" class="red_page_cash_progress_bg float_r" />
 									<div class="red_page_cash_progress_txt txt_over_ell progress_po_a max_width_percent">仅差{{cPrice}}元</div>
 								</div>
 							</div>
@@ -37,7 +37,7 @@
 
 		<div class="red_page_info relative">
 			<div class="red_page_info_bg_box flex_c ov_hid">
-				<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/redbag_bg.png" alt="" class="red_page_info_bg no_shrink">
+				<img src="http://zxyp.hzbixin.cn/files/38691600399942625.jpg" alt="" class="red_page_info_bg no_shrink">
 			</div>
 			<div class="red_page_info_content absolute">
 				<div class="red_page_info_title">恭喜获得现金</div>
@@ -52,22 +52,7 @@
 		<div class="received_list_wrap">
 			<div class="received_list_title">已领取{{redRecord.length}}个</div>
 			<div class="received_list">
-				<!-- <div class="received_li flex best_received_li" >
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_head1.png" alt="" class="received_li_img no_shrink">
-					<div class="received_li_info_box flex_grow flex lh1">
-						<div class="received_li_info flex_grow">
-							<div class="received_li_name">大胖胖</div>
-							<div class="received_li_time">10:20</div>
-						</div>
-						<div class="received_li_price_box no_shrink">
-							<div class="received_li_price_num">43345元</div>
-							<div class="received_li_price_tip_box flex flex_c">
-								<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/crown@2x.png" alt="" class="received_li_price_tip_icon no_shrink">
-								<div class="received_li_price_tip_txt">手气最佳</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
+				
 				<div class="received_li flex"  v-for="(item,index) in redRecord" :key='index' >
 					<img :src="item.headPhoto" class="received_li_img no_shrink">
 					<div class="received_li_info_box flex_grow flex lh1">
@@ -78,7 +63,7 @@
 						<div class="received_li_price_box no_shrink">
 							<div class="received_li_price_num">{{item.currentAmount}}元</div>
 							<div class="received_li_price_tip_box flex flex_c">
-								<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/crown@2x.png" alt="" class="received_li_price_tip_icon no_shrink">
+								<img src="http://zxyp.hzbixin.cn/files/96321600413808233.jpg" alt="" class="received_li_price_tip_icon no_shrink">
 								<div class="received_li_price_tip_txt">手气最佳</div>
 							</div>
 						</div>
@@ -109,6 +94,7 @@
 			this.getRedDetail();
 			this.getRedRecord();
 			this.getBalance();
+			this.getRedzhuli();
 		},
 		methods: {
 			// 领取红包
@@ -133,7 +119,7 @@
 				let a=this.redDetail.currentAmount;
 				let b=this.numericalValue;
 				if(a==b){
-					uni.navigateTo({
+					uni.redirectTo({
 						url:'/pages/red_page/cash/cash'
 					})
 				}else{
@@ -174,9 +160,9 @@
 					}
 				})
 			},
-			// 红包助力列表
+			// 红包领取列表
 			getRedRecord(){
-				let id =wx.getStorageSync('user').id
+				let id =wx.getStorageSync('user').id;
 				uni.wjw_http({
 					url:'app/cduserredenvelope/list',
 					type:'get',
@@ -187,7 +173,8 @@
 						let aa=res.data;
 						for(let i in aa){
 							 let a = new Date(aa[i].createTime);
-							aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
+							aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')
+							// aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
 						}
 						this.redRecord=aa;
 					}
@@ -220,8 +207,24 @@
 				 if(this.numericalValue ){
 					 
 				 }
-				uni.navigateTo({
+				uni.redirectTo({
 					url:'/pages/red_page/active/active?sumMoney='+this.numericalValue+'&sxtime='+this.redDetail.expirationTime
+				})
+			},
+			getRedzhuli(){
+				let id =wx.getStorageSync('user').id;
+				uni.wjw_http({
+					url:'app/cduserredenvelopeassistance/list',
+					type:'get',
+					data:{
+						userId:id,
+						 limit:4,
+						 page:1
+						
+					}
+				}).then(res=>{
+					console.log('红包记录')
+					console.log(res)
 				})
 			}
 			

@@ -7,19 +7,19 @@
             <!-- 工具栏 -->
             <nav class="bar bar-tab">
                 <a class="tab-item external" href="index.html" id="home">
-                    <span class="icon"><img class="home-img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/home01.png" alt=""></span>
+                    <span class="icon"><img class="home-img" src="http://zxyp.hzbixin.cn/files/661600415603273.jpg" alt=""></span>
                     <span class="tab-label">商城首页</span>
                 </a>
                 <a class="tab-item active  external" href="classify.html" id="sort">
-                    <span class="icon"><img class="sort-img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/classification02.png" alt=""></span><span class="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/classification02.png"></span>
+                    <span class="icon"><img class="sort-img" src="http://zxyp.hzbixin.cn/files/68631600415634252.jpg" alt=""></span>
                     <span class="tab-label">产品分类</span>
                 </a>
                 <a class="tab-item external" href="shopCar.html" id="cart">
-                    <span class="icon"><img class="shopCart-img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/shopping_cart01.png" alt=""></span>
+                    <span class="icon"><img class="shopCart-img" src="http://zxyp.hzbixin.cn/files/50601600415667712.jpg" alt=""></span>
                     <span class="tab-label">购物车</span>
                 </a>
                 <a class="tab-item external" href="personCenter.html" id="center">
-                    <span class="icon"><img class="center-img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personal_center01.png" alt=""></span>
+                    <span class="icon"><img class="center-img" src="http://zxyp.hzbixin.cn/files/22111600415746879.jpg" alt=""></span>
                     <span class="tab-label">我的</span>
                 </a>
             </nav>

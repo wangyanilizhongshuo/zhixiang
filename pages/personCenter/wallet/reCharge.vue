@@ -2,7 +2,7 @@
 	<view class="recharge">
 		<view  class="uni-momenyInput styles">
 			<text class="word">金额</text>
-			<input v-model="money" type="number" class="uni-input" placeholder="请输入充值金额" />
+			<input v-model="money" type="number" class="uni-input" placeholder="请输入充值金额,充值金额大于1元" />
 		</view>
 		<view  class="uni-pay styles" @tap.stop="getPort">
 			 <image class="img" src="http://zxyp.hzbixin.cn/files/75901597916988861.jpg"></image>
@@ -25,21 +25,21 @@
 		},
 		methods:{
 			getPort(){
+				let that=this;
 				let id =wx.getStorageSync('user').id;
 				let callback = data => {
 					this.wxPayment({
 						result: data,
 						success: data => {
 							//跳转到订单页面
-							console.log(1111)
-							let types=5;
+							// console.log(1111)
+							let types=9;
 							uni.navigateTo({
 								url:'/pages/orderMsg/successPage?type='+types
 							})
 						},
 						fail: data => {
-							console.log(data)	
-							console.log(222222)
+							
 						}
 					});
 				};

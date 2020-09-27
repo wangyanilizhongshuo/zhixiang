@@ -356,7 +356,7 @@ function jump(e) {
     }
     // 登录检测
     if (check) {
-  // console.log('wangyani')
+
         // login_check 登录检测
         if (login_check && login_check()) {
               delayJump(login_url, 0);

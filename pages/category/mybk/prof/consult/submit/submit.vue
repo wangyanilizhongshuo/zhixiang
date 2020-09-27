@@ -14,18 +14,18 @@
 		<view class="img_info_list all_pd_l flex flex_wrap">
 			<view class="img_info_li" v-for="(item,index) in bodyPhotoUrl" :key="index">
 				<image @tap="injuryPreviewImage(index)" :src="item" alt="" class="img_info_li_img  no_shrink" />
-				<image @click="delImg(index)" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/del@2x.png"
+				<image @tap="delImg(index)" src="http://zxyp.hzbixin.cn/files/41481600395893144.jpg"
 				 alt="" class="img_info_li_icon  no_shrink" />
 			</view>
 			<view class="img_info_li">
-				<image v-if="bodyPhotoUrl.length>=0 && bodyPhotoUrl.length<9" @click="bodyPhotoAdd()" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/upload@2x.png"
+				<image v-if="bodyPhotoUrl.length>=0 && bodyPhotoUrl.length<9" @tap="bodyPhotoAdd()" src="http://zxyp.hzbixin.cn/files/6301600395783852.jpg"
 				 alt="" class="img_info_li_icon_add">
 			</view>
 		</view>
 		<!-- <view class="consult_btn flex_c op_0">提交</view> -->
 		<!-- @click='jump' data-url='/pages/category/mybk/prof/consult/consult' -->
-		<view class="consult_btn flex_c fixed po_bottom width_perc" @click='submitMes()'>提交</view>
-
+		<view class="consult_btn flex_c fixed po_bottom width_perc" @tap='submitMes'>提交</view>
+		<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
 	</view>
 </template>
 <script>
@@ -34,6 +34,8 @@
 		data() {
 			return {
 				userId: '',
+				signalFlag:false,
+				signalMsg:"",
 				bodyPhotoUrl: [],
 				content: '',
 				zhifuCode: '',
@@ -77,9 +79,10 @@
 				})
 			},
 			submitMes() {
+			
 				let that = this;
 				let a = that.bodyPhotoUrl;
-				let userId = uni.getStorageSync('user').id;
+				let userid = uni.getStorageSync('user').id;
 				let callback = data => {
 					// 发起微信支付
 					// console.log(data)
@@ -97,6 +100,8 @@
 						},
 					});
 				};
+				console.log(that.userId)
+				console.log(userid)
 				if (!that.content == '') {
 					uni.wjw_http({
 						//  header:{
@@ -107,7 +112,7 @@
 						data: {
 							expertId: that.userId,
 							issues: that.content,
-							userId: userId,
+							userId: userid,
 							// token:token,
 							openId:that.openId,
 							picture: that.upUrlList
@@ -128,6 +133,12 @@
 
 							}
 
+						}else{
+							that.signalFlag=true;
+							that.signalMsg=res.msg;
+							setTimeout(()=>{
+								that.signalFlag=false;
+							},2500)
 						}
 					}).catch(res => {
 
@@ -222,7 +233,19 @@
 		color: rgba(65, 65, 65, 1);
 	}
 
-
+     .hbyOccurFlag{
+		 position: absolute;
+		 top:400rpx;
+		 left:250rpx;
+		 background-color: green;
+		 width:300rpx;height:130rpx;
+		 line-height: 130rpx;
+		 background-color: #000;
+		 color:#fff;
+		 text-align: center;
+		 opacity: 0.7;
+		 border-radius: 20rpx;
+	 }
 	.info_head {}
 
 	.info_bar {}

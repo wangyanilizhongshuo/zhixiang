@@ -17,7 +17,7 @@
 	                    </swiper>
                     </div>
                     <div class="goods-detail-popout" style="display: block;" v-if='cmBtn1_show'>
-                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/rob_integral_succeed@2x.png">
+                        <img src="http://zxyp.hzbixin.cn/files/58981600407864722.jpg">
                         <span>已加入购物车</span>
                     </div>
                     <div class="goods-info">
@@ -85,17 +85,17 @@
                             <div class="goodsContent">
                                 <div class="goodsContent-list" v-for="(info,index) in goodscomment" :key='index+"goodscomment"' >
                                     <div class="content-top">
-                                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/rob_integral_evaluatedhead@2x.png">
+                                        <img style="display: inline-block;width:60rpx;height:60rpx;padding:0rpx;margin-right:15rpx;border-radius:30rpx; ;" :src="info.head_photo">
                                         <span class="content-name">{{info.nickname}}</span>
                                         <span class="content-data">{{timestampToTime(info.create_time)}}</span>
                                     </div>
                                     <div class="content-text">
-                                        <span>{{info.content}}</span>
+                                        <span style="display: inline-block;margin:20rpx 0;;">{{info.content}}</span>
                                     </div>
-                                    <div class="content-img">
-                                        <img v-if='info.pic1' :src="info.pic1">
-                                        <img v-if='info.pic2' :src="info.pic2">
-                                        <img v-if='info.pic3' :src="info.pic3">
+                                    <div class="content-img" v-if=' info.pic1 || info.pic2 || info.pic3'>
+                                        <img style="border-radius: 20rpx;" v-if='info.pic1!="undefined"' :src="info.pic1">
+                                        <img style="border-radius: 20rpx;" v-if='info.pic2!="undefined"' :src="info.pic2">
+                                        <img style="border-radius: 20rpx;" v-if='info.pic3!="undefined"' :src="info.pic3">
                                     </div>
                                 </div>
                             </div>
@@ -124,8 +124,8 @@
 								 </a>
 							</button>
 						</li>
-                    <li class="btn-addCart" @click='popup_num_show=true'>加入购物车 </li>
-                    <li class="btn-buy" @click='popup_num2_show=true'>立即购买</li>
+                    <li class="btn-addCart" @tap='specialMakeMoney ==4?popup_num_show=false:popup_num_show=true'>加入购物车 </li>
+                    <li class="btn-buy" @tap='popup_num2_show=true'>立即购买</li>
                 </ul>
             </div>
         </div>
@@ -191,7 +191,7 @@
                     </div>
                 </div>
                 <!-- type=0&id="+id+"&num="+num+'&name='+name+'&price='+price+'&points='+points -->
-                <div class="btn-ok" id="cmBtn2" @click='jump' :data-url='"/pages/confirmorder"+"?"+"type=0&id="+id+"&id2="+(id2||goods_info.repertory[0].id)+"&num="+amount+"&name="+(name||goods_info.repertory[0].name)+"&price="+(price||wjw_wxs.toFixed((goods_info.repertory[0].price/100),2))+"&points="+(points||goods_info.repertory[0].points)'>确定</div>
+                <div class="btn-ok" id="cmBtn2" @click='jump' :data-url='"/pages/confirmorder"+"?"+"type=0&id="+id+"&id2="+(id2||goods_info.repertory[0].id)+"&num="+amount+"&name="+(name||goods_info.repertory[0].name)+"&price="+(price||wjw_wxs.toFixed((goods_info.repertory[0].price/100),2))+"&points="+(points||goods_info.repertory[0].points)+"&specialMakeMoney="+specialMakeMoney'>确定</div>
             </div>
         </div>
         <div class="popup-overlay modal-overlay-visible" @click='popup_num2_show=false' v-if='popup_num2_show'></div>
@@ -201,11 +201,11 @@
             <div class="pop-content">
                 <div class="popup-vx">
                     <div class="popup-vx1">
-                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/share_wechat@2x.png">
+                        <img src="http://zxyp.hzbixin.cn/files/48571600408249647.jpg">
                         <span>微信好友</span>
                     </div>
                     <div class="popup-vx2">
-                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/share_friends@2x.png">
+                        <img src="http://zxyp.hzbixin.cn/files/12321600408281138.jpg">
                         <span>微信朋友圈</span>
                     </div>
                 </div>
@@ -256,7 +256,8 @@ export default {
         	standrd_index: 0,
 			// 购物车的列表 以及购物车数量
 			carList:'',
-			amounts:0
+			amounts:0,
+			specialMakeMoney:''
         }
     },
     onShow() {
@@ -281,12 +282,18 @@ export default {
         this.getContent();
 		// 购物车的数量
 		this.getCarList();
-		console.log('商品详情页')
+		
 		
 		wx.removeStorageSync('sumMoney');
 	    wx.removeStorageSync('sunJifen');
 	    wx.removeStorageSync('cartBuy');
-		// console.log(options)
+		// 这里来判断是不是特惠赚钱的 specialMakeMoney==4
+		if(this.specialMakeMoney ==''){
+			this.specialMakeMoney=1;
+			console.log(this.specialMakeMoney+'specialMakeMoney');
+		}else{
+			console.log(this.specialMakeMoney+'specialMakeMoney');
+		}
     },
     methods: {
 
@@ -424,7 +431,7 @@ export default {
                 // console.log('确定加入购物车 接口 请求成功', res);
 		        this.cmBtn1_show=true;
 				this.getCarList()
-		        setInterval(res=>{
+		        setTimeout(res=>{
 		        	this.cmBtn1_show=false;
 		        },500)
             }).catch(res=>{

@@ -16,7 +16,7 @@
 			<view class="record_list_head all_list_head flex flex_align_c">
 				<view class="record_list_title all_list_title flex_grow flex flex_align_c ">
 					<span class="record_list_title_txt all_list_title_txt">咨询记录</span>
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/tag3@2x.png" alt="" class="record_list_title_icon all_list_title_icon no_shrink">
+					<img src="http://zxyp.hzbixin.cn/files/18391600409269179.jpg" alt="" class="record_list_title_icon all_list_title_icon no_shrink">
 				</view>
 			</view>
 		

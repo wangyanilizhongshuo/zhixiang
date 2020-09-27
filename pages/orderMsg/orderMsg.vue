@@ -2,7 +2,7 @@
 	<view class="uni-detail">
 		<view class="uni-title">
 			<text v-if="type ==1">等待买家付款</text>
-			<text v-if="type ==2">等待买家收货</text>
+			<text v-if="type ==2">等待卖家发货</text>
 			<text v-if="type ==3">等待买家收货</text>
 			<text v-if="type ==7">已关闭</text>
 		</view>
@@ -102,8 +102,8 @@
 			    </view>
 				<view class="pop-content">
                      <view class="pop-list" v-for="(item,index) in reasonList" :key="index" :style="item.occur ==true? 'display:block':'display:none'">
-						 <image  class="img"  v-if="item.choiceFlag " @tap.stop="choiceReason(item,index)" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"></image>
-					     <image class="img"   v-if="!item.choiceFlag" @tap.stop="item.choiceFlag=true" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"></image>
+						 <image  class="img"  v-if="item.choiceFlag " @tap.stop="choiceReason(item,index)" src="http://zxyp.hzbixin.cn/files/85081600411357449.jpg"></image>
+					     <image class="img"   v-if="!item.choiceFlag" @tap.stop="item.choiceFlag=true" src="http://zxyp.hzbixin.cn/files/68951600411393549.jpg"></image>
 						  <text  class="word" v-if="item.occur" >{{item.value}}</text>
 					 </view>
 						<textarea  v-if="textareaFlag"  focus class="poptextarea poptextareas" :value="textContent" @blur="contents" ></textarea> 
@@ -177,7 +177,8 @@
 			// 获取地址 匹配
 			 getAddress(){
 				 let that=this;
-				 let mm=that.msg
+				 let mm=that.msg;
+				 console.log(this.msg)
 				 let id =wx.getStorageSync('user').id
 				 uni.wjw_http({
 					 url:'address/list',
@@ -186,13 +187,16 @@
 					 }
 				 }).then(res=>{
 					 let a=res.result;
-					 let cc=0;
+					 let cc='';
+					 // console.log(res.result)
 					 a.map(res=>{
 						if(mm.address_id == res.id){
 						   cc=res;
 						}
 					 })
-					 this.addRess=cc
+					 this.addRess=cc;
+					 // console.log('get address');
+					 // console.log(this.addRess)
 					
 				 })
 			 },
@@ -216,11 +220,13 @@
 									uni.showToast({
 										title:'取消成功'
 									})
-				 					uni.navigateBack()
+									setTimeout(()=>{
+										uni.navigateBack();
+									},3000)
 				 				}else{
 									that.seeMovie=true;
 									that.seeMpvieMsg=res.msg;
-									setInterval(()=>{
+									setTimeout(()=>{
 										 that.seeMovie=false;
 									},2500)
 								}
@@ -321,7 +327,7 @@
 											duration:2000											
 										})
 					            		let types=5;
-										setInterval(()=>{
+										setTimeout(()=>{
 											uni.navigateTo({
 					            			   url:'/pages/orderMsg/successPage?type='+types
 					            		      })
@@ -360,7 +366,7 @@
 								duration:2000											
 							})
 							let types=4;
-							setInterval(()=>{
+							setTimeout(()=>{
 								uni.navigateTo({
 								   url:'/pages/orderMsg/successPage?type='+types
 							    })

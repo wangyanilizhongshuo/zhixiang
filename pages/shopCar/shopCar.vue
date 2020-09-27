@@ -6,20 +6,27 @@
 				<ul class="car-list" v-for="(item,index) in carList" key="index">
 					<li class="swipeout" data-id="6128" eventid="50472" subeventid="145891" data-url='/pages/goods/goods'>
 						<view class="swipeout-content order-content br-bt " data-id="1">
-							<img class="cart-img" data-index="1" @click.native.stop="choice(index)" v-if="item.flagChoice" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"
+							<img class="cart-img" data-index="1" @tap.stop="choice(index)" v-if="item.flagChoice" src="http://zxyp.hzbixin.cn/files/11511600414285168.jpg"
 							 alt="" date="0">
-							<img class="cart-img" data-index="1" @click.native.stop="choice(index)" v-if="!item.flagChoice" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"
+							<img class="cart-img" data-index="1" @tap.stop="choice(index)" v-if="!item.flagChoice" src="http://zxyp.hzbixin.cn/files/62141600414451868.jpg"
 							 alt="" date="0">
-							<img class="order-img" data-index="1" :src="item.pic" alt="">
+							<img class="order-img  orderImg" data-index="1" :src="item.pic" alt="">
 							<view class="cart-right pull-right">
 								<p class="cart-title uni-titles">{{item.title}}</p>
 								<p class="cart-style" attr_name="锌营养包">{{item.attr_name}}</p>
-								<p class="cart-price pull-left">￥<span class="cart-num">{{item.price}}</span><span>积分<span class="cart-num2">{{item.points}}</span></span></p>
-								<view class="num-choose-wrap pull-right clearfix">
-									<button class="num-reduce left button pull-left" type="default" @tap.stop="subtraction(index)" data-id="6128">-</button>
-									<label class="num-at pull-left uni-label" type="button" id="num">{{item.buy_num}}</label>
-									<button class="num-add right button pull-left" type="default" data-id="6128" @tap.stop="addition(index)">+</button>
+								<view class="third-style">
+									<view class="cart-price pull-left" style="font-size: 26rpx;">
+										<span style="margin-right: 10rpx;">￥{{item.price}}</span>
+										<span >积分{{item.points}}</span>
+									</view>
+									<view class="carBtns">
+										<view class="carBtn-left carBtn-style" @tap.stop="subtraction(index)">-</view>
+										<view class="carBtn-center">{{item.buy_num}}</view>
+										<view class="carBtn-right carBtn-style"@tap.stop="addition(index)" >+</view>
+									</view>
+									
 								</view>
+								
 							</view>
 						</view>
 						<!-- Swipeout actions right -->
@@ -33,15 +40,15 @@
 			<view style="height: 50px"></view>
 			<!--<p class="post-free">还差<span class="lack-num">9</span>元就能包邮<a class="external" href="index.html">[去凑单]</a></p>-->
 			<view class="settle-accounts-wrap">
-				<img class="check-all" v-if="allChoiceFlag" @click="allChoice()" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"
+				<img class="check-all" style="width:30rpx;" v-if="allChoiceFlag" @tap="allChoice" src="http://zxyp.hzbixin.cn/files/62141600414451868.jpg"
 				 alt="" date="0"><span class="selectAll">全选</span>
-				<img class="check-all" v-if="!allChoiceFlag" @click="allChoice()" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_selected.png"
+				<img class="check-all" style="width:30rpx;" v-if="!allChoiceFlag" @tap="allChoice"  src="http://zxyp.hzbixin.cn/files/11511600414285168.jpg" 
 				 alt="" date="0"><span class="selectAll">全选</span>
-				<p class="cart-total-txt" v-if="deleFlag">合计:<span class="total-num">￥<span class="total-val">{{sumMoney}}</span></span></p>
-				<p class="points-total-txt" v-if="deleFlag">积分:<span class="total-num total-num2"><span class="total-val total-val2">{{integral}}</span></span></p>
+				<p class="cart-total-txt" v-if="deleFlag" >合计: <span class="total-num" style="position:relative;top:-5rpx;font-size: 36rpx;">  ￥<span class="total-val" >{{sumMoney}}</span></span></p>
+				<p class="points-total-txt" v-if="deleFlag" style="left:11.5rem">积分: <span class="total-num total-num2"><span class="total-val total-val2"  style="position:relative;top:-5rpx;font-size: 36rpx;margin-left:10rpx">  {{integral}}</span></span></p>
 				<span class="postage" v-if="deleFlag">（不含运费）</span>
-				<text class="cart-account" v-if="deleFlag" @click="settleMent()">结算</text>
-				<text class="cart-account" v-if="!deleFlag" @click="delement()">删除</text>
+				<text class="cart-account" v-if="deleFlag" @tap="settleMent()">去结算</text>
+				<text class="cart-account" v-if="!deleFlag" @tap="delement()">删除</text>
 			</view>
 		</view>
 	</view>
@@ -79,7 +86,9 @@
 				deleFlag: true,
 				// 更新购物车数据userid  id 
 				userId: '',
-				id: ''
+				id: '',
+				chooseMove:false
+				
 			}
 		},
 		onLoad() {
@@ -110,16 +119,23 @@
 					}
 				}).then(res => {
 					if (res.status == 0) {
-						that.carList = res.result;
-						that.carList.map(res => {
-							res.flagChoice = false;
-							res.price = (res.price / 100).toFixed(2);
-						})
+						let aa = res.result;
+						if(that.chooseMove==true){	
+							that.carList.map((currentValue, index,arr)=>{
+								aa[index].flagChoice=currentValue.flagChoice;
+								aa[index].price=(aa[index].price/100).toFixed(2)
+							})
+						}else{
+							aa.map(res => {
+								 res.flagChoice = false;
+								 res.price = (res.price / 100).toFixed(2);
+							})
+						}
+						 that.carList=aa;
 					}
 				}).catch(res=>{
 					console.log(res.msg)
 				})
-				this.$forceUpdate();
 			},
 			//计算总共多少钱以及总积分
 			calculMoney() {
@@ -182,8 +198,10 @@
 					this.carList[index].buy_num -= 1;
 				}
 				// console.log(this.carList[index].buy_num)
+				this.chooseMove=true;
 				this.calculMoney();
-				this.sendNum(this.carList[index].buy_num, index)
+				this.sendNum(this.carList[index].buy_num, index);
+				
 			},
 			//对每个商品 的按钮的加
 			addition(indexs) {
@@ -191,8 +209,9 @@
 				if (this.carList[index].buy_num < this.carList[index].sub_event_id) {
 					this.carList[index].buy_num += 1;
 				}
-				this.calculMoney();
-				this.sendNum(this.carList[index].buy_num, index);
+				this.chooseMove=true;
+				 this.calculMoney();
+				 this.sendNum(this.carList[index].buy_num, index);
 			},
 			//选泽全选按钮的时候
 			allChoice() {
@@ -285,8 +304,6 @@
 		}
 
 		.button {
-			// border-radius: 0;
-			// outline: none;
 			box-shadow: none;
 			border-top: 2rpx solid rgba(0, 0, 0, .2);
 			border-bottom: 2rpx solid rgba(0, 0, 0, .2);
@@ -301,7 +318,6 @@
 			border-right: 2rpx solid rgba(0, 0, 0, .2);
 		}
 	}
-
 	.delet {
 		width: 750rpx;
 		height: 50rpx;
@@ -317,5 +333,55 @@
 			height: 50rpx;
 
 		}
+	}
+	.orderImg{
+		width:160rpx ;
+		height: 160rpx;
+	}
+	.third-style{
+		width: 450rpx;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 28rpx;
+		color: #FE5E54;
+		margin-top:15rpx;
+		
+	}
+	.carBtns{
+		width: 168rpx;
+		height: 40rpx;
+		display: flex;
+		align-items: center;
+		border: 1rpx solid #C5C5C5;
+		border-radius: 21px;
+		box-sizing: border-box;
+		.carBtn-style{
+			flex: 0.5;
+			height: 40rpx;
+			line-height: 40rpx;
+			text-align: center;
+			color: #C5C5C5;
+		}
+		.carBtn-center{
+			width: 60rpx;
+			height: 40rpx;
+			line-height: 40rpx;
+			text-align: center;
+			border-right: 1rpx solid #C5C5C5;
+			border-left: 1rpx solid #C5C5C5;
+			box-sizing: border-box;
+		}
+	}
+	.cart-right{
+		padding-top:22rpx;
+	}
+	.settle-accounts-wrap{
+		height: 100rpx;
+	}
+	.cart-account{
+		height: 100rpx;
+		line-height: 100rpx;
+		font-size: 32rpx;
 	}
 </style>

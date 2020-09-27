@@ -146,10 +146,11 @@ var _default =
   },
   onLoad: function onLoad(options) {
     this.setData(options);
+    console.log(this.scene);
   },
   methods: {
     // 助力成功的红包
-    getRed: function getRed() {var _this = this;
+    getRed: function getRed() {
       var that = this;
       var a = wx.getStorageSync('user').id;
       var sceneid = wx.getStorageSync('sceneId');
@@ -158,7 +159,7 @@ var _default =
         type: 'post',
         data: {
           userId: a,
-          envelopeId: this.scene,
+          envelopeId: that.scene,
           assistanceType: 4 } }).
 
       then(function (res) {
@@ -168,16 +169,21 @@ var _default =
             title: '邀请成功!',
             duration: 2500 });
 
-          setInterval(function () {
-            _this.getMyself();
+          setTimeout(function () {
+            uni.reLaunch({
+              url: '/pages/index/index' });
+
           }, 3000);
         } else {
           uni.showToast({
             title: '每个会员只可以邀请一次!',
             duration: 2500 });
 
-          uni.reLaunch({
-            url: '/pages/index/index' });
+          setTimeout(function () {
+            uni.reLaunch({
+              url: '/pages/index/index' });
+
+          }, 3000);
 
         }
       }).catch(function (res) {

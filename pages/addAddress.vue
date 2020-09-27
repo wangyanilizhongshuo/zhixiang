@@ -1,7 +1,7 @@
 <template>
     <view>
         <!-- 你的html代码 -->
-        <div class="page">
+        <div class="page" style="position: relative;top:0;left:0;height:100vh;">
             <div class="content">           
                 <div class="list-block mt0">
                     <ul>
@@ -77,7 +77,7 @@
                             </li>
                             </ul>
 
-                <button class="page_btn" @tap='address_save' >保存</button>
+                <button class="page_btn" style="margin:0;width:750rpx;position:absolute;left:0;bottom:0;background-color: #FF7599;" @tap='address_save' >保存</button>
 
             </div>
         </div>

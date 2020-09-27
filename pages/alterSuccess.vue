@@ -10,7 +10,7 @@
         <div class="submit-content">
             <div class="submit-content">
                 <div class="submit-content1">
-                    <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/commodity_identification.png">
+                    <img src="http://zxyp.hzbixin.cn/files/76211600415832285.jpg">
                     <div class="submit-center"><span>您的支付密码已修改成功</span></div>
                 </div>
             </div>
@@ -53,35 +53,7 @@
 </script>
 
 <style>
-    /*@import "../common/commons/lib/light7/light7.min.css";
-
-    @import "../common/commons/lib/light7/light7-swiper.min.css";
-
-    @import "../common/commons/css/main.css";
-
-    @import "../common/commons/css/otherCss/wq.css";*/
-
 
 </style>
 
-<!--  
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>修改成功</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-
-</head>
-<body>
-
-
-
-</body>
-</html>
--->

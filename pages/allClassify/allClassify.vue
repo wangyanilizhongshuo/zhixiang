@@ -1,143 +1,230 @@
 <template>
-    <view>	
-        <!-- 页面代码 -->
-      <div class="content">     
-            <div class="yzl-top-bar">
-                <div class="yzl-search-bar" style="background: linear-gradient(66deg,rgba(255,107,134,1) 0%,rgba(255,127,176,1) 100%);">
-                    <div class="search-input" style="border-radius: 12px;background: #fff;"  @click='jump' data-url='/pages/index/search'  >
-                        <label class="icon icon-search" for="search" style="left: 42%;"></label>
-                        <input type="search" id='search' placeholder='搜索' style="border: none;padding-left: 47%;" />
-                    </div>
-                </div>
-            </div>
-            <div class="classify-area">
-                <div class="left-area">
-                    <ul class="nav-bar" style="height: 100vh;">
-                    	<block
-                    	>
-	                        <li 
-	                        	v-for="(item,index) in goodsclass_list" 
-	                        	:key='index+"goodsclass_list"' 
-	                        	class="nav-item" 
-	                        	:class="nav_item_active==index?'nav-item-active':''" 
-	                        	:data-id="item.id" 
-	                        	:catnmae="item.class_name" 
-	                        	@click='do_fns' 
-                                data-fns='set_value,get_goods_list'
-	                        	data-name='nav_item_active'
-	                        	:data-value='index'
-	                        >{{item.class_name}}</li>
-                    	</block>
-                      
-                    </ul>
-                </div>
-                <div class="right-area">
-                    <div class="class-item">
-                        <div class="class-title" id="class-title">{{goodsclass_list[nav_item_active].class_name}}</div>
-                        <ul class="goods-list">
-                            <li class="goods-item goods-box" 
-
-                                v-for="(goods_item,index) in goods_list" 
-                                :key='index+"goods_list"' 
-                                :data-id="goods_item.id"
-                                @click='jump' data-url='/pages/goods/goods'
-                                >
-                                <p><img :src="goods_item.pic" class="goods-img"></p>
-                                <p class="goods-name"> <span>{{goods_item.title}}</span></p>
-                            </li>
-                           
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </view>
+   <view class="uni-category">
+	   <view  class="uni-search">
+		   <input class="unin-input" placeholder="搜索"  @tap='jump' data-url='/pages/index/search' />
+		   <image  class="searchImg" src="http://zxyp.hzbixin.cn/files/16951600420855845.jpg"></image>
+	   </view>
+	   <view style="height: 80rpx;width:750rpx"></view>
+	   <view class="uni-contents">
+		   <view class="uni-left">
+			   <view class="list" :class="nav_item_active==index?'actives':''" v-for="(item,index) in allGoodsCateList" :key="index" @tap.stop="categorys(index,1,1)">
+				  {{item.class_name}}
+				  <view class="lines" v-if="nav_item_active==index"></view>
+			   </view>
+		   </view>
+		   <view style="width:180rpx;height: 100vh;"></view>
+		   <view class="uni-right">
+			   <view class="lists"  v-for="(item,index) in allGoodsList" :key="index"   :data-id="item.id"
+                                @tap='jump' data-url='/pages/goods/goods'>
+				   <image class="img" :src="item.pic"></image>
+				   <view class="firstWord">{{item.title}}</view>
+				   <view class="secondWord"><text style="display: inline-block;margin-right:10rpx;">￥{{item.price}}</text> <text>积分{{item.points}}</text></view>
+				   <!--  -->
+			   </view>
+		   </view>
+	   </view>
+	   
+   </view>
 </template>
 <script>
-import reset1 from "@/component/css/reset1";
-import light7_min from "@/component/css/light7_min";
-import main from "@/component/css/main";
-import allClassify from "@/component/css/page/allClassify";
-
-
-export default {
-
-    components: {
-        allClassify,
-        main,
-        light7_min,
-        reset1,
-    },
-    data() {
-        return {
-        	nav_item_active: 0,
-            goodsclass_list: [],
-            goods_list: [],
-        }
-    },
-    onShareAppMessage: function () {
-		    let _this = this;
-		    return {
-		      title: "智享婴品",
-		      path: "/pages/index/index?" + _this.getShareUrlParams()
-		    };
-		},
-    onLoad(options) {
-        // console.log('onLoad 页面加载', options);
-
-        // 商品分类列表
-         this.get_goodsclass_list();
-    },
-    methods: {
-
-
-        // 商品分类列表
-        get_goodsclass_list(e) {
-            console.log('商品分类列表', e);
-
-            uni.wjw_http({
-                url: "goodsclass/list",
-                method: 'post',
-                data: {
-                },
-            }).then(res => {
-                // console.log('商品分类列表 接口 请求成功', res);
-             
-                this.goodsclass_list = res.result;
-
-                // 获取商品列表
-                this.get_goods_list();
+	export default{
+		data(){
+			return {
+				nav_item_active: 0,
+				goodsclass_list: [],
+				oneFirst:1,
+				goods_list: [],
+				allGoodsCateList:'',
+				allGoodsCateIdList:'',
+				pages:1,
+				ids:1,
+				pageallSizes:1,
+				allGoodsList:'',
+				i:''
 				
-                
-            })
-
-        },
-
-
-        // 获取商品列表
-        get_goods_list(e) {
-          //  var userData =  wx.getStorageSync('userData');
-            // var userId = userData.user.id;
-            // var token = userData.token;
-            var class_id = this.goodsclass_list[this.nav_item_active].id;
-            uni.wjw_http({
-                url: "saleevent/list",
-                method: 'post',
-                data: {
-                    // userId: userId,  
-                    class_id: class_id,
-					// token:token
-                },
-            }).then(res => {
-           
-                this.goods_list = res.result;   
-            })
-
-        },
-
-    }
-}
+			}
+		},
+		 onShareAppMessage: function () {
+				    let _this = this;
+				    return {
+				      title: "智享婴品",
+				      path: "/pages/index/index?" + _this.getShareUrlParams()
+				    };
+				},
+		onLoad(options){
+			  this.get_goods_list();
+		},
+		onReachBottom(){
+			if(this.pages< this.pageallSizes){
+				this.pages+=1;
+				this.categorys(this.i,this.pages,0)
+			}
+		},
+		methods:{
+			  // 获取商品列表
+				get_goods_list(e) {
+					let that = this;
+					uni.wjw_http({
+						url: 'goodsclass/list'
+					}).then(res => {
+						if (res.status == 0) {
+							that.allGoodsCateList = res.result;
+							that.allGoodsCateIdList = res.result.map(item => item.id);
+							if(that.oneFirst ==1 ){
+							  that.categorys(0,1);
+							  that.oneFirst=0;
+							}
+							
+						}
+					})
+				},
+				categorys(i,pages,msg){
+					if(msg==1){
+						uni.pageScrollTo({
+						    scrollTop: 0,  //距离页面顶部的距离
+						    duration: 300
+						});
+					}
+					this.i=i;
+					this.nav_item_active=i;
+					let that = this;
+					that.pages=pages;
+					that.ids=that.allGoodsCateIdList[i];
+					uni.wjw_http({
+						url: 'saleevent/listByPage',
+						data: {
+							page: that.pages,
+							pageSize: 6,
+							ower_type: 2,
+							class_id: that.ids
+						}
+					}).then(res => {
+						if (res.status == 0) {
+							that.pageallSizes = res.result.pages;
+							if (that.pages != 1) {
+								let ii = res.result.list;
+								let jj = that.allGoodsList;
+								jj = jj.concat(ii);
+								that.allGoodsList = jj
+							} else {
+								that.allGoodsList = res.result.list;
+							}
+						}
+					})
+				}
+		}
+	}
 </script>
-<style>
-
+<style scoped lang="scss">
+	.uni-category{
+		width: 750rpx;
+		height: 100vh;;
+		font-size: 26rpx;
+	}
+	.uni-search{
+		width: 750rpx;
+		height: 80rpx;
+		background-color: #FF7599;
+		text-align: center;
+		position: fixed;
+		left:0;
+		top:0;
+		z-index:10;
+		.unin-input{			
+			width: 670rpx;
+			height: 60rpx;
+			line-height: 60rpx;
+			text-align: center;
+			background-color: #fff;
+			border-radius: 30rpx;
+			color:#999;
+		}
+		.searchImg{
+			display: block;
+			width: 28rpx;
+			height: 28rpx;
+			position: absolute;
+			top:17rpx;
+			left:310rpx;
+		}
+	}
+    .uni-contents{
+		width: 750rpx;
+		display: flex;
+		.uni-left{
+			width:180rpx;
+			height: 100vh;
+			background: #FFF6F8;;
+			position: fixed;
+			left:0;
+			top:80rpx;
+			.list{
+				width:180rpx;
+				height: 100rpx;
+				line-height: 100rpx;;
+				color:#FF7295;
+				text-align: center;
+				box-sizing: border-box;
+				position: relative;
+				left:0;
+				top:0
+			}
+		}
+		.uni-right{
+			flex:1;
+			background:#fff;
+			display: flex;
+			flex-wrap: wrap;
+			.lists{
+				margin-right: 25rpx;
+				width:260rpx;
+				 height: 420rpx;
+				color:#FF7295;
+				text-align: center;
+				
+				position: relative;
+				left:0;
+				top:0;
+				.img{
+					display: block;
+					width: 260rpx;
+					height: 260rpx;
+					margin-top: 20rpx;
+				}
+				.firstWord{
+					width: 240rpx;
+					color: #333333;
+					font-size: 24rpx;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+					margin:20rpx  10rpx;
+					text-align: left;
+				}
+				.secondWord{
+					color:#FE5E54;
+					width: 240rpx;
+					display: flex;
+					justify-content: flex-start;
+					position: absolute;;
+					left:10rpx;
+					bottom: 5rpx;
+					
+				}
+			}
+		}
+	}
+	.actives{
+		background: #fff;
+		
+	}
+	.lines{
+		width: 4rpx;
+		height: 100rpx;
+		background: linear-gradient(0deg, #FF6B86 0%, #FF7FB0 100%);
+		position: absolute;
+		left:0;
+		top:0
+	}
 </style>

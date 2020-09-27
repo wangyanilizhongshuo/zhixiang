@@ -3,7 +3,7 @@
 		<view class="uni-input-content">
 			<input  confirm-type="search" @confirm="doSearch"  class="uni-input" placeholder-style="font-size:26rpx;margin-left:5rpx;" placeholder="搜索" v-model="inputValue" @focus="searchFlag=false" />
 		    <text class="word" @tap.stop="inputValue=''">取消</text>
-			<image class="uni-search-img" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/search.png"></image>
+			<image class="uni-search-img" src="http://zxyp.hzbixin.cn/files/82361600399373094.jpg"></image>
 		</view>
 		<view class="uni-histor-record">历史搜索</view>
 		<view class="record-content">

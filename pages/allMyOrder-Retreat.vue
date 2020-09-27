@@ -5,7 +5,7 @@
            <view class="uni-container" v-for="(item,index) in refundindList" :key="index"  >
            	<view class="uni-title">
            		<view class="uni-left">
-           			<image class="logo" src="../static/shoppingLogo.png"></image>
+           			<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
            			<text class="sdName">{{item.shop_name}}</text>
            		</view>
            		<view class="uni-right" v-if="item.status==1">	

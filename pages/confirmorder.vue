@@ -9,12 +9,12 @@
 				<view class="confirmorder-top " style='margin-top: 8px;' @click='jump' data-url='/pages/addressManage' data-types='choose'
 				 v-for="(info,index) in articleList" :key='index' v-if="addressid =='没有这个参数'?index==0:(info.id == (addressnum||addressid))">
 					<p class="confirmorder-top-per">收货人:&nbsp;{{info.addressee}}</p> <span class="confirmorder-top-tel">{{info.phone}}</span>
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/order_add_icon.png">
+					<img src="http://zxyp.hzbixin.cn/files/311600415912418.jpg">
 					<p class="confirmorder-top-add">{{info.province_name + info.city_name + info.area_name + info.address}}</p>
 				</view>
 			</block>
 			<view class="address_bar">
-				<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/address_bar.png" alt="">
+				<img src="http://zxyp.hzbixin.cn/files/69311600415949059.jpg" alt="">
 			</view>
 			<view id="concon">
 				<view class="confirmorder-middle" v-for="(goods,index) in carList" :key='index+"11"' v-if='carList.length>0'>
@@ -61,7 +61,7 @@
 					<view id="use" class="tr right">
 						<text style="color: #FF7599" v-if="useRedPacket">1个已使用</text>
 						<text  style="color: #bfbfbf" v-if="!useRedPacket">未使用</text>
-						<img  src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/you.png"></view>
+						<img  src="http://zxyp.hzbixin.cn/files/74201600415986744.jpg"></view>
 				</view>
 				<view class="styleAll">
 					<view class="left">红包</view>
@@ -186,7 +186,7 @@
 												<block class="block" v-if='item.redType==2'>
 													<block class="block" v-if='item.status==0'>
 														<view class="position" @click="choice(index)">
-															<image v-if="!item.flags" style="width:40rpx;height:36rpx" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"></image>
+															<image v-if="!item.flags" style="width:40rpx;height:36rpx" src="http://zxyp.hzbixin.cn/files/79841600416030911.jpg"></image>
 															<radio v-if="item.flags" style="zoom: 0.8;" type="radio" name="radio" :limitmone="item.limitMoney" class="choose choice" checked="item.flags"
 															 typeof="2" :id="'s'+item.id" /><i class="bui-radios"></i></view>
 													</block>
@@ -196,7 +196,7 @@
 												<block class="block" v-if='item.redType==3'>
 													<block class="block" v-if='item.status==0'>
 														<view class="position">
-															<image  v-if="!item.flags" style="width:30rpx;height:36rpx" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cart_unselected.png"></image>
+															<image  v-if="!item.flags" style="width:30rpx;height:36rpx" src="http://zxyp.hzbixin.cn/files/79841600416030911.jpg"></image>
 															<radio v-if="item.flags" style="zoom: 0.8;" type="radio" name="radio" :limitmone="item.limitMoney" class="choose choice" 
 															 typeof="3" :id="'s'+item.id" /><i class="bui-radios"></i></view>
 													</block>
@@ -297,22 +297,15 @@
 				// 使用某个红包得ID
 				// 备注
 				// 订单号:
-				orderNumber:0
+				orderNumber:0,
+				specialMakeMoney:''
 				 
 			}
 		},
 
 		onLoad(options) {
 			 this.setData(options);
-			 // let User=wx.getStorageSync('user').id;
-			 // console.log(3152345)
-			 // if(User == ''){
-				//  this.signalFlag=true;
-				//  this.signalMsg='请重新登录';
-				//  setInterval(()=>{
-				// 	 this.signalFlag=false;
-				//  },2500)
-			 // }else{}
+			 console.log(options);
 			 if(wx.getStorageSync('cartBuy')){
 				  this.carList = wx.getStorageSync('cartBuy');
 				  this.carList.map(res=>{
@@ -328,6 +321,7 @@
 			this.detailSumMoney=this.num*this.price;
 			// 打开需要
 			 this.addlist();
+			
 		},
 		// 页面显示
 		onShow() {
@@ -433,7 +427,7 @@
 					}else{
 						that.signalMsg=res.msg;
 						that.signalFlag=true;
-						setInterval(()=>{
+						setTimeout(()=>{
 							this.signalFlag=false;
 						},2500)
 					}
@@ -503,7 +497,7 @@
 						
 						this.signalMsg=res.msg;
 						this.signalFlag=true;
-						setInterval(()=>{
+						setTimeout(()=>{
 							this.signalFlag=false;
 						},2500)
 					}
@@ -637,8 +631,8 @@
 			payMoney(){
 				this.jifen_show=false;
 				this.addlist_back();
-				uni.navigateTo({
-					url:'/pages/shopCar/payment?money='+this.totalmPrice+'&orderNumber='+ this.orderNumber+'&memo='+ this.memo+'&isSelfTake='+ this.isSelfTake+'&repIds='+ this.repIds+'&id='+ this.id+'&addressId='+this.addressid+'&cartId='+this.cartid+'&type='+this.type+'&counts='+this.num
+				uni.redirectTo({
+					url:'/pages/shopCar/payment?money='+this.totalmPrice+'&orderNumber='+ this.orderNumber+'&memo='+ this.memo+'&isSelfTake='+ this.isSelfTake+'&repIds='+ this.repIds+'&id='+ this.id+'&addressId='+this.addressid+'&cartId='+this.cartid+'&type='+this.type+'&counts='+this.num+'&specialMakeMoney='+this.specialMakeMoney
 				})
 			}
 		},

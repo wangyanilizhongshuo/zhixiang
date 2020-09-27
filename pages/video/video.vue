@@ -14,7 +14,7 @@
 						  <text class="text">{{item.createTime}}</text>
 				      </view>
 					  <view class="right">
-						   <img class="poinImg" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sign_point.png">
+						   <img class="poinImg" src="http://zxyp.hzbixin.cn/files/92091600414557199.jpg">
 						   <text class="titleSmall">+100</text>
 					  </view>
 				  </view> 

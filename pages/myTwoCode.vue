@@ -1,9 +1,9 @@
 <template>
     <view class="uni-code">
-       <image class="imgsBg" src="../static/codeBg.png"></image>
+       <image class="imgsBg" src="http://zxyp.hzbixin.cn/files/1801600847548453.jpg"></image>
 	   
 	   <view class="contents">
-		     <image class="imgCon" src="../static/codeBg-content.png"></image>
+		     <image class="imgCon" src="http://zxyp.hzbixin.cn/files/51741600847626272.jpg"></image>
 			 <view  class="codenum">我的邀请码：{{list.invite_code || ''}}</view>
 			 <view class="invite">一起邀请好友来注册吧</view>
 			 <view class="share">分享到</view>
@@ -11,23 +11,7 @@
 				  <image class="imgsss" src="http://zxyp.hzbixin.cn/files/84321600157308924.jpg"></image>
 			  </button>
 	   </view>
-            <!-- <view class="myTwoCode-page" style="background-image: url(../static/codeBg.png);"> -->
-               <!-- <view class="myTwoCode-img">
-                    <img id="qrcode" class="image" src="http://zxyp.hzbixin.cn/files/45131597215076490.jpg"/>
-                </view> -->
-       
-                <!-- <view class="myCode-num">我的邀请码：<span>{{list.invite_code}}</span></view>
-                <view class="myCode-text">一起邀请好友来注册吧</view>
-               <view class="myCode-share"  style="">
-                    <view>分享到</view>              
-                </view>
-                <button class="myCode-VX" open-type="share"  plain="true">
-                     <view class="btns "    >
-						 <img class="imgs" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/inviting_friends_wechat@2x.png">
-						 微信
-					</view>
-                </button> -->
-        <!-- </view> -->
+            
 
     </view>
 </template>

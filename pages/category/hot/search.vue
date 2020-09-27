@@ -16,19 +16,19 @@
 
             <view class="search-history-list">
                     <view class="search-history-lab">
-                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/home_search_record@2x.png">
+                        <img src="http://zxyp.hzbixin.cn/files/49731600408393422.jpg">
                         <span class="search-history-goods">健身器</span>
                     </view>
                     <view class="search-history-lab">
-                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/home_search_record@2x.png">
+                        <img src="http://zxyp.hzbixin.cn/files/49731600408393422.jpg">
                         <span class="search-history-goods">棉麻素色床品</span>
                     </view>
                     <view class="search-history-lab">
-                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/home_search_record@2x.png">
+                        <img src="http://zxyp.hzbixin.cn/files/49731600408393422.jpg">
                         <span class="search-history-goods">太阳眼镜</span>
                     </view>
                 </view>
-            <view class="search-empty"><a id="empty" href="javascript:;">清空历史记录 <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/delete.png"></a></view>
+            <view class="search-empty"><a id="empty" href="javascript:;">清空历史记录 <img src="http://zxyp.hzbixin.cn/files/9371600408523265.jpg"></a></view>
         </view>
         <!--搜索内容-->
         <view class="packets" v-if="searchContent" style="display: block;"  >
@@ -43,7 +43,7 @@
                         <a href="javascript:;" type="2">按新品</a>
                         <a href="javascript:;" type="3">按销量</a>
                         <a href="javascript:;" type="4" sort="0">按价格
-                            <img id="sortimg" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pricesort.png">
+                            <img id="sortimg" src="http://zxyp.hzbixin.cn/files/58431600410428199.jpg">
                         </a>
                     </li>
                 </ul>
@@ -54,7 +54,7 @@
                         <ul id="detailSale" class="hotPrice-detail clearfix">
 
                             <li class="pull-right">
-                                        <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/home_auction_pci2.png" alt="">
+                                        <img src=" http://zxyp.hzbixin.cn/files/20641600408571885.jpg" alt="">
                                         <p class="hotPrice-txt">纽太特中文版 乳蛋白深度水解配方粉450g</p>
                                         <view class="ht-price">
                                             <span>￥298</span>

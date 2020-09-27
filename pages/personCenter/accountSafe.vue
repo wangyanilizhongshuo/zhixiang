@@ -1,12 +1,12 @@
 <template>
     <view class="uni-safe">
-		<view class="uni-list" @click='jump' data-url='/pages/login/loginPasswordModify'>
+		<view class="uni-list" @tap='jump' data-url='/pages/login/loginPasswordModify'>
 			<view class="word">
 				登陆密码修改
 			</view>
 			<image class="image" src="../../static/inter.png"></image>	
 		</view>
-		<view class="uni-list" @click='jump' data-url='/pages/pay/paymentPasswordModify'>
+		<view class="uni-list" @tap='jump' data-url='/pages/pay/paymentPasswordModify'>
 			<view class="word">
 				支付密码修改
 			</view>

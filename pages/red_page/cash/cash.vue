@@ -1,7 +1,7 @@
 <template>
 	<view  class="uni-tixian">
 		<div class="form_li flex_c form_style form_ma">
-			<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/alipay.png" alt="" class="form_li_head_icon no_shrink">
+			<img src="http://zxyp.hzbixin.cn/files/29311600401686720.jpg" alt="" class="form_li_head_icon no_shrink">
 			<input type="text" v-model="account" class="form_li_input flex_grow" placeholder="请输入您的支付宝账号" />
 		</div>
 		<div class="form_area form_style form_ma form_pd_lr">
@@ -12,7 +12,7 @@
 			</div>
 			<div class="form_bd_b"></div>
 			<div class="form_li_tips flex_c">
-				<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/hint@2x.png" alt="" class="form_li_tip_icon no_shrink">
+				<img src="http://zxyp.hzbixin.cn/files/30711600401724283.jpg" alt="" class="form_li_tip_icon no_shrink">
 				<div class="form_li_tip_txt flex_grow">提现规则</div>
 			</div>
 		</div>

@@ -198,7 +198,7 @@ button {-webkit-user-select: none;user-select: none;}
     color: #414141;
     text-indent: calc( 0.85 * 20px);
     border: calc( 0.025 * 20px) #e1e1e1 solid;
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 95% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 95% 50%;
     background-size: 1.3333% 20%;
 }
 .order-form .see-allOrder {
@@ -559,7 +559,7 @@ button {-webkit-user-select: none;user-select: none;}
     height: calc( 2.25 * 20px);
     margin-top: calc( .5 * 20px);
     padding-left: calc( .825 * 20px);
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 95% 50% #ffffff;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 95% 50% #ffffff;
     background-size: calc( .35 * 20px) calc( .65 * 20px);
 }
 .picket-get-wrap ._img{
@@ -912,7 +912,7 @@ button {-webkit-user-select: none;user-select: none;}
     font-size: calc( 0.65 * 20px);
     color: #a2a2a2;
     border-radius: calc( 0.825 * 20px);
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/search.png") no-repeat calc( 0.6 * 20px) calc( 0.5 * 20px) #efefef;
+    background: url("http://zxyp.hzbixin.cn/files/16951600420855845.jpg") no-repeat calc( 0.6 * 20px) calc( 0.5 * 20px) #efefef;
     background-size: calc( .6 * 20px) calc( .6 * 20px);
 }
 .banner-wrap{
@@ -1220,7 +1220,7 @@ height:calc( 1.8 * 20px);
     color: #aaaaaa;
     font-size: calc( 0.65 * 20px);
     text-indent: calc( 1.375 * 20px);
-    background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/search.png) no-repeat 3% 50% #f1f1f1;
+    background: url(http://zxyp.hzbixin.cn/files/16951600420855845.jpg) no-repeat 3% 50% #f1f1f1;
     background-size: calc( .6 * 20px) calc( .6 * 20px);
 }
 .fruit-menu-warp{
@@ -1399,7 +1399,7 @@ height:calc( 1.8 * 20px);
 .line-item-header{
     position: relative;
     height: calc( 4.5 * 20px);
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/order_bg.png") no-repeat center;
+    background: url("http://zxyp.hzbixin.cn/files/79011600420931192.jpg") no-repeat center;
     background-size: 100% calc( 4.5 * 20px);
 }
 .line-item-header ._p{
@@ -1733,7 +1733,7 @@ height:calc( 1.8 * 20px);
     height: calc( 2.5 * 20px);
     position: absolute;
     border-bottom: calc( .025 * 20px) #e1e1e1 solid;
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 93% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 93% 50%;
 }
 .person-message .nick-name{
     top: 0;
@@ -1752,7 +1752,7 @@ height:calc( 1.8 * 20px);
 .credit{
     height: calc( 8.3 * 20px);
     position: relative;
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/points_bg.png") no-repeat;
+    background: url("http://zxyp.hzbixin.cn/files/76531600421052606.jpg") no-repeat;
     background-size: 100% calc( 8.3 * 20px);
 }
 .credit ._p{
@@ -1903,7 +1903,7 @@ height:calc( 1.8 * 20px);
     width: 100%;
     height: calc( 2.5 * 20px);
     border-bottom: calc( 0.025 * 20px) solid #e1e1e1;
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 91% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 91% 50%;
 }
 .wallet-recharge{
     top: 0;
@@ -2176,7 +2176,7 @@ height:calc( 1.8 * 20px);
     line-height: calc( 2.5 * 20px);
 }
 .setting-safe, .setting-message {
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 90% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 90% 50%;
 }
 .setting-content .setting-phone{
     border-bottom: none;
@@ -2497,7 +2497,7 @@ inform
 .post-header{
     position: relative;
     height: calc( 2.5 * 20px);
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/down.png") no-repeat 95% 50% #ffffff;
+    background: url("http://zxyp.hzbixin.cn/files/83511600421163108.jpg") no-repeat 95% 50% #ffffff;
     background-size: calc( .55 * 20px) calc( .275 * 20px);
     border-bottom: calc( .025 * 20px) solid #e1e1e1;
 }
@@ -2662,7 +2662,7 @@ inform
     background-color: #ffffff;
 }*/
 .consignee-bg{
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/address_bar.png") no-repeat bottom #ffffff;
+    background: url("http://zxyp.hzbixin.cn/files/76561600421228790.jpg") no-repeat bottom #ffffff;
     background-size: 100% calc( .25 * 20px);
     margin-bottom: calc( .5 * 20px);
 }
@@ -2706,7 +2706,7 @@ inform
     position: absolute;
     bottom: calc( 0 * 20px);
     left: calc( 0 * 20px);
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 96% 50%;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 96% 50%;
     background-size: calc( .35 * 20px) calc( .65 * 20px);
 }
 .discount-picket .discount-picket-txt{
@@ -3065,7 +3065,7 @@ inform
     margin-right: 8.666%;
 }
 .receiver-address{
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png") no-repeat 96% 50% #ffffff;
+    background: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg") no-repeat 96% 50% #ffffff;
     background-size: calc( .35 * 20px) calc( .65 * 20px);
 }
 .receiver-wrap, .receiver-phone, .receiver-address{
@@ -3137,7 +3137,7 @@ inform
     top: 50%;
     margin: -calc( 8.9125 * 20px) 0 0 9%;
     padding: calc( 5 * 20px) calc( .75 * 20px) calc( 1.075 * 20px) calc( 1.75 * 20px);
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/getPicket_03.png") no-repeat;
+    background: url("http://zxyp.hzbixin.cn/files/89001600421521620.jpg") no-repeat;
     background-size: 100% 100%;
     z-index: 9999;
 }
@@ -3488,7 +3488,7 @@ inform
     position: absolute;
     left:calc( 0 * 20px);
     top:0;
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/back.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/7401600421557871.jpg");
     background-repeat: no-repeat;
     background-size: 40% 40%;
     background-position:10px center;
@@ -3507,7 +3507,7 @@ inform
     top: 50%;
     -webkit-transform: translateY(-calc( .4 * 20px));
             transform: translateY(-calc( .4 * 20px));
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/next.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/31331600420756440.jpg");
     background-size: 100% 100%;
 }
 .com-top .btn-share{
@@ -3518,7 +3518,7 @@ inform
     top: 50%;
     -webkit-transform: translateY(-calc( .5 * 20px));
             transform: translateY(-calc( .5 * 20px));
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/share@2x.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/34571600421621834.jpg");
     background-size: 100% 100%;
 }
 .com-top .btn-search{
@@ -3529,7 +3529,7 @@ inform
     top: 50%;
     -webkit-transform: translateY(-calc( .5 * 20px));
             transform: translateY(-calc( .5 * 20px));
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/search.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/16951600420855845.jpg");
     background-size: 100% 100%;
 }
 .com-top .btn-message{
@@ -3540,7 +3540,7 @@ inform
     top: 50%;
     -webkit-transform: translateY(-calc( .5 * 20px));
             transform: translateY(-calc( .5 * 20px));
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_msg@2x.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/18781600421685631.jpg");
     background-size: 100% 100%;
 }
 /*页面顶部样式2*/
@@ -3588,7 +3588,7 @@ inform
     position: absolute;
     left: calc( 0 * 20px);
     top: 0;
-    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/back_white.png);
+    background-image: url(http://zxyp.hzbixin.cn/files/76481600421764978.jpg);
     background-repeat: no-repeat;
     background-size: 50% 50%;
     background-position: 3px 10px;
@@ -3672,7 +3672,7 @@ inform
      width: 15px;
      height: 15px;
     margin-right: 5px;
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/commodity_identification.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/7641600421804949.jpg");
     background-size: 100% 100%;
 }
 .goods-num{
@@ -3831,11 +3831,11 @@ inform
     /*-transform: translate(-11px,0);*/
 }
 .cart-icon{
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/commodity_detail_shoppingcart.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/65531600421842470.jpg");
     background-size: 100% 100%;
 }
 .server-icon{
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/commodity_detail_service.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/53211600421912716.jpg");
     background-size: 100% 100%;
 }
 #popup-num{
@@ -3875,7 +3875,7 @@ inform
 .btn-close{
     width: 18px;
     height: 18px;
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/commodity_specifications_cancel@2x.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/76401600421950934.jpg");
     background-size: 100% 100%;
     position: absolute;
     right: 10px;
@@ -3901,7 +3901,7 @@ inform
 .btn-close2{
     width: 15px;
     height: 15px;
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_cancel@2x.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/19101600422125089.jpg");
     background-size: 100% 100%;
     position: absolute;
     right: 16.5px;

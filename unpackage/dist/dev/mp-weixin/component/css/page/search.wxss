@@ -39,7 +39,7 @@
     position: absolute;
     left: 0rem;
     top: 0;
-    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/back.png);
+    background-image: url(http://zxyp.hzbixin.cn/files/71931600653800034.jpg);
     background-repeat: no-repeat;
     background-size: 40% 40%;
     background-position: 10px center;

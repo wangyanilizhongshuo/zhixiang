@@ -9,13 +9,13 @@
 				<text class="tab-link2 button2" :class='{"actives":types==3}' @tap.stop='jumps(3)' type="3"> 待收货 </text>
 				<text class="tab-link2 button2" :class='{"actives":types==4}' @tap.stop='jumps(4)' type="4"> 已确认 </text>
 			</view> 
-			<!-- 所有的列表 
-			<!-- http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my11.png -->
-			<view v-if="types==0">
+			<!-- 所有的列表  -->
+			
+			<view v-if="types==0" style="margin-top: 80rpx;">
 				<view class="uni-container" v-for="(item,index) in allLists" :key="index" @tap.stop="jumpsOne(item)" >
 					<view class="uni-title">
 						<view class="uni-left">
-							<image class="logo" src="../static/shoppingLogo.png"></image>
+							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 						</view>
 						<view class="uni-right" v-if="item.status==0" >
@@ -23,7 +23,7 @@
 						</view>
 						<view class="uni-right" v-if="item.status==2">
 							待发货
-							
+
 						</view>
 						<view class="uni-right" v-if="item.status==3">
 							付款中
@@ -66,11 +66,11 @@
 				
 			</view>
 			<!-- 等待付款 -->
-			<view v-if="types==1">
+			<view v-if="types==1" style="margin-top: 80rpx;">
 				<view class="uni-container" v-for="(item,index) in noPayList" :key="index" @tap.stop="noPayDetail(item,1)" >
 					<view class="uni-title">
 						<view class="uni-left">
-							<image class="logo" src="../static/shoppingLogo.png"></image>
+							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 
 						</view>
@@ -105,17 +105,18 @@
 				</view>
 			</view>
 			<!-- 等待发货 -->
-			<view v-if="types==2">
+			<view v-if="types==2" style="margin-top: 80rpx;">
 				<view class="uni-container" v-for="(item,index) in hasPayList" :key="index"  @tap.stop="noPayDetail(item,2)">
 					<view class="uni-title">
 						<view class="uni-left">
-							<image class="logo" src="../static/shoppingLogo.png"></image>
+							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 						</view>
 						<view class="uni-right">
 							待发货 
 						</view>
 					</view>
+					<!-- <image  src="display:block;width:300rpx;height:300rpx;" src="http://zxyp.hzbixin.cn/files/99461600424422980.jpg"></image> -->
 					<view class="uni-content" v-for="(itemss,indexss) in item.subOrderModelList">
 						<image class="uni-con-left img" :src="itemss.pic"></image>
 						<view class="uni-con-right">
@@ -143,11 +144,11 @@
 				</view>
 			</view>
 			<!-- y已经收货 -->
-			<view v-if="types==3">
+			<view v-if="types==3" style="margin-top: 80rpx;">
 				<view class="uni-container" v-for="(item,index) in hasSendList" :key="index"  @tap.stop="noPayDetail(item,3)">
 					<view class="uni-title">
 						<view class="uni-left">
-							<image class="logo" src="../static/shoppingLogo.png"></image>
+							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 						</view>
 						<view class="uni-right">
@@ -180,11 +181,11 @@
 				</view>
 			</view>
 			<!-- 已经确认收货 -->
-			<view v-if="types==4">
+			<view v-if="types==4" style="margin-top: 80rpx;">
 				<view class="uni-container" v-for="(item,index) in hasSureList" :key="index"  @tap.stop="noPayDetail(item,4)">
 					<view class="uni-title">
 						<view class="uni-left">
-							<image class="logo" src="../static/shoppingLogo.png"></image>
+							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 						</view>
 						<view class="uni-right">
@@ -216,6 +217,7 @@
 			</view>
 		</view>
 		<view class="hbyOccurFlag" v-if="seeMovie">{{seeMpvieMsg}}</view>
+		<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
 	</view>
 </template>
 <script>
@@ -224,6 +226,8 @@
 		data() {
 			return {
 				seeMovie:false,
+				signalFlag:false,
+				signalMsg:"",
 				seeMpvieMsg:'',
 				types: 0,
 				noPayList: [], //未付款
@@ -233,7 +237,8 @@
 				hasSureList:[],
 				page:1,
 				pageNum:'',
-				cancelFlag:false
+				cancelFlag:false,
+				sureReceiveFlag:false
 			}
 		},
 		
@@ -242,31 +247,31 @@
 			if(this.types == 0){
 				this.page+=1;
 				 if(this.pageNum>=this.page){
-					  this.getAllList();
+					  this.getAllList(1);
 				 }
 			}
 			else if (this.types == 1) {
 				this.page+=1;
 				 if(this.pageNum>=this.page){
-					  this.getNoPayList();
+					  this.getNoPayList(1);
 				 }
 			}
 			else if(this.types ==2){
 				this.page+=1;
 				 if(this.pageNum>=this.page){
-					 this.getHasPayList();
+					 this.getHasPayList(1);
 				 }
 			}
 			else if(this.types ==3){
 				this.page+=1;
 				 if(this.pageNum>=this.page){
-					 this.getSend();
+					 this.getSend(1);
 				 }
 			}
 			else if(this.types ==4){
 				this.page+=1;
 				 if(this.pageNum>=this.page){
-					 this.getSend();
+					 this.getFinish(1);
 				 }
 			}
 		},
@@ -278,19 +283,19 @@
 			// types ==1 的时候 执行 未付款的状态
 			
 		   if(this.types == 0){
-				this.getAllList();
+				this.getAllList(0);
 			}
 			else if (this.types == 1) {
-				this.getNoPayList()
+				this.getNoPayList(0)
 			}
 			else if(this.types ==2){
-				this.getHasPayList();
+				this.getHasPayList(0);
 			}
 			else if(this.types ==3){
-				this.getSend();
+				this.getSend(0);
 			}
 			else if(this.types ==4){
-				this.getFinish();
+				this.getFinish(0);
 			}
 		},
 		
@@ -300,23 +305,23 @@
 				if (one == 0) {
 					this.types = 0;
 					this.pages=1;
-					this.getAllList();
+					this.getAllList(0);
 				} else if (one == 1) {
 					this.pages=1;
 					this.types = 1;
-					this.getNoPayList();
+					this.getNoPayList(0);
 				} else if (one == 2) {
 					this.pages=1;
 					this.types = 2;
-					this.getHasPayList();
+					this.getHasPayList(0);
 				} else if (one == 3) {
 					this.pages=1;
 					this.types = 3;
-					this.getSend();
+					this.getSend(0);
 				} else if (one == 4) {
 					this.pages=1;
 					this.types = 4;
-					this.getFinish()
+					this.getFinish(0)
 				}
 			},
 			// 所有订单里面 不一样的  点击参数不一样
@@ -331,7 +336,9 @@
 					this.noPayDetail(msg,4)
 				}				
 			},
-			getNoPayList() {
+			getNoPayList(msg) {
+				// msgs==1 的时候,concat
+				let msgs=msg;
 				// nopay=1  未付款   代付款的状态
 				let id = wx.getStorageSync('user').id;
 				let that = this;
@@ -347,10 +354,13 @@
 						that.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.noPayList;
-						if(that.cancelFlag){
+						// if(msgs ==1){
+							
+						// }
+						if(that.cancelFlag || msgs ==0){
 							that.noPayList=res.result.list; 
 							that.cancelFlag=false;
-						}else{
+						}else if(!that.cancelFlag || msgs==1){
 							that.noPayList = bb.concat(aa)			 
 						}
 						
@@ -375,6 +385,7 @@
 				   }
 				   
 			   }
+			   console.log(e)
 				wx.setStorageSync('goodDetail',e);
 				wx.setStorageSync('types',types);
 				uni.navigateTo({
@@ -383,7 +394,8 @@
 
 			},
 			// 已付款的列表
-			getHasPayList() {
+			getHasPayList(msg) {
+				let msgs=msg;
 				//  代发货付款
 				let id = wx.getStorageSync('user').id;
 				let that = this;
@@ -399,7 +411,12 @@
 						that.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.hasPayList;
-						that.hasPayList = bb.concat(aa)
+						if(msgs ==1 ){
+							that.hasPayList = bb.concat(aa)
+						}else if(msgs==0){
+							that.hasPayList =aa
+						}
+						// that.hasPayList = bb.concat(aa)
 					}
 				})
 				this.$forceUpdate()
@@ -431,7 +448,7 @@
 								}else{
 									that.seeMovie=true;
 									that.seeMpvieMsg=res.msg;
-									setInterval(()=>{
+									setTimeout(()=>{
 										that.seeMovie=false;
 									},2500)
 								}
@@ -451,7 +468,8 @@
 				
 			},
 			// 全部列表
-			getAllList(){
+			getAllList(msg){
+				let msgs=msg;
 				let that=this;
 				let id = wx.getStorageSync('user').id;
 				uni.wjw_http({
@@ -466,12 +484,17 @@
 						this.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.allLists;
-						that.allLists = bb.concat(aa)
+						if(msgs==1){
+							that.allLists = bb.concat(aa);
+						}else if(msgs ==0){
+							that.allLists=aa;
+						}
 					}
 				})
 			},
 			//已经发货
-			getSend(){
+			getSend(msg){
+				let msgs=msg;
 				let id = wx.getStorageSync('user').id;
 				let that=this;
 				uni.wjw_http({
@@ -484,10 +507,16 @@
 				}).then(res=>{
 					if(res.status ==0){
 						// this.hasSendList=res.result.list;
-						this.pageNum=res.result.pages;
+						that.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.hasSendList;
-						that.hasSendList = bb.concat(aa)
+						if(that.sureReceiveFlag || msgs==0){
+							that.hasSendList=res.result.list;
+							that.sureReceiveFlag=false;
+						}else if(!that.sureReceiveFlag || msgs==1) {
+							that.hasSendList = bb.concat(aa);
+						}
+						
 					}
 				})
 			},
@@ -512,10 +541,16 @@
 										title:'收货成功',
 										duration:2000											
 									})
-									that.$nextTick(()=>{
+									   that.sureReceiveFlag=true;
 										that.getSend()
-									})
-				            	}
+									
+				            	}else{
+									this.signalFlag=true;
+									this.signalMsg=res.msg;
+									setTimeout(()=>{
+										this.signalFlag=false;
+									},2500)
+								}
 				            
 				            }).catch(res=>{
 								console.log(res)
@@ -528,7 +563,8 @@
 				
 			},
 		    // 已确认的订单
-			getFinish(){
+			getFinish(msg){
+				let msgs=msg;
 				let id = wx.getStorageSync('user').id;
 				let that=this;
 				uni.wjw_http({
@@ -544,7 +580,11 @@
 						that.pageNum=res.result.pages;
 						let aa = res.result.list;
 						let bb = that.hasSureList;
-						that.hasSureList = bb.concat(aa)
+						if(msgs==1){
+							that.hasSureList = bb.concat(aa);
+						}else if(msgs==0){
+							that.hasSureList=aa;
+						}
 					}
 				})
 			}

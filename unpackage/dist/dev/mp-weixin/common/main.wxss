@@ -859,7 +859,7 @@ input[type=hidden] {
 		全部换成
 		/static/img/xxx
 		或
-		http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/xxx
+		http://webh5.ei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/xxx
 	3.通配符
 		小程序不支持通配符
 		只能用具体标签名进行修改

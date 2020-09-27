@@ -4,9 +4,9 @@
         <view class="page" id="page-datetime-picker">
             <view class="content">
               
-                <view class="pet-name ma-top52" id="cg-hd" @click="uploadPhoto()">
+                <view class="pet-name ma-top52" id="cg-hd" @tap.stop="uploadPhoto">
                     <view class="name-img touxiang" >
-                        <image class="img" v-if="!headProtraitflag" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png" alt="">
+                        <image class="img" v-if="!headProtraitflag" src="http://zxyp.hzbixin.cn/files/55961600418067986.jpg" alt="">
                         <image class="img" v-if="headProtraitflag" :src="personList.head_photo" alt="">
 					</view>
                     <p class="amend">修改头像</p>
@@ -107,11 +107,11 @@
 				}).then(res=>{
 					if(res.status ==0){
 						that.personList=res.result;
-						let a=that.personList
+						let a=that.personList;
 							if(a.head_photo){
-								this.headProtraitflag=true
+								that.headProtraitflag=true
 							}else{
-								this.headProtraitflag=false
+								that.headProtraitflag=false
 							}	
 					 }
 				}).catch(res=>{
@@ -141,6 +141,8 @@
 										head_photo:aa
 									}
 								}).then(ress=>{
+									console.log('修改头像')
+									console.log(ress)
 									if(ress.status ==0){
 										uni.showToast({
 										    title: '头像上传成功',

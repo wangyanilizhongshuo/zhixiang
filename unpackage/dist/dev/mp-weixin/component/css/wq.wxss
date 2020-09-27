@@ -13,7 +13,7 @@
     text-align: center;
     height: 156px;
     position: relative;
-    background-image:url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/11.png");
+    background-image:url("http://zxyp.hzbixin.cn/files/9861600419251332.jpg");
     background-size: 100%;
 }
 .header-wrap .header-mes-img{
@@ -333,7 +333,7 @@
     position: relative;
     padding-left: 16.5px;
     padding-top: 10px;
-    background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png) no-repeat 95% 50%;
+    background: url(http://zxyp.hzbixin.cn/files/75591600419288015.jpg) no-repeat 95% 50%;
     background-size: 8px;
 }
 .module-list01 ._span{
@@ -1271,7 +1271,7 @@ line-height: 16px;
 
 /*选择商品规格和数量*/
 .choose-goods-type{
-    background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png) no-repeat 95% 50%;
+    background: url(http://zxyp.hzbixin.cn/files/9561600419337140.jpg) no-repeat 95% 50%;
     background-size: 8px;
     height: 45px;
     background-color: #ffffff;
@@ -1739,7 +1739,7 @@ line-height: 16px;
     background-color: #ffffff;
 }
 .gainNum-top{
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/sign_bg.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/55821600419374721.jpg");
     background-size: 100% 100%;
     height: 110px;
     width: 100%;
@@ -2400,8 +2400,6 @@ line-height: 16px;
 
 /*height: 150px;*/
 
-/*background:url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/rob_integral_succeed@2x.png") no-repeat 48% 20% rgba(0,0,0,0.5);*/
-
 /*background-size: 40px 40px;*/
 
 /*border-radius: 30px;*/
@@ -2798,7 +2796,7 @@ line-height: 16px;
 .popup-close{
     width: 20px;
     height: 20px;
-    background-image: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/cancel.png");
+    background-image: url("http://zxyp.hzbixin.cn/files/32011600419417783.jpg");
     background-size: 100% 100%;
     position: absolute;
     right: 60px;

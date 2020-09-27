@@ -227,7 +227,7 @@ var _default =
         {
           _this.seeMovieFlag = true;
           _this.seeMpvieMsg = res.msg;
-          setInterval(function () {
+          setTimeout(function () {
             _this.seeMovieFlag = false;
           }, 2000);
 

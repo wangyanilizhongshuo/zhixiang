@@ -14,6 +14,7 @@
 		},
 		onLoad(options){
 			this.setData(options);
+			console.log(this.scene)
 		},
 		methods: {
 			// 助力成功的红包
@@ -26,7 +27,7 @@
 					type: 'post',
 					data: {
 						 userId: a,
-						 envelopeId: this.scene,
+						 envelopeId: that.scene,
 						 assistanceType: 4
 					}
 				  }).then(res => {
@@ -36,17 +37,22 @@
 							title:'邀请成功!',
 							duration:2500
 						})
-						setInterval(()=>{
-							this.getMyself();
-						},3000)
+						 setTimeout(()=>{
+						 	uni.reLaunch({
+							    url:'/pages/index/index'
+						    })
+					    },3000)
 					}else{
 						uni.showToast({
 							title:'每个会员只可以邀请一次!',
 							duration:2500
 						});
-						uni.reLaunch({
-							url:'/pages/index/index'
-						})
+						setTimeout(()=>{
+							uni.reLaunch({
+								url:'/pages/index/index'
+							})
+						},3000)
+						
 					}					
 				 }).catch(res=>{
 				 })				

@@ -6,13 +6,13 @@
 			<view class="opt  flex_c flex_shrink flex_grow "
 		 		@click='jump' data-url='/pages/category/mybk/wiki/wiki' 
 				>
-				<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/baby_encyclopedia@2x.png" alt="" class="opt_img no_shrink">
+				<img src="http://zxyp.hzbixin.cn/files/15481600396817971.jpg" alt="" class="opt_img no_shrink">
 			</view>
 
 			<view class="opt  flex_c flex_shrink flex_grow "
 		 		@click='jump' data-url='/pages/category/mybk/prof/consult/consult' 
 			>
-				<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my_consultation@2x.png" alt="" class="opt_img no_shrink">
+				<img src="http://zxyp.hzbixin.cn/files/50471600396878436.jpg" alt="" class="opt_img no_shrink">
 			</view>
 		</view>
 
@@ -20,10 +20,10 @@
 			<view class="prof_list_head all_list_head flex flex_align_c">
 				<view class="prof_list_title all_list_title flex_grow flex flex_align_c ">
 					<span class="prof_list_title_txt all_list_title_txt">推荐专家</span>
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/tag1@2x.png" alt="" class="prof_list_title_icon all_list_title_icon no_shrink">
+					<img src="http://zxyp.hzbixin.cn/files/73911600409325966.jpg" alt="" class="prof_list_title_icon all_list_title_icon no_shrink">
 				</view>
 				<view class="prof_list_more no_shrink all_list_more "
-		 			@click='jump' data-url='/pages/category/mybk/prof/prof' 
+		 			@tap='jump' data-url='/pages/category/mybk/prof/prof' 
 				>查看更多>></view>
 			</view>
 
@@ -56,7 +56,7 @@
 			<view class="wiki_list_head all_list_head flex flex_align_c">
 				<view class="wiki_list_title all_list_title flex_grow flex flex_align_c ">
 					<span class="wiki_list_title_txt all_list_title_txt">推荐百科</span>
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/tag2@2x.png" alt="" class="wiki_list_title_icon all_list_title_icon no_shrink">
+					<img src="http://zxyp.hzbixin.cn/files/68561600409404894.jpg" alt="" class="wiki_list_title_icon all_list_title_icon no_shrink">
 				</view>
 				<view class="wiki_list_more no_shrink all_list_more"
 		 			@click='bkList()' data-url='/pages/category/mybk/wiki/wiki' 
@@ -74,7 +74,7 @@
 						<view class="wiki_li_tip txt_over_ell_2">{{item.detailsChinese}}</view>
 						<view class="wiki_li_time">{{item.createTime}}</view>
 					</view>
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/front_cover@2x.png" alt="" class="wiki_li_img no_shrink">
+					<img src="http://zxyp.hzbixin.cn/files/10371600409442368.jpg" alt="" class="wiki_li_img no_shrink">
 
 				</view>
 			</view>

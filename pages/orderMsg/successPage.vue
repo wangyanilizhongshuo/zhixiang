@@ -24,7 +24,7 @@
 				<view class="up">交易成功</view>
 				<view class="down">期待您的下次光临</view>
 			</view>
-			<view class="uni-content"v-if="type==5" >
+			<view class="uni-content"v-if="type==9" >
 				<view class="up">余额充值成功</view>
 				<view class="down">期待您的下次光临</view>
 			</view>
@@ -51,13 +51,14 @@
 			return {
 				type:1,
 				style: 'pink_style',// pink_style red_style skyblue_style
-				img: 'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/ok@2x.png',// succimg_cls 
+				img: 'http://zxyp.hzbixin.cn/files/14791600411156132.jpg',// succimg_cls 
 				content: '提交成功，请等待后台审核',
 			}
 		},
 		onLoad(options){
 			// type ==1 是评价的内容
 			this.setData(options)
+			console.log(options)
 		},
 		onShareAppMessage: function () {
 		    let _this = this;

@@ -28,7 +28,7 @@
 
 	.gainNum-top {
 		/* background-image: url('../../../static/zhuanfenbg.png'); */
-	    background-image: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/zhuanfenbg.png);
+	    background-image: url(http://zxyp.hzbixin.cn/files/s_13141600658800937.jpg);
 	    background-size: 100% 100%;
 	    height: 110px;
 	    width: 100%;

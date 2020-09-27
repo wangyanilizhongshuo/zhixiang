@@ -11,7 +11,8 @@
 					<input v-model="reNewPassword" type="password" placeholder="请确认新密码" />
 				</view>
 				<view class="btn"  @tap.stop="submit">提交</view>
-            </view>    
+            </view>   
+			 <view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
     </view>
 </template>
 
@@ -21,24 +22,34 @@
             return {
                oldPassword:'',
 			   newPassword:'',
-			   reNewPassword:'' 
+			   reNewPassword:'' ,
+			   signalFlag:false,
+			   signalMsg:''
+			   
             }
         },
         methods: {
 			submit(){
 				let that=this
 				if(this.oldPassword==''|| this.newPassword==''||  this.reNewPassword== '' ){
-						uni.showToast({
-							title:'密码填写出错',
-							duration:2000
-						})
+						
+						that.signalFlag=true;
+						that.signalMsg='密码填写出错';
+						setTimeout(()=>{
+							 that.signalFlag=false;
+						},2500)
 						return false; 
 				}
 				if(that.newPassword !==this.reNewPassword){
-					uni.showToast({
-						title:'新密码两次不相同',
-						duration:2000
-					})
+					// uni.showToast({
+					// 	title:'新密码两次不相同',
+					// 	duration:2000
+					// })
+					that.signalFlag=true;
+					that.signalMsg='新密码两次不相同';
+					setTimeout(()=>{
+						 that.signalFlag=false;
+					},2500)
 					return false; 	
 				}
 				let id =wx.getStorageSync('user').id
@@ -56,9 +67,20 @@
 						 	title:'修改成功',
 							duration:2000
 						 })
-						 setInterval(()=>{
-							 uni.navigateBack()
-						 },2100)
+						  setTimeout(()=>{
+							  uni.navigateTo({
+							  	url:'/pages/login/login'
+							  })
+						  },2500)
+							
+						
+					}else{
+						that.signalFlag=true;
+						that.signalMsg=res.msg;
+						setTimeout(()=>{
+							 that.signalFlag=false;
+						},2500)
+						
 					}
 				}).catch(res=>{
 					uni.showToast({
@@ -99,6 +121,19 @@
 	   position: absolute;
 	   left:0rpx;
 	   bottom:0;
+   }
+   .hbyOccurFlag{
+   	position: absolute;
+   	top:400rpx;
+   	left:250rpx;
+   	background-color: green;
+   	width:300rpx;height:130rpx;
+   	line-height: 130rpx;
+   	background-color: #000;
+   	color:#fff;
+   	text-align: center;
+   	opacity: 0.7;
+   	border-radius: 20rpx;
    }
 
 </style>

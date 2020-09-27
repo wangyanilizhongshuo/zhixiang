@@ -307,9 +307,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -351,35 +348,34 @@ var _default =
       // 视频显示的地方
       videoFlag: false,
       category_list: [
-      // 
+      // http://zxyp.hzbixin.cn/files/96291600396055431.jpg
+      // http://zxyp.hzbixin.cn/files/3301600682315523.jpg
       {
-        img: 'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/category_list/hot@2x.png',
+        img: 'http://zxyp.hzbixin.cn/files/3301600682315523.jpg',
         name: '热销爆品',
         url: '/pages/category/hot/hot' },
 
       {
-        img: 'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/category_list/encyclopedia@2x.png',
+        img: 'http://zxyp.hzbixin.cn/files/80991600396130536.jpg',
         name: '母婴百科',
         url: '/pages/category/mybk/mybk' },
 
       {
-        img: 'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/category_list/bargain@2x.png',
+        img: 'http://zxyp.hzbixin.cn/files/16271600396195924.jpg',
         name: '特惠赚钱',
         url: '/pages/category/thzq/thzq' },
 
       {
-        img: 'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/category_list/service@2x.png',
+        img: 'http://zxyp.hzbixin.cn/files/5871600396249764.jpg',
         name: '孕婴服务',
         url: '/pages/category/childServe/childServe' }],
 
 
 
-
-
       notice_list: [
-      '充值60元送120元+价值198元羊奶粉一盒',
-      '9月平台充值上线啦，充值现金大送活动------------',
-      'xxxxxxxxxxxxxxxxxx'],
+      '充值',
+      '9充值现金大送活动',
+      ']x'],
 
       active_list: [],
 
@@ -387,7 +383,8 @@ var _default =
       invite_id: '',
       openId: '',
       code: '',
-      addresslist: '' };
+      addresslist: '',
+      mer_id: '' };
 
   },
   onLoad: function onLoad(options) {
@@ -402,7 +399,7 @@ var _default =
     this.delColor(1);
     // console.log(this.invite_id+'inviteId')
     if (this.invite_id) {
-      console.log('获取code ');
+      var id = wx.getStorageSync('user').id;
       uni.login({
         provider: 'weixin',
         success: function success(res) {
@@ -410,6 +407,23 @@ var _default =
           that.getOpenId();
         } });
 
+      if (that.mer_id != 0) {
+        uni.wjw_http({
+          url: 'user/setMer',
+          data: {
+            userId: id,
+            merId: that.mer_id } }).
+
+        then(function () {
+          console.log('绑点店铺成功');
+          that.getAddress();
+        }).catch(function (res) {
+          console.log(res + '店铺');
+        });
+      }
+
+    } else {
+      that.getAddress();
     }
 
   },
@@ -450,6 +464,12 @@ var _default =
     }
   },
   methods: {
+    //跳转到红包页面+
+    jumpRed: function jumpRed() {
+      uni.redirectTo({
+        url: '/pages/red_page/red_page' });
+
+    },
     onClickItem: function onClickItem(e) {
       if (this.current !== e.currentIndex) {
         this.current = e.currentIndex;
@@ -484,8 +504,8 @@ var _default =
         type: 'get',
         data: {
           userId: id,
-          openId: this.openId,
-          supUserId: this.invite_id } }).
+          openId: that.openId,
+          supUserId: that.invite_id } }).
 
       then(function (res) {
         if (res.code == 0) {
@@ -513,13 +533,11 @@ var _default =
         if (res.code == 0) {
           _this3.openId = res.data.openid;
           // 判断用户是否登录
-          console.log('openId 获取之后，进行下一步调用函数');
+          // console.log('openId 获取之后，进行下一步调用函数')
           if (wx.getStorageSync('user')) {
-            console.log('连接上下级的关系 ，调用函数');
+            // console.log('连接上下级的关系 ，调用函数')
             _this3.bindRelation();
           }
-
-
         }
       }).catch(function (res) {
 
@@ -535,8 +553,7 @@ var _default =
             longitude: res.longitude,
             scale: 18,
             success: function success(data) {
-              console.log(data);
-              console.log('getLocation');
+
             },
             fail: function fail() {
               uni.showModal({
@@ -556,18 +573,24 @@ var _default =
 
     },
     // 获取店名字
-    getAddress: function getAddress() {var _this4 = this;
+    getAddress: function getAddress() {
       var that = this;
-      var id = wx.getStorageSync('user').mer_id;
+      var id = '';
+      // if(that.invite_id){
+      // 	id=that.invite_id;
+      // 	console.log(11111+'that.invite_id'+id);
+      // }else{
+      id = wx.getStorageSync('user').mer_id;
+      console.log(222 + 'user.mer_id' + id);
+      // }
       uni.wjw_http({
         url: 'merchant/info/' + id,
         type: 'post' }).
       then(function (res) {
         if (res.status == 0) {
+          console.log(2333 + 'user.mer_id' + id);
           that.addressName = res.result.shop_name;
-          _this4.addresslist = res.result;
-          // console.log(111)
-          // console.log(res)
+          that.addresslist = res.result;
         }
 
       });
@@ -628,15 +651,15 @@ var _default =
 
     },
     // 轮播图
-    get_banner: function get_banner(e) {var _this5 = this;
+    get_banner: function get_banner(e) {var _this4 = this;
       uni.wjw_http({
         url: "banner/list",
         data: {} }).
       then(function (res) {
         // console.log(res);
         if (res.status == 0) {
-          _this5.bannar = res.result.map(function (item) {return item.photo;});
-          _this5.bannerLink = res.result.map(function (item) {return item.id;});
+          _this4.bannar = res.result.map(function (item) {return item.photo;});
+          _this4.bannerLink = res.result.map(function (item) {return item.id;});
         }
 
       });
@@ -665,7 +688,7 @@ var _default =
 
     },
     // 公告
-    getNews: function getNews(e) {var _this6 = this;
+    getNews: function getNews(e) {var _this5 = this;
       uni.wjw_http({
         url: "bannermsg/list",
         method: 'post',
@@ -674,7 +697,7 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          _this6.notice_list = res.result.map(function (item) {return item.title;});
+          _this5.notice_list = res.result.map(function (item) {return item.title;});
         }
       });
     },
@@ -706,7 +729,7 @@ var _default =
 
     },
     // 获取所有商品的分类
-    getAllGoodsClassificate: function getAllGoodsClassificate() {var _this7 = this;
+    getAllGoodsClassificate: function getAllGoodsClassificate() {var _this6 = this;
       var that = this;
       uni.wjw_http({
         url: 'goodsclass/list' }).
@@ -714,7 +737,7 @@ var _default =
         if (res.status == 0) {
           that.allGoodsCateList = res.result.map(function (item) {return item.class_name;});
           that.allGoodsCateIdList = res.result.map(function (item) {return item.id;});
-          _this7.$forceUpdate();
+          _this6.$forceUpdate();
         }
       });
     },
@@ -728,9 +751,7 @@ var _default =
       var pages = page;
       var that = this;
       //这里出现的classid 是根据官网随便填写的 
-      // let a =uni.getStorageSync('userData');
-      // let use=a.user.id;
-      // let token=a.token;
+
       var ids = that.allGoodsCateIdList[i];
       uni.wjw_http({
         url: 'saleevent/listByPage',
@@ -738,8 +759,6 @@ var _default =
           page: pages,
           pageSize: 6,
           ower_type: 2,
-          // userId:use,
-          // token:token,
           class_id: ids } }).
 
       then(function (res) {
@@ -754,11 +773,12 @@ var _default =
             that.allGoodsList = res.result.list;
           }
           that.cateORallFlag = true;
+          console.log(that.allGoodsList);
         }
       });
       // 全部列表的内容 删除
     },
-    delColor: function delColor(pages1) {var _this8 = this;
+    delColor: function delColor(pages1) {var _this7 = this;
       this.cateFlag = false;
       this.sels = 1;
       this.sel = -3;
@@ -774,7 +794,7 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          _this8.pageallSizes = res.result.pages;
+          _this7.pageallSizes = res.result.pages;
           if (pages != 1) {
             var ii = res.result.list;
             var jj = that.allGoodsList;

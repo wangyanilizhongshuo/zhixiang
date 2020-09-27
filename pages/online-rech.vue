@@ -38,32 +38,7 @@
           <div class="points-scroll"> 
              <div class="scroll-box"> 
             <div class="rech-box">
-                <!--<div class="box-list">
-                        <div class="list-title"><span>充值返现送豪礼</span></div>
-                        <div class="cont-tetle">
-                            <div class="tetle-box">
-                                <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/xiantiao.png" alt="">
-                                <span class="rech-nama">70充值返现豪礼送</span>
-                                <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/xiantiaoyou.png" alt="">
-                            </div>  
-                         </div>
-                         <p class="tc"><label class="tern-title">余额赠品二选一</label></p>  
-                        <div class="cont-info">
-                                <p class="goods-cr"><span>送120元现金+198元羊奶粉一盒</span></p>
-                            <div class="cont-wp">
-                                <div class="info-money">
-                                    <p class="money-img"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/red_bag.png"></p>
-                                    <p class="money-cr"><span>53000金额</span></p>
-                                </div>
-                                <div class="info-goods">
-                                    <p class="goods-img"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/commodity_pictures.png"></p>
-                                </div> 
-                            </div> 
-                        </div> 
-                        <p class="tc rech-but">
-                            <a href="javascript:;" class="rech-serve"><span class="cr1">60充值返现豪礼送</span><span class="cr2 fr">立即充值</span></a>
-                        </p>
-                    </div>-->
+                
                 </div>
                 <div class="infinite-scroll-preloader"><div class="preloader"></div></div>
 
@@ -95,7 +70,7 @@
 }
     .rech{
         width:100%; 
-        background:#eff8ffad url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/diwen.png) no-repeat;
+        background:#eff8ffad url(http://zxyp.hzbixin.cn/files/95801600417552116.jpg) no-repeat;
         background-size:100% auto;
         padding-top:0.3rem; 
         position: relative;
@@ -119,7 +94,7 @@
         color:#fff;
         height:0.80rem;
         line-height:0.7rem; 
-        background:#eff8ffad url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/dikuang.png) no-repeat;
+        background:#eff8ffad url(http://zxyp.hzbixin.cn/files/99631600417695292.jpg) no-repeat;
         background-size:100% 100%;
     }
 .cont-tetle{ width:100%; display: block; text-align: center }
@@ -205,7 +180,7 @@
         height:0.6rem;
         line-height:0.6rem;
         display: inline-block; 
-        background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/anniu.png) no-repeat;
+        background: url(http://zxyp.hzbixin.cn/files/42591600417745258.jpg) no-repeat;
         background-size:100% 100%;
         -webkit-box-shadow:  #Ffffff 0px 0px 0.2rem;
         -moz-box-shadow:  #Ffffff  0px 0px 0.2rem; 
@@ -239,7 +214,7 @@
         display:block;
         width:100%;
         height:100%;
-        content:"";background-image:url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/load.gif);
+        content:"";background-image:url(http://zxyp.hzbixin.cn/files/32001600417655688.jpg);
         background-repeat:no-repeat;
         background-size:100%;
 }

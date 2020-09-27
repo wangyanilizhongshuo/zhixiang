@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-evaluate">
 		<view class="uni-title">
-				<image class="uni-image uni-left" src="https://img02.miyabaobei.com/d1/p4/item/13/1375/1375041_normal_4.jpg"></image>
+				<image class="uni-image uni-left" src="http://zxyp.hzbixin.cn/files/41171600411210536.jpg"></image>
 				<view class="uni-right"> 
 					 <text class="word">评分	</text>
 					  <uni-rate  :size="18" v-model="startNum" @change="onChange"/>
@@ -12,11 +12,10 @@
 		     <view class="uni-imgs-content">
 				 <view class="img_info_li" v-for="(item,index) in bodyPhotoUrl" :key="index">
 				 	<image @tap.stop="injuryPreviewImage(index)" :src="item" alt="" class="uni-img"/>
-<!-- 				 	<image @tap.stop="delImg(index)" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/del@2x.png"
-				 	 alt="" class="uni-imgs" /> -->
+
 				 </view>
 				 <view class="img_info_li">
-				 	<image v-if="bodyPhotoUrl.length>=0 && bodyPhotoUrl.length<3" @click="bodyPhotoAdd()" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/upload@2x.png"
+				 	<image v-if="bodyPhotoUrl.length>=0 && bodyPhotoUrl.length<3" @click="bodyPhotoAdd()" src="http://zxyp.hzbixin.cn/files/7641600411257529.jpg"
 				 	 alt="" class="uni-img">
 				 </view>
 			 </view>

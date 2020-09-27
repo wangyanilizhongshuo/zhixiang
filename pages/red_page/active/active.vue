@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-active" style="background-color: #ee5b4e;" :style="maskOnMove?'height:100vh;overflow:hidden;':'height:100%'">
 		 <!-- v-if="videoMask && redRainFlag && videoFlag" || redRainAllSumFlag|| videoConFlag -->
-		<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/red_page_active_bg.png"
+		<img src="http://zxyp.hzbixin.cn/files/33371600400931304.jpg"
 		 alt="" class="active_bg"  :style="maskOnMove?'position:fixed;':'position:absolute'" >
 		<div  class="active_content relative ta_c  " >
 			<div class="active_top_info_box ov_hid">
@@ -9,11 +9,11 @@
 				<div class="active_info_box">
 					<div class="active_info margin_auto ov_hid">
 						<div class="active_tips flex flex_c lh1">
-							<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/crown@2x.png" alt=""
+							<img src="http://zxyp.hzbixin.cn/files/38201600401259712.jpg" alt=""
 							 class="active_tip_icon no_shrink">
 							<div class="active_tip_txt">手气最佳</div>
 						</div>
-						<div class="cash_btn flex_c" @click='jump' data-url='/pages/red_page/cash/cash'>
+						<div class="cash_btn flex_c" @tab='withDrawals' >
 							<span class="cash_btn_txt">提现</span>
 							<span class="cash_btn_icon">></span>
 						</div>
@@ -30,16 +30,16 @@
 			</div>
 			<div class="active_category_list flex flex_jc_e">
 				<div class="active_category_li" @tap.stop="videoOccur" >
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/watch_veido@2x.png"
+					<img src="http://zxyp.hzbixin.cn/files/83171600401332169.jpg"
 					 alt="" class="active_category_li_img">
 				</div>
 				<div class="active_category_li" @tap.stop="redRainOccur" >
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/redbag_rain@2x.png"
+					<img src="http://zxyp.hzbixin.cn/files/63211600401362349.jpg"
 					 alt="" class="active_category_li_img" >
 				</div>
 				<div class="active_category_li" @tap.stop="inviteFlag=true,
 				QRflag=true,maskOnMove=true" >
-					<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/scan_qrcode@2x.png"
+					<img src="http://zxyp.hzbixin.cn/files/55341600401410892.jpg"
 					 alt="" class="active_category_li_img">
 				</div>
 			</div>
@@ -263,7 +263,12 @@
 			    }
 		},
 		methods: {
-			
+			// 跳转到提现的页面
+			withDrawals(){
+				uni.redirectTo({
+					url:'/pages/red_page/cash/cash'
+				})
+			},
 			// 红包助力列表
 			getRedRecord(){
 				let id =wx.getStorageSync('user').id
@@ -303,13 +308,13 @@
 					  	this.getRedRainMoneny()
 					  }else{
 					  	this.hbyOccur=true;
-					  	setInterval(()=>{
+					  	setTimeout(()=>{
 					  		this.hbyOccur=false;
 					  	},3000)
 					  }
 				  }else{
 					  this.hbyNumFlag=true;
-					  setInterval(()=>{
+					  setTimeout(()=>{
 						  this.hbyNumFlag=false;
 					  },3000)
 				  }
@@ -351,7 +356,7 @@
 				// 初始化动画执行当前索引
 				var tempIndex = 0;
 				// 开始定时器，每隔1秒掉落一次红包
-				that.showInter = setInterval(function() {
+				that.showInter = setTimeout(function() {
 					// 生成当前掉落红包的个数，1-3个
 					var showNum = Math.ceil(Math.random() * 2);
 					// 防止数组越界
@@ -551,7 +556,7 @@
 						this.videoFlag=true;
 						this.videoFlags=false;
 						this.seeMovie=true;
-						setInterval(()=>{
+						setTimeout(()=>{
 							this.seeMovie=false;
 						},2500)
 						this.seeMpvieMsg=res.msg;

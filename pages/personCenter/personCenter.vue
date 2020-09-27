@@ -1,13 +1,12 @@
 <template>
 	<view>
 		<view class="content">
-		    <view class="header-wrap " style="background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/mineBg.png) no-repeat center;background-size: 100%;background-size: 100% 120%;height: 210px;">
+		    <view class="header-wrap " style="background: url(http://zxyp.hzbixin.cn/files/5291600397644472.jpg) no-repeat center;background-size: 100%;background-size: 100% 120%;height: 210px;">
 		       
 		        <view class="user-icon"@tap="jump"  data-url='/pages/personData'>
 		        
-		            <img style="width:95%;height: 95%;;" :src="user_info.head_photo||'http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png'" >
-		            <!-- <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personalcenter_nohead.png"  style="display: none"><!未登录时的头像--> 
-		            <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/vip@2x.png" alt="" class="vip_icon" @click='showToast' data-title='请前往APP内进行开通' v-if='user_info.is_vip'>
+		            <img style="width:95%;height: 95%;;" :src="user_info.head_photo||'http://zxyp.hzbixin.cn/files/56951600411655718.jpg'" >
+		            <img src="http://zxyp.hzbixin.cn/files/83201600411694212.jpg" alt="" class="vip_icon" @click='showToast' data-title='请前往APP内进行开通' v-if='user_info.is_vip'>
 		        </view>
 		        <view class="user-inform" @click='jump' data-url='/pages/personData'>
 		            <p class="user-name">{{user_info.nickname}}</p>
@@ -22,33 +21,33 @@
 		            <view class="list3 user_opt"  @tap.stop='jump' data-url='/pages/personCenter/wallet/wallet'>
 		                <p class="user_opt_num">{{(user_info.money/100)||'0.00'}}</p>
 		                <p class="user_opt_txt">余额</p>
-		                <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personacenter_balance.png" style="display: none">
+		                <img src="http://zxyp.hzbixin.cn/files/8901600411744753.jpg" style="display: none">
 		            </view>
 		            <view class="list3 user_opt" id="my-fen"  @click='jump' data-url='/pages/onlinePay'>
 		                <p class="user_opt_num">{{user_info.points||'0'}}</p>
 		                <p class="user_opt_txt">积分</p>
-		                <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personacenter_integral.png" style="display: none">
+		                <img src="http://zxyp.hzbixin.cn/files/40581600411778162.jpg" style="display: none">
 		            </view>
 		            <view class="list3 user_opt">
 		            	<!-- 未确定 {{user_info.nickname||'0'}} -->
 		                <p class="user_opt_num">0</p>
 		                <p class="user_opt_txt">我的关注</p>
-		                <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/personacenter_integral.png" style="display: none">
+		                <img src="http://zxyp.hzbixin.cn/files/40581600411778162.jpg" style="display: none">
 		            </view>
 
 		        </view>
 		    </view>
-		    <view class="order-form" style="position: absolute;left: 5%;top:180px;width: 90%;border-radius: 10px;">
+		    <view class="order-form" style="position: absolute;left: 5%;top:180px;width: 671rpx;border-radius: 10px;">
 		        <view  class="my-form " @click='jump' data-url='/pages/allMyOrder' data-types="0" >
 		            <span class="myForm">我的订单</span>
 		            <span class="see-allOrder" >查看全部订单</span>
-		            <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/pc_allorders.png">
+		            <img src="http://zxyp.hzbixin.cn/files/86371600397080159.jpg">
 		        </view>
 
 		        <ul class="form-list">
 		            <li id="goPay" @click='jump' data-url='/pages/allMyOrder' data-types="1" >
 		                <p class="goPay-img" style="position:relative" >
-		                    <img class="order_icon" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my11.png">
+		                    <img class="order_icon" src="http://zxyp.hzbixin.cn/files/40621600395075623.jpg">
 		                    <view class="bd_num" id="gopay-num"></view>
 							<text v-if="orderList.noPay"  class="signedMes" >{{orderList.noPay}}</text>
 		                </p>
@@ -56,7 +55,7 @@
 		            </li>
 		            <li id="goAllocate" @click='jump' data-url='/pages/allMyOrder' data-types="2" >
 		                <p class="goPay-img" style="position:relative">
-							<img class="order_icon" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my12.png">
+							<img class="order_icon" src="http://zxyp.hzbixin.cn/files/91291600395264010.jpg">
 		                    <view class="bd_num" id="goallocate_num"></view>
 		                    <text  v-if="orderList.noSend" class="signedMes" >{{orderList.noSend}}</text>
 						</p>
@@ -64,7 +63,7 @@
 		            </li>
 		            <li id="goSend" @click='jump' data-url='/pages/allMyOrder' data-types="3" >
 		                <p class="goPay-img" style="position:relative">
-							<img class="order_icon" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my13.png">
+							<img class="order_icon" src="http://zxyp.hzbixin.cn/files/45071600395337327.jpg">
 		                    <view class="bd_num" id="gosend_num"></view>
 		                    <text v-if="orderList.hasSend" class="signedMes" >{{orderList.hasSend}}</text>
 						</p>
@@ -72,14 +71,14 @@
 		            </li>
 		            <li id="goPick" @click='jump' data-url='/pages/allMyOrder' data-types="4" >
 		                <p class="goPay-img" style="position:relative">
-							<img class="order_icon" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my14.png">
+							<img class="order_icon" src="http://zxyp.hzbixin.cn/files/83541600395416426.jpg">
 		                    <view class="bd_num" id="gopick_num" ></view>
 		                    <text  v-if="hasSureLength" class="signedMes" >{{hasSureLength}}</text> 
 						</p>
 		                <p class="goPay-name">已确认</p>
 		            </li>
 		            <li id="goFinish" class="last-li send-finish" @click='jump' data-url='/pages/orderMsg/afterSales' >
-		                 <p class="goPay-img"><img class="order_icon" src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my15.png">
+		                 <p class="goPay-img"><img class="order_icon" src="http://zxyp.hzbixin.cn/files/99251600395602921.jpg">
 		                    <view class="bd_num" id="gofinish_num"></view>
 							<text v-if="refundNum" class="signedMes" >{{refundNum}}</text>
 		                </p>
@@ -90,8 +89,8 @@
 		    
 		    <!-- 94px -->
 		    <view class="order_form_occupy" style="height: 117px;"></view>
-		    <view class="notice_box flex">
-		    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/notice@2x.png" alt="" class="notice_logo no_shrink">
+		    <view class="notice_box flex" style="margin-top:42rpx;">
+		    	<img src="http://zxyp.hzbixin.cn/files/46031600398185484.jpg" alt="" class="notice_logo no_shrink">
 		    	<swiper class="notice_swiper flex_grow" 
 		    		circular vertical 
 		    		>
@@ -116,7 +115,7 @@
 		                <view class="spacer"></view>
 		            <view class="list1">
 		                <p class="text1 popular_num" id="point_reward">{{user_info.total_point_reward||'0.00'}}</p>
-		                <p class="text2 popular_txt" >累计积分</p>
+		                <p class="text2 popular_txt" >推广积分</p>
 		            </view>
 		            <view class="list1">
 		                <p class="text1 popular_num" id="money_reward">{{(user_info.total_money_reward)/100||'0.00'}}</p>
@@ -124,33 +123,33 @@
 		            </view>
 		       </view>  
 		    </view>
-		    <view class="mine_opts flex flex_wrap " style="color: #000;">
+		    <view class="mine_opts flex flex_wrap " style="color: #000;margin-bottom:20rpx;">
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/shopCoupon' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my_redbag.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/38031600397163044.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">我的红包</view>
 		    	</view>
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/myTwoCode' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my22.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/18811600397208174.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">我的二维码</view>
 		    	</view>
 		    <!-- 	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/appDownload' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/report@2x.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/36641600397248966.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">APP下载</view>
 		    	</view> -->
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/myOpinion' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/my24.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/771600397313024.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">意见反馈</view>
 		    	</view>
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/gainNum' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/integral@2x.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/98241600397355081.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">赚取积分</view>
 		    	</view>
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/newsCenter' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/msg@2x.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/78461600397431883.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">我的消息</view>
 		    	</view>
 		    	<view class="mine_opt flex flex_column no_shrink flex_c"  @click='jump' data-url='/pages/personCenter/setting' >
-			    	<img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/setting@2x.png" alt="" class="mine_opt_img">
+			    	<img src="http://zxyp.hzbixin.cn/files/49121600397476634.jpg" alt="" class="mine_opt_img">
 			    	<view class="mine_opt_span">我的设置</view>
 		    	</view>
 			</view>

@@ -59,7 +59,7 @@ body{
 }
 
 .sc-mleft {
-	background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/arrowLeftCircle.png) center top no-repeat;
+	background: url(http://zxyp.hzbixin.cn/files/50951600418656962.jpg) center top no-repeat;
 	background-size: 100% 100%;
 	width: 0.4rem;
 	height: 0.4rem;
@@ -69,7 +69,7 @@ body{
 }
 
 .sc-mright {
-	background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/arrowRightCircle.png) center top no-repeat;
+	background: url(http://zxyp.hzbixin.cn/files/12651600418697432.jpg) center top no-repeat;
 	background-size: 100% 100%;
 	width: 0.4rem;
 	height: 0.4rem;
@@ -110,54 +110,12 @@ body{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-/*æ—¥*/
-.sc-days {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
+/*æ—/
 
-.sc-item {
-	width: 13.5%;
-	height: 1.1rem;
-	float: left;
-	color: #565555;
-	background-color: #ffffff;
-	box-sizing: border-box;
-	margin: 0.39%;
-	
-}
 
-.sc-item .day {
-	font-size: 16px;
-	color: #333333;
-	font-weight: normal;
-	line-height: 0.45rem;
-}
-.sc-item .lunar-day {
-	font-size: 9px;
-	line-height: 0.24rem;
-	color: #b2b2b2;
-	font-weight: normal;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.sc-item-small {
-	font-size: 0.416666rem !important;
-}
-.item-nolunar {
-	padding-top: 0.833333rem;
-}
 
-.sc-vocation {
-	background-color: #FFEBEC;
-}
-
-.sc-mark {
-	background-color: #E5FBFA;
-}
 .mark{
-	/*background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/blueBg.png) center center no-repeat;
+	/*background: uroject/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/blueBg.png) center center no-repeat;
 	background-size: 0.88rem 0.88rem;*/
 	height: 0.16rem;
 	font-size: 14px;
@@ -172,7 +130,7 @@ body{
 }
 
 .sc-vocation:before {
-	content: 'ä¼‘';
+	content: 'ä¼;
 	display: block;
 	position: absolute;
 	font-size: 0.7em;
@@ -192,12 +150,12 @@ body{
 }
 
 .sc-active-day{
-/*	background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/calendar_bg.png) center center no-repeat;*/
+/*	background: url(http://zxyp.hzbixin.cn/files/91841600418945771.jpg) center center no-repeat;*/
 	background-size: 0.88rem 0.88rem;
 	background: cover;
 }
 .sc-today {
-	background: url(http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/calendar_bg.png) center center no-repeat;
+	background: url(http://zxyp.hzbixin.cn/files/91841600418945771.jpg) center center no-repeat;
 	background-size: 0.88rem 0.88rem;
 /*	color: white;*/
 }
@@ -285,11 +243,11 @@ body{
     background-color: #ffffff;
 }
 .question-wrap .aw:nth-of-type(2){
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/quest_wrong.png") no-repeat 92% 50% #f23030;
+    background: url("http://zxyp.hzbixin.cn/files/7131600419080400.jpg") no-repeat 92% 50% #f23030;
     background-size: 7% 25%;
 }
 .question-wrap .aw:nth-of-type(3){
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/quest_right.png") no-repeat 92% 50% #31ac4e;
+    background: url("http://zxyp.hzbixin.cn/files/40431600419048482.jpg") no-repeat 92% 50% #31ac4e;
     background-size: 7% 25%;
 }
 .question-wrap .aw:nth-of-type(4){
@@ -336,6 +294,6 @@ body{
     color: #414141;
 }
 .signed{
-    background: url("http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/calendar_bg.png") no-repeat center;
+    background: url("http://zxyp.hzbixin.cn/files/3501600419118057.jpg") no-repeat center;
     border-radius: 50%;
 }

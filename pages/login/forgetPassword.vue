@@ -71,7 +71,7 @@
 					})
 					clearInterval(that.timer);
 					 that.isSendCode = false;
-					 that.timer = setInterval(()=>{
+					 that.timer = setTimeout(()=>{
 							that.sendCodeTime=that.sendCodeTime-1;
 							if(that.sendCodeTime < 1){
 								that.sendCodeTime = 60;
@@ -112,7 +112,7 @@
 							title:'密码重置成功',
 							duration:2000
 						})
-						setInterval(()=>{
+						setTimeout(()=>{
 							uni.reLaunch({
 							   url:'/pages/index/index'
 						    })

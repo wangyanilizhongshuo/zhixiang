@@ -17,21 +17,21 @@
                         </view>
                         <view class="box-but">
                             <!-- :checked='info.is_default==1' -->
-                            <view class="choice" style="width:230rpx;"  @click.stop='address_update' :data-index='index' data-type='is_default' >
+                            <view class="choice" style="width:230rpx;"  @tap.stop='address_update' :data-index='index' data-type='is_default' >
 								<label class="label-checkbox refund-checkbox">
 									<input type="radio" data-checked=true class="my-radio" value="" name="my-radio">
 									<view class="item-media">
                                 <!-- <i class="icon icon-form-checkbox" ></i> -->
                                 <!-- @click.stop='set_value' :data-value='info.is_default==1?0:1' -->
-                                        <radio :checked="info.is_default==1" disable  />   
+                                        <radio :checked="info.is_default==1" disable  color="#FF7599" />   
                                     </view>
 								</label>默认地址</view>
 
                             <view class="operate">
                                 <a href="javascript:;" @tap.stop="address_edit(info.id,info.addressee,info.phone,info.province_name,info.city_name,info.area_name,info.address,info.is_default)">
-                                    <img  src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/add_edit.png"> 编辑</a>
-                                <a href="javascript:;" @click.stop='address_delete'  :data-id='info.id' >
-                                    <img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/add_delete.png"> 删除</a>
+                                    <img  src="http://zxyp.hzbixin.cn/files/52151600848347156.jpg"> 编辑</a>
+                                <a href="javascript:;" @tap.stop='address_delete'  :data-id='info.id' >
+                                    <img src="http://zxyp.hzbixin.cn/files/94391600848361468.jpg"> 删除</a>
                             </view>
                         </view>
                     </view>

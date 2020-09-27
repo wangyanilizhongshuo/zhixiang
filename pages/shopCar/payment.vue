@@ -7,16 +7,21 @@
 					<span class="payment-text">订单金额</span>
 					<p>￥<span id="zong">{{money}}</span></p>
 				</view>
-				<view class="pay-way">
-					<view class="pay-way1 pay-way-list" id="pay-way1" @click="flags=false">
-						<view class="pay-img1"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/payment_balance.png"></view>
+				<view class="pay-way" >
+					<view v-if="specialMakeMoney==1" class="pay-way1 pay-way-list" id="pay-way1" @click="flags=false">
+						<view class="pay-img1"><img src="http://zxyp.hzbixin.cn/files/94441600414064495.jpg"></view>
 						<span>余额</span>
-						<view class="pay-img2"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/next.png"></view>
+						<view class="pay-img2"><img src="http://zxyp.hzbixin.cn/files/47291600414110704.jpg"></view>
 					</view>
-					<view class="pay-way3 pay-way-list" @click='pay(1)'>
-						<view class="pay-img1"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/wechat_icon.png"></view>
+					<view v-if="specialMakeMoney==1" class="pay-way3 pay-way-list" @click='pay(1)'>
+						<view class="pay-img1"><img src="http://zxyp.hzbixin.cn/files/96231600414137247.jpg"></view>
 						<span>微信</span>
-						<view class="pay-img2"><img src="http://webh5.wangjiangwei.top/01-project/03-hzbixin/09-zxyp/01-wx_public_h5/code/img/next.png"></view>
+						<view class="pay-img2"><img src="http://zxyp.hzbixin.cn/files/94791600414180875.jpg"></view>
+					</view>
+					<view v-if="specialMakeMoney==4" class="pay-way3 pay-way-list" @click='sepcialPay()'>
+						<view class="pay-img1"><img src="http://zxyp.hzbixin.cn/files/14751601189947553.jpg"></view>
+						<span>专区余额</span>
+						<view class="pay-img2"></view>
 					</view>
 				</view>
 
@@ -76,7 +81,8 @@
 				signalFlag:false,
 				signalMsg:'',
 				code:'',
-				openId:""
+				openId:"",
+				specialMakeMoney:1
 
 			}
 		},
@@ -90,6 +96,7 @@
 					   that.getOpenId(); 
 				  }
 			})
+			console.log(options)
 		},
 		methods: {
 			getOpenId(){
@@ -110,6 +117,34 @@
 					}
 				}).catch(res=>{
 					console.log(res)
+				})
+			},
+			sepcialPay(){
+				let that=this;
+				let id = wx.getStorageSync('user').id;
+				uni.wjw_http({
+					url:'api/createOrder',
+					data:{
+						userId: id,
+						id: that.id,
+						payType: 4,
+						repIds: that.repIds,
+						counts: that.counts,
+						password: that.password,
+						addressId: that.addressId,
+						isSelfTake:that.isSelfTake,
+						repIds:that.repIds,
+						openid:that.openId,
+						memo:that.memo
+					}
+				}).then(res=>{
+					if(res.status ==0){
+						let types=5;
+						uni.navigateTo({
+							url:'/pages/orderMsg/successPage?type='+types
+						})
+						
+					}
 				})
 			},
 			pay(sss) {
@@ -152,6 +187,7 @@
 				// 直接过来的付款
 				else if (that.type == 0) {
 					urls = 'api/createOrder';
+					
 					datas = {
 						userId: id,
 						id: that.id,
@@ -168,6 +204,7 @@
 				}
 				// 继续付款
 				else if(that.type == 11){
+					console.log('继续支付')
 					urls = 'api/payOrder';
 					datas = {
 						userId: id,
@@ -182,6 +219,7 @@
 					data: datas
 				}).then(res => {
 					if(sss ==3){
+						// 余额支付
 						if(res.status ==0){
 							  let types=2;
 							  uni.navigateTo({
@@ -190,13 +228,14 @@
 						}else{
 							this.signalFlag=true;
 							this.signalMsg=res.msg;
-							setInterval(()=>{
+							setTimeout(()=>{
 								this.signalFlag=false
 							},2500);
 							
 						}						
 					}
 					else if(sss ==1){
+						console.log('ssss调起微信 支付1')
 						let appids='wx74605d2c3744958c';
 						if (res.status == 0) {
 						let aa = res.result.payInfo ||res.result;
@@ -208,13 +247,12 @@
 						bb.sign = aa.paySign;
 						that.filed = bb;
 						that.password = '';
-						
 						callback(that.filed);	
 						
 					  }
 					}					
 				}).catch(res => {					
-					setInterval(() => {
+					setTimeout(() => {
 						uni.navigateBack({
 							delta: 2
 						})
