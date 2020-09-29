@@ -53,35 +53,32 @@
                 </div>
                 <div class="swiper-container goods-info-2 swiper-container-horizontal swiper-container-autoheight swiper-container-ios" id="swiperInfo">
                     <div class="swiper-pagination tab-row swiper-pagination-null">
-                        <div class="tab-item" :class='{active: tab_index==0}' @click='tab_index=0'>详情</div>
+                        <div class="tab-item" :class='{active: tab_index==0}' @click='detailJump'>详情</div>
                         <div class="tab-item" :class='{active: tab_index==1}' @click='tab_index=1'>参数</div>
                         <div class="tab-item" :class='{active: tab_index==2}' @click='tab_index=2'>评价</div>
                     </div>
-                    <!-- height: 350px; -->
+                   
                     <div class="swiper-wrapper tab-content" :style="'transform: translate3d(-' + (100*tab_index) + 'vw, 0px, 0px); transition-duration: 0ms; '">
 
-                    	<!--  :class='{"swiper-slide-active":tab_index==0}' -->
+                    	
                         <div class="swiper-slide tab-area" id="detail" style="width: 100vw;">
-                        	详情
-                        	<iframe :src="goods_info.goodsDetailUrl" id="details" frameborder="0" align="center" width="100%" height="1000px"></iframe>
+                        	<!-- <web-view :src="goods_info.goodsDetailUrl" id="details" frameborder="0" align="center" width="100%" height="100%"></web-view> -->
                         </div>
 
                         <!-- swiper-slide-prev -->
-                        <!--  :class='{"swiper-slide-active":tab_index==1}' -->
                         <div class="swiper-slide tab-area " style="width: 100vw;">
-                        	参数
+                        	
                             <ul class="goods-canshu">
                                 <li class="canshu-item" v-for="(info,index) in goods_info.property" :key='index+"property"' >
                                     <div class="detail-message-1">
-                                        <div class="detail-message-font">{{info.name}}</div>
-                                        <div class="detail-message-style ">{{info.value}}</div>
+                                        <div class="detail-message-font" style="width:300rpx">{{info.name}}</div>
+                                        <div class="detail-message-style" style="width:400rpx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{info.value}}</div>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                        <!--  :class='{"swiper-slide-active":tab_index==2}' -->
                         <div class="swiper-slide tab-area " style="width: 100vw;">
-                        	评价
+                        	
                             <div class="goodsContent">
                                 <div class="goodsContent-list" v-for="(info,index) in goodscomment" :key='index+"goodscomment"' >
                                     <div class="content-top">
@@ -108,15 +105,9 @@
                 <ul>
                     <li class="btn-cart" @click='jump' data-url='/pages/shopCar/shopCar' data-type='3'>
                         <div class="cart-icon"></div>购物车
-                        <!--  style="display: none;" -->
                         <span class="cart-circle02" v-if='amounts'>{{amounts}}</span>
                     </li>
-                	<!--  @click=call :data-phone='phone' -->
-                   <!-- <li class="btn-server"><a :href="'tel:'+phone" id="service">
-                            <div class="server-icon"></div>客服
-                        </a></li> -->
 						<li class="btn-server">
-							<!-- <button hover-class="none" class="btns"  > -->
 							<button hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp">
 								<a :href="'tel:'+phone" id="service" style="border: 3rpx solid white;">
 								       <view class="server-icon"></view>
@@ -124,13 +115,11 @@
 								 </a>
 							</button>
 						</li>
-                    <li class="btn-addCart" @tap='specialMakeMoney ==4?popup_num_show=false:popup_num_show=true'>加入购物车 </li>
-                    <li class="btn-buy" @tap='popup_num2_show=true'>立即购买</li>
+                    <li class="btn-addCart" v-if="specialMakeMoney==1"  @tap='popup_num_show=true'>加入购物车 </li>
+                    <li class="btn-buy"  @tap='popup_num2_show=true'>立即购买</li>
                 </ul>
             </div>
         </div>
-        
-
         <!-- goods num Popup -->
         <div class="popup modal-in" id="popup-num" style="display: block;" v-if='popup_num_show'>
             <div class="pop-content">
@@ -225,9 +214,8 @@ import main from "@/component/css/main";
 import wq from "@/component/css/wq";
 import cdn_swiper_min from "@/component/css/cdn_swiper_min";
 import goodsDetail from "@/component/css/page/goodsDetail";
-
 export default {
-
+	
     components: {
         goodsDetail,
         cdn_swiper_min,
@@ -252,17 +240,16 @@ export default {
         	name:'',
         	points:'',
         	amount: 1,
-        	tab_index: 0,
+        	tab_index: 1,
         	standrd_index: 0,
 			// 购物车的列表 以及购物车数量
 			carList:'',
 			amounts:0,
-			specialMakeMoney:''
+			specialMakeMoney:1
         }
     },
     onShow() {
     	this.amount=1;
-		
     },
 	onShareAppMessage: function () {
 	    let _this = this;
@@ -294,9 +281,35 @@ export default {
 		}else{
 			console.log(this.specialMakeMoney+'specialMakeMoney');
 		}
+		var  height=0;//定义动态的高度变量，如高度为定值，可以直接写
+		uni.getSystemInfo({
+		//成功获取的回调函数，返回值为系统信息
+		success: (sysinfo) => {
+		height = sysinfo.windowHeight;//自行修改，自己需要的高度
+		
+		console.log(height);
+		},
+		complete: () => {
+		}
+		});
+		
+		// console.log(currentWebview)
+		// setTimeout(function() {
+		// var wv = currentWebview.children()[0];
+		// console.log(wv);
+		// wv.setStyle({//设置web-view距离顶部的距离以及自己的高度，单位为px
+		// top: 800,
+		// height:height
+		// })
+		// }, 1000);//如页面初始化调用需要写延迟
     },
     methods: {
-
+         detailJump(){
+			 this.tab_index=0;
+			 uni.navigateTo({
+			 	url:'/pages/goods/goodDetail?id='+this.id
+			 })
+		 },
         // 商品详情
         get_goods_info(e) {
             uni.wjw_http({
@@ -306,9 +319,11 @@ export default {
                     id: this.id
                 },
             }).then(res => {
-             //   console.log('商品详情 接口 请求成功', res);
+                // console.log('商品详情 接口 请求成功', res);
                 this.goods_info = res.result;
-
+				 console.log(this.goods_info.goodsDetailUrl)
+               
+               
             })
 
         },

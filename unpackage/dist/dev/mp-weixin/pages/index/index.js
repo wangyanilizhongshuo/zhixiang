@@ -307,6 +307,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -397,7 +398,7 @@ var _default =
     this.getActivityTopic();
     this.getAllGoodsClassificate();
     this.delColor(1);
-    // console.log(this.invite_id+'inviteId')
+    console.log(this.invite_id + 'inviteId');
     if (this.invite_id) {
       var id = wx.getStorageSync('user').id;
       uni.login({
@@ -443,7 +444,7 @@ var _default =
     }
     if (wx.getStorageSync('token') && this.invite_id) {
       // 绑定上下级关系
-      this.getOpenId();
+      this.bindRelation();
     }
   },
   components: {},
@@ -510,6 +511,8 @@ var _default =
       then(function (res) {
         if (res.code == 0) {
           console.log('上下级关系成功');
+        } else {
+          console.log(res);
         }
       }).catch(function (res) {
         console.log(res);
@@ -534,10 +537,10 @@ var _default =
           _this3.openId = res.data.openid;
           // 判断用户是否登录
           // console.log('openId 获取之后，进行下一步调用函数')
-          if (wx.getStorageSync('user')) {
-            // console.log('连接上下级的关系 ，调用函数')
-            _this3.bindRelation();
-          }
+          // if(wx.getStorageSync('user')){
+          // 	// console.log('连接上下级的关系 ，调用函数')
+          // 	this.bindRelation();
+          // }
         }
       }).catch(function (res) {
 
@@ -576,19 +579,14 @@ var _default =
     getAddress: function getAddress() {
       var that = this;
       var id = '';
-      // if(that.invite_id){
-      // 	id=that.invite_id;
-      // 	console.log(11111+'that.invite_id'+id);
-      // }else{
       id = wx.getStorageSync('user').mer_id;
       console.log(222 + 'user.mer_id' + id);
-      // }
       uni.wjw_http({
         url: 'merchant/info/' + id,
         type: 'post' }).
       then(function (res) {
         if (res.status == 0) {
-          console.log(2333 + 'user.mer_id' + id);
+          // console.log(2333+'user.mer_id'+id);
           that.addressName = res.result.shop_name;
           that.addresslist = res.result;
         }
@@ -676,7 +674,6 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-
           that.huodongList = res.result;
         }
       });
@@ -713,7 +710,6 @@ var _default =
       then(function (res) {
         if (res.status == 0) {
           var a = res.result.list;
-          // let num=Math.floor(Math.random()*(a.length));
           a = a.slice(0, 3);
           that.active_list = a;
 

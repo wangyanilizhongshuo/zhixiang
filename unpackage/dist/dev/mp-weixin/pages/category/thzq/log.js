@@ -152,7 +152,8 @@ var _default =
     return {
       recordList: [],
       pageSize: 1,
-      page: 1 };
+      page: 1,
+      extraFlag: true };
 
   },
   onLoad: function onLoad() {
@@ -180,6 +181,20 @@ var _default =
         if (res.code == 0) {
           that.pageSize = res.data.totalPage;
           var aa = res.data.list;
+          aa.map(function (res) {
+            // 余额大于上一次
+            if (res.afterSpecialBalance - res.beforeSpecialBalance > 0) {
+              res.changeSpecialBalance = '+' + res.changeSpecialBalance;
+            } else if (res.afterSpecialBalance - res.beforeSpecialBalance < 0) {
+              res.changeSpecialBalance = -res.changeSpecialBalance;
+            }
+            if (res.changeTypeDesc == '下级佣金') {
+              res.extraFlag = false;
+            } else {
+              res.extraFlag = true;
+            }
+
+          });
           for (var i in aa) {
             var a = new Date(aa[i].createTime);
             aa[i].createTime = a.getFullYear() + "-" + (a.getMonth() + 1).toString().padStart(2, '0') + "-" + a.getDate().toString().padStart(2, '0') + " " + a.getHours().toString().padStart(2, '0') + ":" + a.getMinutes().toString().padStart(2, '0') + ":" + a.getSeconds().toString().padStart(2, '0');

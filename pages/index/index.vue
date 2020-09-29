@@ -110,7 +110,7 @@
 				<img class="category_goods_img" @tap.stop='actiTop(item.id)' :src="item.pic" />
 			</view>
 		</view>
-		<view class="title_li flex_c" v-if="videoFlag">
+		<view class="title_li flex_c" v-if="huodongList.length>0">
 			<view class=" flex_grow "></view>
 			<view class="title_li_name no_shrink ta_c flex flex_c">
 				<img src="http://zxyp.hzbixin.cn/files/91551600406014031.jpg" alt=""
@@ -121,9 +121,10 @@
 			</view>
 			<view class=" flex_grow"></view>
 		</view>
-		<swiper class="active_box" circular v-if="videoFlag">
+		<swiper class="active_box" circular v-if="huodongList.length>0">
 			<swiper-item class="active_item " v-for="(item,index) in huodongList" :key='index'>
-				<img class="active_img" @click='actiTop(item.id)' :src="item.photo" />
+				<img class="active_img" @tap='actiTop(item.id)' :src="item.photo" />
+			 <!-- <image src="http://zxyp.hzbixin.cn/t/goods/html?id=61098"></image> -->
 			</swiper-item>
 		</swiper>
 		<view class="title_li flex_c">
@@ -252,7 +253,7 @@
 			this.getActivityTopic();
 			this.getAllGoodsClassificate();
 			this.delColor(1);
-		    // console.log(this.invite_id+'inviteId')
+		     console.log(this.invite_id+'inviteId')
 			if(this.invite_id){
 				let id =wx.getStorageSync('user').id;
 				uni.login({
@@ -298,7 +299,7 @@
 			}
 			if(wx.getStorageSync('token') && this.invite_id ){
 				  // 绑定上下级关系
-				  this.getOpenId();
+				 this.bindRelation();
 			}
 		},
 		components: {
@@ -365,6 +366,8 @@
 				}).then(res=>{
 					if(res.code ==0){
 						console.log('上下级关系成功')
+					}else{
+						console.log(res)
 					}
 				}).catch(res=>{
 					console.log(res)
@@ -389,10 +392,10 @@
 						this.openId=res.data.openid;
 						// 判断用户是否登录
 						// console.log('openId 获取之后，进行下一步调用函数')
-						if(wx.getStorageSync('user')){
-							// console.log('连接上下级的关系 ，调用函数')
-							this.bindRelation();
-						}
+						// if(wx.getStorageSync('user')){
+						// 	// console.log('连接上下级的关系 ，调用函数')
+						// 	this.bindRelation();
+						// }
 					}
 				}).catch(res=>{
 					
@@ -431,19 +434,14 @@
 			getAddress() {
 				let that = this;
 				let id=''
-				// if(that.invite_id){
-				// 	id=that.invite_id;
-				// 	console.log(11111+'that.invite_id'+id);
-				// }else{
-					id = wx.getStorageSync('user').mer_id;
-					console.log(222+'user.mer_id'+id);
-				// }
+				id = wx.getStorageSync('user').mer_id;
+				console.log(222+'user.mer_id'+id);			
 				uni.wjw_http({
 					url: 'merchant/info/' + id,
 					type: 'post'
 				}).then(res => {
 					if (res.status == 0) {
-						console.log(2333+'user.mer_id'+id);
+						// console.log(2333+'user.mer_id'+id);
 						that.addressName = res.result.shop_name;
 						that.addresslist=res.result;
 					}
@@ -531,7 +529,6 @@
 					}
 				}).then(res => {
 					if (res.status == 0) {
-						
 						that.huodongList = res.result;
 					}
 				})
@@ -568,7 +565,6 @@
 				}).then(res => {
 					if (res.status == 0) {
 						let a = res.result.list;
-						// let num=Math.floor(Math.random()*(a.length));
 						a = a.slice(0, 3)
 						that.active_list = a;
 

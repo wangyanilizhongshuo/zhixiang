@@ -331,7 +331,7 @@ function isCardNo(card) {
           fail: () => {},
           complete: () => {},
         }, option);
-		 // "prepay_id="+
+		console.log(options)
         uni.requestPayment({
 		  'appId':options.result.appId,
           'timeStamp': options.result.timeStamp,

@@ -162,9 +162,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   data: function data() {
     return {
+      signalFlag: false,
+      signalMsg: '',
       startNum: 0,
       id: '',
       subId: '',
@@ -240,7 +243,7 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     submit: function submit() {
-
+      var that = this;
       if (!this.startNum || !this.textareaValue || !this.upUrlList) {
       } else {
         uni.wjw_http({
@@ -260,6 +263,12 @@ __webpack_require__.r(__webpack_exports__);
             uni.navigateTo({
               url: '/pages/orderMsg/successPage?type=' + types });
 
+          } else {
+            that.signalFlag = true;
+            that.signalMsg = res.msg;
+            setTimeout(function () {
+              that.signalFlag = false;
+            }, 2800);
           }
         }).catch(function (res) {
           console.log(res);

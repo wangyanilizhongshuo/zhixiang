@@ -1,0 +1,1 @@
+<view class="goodsDetail data-v-31ad6cc0"><web-view src="{{goods_info.goodsDetailUrl}}" class="data-v-31ad6cc0"></web-view></view>

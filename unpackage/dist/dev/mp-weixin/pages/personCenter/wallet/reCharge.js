@@ -149,18 +149,50 @@ var _default =
   data: function data() {
     return {
       money: '',
+      code: '',
+      openId: '',
       filed: {} };
 
   },
   onLoad: function onLoad() {
+    var that = this;
+    uni.login({
+      provider: 'weixin',
+      success: function success(res) {
+        that.code = res.code;
+        that.getOpenId();
+      } });
 
   },
-  methods: {
-    getPort: function getPort() {var _this = this;
+  methods: { // 获取openId
+    getOpenId: function getOpenId() {var _this = this;
+      var that = this;
+      uni.wjw_http({
+        header: {
+          'content-type': 'application/json;charset=UTF-8' },
+
+        url: 'app/wechat/getOpenId',
+        type: 'post',
+        data: {
+          appId: 'wx74605d2c3744958c',
+          code: that.code } }).
+
+      then(function (res) {
+        if (res.code == 0) {
+          _this.openId = res.data.openid;
+          console.log('this.openid');
+          console.log(thsi.openId);
+
+        }
+      }).catch(function (res) {
+
+      });
+    },
+    getPort: function getPort() {var _this2 = this;
       var that = this;
       var id = wx.getStorageSync('user').id;
       var callback = function callback(data) {
-        _this.wxPayment({
+        _this2.wxPayment({
           result: data,
           success: function success(data) {
             //跳转到订单页面
@@ -180,19 +212,30 @@ var _default =
         data: {
           userId: id,
           payType: 1,
-          money: this.money } }).
+          money: this.money * 100,
+          openid: that.openId } }).
 
       then(function (res) {
+        // let bb = that.filed;
+        // bb.appId = appids;
+        // bb.nonceStr = aa.nonceStr;
+        // bb.timeStamp = aa.timeStamp;
+        // bb.prepayId =aa.packageValue;
+        // bb.sign = aa.paySign;
+        // that.filed = bb;
+        // that.password = '';
         if (res.status == 0) {
+          var appids = 'wx74605d2c3744958c';
           var aa = res.result;
-          var bb = _this.filed;
-          bb.appId = aa.appid;
-          bb.timeStamp = aa.timestamp;
-          bb.nonceStr = aa.noncestr;
-          bb.prepayId = aa.prepayid;
-          bb.sign = aa.sign;
-          _this.filed = bb;
-          callback(_this.filed);
+          var bb = _this2.filed;
+          bb.appId = appids;
+          bb.timeStamp = aa.timeStamp;
+          bb.nonceStr = aa.nonceStr;
+          bb.prepayId = aa.packageValue;
+          bb.sign = aa.paySign;
+
+          _this2.filed = bb;
+          callback(_this2.filed);
 
         }
       });

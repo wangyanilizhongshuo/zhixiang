@@ -13,7 +13,7 @@
 							 class="active_tip_icon no_shrink">
 							<div class="active_tip_txt">手气最佳</div>
 						</div>
-						<div class="cash_btn flex_c" @tab='withDrawals' >
+						<div class="cash_btn flex_c" @tap='withDrawals' >
 							<span class="cash_btn_txt">提现</span>
 							<span class="cash_btn_icon">></span>
 						</div>
@@ -24,7 +24,7 @@
 						<div class="active_price_bd margin_auto "></div>
 						<div class="active_time">{{djsTime}}后现金将失效</div>
 					</div>
-					<button  open-type="share"  class="active_share_btn flex_c margin_auto">分享给好友，再领一次现金</button>
+					<button  open-type="share"  class="active_share_btn flex_c margin_auto">分享好友</button>
 					<div class="active_rule">规则说明</div>
 				</div>
 			</div>

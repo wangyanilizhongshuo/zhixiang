@@ -20,6 +20,7 @@
 				 </view>
 			 </view>
 		</view> 
+		<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
         <view class="uni-btn" @tap.stop="submit">提交</view>
 	</view>
 </template>
@@ -29,6 +30,8 @@
 	export default{
           data(){
 			 return {
+				 signalFlag:false,
+				 signalMsg:'',
 				 startNum:0,
 				 id:'',
 				 subId:'',
@@ -104,7 +107,7 @@
 			  	})
 			  },
 			  submit(){
-				
+				  let that=this;
 				  if(!this.startNum || !this.textareaValue || !this.upUrlList){
 				  }else{
 					    uni.wjw_http({
@@ -124,6 +127,12 @@
 							  uni.navigateTo({
 								url:'/pages/orderMsg/successPage?type='+types
 							  })
+						  }else{
+							  that.signalFlag=true;
+							  that.signalMsg=res.msg;
+							  setTimeout(()=>{
+								  that.signalFlag=false;
+							  },2800)
 						  }
 					  }).catch(res=>{
 						  console.log(res)
@@ -140,8 +149,22 @@
 </script>
 
 <style scoped lang="scss">
+	.hbyOccurFlag{
+		position: absolute;
+		top:400rpx;
+		left:250rpx;
+		background-color: green;
+		width:300rpx;height:130rpx;
+		line-height: 130rpx;
+		background-color: #000;
+		color:#fff;
+		text-align: center;
+		opacity: 0.7;
+		border-radius: 20rpx;
+	}
 .uni-evaluate{
 	width: 750rpx;
+	height: 100vh;;
 	// border-top:20rpx solid #f1f1ef;
 	
 }
@@ -204,13 +227,14 @@
 	}
 }
 .uni-btn{
-	width: 700rpx;
+	width: 750rpx;
 	height:100rpx;
-	margin:50rpx 25rpx;
 	background-color: #FF7599;
 	line-height: 100rpx;
 	text-align: center;
-	border-radius: 10rpx;
 	color: #fff;
+	position: absolute;
+	left:0;
+	bottom:0;
 }
 </style>

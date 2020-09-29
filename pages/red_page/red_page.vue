@@ -61,11 +61,11 @@
 							<div class="received_li_time">{{item.createTime}}</div>
 						</div>
 						<div class="received_li_price_box no_shrink">
-							<div class="received_li_price_num">{{item.currentAmount}}元</div>
-							<div class="received_li_price_tip_box flex flex_c">
+							<div class="received_li_price_num">{{item.assistanceAmount}}元</div>
+							<!-- <div class="received_li_price_tip_box flex flex_c">
 								<img src="http://zxyp.hzbixin.cn/files/96321600413808233.jpg" alt="" class="received_li_price_tip_icon no_shrink">
 								<div class="received_li_price_tip_txt">手气最佳</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -170,13 +170,7 @@
 				}).then(res=>{
 					if(res.code ==0){
 						
-						let aa=res.data;
-						for(let i in aa){
-							 let a = new Date(aa[i].createTime);
-							aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')
-							// aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
-						}
-						this.redRecord=aa;
+					
 					}
 				})
 			},
@@ -223,8 +217,24 @@
 						
 					}
 				}).then(res=>{
-					console.log('红包记录')
-					console.log(res)
+					if(res.code==0){
+						let a=res.data.list;
+						let aa=[];
+						// 判断是不是面对面邀请的数据
+						a.map((res)=>{
+							if(res.assistanceType==4){
+								aa.push(res)
+							}
+						})
+						console.log(aa)
+						for(let i in aa){
+							 let a = new Date(aa[i].createTime);
+							aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')
+							// aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
+						}
+						this.redRecord=aa;
+					}
+					
 				})
 			}
 			

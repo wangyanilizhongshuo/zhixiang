@@ -17,13 +17,45 @@
 		data(){
 			return{
 				money:'',
+				code:'',
+				openId:'',
 				filed:{}
 			}
 		},
 		onLoad(){
-			
+			let that=this;
+			uni.login({
+				  provider: 'weixin',
+				  success: function (res) {
+					   that.code=res.code;
+					   that.getOpenId(); 
+				  }
+				})	
 		},
-		methods:{
+		methods:{// 获取openId
+			getOpenId(){	
+				let that=this;
+				uni.wjw_http({
+					header:{
+						 'content-type':'application/json;charset=UTF-8'
+					},
+					url:'app/wechat/getOpenId',
+					type:'post',
+					data:{
+						appId:'wx74605d2c3744958c',
+						code:that.code
+					}
+				}).then(res=>{
+					if(res.code ==0){
+						this.openId=res.data.openid;
+						console.log('this.openid')
+						console.log(thsi.openId)
+						
+					}
+				}).catch(res=>{
+					
+				})
+			},
 			getPort(){
 				let that=this;
 				let id =wx.getStorageSync('user').id;
@@ -48,17 +80,28 @@
 					data:{
 						userId:id,
 						payType:1,
-						money:this.money
+						money:(this.money)*100,
+						openid:that.openId
 					}
 				}).then(res=>{
+					// let bb = that.filed;
+					// bb.appId = appids;
+					// bb.nonceStr = aa.nonceStr;
+					// bb.timeStamp = aa.timeStamp;
+					// bb.prepayId =aa.packageValue;
+					// bb.sign = aa.paySign;
+					// that.filed = bb;
+					// that.password = '';
 					if(res.status ==0){
+						let appids='wx74605d2c3744958c';
 						let aa = res.result;
 						let bb = this.filed;
-						bb.appId = aa.appid;
-						bb.timeStamp = aa.timestamp;
-						bb.nonceStr = aa.noncestr;
-						bb.prepayId = aa.prepayid;
-						bb.sign = aa.sign;
+						bb.appId = appids;
+						bb.timeStamp = aa.timeStamp;
+						bb.nonceStr = aa.nonceStr;
+						bb.prepayId =aa.packageValue;
+						bb.sign = aa.paySign;
+						
 						this.filed = bb;
 						callback(this.filed);
 						

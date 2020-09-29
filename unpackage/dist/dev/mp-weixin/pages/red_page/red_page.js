@@ -299,7 +299,7 @@ var _default =
       });
     },
     // 红包领取列表
-    getRedRecord: function getRedRecord() {var _this3 = this;
+    getRedRecord: function getRedRecord() {
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
         url: 'app/cduserredenvelope/list',
@@ -308,19 +308,13 @@ var _default =
       then(function (res) {
         if (res.code == 0) {
 
-          var aa = res.data;
-          for (var i in aa) {
-            var a = new Date(aa[i].createTime);
-            aa[i].createTime = a.getFullYear() + "-" + (a.getMonth() + 1).toString().padStart(2, '0') + "-" + a.getDate().toString().padStart(2, '0');
-            // aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
-          }
-          _this3.redRecord = aa;
+
         }
       });
     },
 
     // 获取最终余额
-    getBalance: function getBalance() {var _this4 = this;
+    getBalance: function getBalance() {var _this3 = this;
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
         url: 'app/cduserredenvelope/finalAmount',
@@ -331,7 +325,7 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
-          _this4.numericalValue = res.data;
+          _this3.numericalValue = res.data;
 
 
         }
@@ -349,7 +343,7 @@ var _default =
         url: '/pages/red_page/active/active?sumMoney=' + this.numericalValue + '&sxtime=' + this.redDetail.expirationTime });
 
     },
-    getRedzhuli: function getRedzhuli() {
+    getRedzhuli: function getRedzhuli() {var _this4 = this;
       var id = wx.getStorageSync('user').id;
       uni.wjw_http({
         url: 'app/cduserredenvelopeassistance/list',
@@ -361,8 +355,24 @@ var _default =
 
 
       then(function (res) {
-        console.log('红包记录');
-        console.log(res);
+        if (res.code == 0) {
+          var a = res.data.list;
+          var aa = [];
+          // 判断是不是面对面邀请的数据
+          a.map(function (res) {
+            if (res.assistanceType == 4) {
+              aa.push(res);
+            }
+          });
+          console.log(aa);
+          for (var i in aa) {
+            var _a = new Date(aa[i].createTime);
+            aa[i].createTime = _a.getFullYear() + "-" + (_a.getMonth() + 1).toString().padStart(2, '0') + "-" + _a.getDate().toString().padStart(2, '0');
+            // aa[i].createTime= a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')
+          }
+          _this4.redRecord = aa;
+        }
+
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

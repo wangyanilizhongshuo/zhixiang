@@ -10,7 +10,6 @@
 				<text class="tab-link2 button2" :class='{"actives":types==4}' @tap.stop='jumps(4)' type="4"> 已确认 </text>
 			</view> 
 			<!-- 所有的列表  -->
-			
 			<view v-if="types==0" style="margin-top: 80rpx;">
 				<view class="uni-container" v-for="(item,index) in allLists" :key="index" @tap.stop="jumpsOne(item)" >
 					<view class="uni-title">
@@ -182,22 +181,25 @@
 			</view>
 			<!-- 已经确认收货 -->
 			<view v-if="types==4" style="margin-top: 80rpx;">
-				<view class="uni-container" v-for="(item,index) in hasSureList" :key="index"  @tap.stop="noPayDetail(item,4)">
+				<view class="uni-container" v-for="(item,index) in hasSureList" :key="index" >
 					<view class="uni-title">
 						<view class="uni-left">
 							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 						</view>
-						<view class="uni-right">
+						<view class="uni-right"  @tap.stop="noPayDetail(item,4)">
 							待评价
 						</view>
+						<!-- <view class="uni-right"  @tap.stop="noPayDetail(item,4)">
+							已评价
+						</view> -->
 					</view>
-					<view class="uni-content" v-for="(itemss,indexss) in item.subOrderModelList">
+					<view class="uni-content" v-for="(itemss,indexss) in item.subOrderModelList"   @tap.stop="noPayDetail(item,4)">
 						<image class="uni-con-left img" :src="itemss.pic"></image>
 						<view class="uni-con-right">
 							<view class="uni-first">{{itemss.event_name}}</view>
 							<view class="uni-second specificate">
-								规格<text class="style" style="margin-left:20rpx;">  {{itemss.attr_name}}</text>
+								<text class="style" > 规格 <text style="margin-left:20rpx;">{{itemss.attr_name}}</text> <text>已评价</text> </text>
 							</view>
 							<view class="uni-third">
 								<text class="left redStyle">￥{{((itemss.unit_price/100))}}.00 积分{{itemss.unit_points}}</text></text>

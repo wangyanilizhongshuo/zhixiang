@@ -3,12 +3,12 @@
 		<div class="log_list bg_white">
 			<div class="log_li flex lh1" v-for="(item,index) in recordList" :key='index'>
 				<div class="log_li_left flex_grow">
-					<div class="log_li_txt">{{item.changeTypeDesc}}  充值 {{item.changeSpecialBalance}}</div>
-					<div class="log_li_tip">余额：{{item.beforeSpecialBalance}}</div>
+					<div class="log_li_txt"> <text style="display: inline-block;margin-right:15rpx">{{item.changeTypeDesc}}</text> {{item.changeSpecialBalance}}</div>
+					<div class="log_li_tip"><text v-if="item.extraFlag">余额</text><text v-if="!item.extraFlag">用户余额</text>：{{item.afterSpecialBalance}}</div>
 				</div>
 				<div class="log_li_right ta_r">
 					<div class="log_li_time">{{item.createTime}}</div>
-					<div class="log_li_num">+ {{item.changeSpecialBalance}}</div>
+					<div class="log_li_num">{{item.changeSpecialBalance}}</div>
 				</div>
 			</div>
 		</div>
@@ -20,7 +20,8 @@
 			return {
 				recordList:[],
 				pageSize:1,
-				page:1
+				page:1,
+				extraFlag:true
 			}
 		},
 		onLoad(){
@@ -48,9 +49,23 @@
 				     if(res.code ==0){
 						that.pageSize=res.data.totalPage;
 						let aa=res.data.list;
+						aa.map((res)=>{
+							// 余额大于上一次
+							if(res.afterSpecialBalance-(res.beforeSpecialBalance)>0){
+								res.changeSpecialBalance=('+'+res.changeSpecialBalance)
+							}else if(res.afterSpecialBalance-res.beforeSpecialBalance<0){
+								res.changeSpecialBalance= (-res.changeSpecialBalance)
+							}
+							if(res.changeTypeDesc =='下级佣金'){
+								res.extraFlag=false
+							}else{
+								res.extraFlag=true
+							}
+							
+						})
 						for(let i in aa){
 							 let a = new Date(aa[i].createTime);
-							aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')+" "+a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')+":"+a.getSeconds().toString().padStart(2,'0')
+							 aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')+" "+a.getHours().toString().padStart(2,'0')+":"+a.getMinutes().toString().padStart(2,'0')+":"+a.getSeconds().toString().padStart(2,'0')
 						}
 						let bb =that.recordList;	
 						that.recordList=bb.concat(aa);

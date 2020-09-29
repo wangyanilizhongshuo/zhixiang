@@ -8,12 +8,12 @@
 					<p>￥<span id="zong">{{money}}</span></p>
 				</view>
 				<view class="pay-way" >
-					<view v-if="specialMakeMoney==1" class="pay-way1 pay-way-list" id="pay-way1" @click="flags=false">
+					<view  class="pay-way1 pay-way-list" id="pay-way1" @click="flags=false">
 						<view class="pay-img1"><img src="http://zxyp.hzbixin.cn/files/94441600414064495.jpg"></view>
 						<span>余额</span>
 						<view class="pay-img2"><img src="http://zxyp.hzbixin.cn/files/47291600414110704.jpg"></view>
 					</view>
-					<view v-if="specialMakeMoney==1" class="pay-way3 pay-way-list" @click='pay(1)'>
+					<view  class="pay-way3 pay-way-list" @click='pay(1)'>
 						<view class="pay-img1"><img src="http://zxyp.hzbixin.cn/files/96231600414137247.jpg"></view>
 						<span>微信</span>
 						<view class="pay-img2"><img src="http://zxyp.hzbixin.cn/files/94791600414180875.jpg"></view>

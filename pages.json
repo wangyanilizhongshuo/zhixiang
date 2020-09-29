@@ -231,6 +231,12 @@
 				}
 			},
 			{
+				"path": "pages/goods/goodDetail",
+				"style": {
+					"navigationBarTitleText": "商品详情"
+				}
+			},
+			{
 				"path": "pages/confirmorder",
 				"style": {
 					"navigationBarTitleText": "确认订单"
@@ -495,6 +501,8 @@
 				"navigationBarTitleText": "忘记密码"
 			}
 		}
+       
+      
     ]
 		// ,"styleIsolation": "shared"// 无效
 		,

@@ -8327,7 +8327,7 @@ function wxPayment(option) {
     fail: function fail() {},
     complete: function complete() {} },
   option);
-  // "prepay_id="+
+  console.log(options);
   uni.requestPayment({
     'appId': options.result.appId,
     'timeStamp': options.result.timeStamp,
