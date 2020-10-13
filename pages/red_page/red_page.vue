@@ -145,9 +145,7 @@
 					
 						if(this.redDetail){
 							if(this.redDetail.expirationTime <aa){
-								console.log(this.redDetail.expirationTime)
-								console.log(aa)
-								console.log('重新领取红包')
+								
 								this.getRed();
 							}
 						}else{
@@ -202,7 +200,7 @@
 					 
 				 }
 				uni.redirectTo({
-					url:'/pages/red_page/active/active?sumMoney='+this.numericalValue+'&sxtime='+this.redDetail.expirationTime
+					url:'/pages/red_page/active/active?sumMoney='+this.numericalValue+'&sxtime='+this.redDetail.expirationTime+'&precent='+this.percents+'&cPrice='+this.cPrice
 				})
 			},
 			getRedzhuli(){

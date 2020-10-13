@@ -230,4 +230,15 @@
   opacity: 0.7;
   border-radius: 20rpx;
 }
+.hasPj.data-v-acc4a64c {
+  display: inline-block;
+  width: 100rpx;
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  color: #FF7599;
+  border: 1rpx solid #FF7599;
+  margin-left: 20rpx;
+}
 

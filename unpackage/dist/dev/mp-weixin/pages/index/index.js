@@ -381,7 +381,7 @@ var _default =
       active_list: [],
 
 
-      invite_id: '',
+      invite_id: 31,
       openId: '',
       code: '',
       addresslist: '',
@@ -398,9 +398,7 @@ var _default =
     this.getActivityTopic();
     this.getAllGoodsClassificate();
     this.delColor(1);
-    console.log(this.invite_id + 'inviteId');
     if (this.invite_id) {
-      var id = wx.getStorageSync('user').id;
       uni.login({
         provider: 'weixin',
         success: function success(res) {
@@ -408,23 +406,6 @@ var _default =
           that.getOpenId();
         } });
 
-      if (that.mer_id != 0) {
-        uni.wjw_http({
-          url: 'user/setMer',
-          data: {
-            userId: id,
-            merId: that.mer_id } }).
-
-        then(function () {
-          console.log('绑点店铺成功');
-          that.getAddress();
-        }).catch(function (res) {
-          console.log(res + '店铺');
-        });
-      }
-
-    } else {
-      that.getAddress();
     }
 
   },
@@ -440,6 +421,7 @@ var _default =
       this.getAddress();
       this.videoList();
       this.huodong();
+      this.bindShop();
       this.videoFlag = true;
     }
     if (wx.getStorageSync('token') && this.invite_id) {
@@ -465,6 +447,25 @@ var _default =
     }
   },
   methods: {
+    // 绑定店铺
+    bindShop: function bindShop() {
+      var that = this;
+      var id = wx.getStorageSync('user').id;
+      if (that.mer_id !== 0 && typeof id != 'undefined') {
+        uni.wjw_http({
+          url: 'user/setMer',
+          data: {
+            userId: id,
+            merId: that.mer_id } }).
+
+        then(function () {
+          console.log('绑点店铺成功');
+          that.getAddress();
+        }).catch(function (res) {
+          console.log(res + '店铺');
+        });
+      }
+    },
     //跳转到红包页面+
     jumpRed: function jumpRed() {
       uni.redirectTo({
@@ -578,19 +579,17 @@ var _default =
     // 获取店名字
     getAddress: function getAddress() {
       var that = this;
-      var id = '';
-      id = wx.getStorageSync('user').mer_id;
-      console.log(222 + 'user.mer_id' + id);
+      var id = wx.getStorageSync('user').mer_id;
       uni.wjw_http({
         url: 'merchant/info/' + id,
         type: 'post' }).
       then(function (res) {
         if (res.status == 0) {
-          // console.log(2333+'user.mer_id'+id);
           that.addressName = res.result.shop_name;
           that.addresslist = res.result;
-        }
 
+        } else {
+        }
       });
       this.$forceUpdate();
     },

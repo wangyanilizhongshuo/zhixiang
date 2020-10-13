@@ -27,24 +27,23 @@
 				>查看更多>></view>
 			</view>
 
-			<view class="prof_list ov_hid">
-				<view class="prof_li flex"
-					v-for="(item,index) in expertList" :key='index' 
-		 			@click='detailExpert(item.id)' 
-					>
+			<view class="prof_list ov_hid" v-for="(item,index) in expertList" :key='index' >
+				<view class="prof_li flex" 
 					
+		 			@tap='detailExpert(item.id)' 
+					>
 					<img :src="item.cover" alt="" class="prof_li_img no_shrink">
 					<view class="prof_li_info">
 						<view class="prof_li_name">{{item.name}}</view>
 						<view class="prof_li_tag">{{itme.title}}</view>
-						<view class="prof_li_tip txt_over_ell_2">{{item.desc}}</view>
-						<view class="prof_li_b flex flex_c ">
-							<view class="prof_li_price ta_r flex_grow ">咨询价格:  ¥{{item.price}}</view>
-							<view class="prof_li_btn no_shrink flex_c"
-								@click.native.stop='AskQuesExpert(item.id)' 
-							>问专家</view>
-						</view>
+						<view class="prof_li_tip txt_over_ell_2">{{item.desc}}</view>						
 					</view>
+				</view>
+				<view class="prof_li_b flex flex_c ">
+					<view class="prof_li_price ta_r flex_grow ">咨询价格:  ¥{{item.price}}</view>
+					<view class="prof_li_btn no_shrink flex_c"
+						@tap.stop='AskQuesExpert(item.id)' 
+					>问专家</view>
 				</view>
 			</view>
 		</view>
@@ -64,7 +63,7 @@
 			</view>
 
 			<view class="wiki_list ov_hid">
-				<view class="wiki_li flex"
+				<view class="wiki_li flex" style="justify-content: space-between;"
 					v-for="(item,index) in bkRecomList" :key='index' 
 					@click='bkDetail(item.id)' 
 					>

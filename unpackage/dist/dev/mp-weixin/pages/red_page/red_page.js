@@ -283,9 +283,7 @@ var _default =
 
           if (_this2.redDetail) {
             if (_this2.redDetail.expirationTime < aa) {
-              console.log(_this2.redDetail.expirationTime);
-              console.log(aa);
-              console.log('重新领取红包');
+
               _this2.getRed();
             }
           } else {
@@ -340,7 +338,7 @@ var _default =
 
       }
       uni.redirectTo({
-        url: '/pages/red_page/active/active?sumMoney=' + this.numericalValue + '&sxtime=' + this.redDetail.expirationTime });
+        url: '/pages/red_page/active/active?sumMoney=' + this.numericalValue + '&sxtime=' + this.redDetail.expirationTime + '&precent=' + this.percents + '&cPrice=' + this.cPrice });
 
     },
     getRedzhuli: function getRedzhuli() {var _this4 = this;

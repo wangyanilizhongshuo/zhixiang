@@ -532,4 +532,38 @@
   opacity: 0.7;
   border-radius: 20rpx;
 }
+.red_page_cash_progress_box.data-v-6bf2c256 {
+  width: 520rpx;
+  height: 16rpx;
+  background: #cd2b1e;
+  border-radius: 8rpx;
+  margin: auto;
+}
+.red_page_cash_progress.data-v-6bf2c256 {
+  width: 95%;
+  height: 100%;
+  background: #f8df7b;
+  border-radius: 8rpx;
+}
+.red_page_cash_progress_tip_box.data-v-6bf2c256 {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #d0513b;
+  position: absolute;
+  bottom: calc(100% + 12rpx + (62rpx - 55rpx));
+  bottom: calc(100% + 12rpx);
+  right: calc(0rpx - (16rpx + 19rpx));
+}
+.red_page_cash_progress_bg.data-v-6bf2c256 {
+  width: 151rpx;
+  height: 62rpx;
+}
+.red_page_cash_progress_txt.data-v-6bf2c256 {
+  padding: 0 12rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  background: #f8df7b;
+  border-radius: 8rpx;
+}
 

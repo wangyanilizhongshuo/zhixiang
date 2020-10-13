@@ -9,20 +9,28 @@
 				<div class="active_info_box">
 					<div class="active_info margin_auto ov_hid">
 						<div class="active_tips flex flex_c lh1">
-							<img src="http://zxyp.hzbixin.cn/files/38201600401259712.jpg" alt=""
+							<img src="http://zxyp.hzbixin.cn/files/93371601445402840.jpg" alt=""
 							 class="active_tip_icon no_shrink">
-							<div class="active_tip_txt">手气最佳</div>
+							<div class="active_tip_txt">还有{{cPrice}}可提现</div>
 						</div>
 						<div class="cash_btn flex_c" @tap='withDrawals' >
 							<span class="cash_btn_txt">提现</span>
 							<span class="cash_btn_icon">></span>
 						</div>
-						<div class="active_price_box lh1">
+						<div class="active_price_box lh1" >
 							<span class="active_price_icon">¥</span>
 							<span class="active_price_num">{{sumMoney}}</span>
 						</div>
-						<div class="active_price_bd margin_auto "></div>
-						<div class="active_time">{{djsTime}}后现金将失效</div>
+						<div class="red_page_cash_progress_box relative">
+							<div class="red_page_cash_progress relative" :style="'width:'+precent+'%'">
+								<div class="red_page_cash_progress_tip_box width_percent">
+									<img style="position: relative;left:-8rpx;top:62rpx;" src=" http://zxyp.hzbixin.cn/files/46021600400803422.jpg" alt="" class="red_page_cash_progress_bg float_r" />
+									<div class="red_page_cash_progress_txt txt_over_ell progress_po_a max_width_percent"  style="position:relative;z-index:10">仅差{{cPrice}}元</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="active_price_bd margin_auto "></div> -->
+						<div class="active_time" style="margin-top:10rpx;">{{djsTime}}后现金将失效</div>
 					</div>
 					<button  open-type="share"  class="active_share_btn flex_c margin_auto">分享好友</button>
 					<div class="active_rule">规则说明</div>
@@ -221,7 +229,9 @@
 				videoUrl:'',
 				redRecord:[],
 				seeMovie:false,
-				seeMpvieMsg:''
+				seeMpvieMsg:'',
+				precent:'',
+				cPrice:''
 				
 
 			}
@@ -1099,5 +1109,42 @@
 		text-align: center;
 		opacity: 0.7;
 		border-radius: 20rpx;
+	}
+	.red_page_cash_progress_box{
+		width:520rpx;
+		height:16rpx;
+		background:rgba(205,43,30,1);
+		border-radius:8rpx;
+		margin: auto;
+	}
+	.red_page_cash_progress{
+		width: 95%;
+		height:100%;
+		background:rgba(248,223,123,1);
+		border-radius:8rpx;
+	}
+	.red_page_cash_progress_tip_box{
+		font-size:26rpx;
+		font-family:PingFang SC;
+		font-weight:500;
+		color:rgba(208,81,59,1);
+	
+		position: absolute;
+		bottom: calc(100% + 12rpx + (62rpx - 55rpx));
+		bottom: calc(100% + 12rpx );
+		right: calc(0rpx - (16rpx + 19rpx));
+	}
+	.red_page_cash_progress_bg{
+		width: 151rpx;
+		height: 62rpx;
+	}
+	
+	.red_page_cash_progress_txt{
+		padding: 0 12rpx;
+		height:55rpx;
+		line-height:55rpx;;
+	
+		 background:rgba(248,223,123,1);
+		border-radius:8rpx;
 	}
 </style>

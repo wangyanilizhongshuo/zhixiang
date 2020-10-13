@@ -354,6 +354,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var _default =
 
 {
@@ -719,6 +721,17 @@ var _default =
           } else if (msgs == 0) {
             that.hasSureList = aa;
           }
+          that.hasSureList.map(function (res) {
+            var cc = res.subOrderModelList.every(function (data) {
+              return data.is_comment == 1;
+            });
+            if (cc == true) {
+              res.canpj = false;
+            } else if (cc == false) {
+              res.canpj = true;
+            }
+          });
+          console.log(that.hasSureList);
         }
       });
     } } };exports.default = _default;

@@ -187,19 +187,19 @@
 							<image class="logo" src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg"></image>
 							<text class="sdName">{{item.shop_name}}</text>
 						</view>
-						<view class="uni-right"  @tap.stop="noPayDetail(item,4)">
-							待评价
+						<view class="uni-right"  >
+							交易完成
 						</view>
 						<!-- <view class="uni-right"  @tap.stop="noPayDetail(item,4)">
 							已评价
 						</view> -->
 					</view>
-					<view class="uni-content" v-for="(itemss,indexss) in item.subOrderModelList"   @tap.stop="noPayDetail(item,4)">
+					<view class="uni-content" v-for="(itemss,indexss) in item.subOrderModelList"  @tap.stop="noPayDetail(item,4)"  >
 						<image class="uni-con-left img" :src="itemss.pic"></image>
 						<view class="uni-con-right">
 							<view class="uni-first">{{itemss.event_name}}</view>
 							<view class="uni-second specificate">
-								<text class="style" > 规格 <text style="margin-left:20rpx;">{{itemss.attr_name}}</text> <text>已评价</text> </text>
+								<text class="style"  style=""><text style="margin-left:20rpx;">规格  {{itemss.attr_name}}</text>  </text>
 							</view>
 							<view class="uni-third">
 								<text class="left redStyle">￥{{((itemss.unit_price/100))}}.00 积分{{itemss.unit_points}}</text></text>
@@ -210,8 +210,10 @@
 					<view class="uni-bottom" style="height: 50rpx;">
 						<view class="uni-up ">
 							<text class="first">共计<text class="redStyle">{{item.total_num}}</text>件商品</text>
-							<text class="second">合计<text class="redStyle">￥{{(item.total_price/100)}}.00  {{item.total_points}}积分</text></text>
+							<text class="second">合计<text class="redStyle">￥{{(item.total_price/100)}}  {{item.total_points}}积分</text></text>
 							<text>(含运费$ <text class="redStyle">{{(item.freight/100)}}.00元</text>)</text>
+							<text class="hasPj" v-if="!item.canpj" @tap.stop="noPayDetail(item,4)" >已评价</text>
+							<text class="hasPj" v-if="item.canpj" @tap.stop="noPayDetail(item,4)">去评价</text>
 						</view>
 						
 					</view>
@@ -587,6 +589,17 @@
 						}else if(msgs==0){
 							that.hasSureList=aa;
 						}
+						that.hasSureList.map((res)=>{	
+						 let cc= res.subOrderModelList.every((data)=>{
+								return  data.is_comment ==1
+							})
+							if(cc==true){
+								res.canpj=false;
+							}else if(cc==false){
+								res.canpj=true;
+							}
+						})
+						console.log(that.hasSureList)
 					}
 				})
 			}
@@ -786,5 +799,16 @@
 			opacity: 0.7;
 			border-radius: 20rpx;
 		}
-
+    .hasPj{
+		display: inline-block;
+		width: 100rpx;
+		text-align: center;
+		height: 40rpx;
+		line-height: 40rpx;
+		border-radius: 10rpx;
+		color: #FF7599;
+		border: 1rpx solid #FF7599;
+		margin-left:20rpx;
+		
+	}
 </style>

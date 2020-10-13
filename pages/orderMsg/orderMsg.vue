@@ -48,9 +48,9 @@
 				 	  <view class="money" v-if="item.status ==0" @tap.stop="refundGood(item.id)" >申请退货</view>
 					 <view class="money" v-if="item.status ==1" >退款中</view>
 				 </view> 
-				 <view class="uni-refundMoney" v-if="type==4">
-				 	  <view class="money" v-if="item.status ==1"  >已评价</view>
-					  <view class="money" v-if="item.status ==0" @tap.stop="goEvaluate(item)" >去评价</view>
+				 <view class="uni-refundMoney" v-if="type==4" >
+				 	  <view class="money" v-if="item.is_comment ==1"  >已评价</view>
+					  <view class="money" v-if="item.is_comment ==0" @tap.stop="goEvaluate(item)" >去评价</view>
 				 </view> 
 			</view>
 			<view class="uni-bottom-third">
