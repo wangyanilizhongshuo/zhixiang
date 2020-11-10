@@ -127,8 +127,7 @@
                 // return
 
                 var userData = wx.getStorageSync('user');
-                // var userId = userData.user.id;
-                 // var token = wx.getStorageSync('user');
+               
                 var adr = this.article;
                 var data = {
             
@@ -234,7 +233,7 @@
         nottoLog();//判断登录
 
         var userData = JSON.parse(localStorage.userData);//用户信息
-        var userId =parseInt(userData.user.id); 
+        var userId =parseInt(userData.id); 
         var token = userData.token;
         var Src = datasrc + "address/save";
         var name=$("#name").val();

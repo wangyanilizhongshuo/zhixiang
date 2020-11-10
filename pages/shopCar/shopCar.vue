@@ -153,7 +153,7 @@
 			},
 			//加减商品 将数据传到后台
 			sendNum(num, index) {
-				let token = wx.getStorageSync('userData').token;
+				let token = wx.getStorageSync('token');
 				let userId = uni.getStorageSync('user').id;
 				let that = this;
 				let a = that.carList[index]

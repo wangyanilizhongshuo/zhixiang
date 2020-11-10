@@ -24,6 +24,9 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.button.data-v-5566b618::after {
+  border: none;
+}
 .num-choose-wrap .uni-label.data-v-5566b618 {
   border-top: 2rpx solid rgba(0, 0, 0, 0.2);
   border-bottom: 2rpx solid rgba(0, 0, 0, 0.2);
@@ -38,5 +41,8 @@
 }
 .num-choose-wrap .right.data-v-5566b618 {
   border-right: 2rpx solid rgba(0, 0, 0, 0.2);
+}
+.btns.data-v-5566b618 {
+  border: none;
 }
 

@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/login/specialPwd",
+    "pages/login/login1",
     "pages/QRcode/QRcode",
     "pages/orderMsg/goodsEvaluate",
     "pages/orderMsg/orderMsg",

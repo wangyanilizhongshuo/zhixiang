@@ -71,7 +71,7 @@
 					})
 					clearInterval(that.timer);
 					 that.isSendCode = false;
-					 that.timer = setTimeout(()=>{
+					 that.timer = setInterval(()=>{
 							that.sendCodeTime=that.sendCodeTime-1;
 							if(that.sendCodeTime < 1){
 								that.sendCodeTime = 60;

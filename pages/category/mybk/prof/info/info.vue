@@ -89,11 +89,11 @@
 				    url: 'app/cdexpertconsultationrecord/list',
 				    method: 'get',
 					data:{
-						 // userId:userId,
+						
 						 expertId:that.id,
 						 page:that.pages,
 						 limit:5,
-						 // token:token
+						
 					}
 				}).then(res => {	
 					if(res.code ==0){

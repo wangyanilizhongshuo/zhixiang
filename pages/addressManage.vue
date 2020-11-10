@@ -85,22 +85,23 @@
         methods: {
              // 获取地址列表
              addlist() {
-                 var userData = wx.getStorageSync('userData');
+				 console.log(12321343523)
+                 var userData = wx.getStorageSync('user');
                  if (userData) {
-                     var id = userData.user.id;
-                     var token = userData.token;
-                 }
-                 uni.wjw_http({
-                     url: 'address/list',
-                     data: {
-                         userId: id,
-                         token: token
-                     },
-                 }).then(res => {
-					 if(res.status ==0){
-						  this.articleList = res.result||[];
-					 }
-                 })
+                     var id = userData.id;
+					 uni.wjw_http({
+						 url: 'address/list',
+						 data: {
+							 userId: userData.id
+						 },
+					 }).then(res => {
+						 if(res.status ==0){
+							  this.articleList = res.result||[];
+							  console.log(this.articleList);
+							  console.log(123213432)
+						 }
+					 })
+				}
              },
 
             // 选择地址
@@ -142,8 +143,8 @@
                 var {index,type} = this.dataset(e);
 
                 var userData = wx.getStorageSync('userData');
-                var userId = userData.user.id;
-                var token = userData.token;
+                var userId = userData.id;
+                var token = wx.getStorageSync('token');
                 var adr = this.articleList[index];
                 var data = {
                         token: token,
@@ -180,8 +181,8 @@
                 var {id} = this.dataset(e);
                 
                 var userData = wx.getStorageSync('userData');
-                var userId = userData.user.id;
-                var token = userData.token;
+                var userId = userData.id;
+                var token = wx.getStorageSync('token');
 				console.log(id)
 				console.log('删除')
                  uni.showModal({
@@ -192,7 +193,7 @@
                             uni.wjw_http({
                                 url: "address/delete/"+id,
                                 data: {
-                                    token: token,
+                                   
                                     userId: userId,
                                     id:id,
                                 },
@@ -255,9 +256,10 @@
 	 background-color: #FF7599;
 	 text-align: center;
 	 border-radius: 40rpx;
-	 position: absolute;
-	 left:0;
-	 bottom:0;
+	 position: fixed;
+	 left:0rpx;
+	 bottom:0rpx;
+	 z-index:10;
 	 margin:0!important;
  }
 </style>

@@ -1,171 +1,127 @@
 <template>
-   
-	<view class="content">
-		<view class="login-list">
-			<img src="http://zxyp.hzbixin.cn/files/s_35201600410892078.jpg">
-			<view class="login-content">
-				<view class="login-box">
-					<view class="form-input form_input_box flex flex_align_c">
-						<img src="http://zxyp.hzbixin.cn/files/94981600410932077.jpg" class="no_shrink">
-						<input type="number" id="phone" class="input-style flex_grow"  confirm-type="search" placeholder="请输入手机号" @confirm="enter" v-model='phone' >
-					</view>
-					<view class="form-input form_input_box flex flex_align_c">
-						<img src="http://zxyp.hzbixin.cn/files/2171600410977948.jpg" class="no_shrink" >
-						<input type="password" id="pwd" class="input-style flex_grow"  confirm-type="search" @confirm="enter" placeholder="请输入密码" v-model='pwd' >
-					</view>
-					<view class="form-input others">
-						<span class="new-login" @tap.stop='jump' data-url='/pages/login/newUser1' >新用户注册</span>
-						<span class="forget-password" @tap.stop='jump' data-url='/pages/login/forgetPassword'>忘记密码</span>
-					</view>
-					<view class="form-input " @tap.stop='login' data-url='/pages/index/index' data-type='3' >
-						<button class="login-button flex_c">登录</button>
-					</view>
-				</view>
-			</view>
+	<view class="uni-login">
+		<image class="bgPhoto" src="../../static/login-bg.png"></image>
+		<image class="people" src="../../static/login-people.png"></image>
+		<view class="contents">
+				<button class=" weixinLogin" open-type="getPhoneNumber" lang="zh_CN" @getphonenumber="getPhoneNumber">微信用户一键登录</button>
+			<!-- <view class="tel_login_register">
+				<view lass="field">手机号码登录/注册</view>
+			</view> -->
+			<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
 		</view>
-		<view class="hbyOccurFlag" v-if="seeMovieFlag">{{seeMpvieMsg}}</view>
 	</view>
 </template>
 
-<script>
-
-
-	export default {
-
-		components: {
-			// wq,
-			// main,
-		},
-
-		data() {
-			return {
-				seeMovieFlag:false,
-				seeMpvieMsg:'',
-				phone: '',
-				pwd: '',
-				code:'',
-				QRcode:'',
-				scene:''
-			}
-		},
-		
-		onLoad(options){
-			this.setData(options);
-		},
-		
-		methods: {
-			// 登录
-			login(e) {
-			     let that =this;
-			    if(this.phone == "" && this.pwd == ""){
-                    this.toastTip("信息未输入完整！");
-                    return false;
-                }
-				if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone))){
-					uni.showToast({title: '请填写正确手机号码',icon:"none"});
-					return false; 
-				}
+<script> 
+   export default{
+	   data(){
+		   return{
+			   code:'',
+			   signalFlag:false,
+			   signalMsg:''
+		   }
+	   },
+	   onLoad(){
+		   
+	   },
+	   methods:{
+		   getPhoneNumber: function(e) {
+		   	let _this = this;
+		   	if (e.detail.errMsg !== 'getPhoneNumber:ok') {
 				
-			    uni.wjw_http({
-			        url: 'user/login',
-			        method: 'post',
-			        data: {
-			        	phone: this.phone,
-			        	password: this.pwd,
-			        },
-			    }).then(res => {
-					
-					if(res.status ==0){
-						wx.setStorageSync('token', res.result.token);
-			            wx.setStorageSync('user', res.result.user);
-			            wx.setStorageSync('userData', res.result);
-						 if(that.scene){
-							// help  ==1是从 面对面邀请过来的flag
-							uni.navigateTo({
-								url:'/pages/QRcode/QRcode?scene='+this.scene
-							})	
-						}else{
-							that.jump(this.create_dataset({
-							    url: '/pages/index/index',
-							    type: '3',
-							}))
-							
-						}					
-					}  
-					else{
-						this.seeMovieFlag=true;
-						this.seeMpvieMsg=res.msg;
-						setTimeout(()=>{
-							this.seeMovieFlag=false;
-						},2000)
-					
+		   		return false;
+		   	}
+			console.log(e.detail.errMsg !== 'getPhoneNumber:ok')
+			console.log(2222)
+		   	uni.login({
+		   	  provider: 'weixin',
+		   	  success: function (res) {
+				    _this.code=res.code;
+		   	// 发送用户信息
+			uni.wjw_http({
+				url:'app/wechat/bindPhone',
+				method:'post',
+				data: {
+					code: _this.code,
+					encryptedData: e.detail.encryptedData,
+					iv: e.detail.iv,
+				}
+				}).then(res=>{
+					console.log(res.code)
+					wx.setStorageSync('token', res.data.data.token);
+					wx.setStorageSync('user', res.data.data.userModel);
+					wx.setStorageSync('userData', res.data.data.userModel);
+					if( res.data.data.userModel.password){
+						uni.switchTab({
+						  url:'/pages/index/index'
+					    })
+					}else  {
+						uni.navigateTo({
+							url:'/pages/login/specialPwd'
+						})
 					}
-			    }).catch(res=>{
-					console.log(res)
-					console.log('请求失败')
+					
+				}).catch(res=>{
+					_this.signalFlag=true;
+					_this.signalMsg='请重新登录';
+					setTimeout(()=>{
+						 _this.signalFlag=false;
+					},2500)
 				})
-
-			},
-			enter(){
-				if(this.phone == "" && this.pwd == ""){
-				    this.toastTip("信息未输入完整！");
-				    return false;
-				}
-				else{
-					this.login()
-				}
-			}
-
-		}
-	}
+		  
+		  	  }
+		    	});
+		    },
+	   }
+   }
 </script>
 
-<style>
-	
-
-
-	.login-list img,
-	.login-list image {
-	    width: 100%;
-	    /*height: 12rem;*/
-	    height: calc(240 * 2rpx);
-	}
-	.login-box {
-		position: absolute;
-		top: calc(0 * 2rpx);
-		left: 0;
-		width: 100%;
-		height: auto;
-	}
-	
-	.form_input_box{
-		box-shadow: calc(0 * 2rpx) calc(1 * 2rpx) calc(5 * 2rpx) calc(0 * 2rpx) rgba(156, 160, 156, 0.2);
-		border: solid calc(1 * 2rpx) #e1e1e1;
-		border-radius: calc(8 * 2rpx);
-	}
-	.form-input {
+<style scoped lang="scss">
+	.uni-login{
 		position: relative;
-		width: 92%;
-		height: calc(40 * 2rpx);
-		margin: 0 auto calc(10 * 2rpx);
+		left:0rpx;
+		top:0rpx;
+		.bgPhoto{
+			display: block;
+		    width: 750rpx;
+		    height: 778rpx;
+		}
+		.people{
+			display: block;
+			width: 690rpx;
+			height: 366rpx;
+			position: absolute;
+			top:206rpx;
+			left:30rpx;
+		}
+		.contents{
+			margin-top:-45rpx;
+			.weixinLogin{
+				width: 658rpx;
+				height: 90rpx;
+				background-color: #ff7092;
+				border-radius: 8rpx;
+				text-align: center;
+				line-height: 90rpx;
+				position: relative;
+				left:46rpx;
+				top:0rpx;
+				color: #fff;
+				}
+			.tel_login_register{
+				width: 750rpx;
+				margin-top:52rpx;
+				text-align: center;
+				color: #222222;
+				font-size: 28rpx;
+				background-color: #fff;
+				
+			}
+			
+		}
+		
 	}
-
-	.form-input img ,
-	.form-input image {
-		width: calc(21.5 * 2rpx);
-		height: calc(23 * 2rpx);
-		/*position: absolute;*/
-		top: calc(8 * 2rpx);
-		left: calc(13 * 2rpx);
-		margin: 0 calc(13 * 2rpx);
-	}
-
-	.input-style {
-		height: calc(40 * 2rpx);
-		width: 100%;
-		line-height: calc(45 * 2rpx);
-		/*text-indent: calc(40 * 2rpx);*/
-	}
+	.button::after{ border: none; }
 	.hbyOccurFlag{
 		position: absolute;
 		top:400rpx;
@@ -178,40 +134,5 @@
 		text-align: center;
 		opacity: 0.7;
 		border-radius: 20rpx;
-	}
-
-	.login-content {
-		position: relative;
-		margin-top: calc(20 * 2rpx);
-	}
-
-	.others {
-		font-size: calc(14 * 2rpx);
-		color: #414141;
-	}
-
-	.login-button {
-		height: calc(45 * 2rpx);
-		width: 100%;
-		background-color: #FF7599;
-		border-radius: calc(8 * 2rpx);
-		font-size: calc(15 * 2rpx);
-		color: #ffffff;
-		position: relative;
-		text-align: center;
-		/*padding-top: calc(11 * 2rpx);*/
-		/*margin-top: calc(8 * 2rpx);*/
-		top: 0;
-		left: 0;
-	}
-	
-	.new-login{
-	    position: absolute;
-	    left: calc(4 * 2rpx);
-	}
-
-	.forget-password{
-	    position: absolute;
-	    right: calc(4 * 2rpx);
 	}
 </style>

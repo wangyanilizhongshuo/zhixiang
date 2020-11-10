@@ -321,17 +321,15 @@
 			this.detailSumMoney=this.num*this.price;
 			// 打开需要
 			 this.addlist();
-			
 		},
 		// 页面显示
 		onShow() {
 			console.log('onShow 页面显示');
 			// 获取地址列表
-			
 			//获得红包列表
 			// this.CarList();
-			this.$forceUpdate();
 			this.addlist();
+			this.$forceUpdate();
 		},
 		methods: {
 			//商品详情页的商品
@@ -475,7 +473,7 @@
 				console.log('获取运费信息-砍价商品', arguments);
 				var userData = wx.getStorageSync('userData');
 				if (userData) {
-					var id = userData.user.id;
+					var id = userData.id;
 					
 				}
 				uni.wjw_http({
@@ -530,13 +528,14 @@
 			//获得红包列表
 			get_redList() {
 				let that=this;
-				var userData = wx.getStorageSync('userData');
+				var userData = wx.getStorageSync('user');
+				var token = wx.getStorageSync('token')
 				uni.wjw_http({
 					url: "red/list",
 					method: 'post',
 					data: {
-						token: userData.token,
-						userId: userData.user.id,
+						token: token,
+						userId: userData.id,
 						// status: 0,// 选填 0未使用 1已使用 
 						status:0
 					},

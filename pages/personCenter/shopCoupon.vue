@@ -140,7 +140,7 @@
         methods: {
 			 // 没有使用的红包
              getPacket(){
-				 let  userData = wx.getStorageSync('userData').user.id;
+				 let  userData = wx.getStorageSync('userData').id;
 				 let that=this;
 				 uni.wjw_http({
 				 	url: "red/list",
@@ -162,7 +162,7 @@
 			 },
 			 // 使用的红包
 			 wuxiaoPacket(){
-				 let  userData = wx.getStorageSync('userData').user.id;
+				 let  userData = wx.getStorageSync('userData').id;
 				 let that=this;
 				 uni.wjw_http({
 					url: "red/list",

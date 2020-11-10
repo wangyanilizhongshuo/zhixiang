@@ -144,8 +144,8 @@
               
 
                 var userData = wx.getStorageSync('userData');
-                var userId = userData.user.id;
-                var token = userData.token;
+                var userId = userData.id;
+                var token = wx.getStorageSync('token')
                 var adr = this.article;
                 var data = {
                         token: token,

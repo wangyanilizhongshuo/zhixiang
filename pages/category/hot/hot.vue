@@ -131,8 +131,8 @@
             	let that=this;
             	 //这里出现的classid 是根据官网随便填写的 
             	 let a =uni.getStorageSync('userData');
-            	 let use=a.user.id;
-            	 let token=a.token;
+				 let token =uni.getStorageSync('token');
+            	 let use=a.id;
             	 let ids=that.allGoodsCateIdList[i]
             	uni.wjw_http({
             		url:'saleevent/listByPage',
@@ -168,8 +168,9 @@
             	let pages=pages1;
             	let that=this;
             	let a =uni.getStorageSync('userData');
-            	let use=a.user.id;
-            	let token=a.token;
+				let token =uni.getStorageSync('token');
+            	let use=a.id;
+            	
             	uni.wjw_http({
             		url:'saleevent/listByPage',
             		data:{

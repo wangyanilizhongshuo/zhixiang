@@ -354,7 +354,6 @@ function isCardNo(card) {
 	      return wx.getStorageSync('user').id;
 	  }
 	  function getMerId() {
-		  
 	        return wx.getStorageSync('user').mer_id ||0;
 	    }
 	   /**

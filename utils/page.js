@@ -55,7 +55,7 @@ function Index(){
         if ($.cookie("userData")) {
             var userData = JSON.parse($.cookie("userData"));
             var id = userData.user.id;
-            var token = userData.token;
+            var token = wx.getStorageSync('token');;
         }
 
         var param = {

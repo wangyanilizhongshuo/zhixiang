@@ -4,15 +4,13 @@
 	   
 	   <view class="contents">
 		     <image class="imgCon" src="http://zxyp.hzbixin.cn/files/51741600847626272.jpg"></image>
-			 <view  class="codenum">我的邀请码：{{list.invite_code || ''}}</view>
+			 <text  class="codenum" style="display: block;" selectable="true">我的邀请码：{{list.invite_code || ''}}</text>
 			 <view class="invite">一起邀请好友来注册吧</view>
 			 <view class="share">分享到</view>
 			  <button class="myCode-VX" open-type="share">
 				  <image class="imgsss" src="http://zxyp.hzbixin.cn/files/84321600157308924.jpg"></image>
 			  </button>
 	   </view>
-            
-
     </view>
 </template>
 

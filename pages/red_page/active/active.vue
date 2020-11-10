@@ -24,7 +24,7 @@
 						<div class="red_page_cash_progress_box relative">
 							<div class="red_page_cash_progress relative" :style="'width:'+precent+'%'">
 								<div class="red_page_cash_progress_tip_box width_percent">
-									<img style="position: relative;left:-8rpx;top:62rpx;" src=" http://zxyp.hzbixin.cn/files/46021600400803422.jpg" alt="" class="red_page_cash_progress_bg float_r" />
+									<!-- <img style="position: relative;left:-8rpx;top:62rpx;" src=" http://zxyp.hzbixin.cn/files/46021600400803422.jpg" alt="" class="red_page_cash_progress_bg float_r" /> -->
 									<div class="red_page_cash_progress_txt txt_over_ell progress_po_a max_width_percent"  style="position:relative;z-index:10">仅差{{cPrice}}元</div>
 								</div>
 							</div>
@@ -265,14 +265,57 @@
 		},
 		onShareAppMessage: function (res) {
 		    let _this = this;
-			 if (res.from === 'button' || res.from ==='menu' ) {// 来自页面内分享按钮
+			console.log(res)
+			 if (res.from === 'button'   ) {// 来自页面内分享按钮
+			    this.getLittleRed();
 			     return {
 			       title: "智享婴品",
 			       path: "/pages/index/index?" + _this.getShareUrlParams()
 			     };
 			    }
+				else if(res.from ==='menu'){
+					
+				} return {
+			       title: "智享婴品",
+			       path: "/pages/index/index?" + _this.getShareUrlParams()
+			     };
 		},
 		methods: {
+			// 分享获取小额金额
+			 getLittleRed(){
+				 let that = this;
+				 let a = that.personMsg;
+				
+				 uni.wjw_http({
+				 	url: 'app/cduserredenvelopeassistance/assistance',
+				 	type: 'post',
+				 	data: {
+				 		userId: a.userId,
+				 		envelopeId: a.id,
+				 		assistanceType: 5
+				 	}
+				 }).then(res => {
+				 	if (res.code == 0) {
+				 		// 获取最终余额
+				 	let id =wx.getStorageSync('user').id
+				 	uni.wjw_http({
+				 		url:'app/cduserredenvelope/redInfo',
+				 		type:'post',
+				 		data:{
+				 			userId:id
+				 		}
+				 	}).then(res=>{
+				 		if(res.code ==0){
+							let a =res.data;
+						    that.cPrice=that.sumMoney-a.currentAmount;
+				 				}
+				 			}).catch(res=>{
+				 				
+				 			})
+				 	
+				 	}
+				 })
+			 },
 			// 跳转到提现的页面
 			withDrawals(){
 				uni.redirectTo({
@@ -944,7 +987,7 @@
 	}
 	.active_tips {
 		margin-top: 55rpx;
-		margin-bottom: 40rpx;
+		margin-bottom: 6rpx;
 	}
 	.active_tip_icon {
 		width: 30rpx;
@@ -1115,7 +1158,7 @@
 		height:16rpx;
 		background:rgba(205,43,30,1);
 		border-radius:8rpx;
-		margin: auto;
+		margin-top: 70rpx;
 	}
 	.red_page_cash_progress{
 		width: 95%;

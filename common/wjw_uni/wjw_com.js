@@ -1111,10 +1111,11 @@ function judge_login_back(judge) {
         // 获取地址列表
         addlist(e) {
             var userData = wx.getStorageSync('userData');
+			var token = wx.getStorageSync('token');
             if (userData) {
-                var id = userData.user.id;
-                var token = userData.token;
-            }
+                var id = userData.id;
+               
+           
             uni.wjw_http({
                 url: 'address/list',
                 data: {
@@ -1128,8 +1129,8 @@ function judge_login_back(judge) {
                 
                 this.addlist_back && this.addlist_back(res);
 
-
             })
+			 }
 
         },
 

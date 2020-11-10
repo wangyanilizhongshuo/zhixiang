@@ -369,7 +369,7 @@
 }
 .active_tips.data-v-6bf2c256 {
   margin-top: 55rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 6rpx;
 }
 .active_tip_icon.data-v-6bf2c256 {
   width: 30rpx;
@@ -537,7 +537,7 @@
   height: 16rpx;
   background: #cd2b1e;
   border-radius: 8rpx;
-  margin: auto;
+  margin-top: 70rpx;
 }
 .red_page_cash_progress.data-v-6bf2c256 {
   width: 95%;

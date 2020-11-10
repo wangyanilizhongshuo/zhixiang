@@ -2,7 +2,6 @@
 	// 已确定流程
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 			// 已确定流
-		
 			{
 				"path": "pages/index/index",
 				"style": {
@@ -14,12 +13,27 @@
 					}
 				}
 			},
+		    {
+		    	"path": "pages/login/login",
+		    	"style": {
+		    		"navigationBarTitleText": "登录"
+		    	}
+		    },	
 			{
-				"path": "pages/login/login",
+				"path": "pages/login/specialPwd",
 				"style": {
-					"navigationBarTitleText": "登录"
+					"navigationBarTitleText": "设置密码"
 				}
 			},
+		{
+			"path": "pages/login/login1",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		
+			
+		
 			
 			{
 				"path": "pages/QRcode/QRcode",

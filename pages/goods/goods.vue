@@ -107,12 +107,10 @@
                         <div class="cart-icon"></div>购物车
                         <span class="cart-circle02" v-if='amounts'>{{amounts}}</span>
                     </li>
-						<li class="btn-server">
-							<button hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp">
-								<a :href="'tel:'+phone" id="service" style="border: 3rpx solid white;">
-								       <view class="server-icon"></view>
-										客服
-								 </a>
+						<li class="btn-server" > 
+							<button style=";width: 100%;display: flex;flex-direction: column;justify-content: space-around;align-items: center;" hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp">
+								<image style="display:block;width:36rpx;height:36rpx;" src="http://zxyp.hzbixin.cn/files/77281602655672450.jpg"></image>
+								<view style="width:60rpx;height:60rpx;line-height: 60rpx;" >客服</view>
 							</button>
 						</li>
                     <li class="btn-addCart" v-if="specialMakeMoney==1"  @tap='popup_num_show=true'>加入购物车 </li>
@@ -370,15 +368,15 @@ export default {
         // 获取服务电话
         get_phone(e) {
             //console.log('获取服务电话', e);
-            var userData = wx.getStorageSync('userData');
+            var userData = wx.getStorageSync('user');
 
          //   console.log(userData.user.mer_id)
-            if(!userData.user.mer_id){
+            if(!userData.mer_id){
                 return
             }
 
             uni.wjw_http({
-                url: 'merchant/info/' + userData.user.mer_id,
+                url: 'merchant/info/' + userData.mer_id,
                 method: 'post',
                 data: {
                 },
@@ -437,8 +435,8 @@ export default {
             	url: 'shoppingcart/save',
                 method: 'post',
                 data: {
-            	    token: userData.token,
-            	    userId: userData.user.id,
+            	   
+            	    userId: userData.id,
             	    sub_event_id: this.id2,
             	    buy_num: this.amount,
                 },
@@ -459,6 +457,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+	.button::after{ border: none; }
 	.num-choose-wrap {
 		.uni-label {
 			border-top: 2rpx solid rgba(0, 0, 0, .2);
@@ -473,7 +472,7 @@ export default {
 			border-bottom: 2rpx solid rgba(0, 0, 0, .2);
 			// box-shadow: none
 		}
-	
+		
 		.left {
 			border-left: 2rpx solid rgba(0, 0, 0, .2);
 		}
@@ -498,6 +497,7 @@ export default {
  	}
  	.btns{
  		// background-color:white!important;
- 		
+ 		border:
+ 		none;
  	}
 </style>

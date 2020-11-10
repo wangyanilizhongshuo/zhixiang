@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/login/specialPwd",
+    "pages/login/login1",
     "pages/QRcode/QRcode",
     "pages/orderMsg/goodsEvaluate",
     "pages/orderMsg/orderMsg",
@@ -114,5 +116,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

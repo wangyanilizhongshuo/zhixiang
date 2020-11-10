@@ -100,8 +100,7 @@
 						},
 					});
 				};
-				console.log(that.userId)
-				console.log(userid)
+			
 				if (!that.content == '') {
 					uni.wjw_http({
 						//  header:{
@@ -113,7 +112,7 @@
 							expertId: that.userId,
 							issues: that.content,
 							userId: userid,
-							// token:token,
+							
 							openId:that.openId,
 							picture: that.upUrlList
 						},

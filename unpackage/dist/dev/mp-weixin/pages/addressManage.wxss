@@ -35,9 +35,10 @@ label.label-checkbox input[type=checkbox][data-checked=true]+.item-media ._i.ico
 	 background-color: #FF7599;
 	 text-align: center;
 	 border-radius: 40rpx;
-	 position: absolute;
-	 left:0;
-	 bottom:0;
+	 position: fixed;
+	 left:0rpx;
+	 bottom:0rpx;
+	 z-index:10;
 	 margin:0!important;
 }
 
