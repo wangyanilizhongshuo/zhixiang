@@ -44,5 +44,18 @@
 }
 .btns.data-v-5566b618 {
   border: none;
+  outline: none;
+  border: none;
+  background-color: none;
+  -webkit-appearance: none;
+  -webkit-appearance: none;
+}
+button.data-v-5566b618::after {
+  border: none;
+  outline: none;
+  border: none;
+  background-color: none;
+  -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 

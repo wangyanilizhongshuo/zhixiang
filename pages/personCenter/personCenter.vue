@@ -2,8 +2,8 @@
 	<view>
 		<view class="content">
 		    <view class="header-wrap " style="background: url(http://zxyp.hzbixin.cn/files/5291600397644472.jpg) no-repeat center;background-size: 100%;background-size: 100% 120%;height: 210px;">
-		       
-		        <view class="user-icon"@tap="jump"  data-url='/pages/personData'>
+		        <view class="user-icon" @tap="persondataHead" 
+				>
 		        
 		            <img style="width:95%;height: 95%;;" :src="user_info.head_photo||'http://zxyp.hzbixin.cn/files/56951600411655718.jpg'" >
 		            <img src="http://zxyp.hzbixin.cn/files/83201600411694212.jpg" alt="" class="vip_icon" @click='showToast' data-title='请前往APP内进行开通' v-if='user_info.is_vip'>
@@ -205,6 +205,14 @@
 		      path: "/pages/index/index?" + _this.getShareUrlParams()
 		    };
 		},
+		onTabItemTap(){
+			if(wx.getStorageSync('user').id){
+			}else{
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
+			}
+		},
 		onShow(){
 			// 获取用户信息
 			this.get_user_info();
@@ -230,6 +238,19 @@
 					console.log(res.msg)
 				})
 
+			},
+			persondataHead(){
+				if(wx.getStorageSync('token')){
+					uni.navigateTo({
+					   url:'/pages/personData'
+				    })
+				}else{
+					uni.navigateTo({
+					   url:'/pages/login/login'
+					})
+				}
+				
+				
 			},
 			//获取 订单情况列表
 			getOrder(){

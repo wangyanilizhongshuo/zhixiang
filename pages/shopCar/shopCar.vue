@@ -91,6 +91,15 @@
 				
 			}
 		},
+		onTabItemTap(){
+			if(wx.getStorageSync('user').id){
+				
+			}else{
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
+			}
+		},
 		onLoad() {
 			this.getCarList();
 		},

@@ -192,6 +192,15 @@ var _default =
       this.categorys(this.i, this.pages, 0);
     }
   },
+  onTabItemTap: function onTabItemTap() {
+    if (wx.getStorageSync('user').id) {
+
+    } else {
+      uni.navigateTo({
+        url: '/pages/login/login' });
+
+    }
+  },
   methods: {
     // 获取商品列表
     get_goods_list: function get_goods_list(e) {

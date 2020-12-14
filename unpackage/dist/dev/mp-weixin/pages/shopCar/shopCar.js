@@ -223,6 +223,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
   },
+  onTabItemTap: function onTabItemTap() {
+    if (wx.getStorageSync('user').id) {
+
+    } else {
+      uni.navigateTo({
+        url: '/pages/login/login' });
+
+    }
+  },
   onLoad: function onLoad() {
     this.getCarList();
   },

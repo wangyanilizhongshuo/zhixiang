@@ -1,7 +1,5 @@
 <template>
 	<view>
-
-
 		<view class="opts flex  all_ma ">
 			<view class="opt  flex_c flex_shrink flex_grow "
 		 		@click='jump' data-url='/pages/category/mybk/wiki/wiki' 

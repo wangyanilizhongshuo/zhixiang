@@ -337,6 +337,14 @@ __webpack_require__.r(__webpack_exports__);
       path: "/pages/index/index?" + _this.getShareUrlParams() };
 
   },
+  onTabItemTap: function onTabItemTap() {
+    if (wx.getStorageSync('user').id) {
+    } else {
+      uni.navigateTo({
+        url: '/pages/login/login' });
+
+    }
+  },
   onShow: function onShow() {
     // 获取用户信息
     this.get_user_info();
@@ -361,6 +369,19 @@ __webpack_require__.r(__webpack_exports__);
       }).catch(function (res) {
         console.log(res.msg);
       });
+
+    },
+    persondataHead: function persondataHead() {
+      if (wx.getStorageSync('token')) {
+        uni.navigateTo({
+          url: '/pages/personData' });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
+
 
     },
     //获取 订单情况列表

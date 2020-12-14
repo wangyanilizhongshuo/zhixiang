@@ -150,21 +150,27 @@ var _default =
     return {
       code: '',
       signalFlag: false,
-      signalMsg: '' };
+      signalMsg: '',
+      smallRed: '' };
 
   },
-  onLoad: function onLoad() {
+  onLoad: function onLoad(options) {
+    this.setData(options);
 
   },
   methods: {
     getPhoneNumber: function getPhoneNumber(e) {
+      console.log(e);
+      console.log('wangnina');
       var _this = this;
       if (e.detail.errMsg !== 'getPhoneNumber:ok') {
 
         return false;
       }
-      console.log(e.detail.errMsg !== 'getPhoneNumber:ok');
-      console.log(2222);
+      // uni.showLoading({
+      //   title: "正在登录",
+      //   mask: true
+      // });
       uni.login({
         provider: 'weixin',
         success: function success(res) {
@@ -179,19 +185,29 @@ var _default =
               iv: e.detail.iv } }).
 
           then(function (res) {
-            console.log(res.code);
-            wx.setStorageSync('token', res.data.data.token);
-            wx.setStorageSync('user', res.data.data.userModel);
-            wx.setStorageSync('userData', res.data.data.userModel);
-            if (res.data.data.userModel.password) {
-              uni.switchTab({
-                url: '/pages/index/index' });
+            if (res.code == 0) {
+              wx.setStorageSync('token', res.data.data.token);
+              wx.setStorageSync('user', res.data.data.userModel);
+              wx.setStorageSync('userData', res.data.data.userModel);
+              if (res.data.data.userModel.password) {
+                uni.switchTab({
+                  url: '/pages/index/index' });
 
-            } else {
-              uni.navigateTo({
-                url: '/pages/login/specialPwd' });
+              } else if (_this.smallRed == 11) {
+                // 被分享获取了小额红包
+                uni.switchTab({
+                  url: '/pages/index/index?xehb=' + true });
 
+              } else
+              {
+                uni.navigateTo({
+                  url: '/pages/login/specialPwd' });
+
+              }
             }
+            console.log(res);
+            console.log('login');
+
 
           }).catch(function (res) {
             _this.signalFlag = true;

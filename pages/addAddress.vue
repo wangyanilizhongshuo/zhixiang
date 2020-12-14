@@ -77,7 +77,7 @@
                             </li>
                             </ul>
 
-                <button class="page_btn" style="margin:0;width:750rpx;position:absolute;left:0;bottom:0;background-color: #FF7599;" @tap='address_save' >保存</button>
+                <button class="page_btn" style="margin:0;width:750rpx;position:absolute;left:0;bottom:0;background-color: #FF7599;" @tap.stop='address_save' >保存</button>
 
             </div>
         </div>

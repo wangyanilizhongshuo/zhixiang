@@ -1,7 +1,7 @@
 <template>
 	<view  class="uni-call">
 		<view class="mask"></view>
-			<image class="uni-img" @tap.stop="decision"  src="http://zxyp.hzbixin.cn/files/27351597214998680.jpg"></image>
+		<image class="uni-img" @tap.stop="decision"  src="http://zxyp.hzbixin.cn/files/27351597214998680.jpg"></image>
 	</view>
 </template>
 

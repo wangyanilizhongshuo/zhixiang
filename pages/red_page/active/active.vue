@@ -88,7 +88,7 @@
 				<view class="uni-video">
 					<video  class="video" @timeupdate="autoEnd" autoplay page-gesture controls id="myVideo" :src="videoUrl"></video>
 				</view>
-				<view class="btn" v-if="videoBtnFlag">看完领红包({{(watchTimes) ||15}}s)</view>
+				<view class="btn" v-if="videoBtnFlag">看完领红包({{(watchTimes)}}s)</view>
 				<view class="btn btnStyle" v-if="!videoBtnFlag" @tap.stop="videoBtn" >立即领取</view>
 			</view>
 			</view>
@@ -270,7 +270,7 @@
 			    this.getLittleRed();
 			     return {
 			       title: "智享婴品",
-			       path: "/pages/index/index?" + _this.getShareUrlParams()
+			       path: "/pages/login/login?" + _this.getShareSmallRed()
 			     };
 			    }
 				else if(res.from ==='menu'){
@@ -563,9 +563,20 @@
 					}
 				}).then(res => {
 					if(res.code ==0){
-						this.videoList = res.data.list[0];
-					    this.watchTimes=(res.data.list[0].watchTime)/1000;
-						this.videoUrl='https://zxyp.hzbixin.cn'+res.data.list[0].videoLink;
+						let that =this;
+						that.videoList = res.data.list[0];
+					    that.watchTimes=(res.data.list[0].watchTime)/1000;
+						console.log(that.watchTimes)
+						console.log("that.watchTimes")
+						that.videoUrl='https://zxyp.hzbixin.cn'+res.data.list[0].videoLink;
+					 let timer = setInterval(()=>{
+					  		that.watchTimes=that.watchTimes-1;
+					  		if(that.watchTimes < 1){
+					  			clearInterval(timer);
+					  	}
+					  },1000)
+					
+					
 					}
 					
 				})
@@ -648,8 +659,7 @@
 					display: flex;
 					width:320rpx;
 					justify-content: space-between;
-					margin: 20rpx 0;	 
-				
+					margin: 20rpx 0;	
 			}
 		}			
 		
@@ -1171,7 +1181,7 @@
 		font-family:PingFang SC;
 		font-weight:500;
 		color:rgba(208,81,59,1);
-	
+	    width:230rpx;
 		position: absolute;
 		bottom: calc(100% + 12rpx + (62rpx - 55rpx));
 		bottom: calc(100% + 12rpx );

@@ -369,6 +369,17 @@ function isCardNo(card) {
 			
 	       }, params));
 	  }
+	  function  getShareSmallRed(params) {
+	        let _this = this;
+	  	   // console.log(getMerId())
+	         return urlEncode(Object.assign({
+	           invite_id: getUserId(),
+	  		   mer_id:getMerId(),
+			   smallRed:11
+	  		 // mer_id:getMerId()
+	  		
+	         }, params));
+	    }
 
 
 module.exports = {

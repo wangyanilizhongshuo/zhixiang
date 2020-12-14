@@ -107,11 +107,13 @@
                         <div class="cart-icon"></div>购物车
                         <span class="cart-circle02" v-if='amounts'>{{amounts}}</span>
                     </li>
-						<li class="btn-server" > 
-							<button style=";width: 100%;display: flex;flex-direction: column;justify-content: space-around;align-items: center;" hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp">
-								<image style="display:block;width:36rpx;height:36rpx;" src="http://zxyp.hzbixin.cn/files/77281602655672450.jpg"></image>
-								<view style="width:60rpx;height:60rpx;line-height: 60rpx;" >客服</view>
+						<li class="btn-server" style="position: relative;left:0rpx;top:0rpx;background-color: #fff;" > 
+							<button plain="true" style="
+							border-radius: 0rpx;background-color:#fff;height: 80rpx;width: 136rpx;display: flex;flex-direction: column;justify-content: space-around;align-items: center;" hover-class="none" class="btns"  open-type="contact"  sessionFrom="weapp">
+								<image style="display:block;width:36rpx;height:36rpx;position: absolute;left:50rpx;top:8rpx" src="http://zxyp.hzbixin.cn/files/77281602655672450.jpg"></image>
 							</button>
+							
+							<view style="width:60rpx;height:35rpx;line-height: 35rpx;position: absolute;left:40rpx;bottom:-4rpx;" >客服</view>
 						</li>
                     <li class="btn-addCart" v-if="specialMakeMoney==1"  @tap='popup_num_show=true'>加入购物车 </li>
                     <li class="btn-buy"  @tap='popup_num2_show=true'>立即购买</li>
@@ -483,21 +485,20 @@ export default {
 	}
  
    .btns{
- 		// background-color:white!important;
- 		 // margin: 0;
- 		 //  padding: 0;
- 		 //  outline: none;
- 		 //  border-radius: 0;
- 		 //  background-color: transparent;
- 		 //  line-height: inherit;
- 		 //  width: max-content;
+ 		border: none;
+ 		outline: none;
+ 		border: none;
+ 		background-color: none;
+ 		-webkit-appearance: none;
+ 		-webkit-appearance: none;
  	}
- .btns::after {
- 	  // border: none;
- 	}
- 	.btns{
- 		// background-color:white!important;
- 		border:
- 		none;
- 	}
+ button::after{
+	border: none;
+	outline: none;
+ 	border: none;
+ 	background-color: none;
+	-webkit-appearance: none;
+	-webkit-appearance: none;
+ }
+
 </style>

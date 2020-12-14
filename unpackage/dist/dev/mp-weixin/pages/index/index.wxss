@@ -333,4 +333,29 @@
 .ksqgSwiper.data-v-57280228 {
   height: 170rpx !important;
 }
+.signalLine.data-v-57280228 {
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.uni-call .mask.data-v-57280228 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #000;
+}
+.uni-call .uni-img.data-v-57280228 {
+  width: 500rpx;
+  height: 700rpx;
+  position: absolute;
+  left: 125rpx;
+  top: 300rpx;
+  z-index: 20;
+}
 

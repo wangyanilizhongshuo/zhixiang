@@ -308,10 +308,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
+      showList: '',
       //快速抢购专区的图片
       quickgetVipURl: [],
       // 个人信息
@@ -352,22 +361,22 @@ var _default =
       // http://zxyp.hzbixin.cn/files/96291600396055431.jpg
       // http://zxyp.hzbixin.cn/files/3301600682315523.jpg
       {
-        img: 'http://zxyp.hzbixin.cn/files/3301600682315523.jpg',
+        img: 'http://zxyp.hzbixin.cn/files/21661605681147791.jpg',
         name: '热销爆品',
         url: '/pages/category/hot/hot' },
 
       {
-        img: 'http://zxyp.hzbixin.cn/files/80991600396130536.jpg',
+        img: 'http://zxyp.hzbixin.cn/files/23981605681343881.jpg',
         name: '母婴百科',
         url: '/pages/category/mybk/mybk' },
 
       {
-        img: 'http://zxyp.hzbixin.cn/files/16271600396195924.jpg',
+        img: 'http://zxyp.hzbixin.cn/files/31241605681450688.jpg',
         name: '特惠赚钱',
         url: '/pages/category/thzq/thzq' },
 
       {
-        img: 'http://zxyp.hzbixin.cn/files/5871600396249764.jpg',
+        img: 'http://zxyp.hzbixin.cn/files/52691605681506747.jpg',
         name: '孕婴服务',
         url: '/pages/category/childServe/childServe' }],
 
@@ -385,7 +394,9 @@ var _default =
       openId: '',
       code: '',
       addresslist: '',
-      mer_id: '' };
+      mer_id: '',
+      // 小额红包
+      xehb: '' };
 
   },
   onLoad: function onLoad(options) {
@@ -393,12 +404,20 @@ var _default =
     this.setData(options);
     this.get_banner();
     // 公告
+    console.log(that.mer_id);
+    console.log(that.invite_id);
+    console.log("that.invite_id");
     this.getNews();
     this.quickVIP();
     this.getActivityTopic();
     this.getAllGoodsClassificate();
     this.delColor(1);
+    if (this.mer_id) {
+      uni.setStorageSync('mer_id', this.mer_id);
+    }
     if (this.invite_id) {
+      console.log('有invite');
+      uni.setStorageSync('invite_id', this.invite_id);
       uni.login({
         provider: 'weixin',
         success: function success(res) {
@@ -407,6 +426,8 @@ var _default =
         } });
 
     }
+
+    this.getVideoList();
 
   },
   onShareAppMessage: function onShareAppMessage() {
@@ -424,9 +445,23 @@ var _default =
       this.bindShop();
       this.videoFlag = true;
     }
-    if (wx.getStorageSync('token') && this.invite_id) {
+    var inviteId = uni.getStorageSync('invite_id');
+    if (wx.getStorageSync('token') && inviteId) {
+      console.log('token invite');
+      var that = this;
+      uni.login({
+        provider: 'weixin',
+        success: function success(res) {
+          console.log(1111);
+          that.code = res.code;
+          that.getOpenId();
+          console.log(222);
+          that.bindRelation();
+        } });
+
       // 绑定上下级关系
-      this.bindRelation();
+
+
     }
   },
   components: {},
@@ -434,24 +469,45 @@ var _default =
 
   onReachBottom: function onReachBottom() {
     // 所有商品 以及其分类后的数据的上拉加载
-    this.page = this.page + 1;
-    this.catePage = this.catePage + 1;
+
+
     if (this.cateFlag == false) {
+      this.page = this.page + 1;
       if (this.pageallSizes >= this.page) {
         this.delColor(this.page);
       } else {}
     } else if (this.cateFlag == true) {
+      this.catePage = this.catePage + 1;
       if (this.pageSizes >= this.catePage) {
         this.category(this.sel, this.catePage);
       } else {}
     }
   },
+  onReady: function onReady() {
+
+  },
   methods: {
+    // 获取小额 红包
+    getInvitedsuc: function getInvitedsuc() {
+      var that = this;
+      uni.showToast({
+        title: '分享成功!',
+        duration: 2500 });
+
+      setTimeout(function (res) {
+        that.xehb = false;
+
+      }, 2800);
+    },
     // 绑定店铺
     bindShop: function bindShop() {
       var that = this;
       var id = wx.getStorageSync('user').id;
+      console.log(that.mer_id);
+      console.log(that.mer_id !== 0);
+      console.log(typeof id != 'undefined');
       if (that.mer_id !== 0 && typeof id != 'undefined') {
+
         uni.wjw_http({
           url: 'user/setMer',
           data: {
@@ -459,6 +515,7 @@ var _default =
             merId: that.mer_id } }).
 
         then(function () {
+          console.log('bindShop');
           console.log('绑点店铺成功');
           that.getAddress();
         }).catch(function (res) {
@@ -497,6 +554,7 @@ var _default =
     bindRelation: function bindRelation() {
       var that = this;
       var id = wx.getStorageSync('user').id;
+      var inviteId = wx.getStorageSync('invite_id');
       console.log('调用函数bindrelation');
       uni.wjw_http({
         // header:{
@@ -507,7 +565,7 @@ var _default =
         data: {
           userId: id,
           openId: that.openId,
-          supUserId: that.invite_id } }).
+          supUserId: inviteId } }).
 
       then(function (res) {
         if (res.code == 0) {
@@ -535,6 +593,7 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
+          console.log('成功获取openid');
           _this3.openId = res.data.openid;
           // 判断用户是否登录
           // console.log('openId 获取之后，进行下一步调用函数')
@@ -544,7 +603,7 @@ var _default =
           // }
         }
       }).catch(function (res) {
-
+        console.log('s失败获取openid');
       });
     },
     // 调用地图
@@ -577,15 +636,31 @@ var _default =
 
     },
     // 获取店名字
-    getAddress: function getAddress() {
+    getAddress: function getAddress() {var _this4 = this;
       var that = this;
-      var id = wx.getStorageSync('user').mer_id;
+      console.log('获取店铺come');
+      var id = '';
+      // let id = wx.getStorageSync('user').mer_id;
+      if (wx.getStorageSync('mer_id')) {
+        id = wx.getStorageSync('mer_id');
+      } else if (wx.getStorageSync('user').mer_id) {
+        id = wx.getStorageSync('user').mer_id;
+      } else {
+        return false;
+      }
+      console.log(id);
+      console.log('merid 获取');
+
       uni.wjw_http({
         url: 'merchant/info/' + id,
         type: 'post' }).
       then(function (res) {
         if (res.status == 0) {
           that.addressName = res.result.shop_name;
+
+          _this4.$forceUpdate();
+          console.log("获取店铺 名字成功");
+          console.log(that.addressName);
           that.addresslist = res.result;
 
         } else {
@@ -628,7 +703,10 @@ var _default =
           var a = res.result;
           var num = Math.floor(Math.random() + 1);
           a = a.slice(num, num + 3);
+
           that.videolist = a;
+          console.log('anwser');
+          console.log(that.videolist);
         }
       }).catch(function (res) {
         console.log(res);
@@ -637,26 +715,41 @@ var _default =
     },
     // 视频跳到 视频详情
     videoJump: function videoJump(ids) {
-      uni.navigateTo({
-        url: '/pages/video/detail?id=' + ids });
+      if (wx.getStorageSync('user').id) {
+        uni.navigateTo({
+          url: '/pages/video/detail?id=' + ids });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
 
     },
     // 快速购买的时候跳转到list
     quickList: function quickList(ids) {
-      uni.navigateTo({
-        url: '/pages/goods/goods?id=' + ids });
+      if (wx.getStorageSync('user').id) {
+        uni.navigateTo({
+          url: '/pages/goods/goods?id=' + ids });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
+
 
     },
     // 轮播图
-    get_banner: function get_banner(e) {var _this4 = this;
+    get_banner: function get_banner(e) {var _this5 = this;
       uni.wjw_http({
         url: "banner/list",
         data: {} }).
       then(function (res) {
         // console.log(res);
         if (res.status == 0) {
-          _this4.bannar = res.result.map(function (item) {return item.photo;});
-          _this4.bannerLink = res.result.map(function (item) {return item.id;});
+          _this5.bannar = res.result.map(function (item) {return item.photo;});
+          _this5.bannerLink = res.result.map(function (item) {return item.id;});
         }
 
       });
@@ -677,14 +770,48 @@ var _default =
         }
       });
     },
+    //搜索页面
+    searchJump: function searchJump() {
+      if (wx.getStorageSync('user').id) {
+        uni.navigateTo({
+          url: '/pages/index/search' });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
+    },
+    // 轮播图
     bannerJump: function bannerJump(id) {
-      var num = this.bannerLink[id];
-      uni.navigateTo({
-        url: '../goods/goods?id=' + num });
+      if (wx.getStorageSync('user').id) {
+        var num = this.bannerLink[id];
+        uni.navigateTo({
+          url: '../goods/goods?id=' + num });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
+
 
     },
+    // 四个按钮
+    fourLogoJump: function fourLogoJump(urls) {
+      console.log('wangyaniddsfdskjlfasd');
+      if (wx.getStorageSync('user').id) {
+        uni.navigateTo({
+          url: urls });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
+    },
     // 公告
-    getNews: function getNews(e) {var _this5 = this;
+    getNews: function getNews(e) {var _this6 = this;
       uni.wjw_http({
         url: "bannermsg/list",
         method: 'post',
@@ -693,7 +820,7 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          _this5.notice_list = res.result.map(function (item) {return item.title;});
+          _this6.notice_list = res.result.map(function (item) {return item.title;});
         }
       });
     },
@@ -718,13 +845,18 @@ var _default =
     },
     // 猜你喜欢的跳转
     actiTop: function actiTop(ids) {
-      var that = this;
-      uni.navigateTo({
-        url: '/pages/goods/goods?id=' + ids });
+      if (wx.getStorageSync('user').id) {
+        uni.navigateTo({
+          url: '/pages/goods/goods?id=' + ids });
 
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
     },
     // 获取所有商品的分类
-    getAllGoodsClassificate: function getAllGoodsClassificate() {var _this6 = this;
+    getAllGoodsClassificate: function getAllGoodsClassificate() {var _this7 = this;
       var that = this;
       uni.wjw_http({
         url: 'goodsclass/list' }).
@@ -732,12 +864,12 @@ var _default =
         if (res.status == 0) {
           that.allGoodsCateList = res.result.map(function (item) {return item.class_name;});
           that.allGoodsCateIdList = res.result.map(function (item) {return item.id;});
-          _this6.$forceUpdate();
+          _this7.$forceUpdate();
         }
       });
     },
     //获取所有产品当中的某一类进行渲染
-    category: function category(i, page) {
+    category: function category(i, page) {var _this8 = this;
       // 来判断是全部还是分类的
 
       this.cateFlag = true;
@@ -752,7 +884,7 @@ var _default =
         url: 'saleevent/listByPage',
         data: {
           page: pages,
-          pageSize: 6,
+          pageSize: 4,
           ower_type: 2,
           class_id: ids } }).
 
@@ -768,28 +900,31 @@ var _default =
             that.allGoodsList = res.result.list;
           }
           that.cateORallFlag = true;
-          console.log(that.allGoodsList);
+          if (_this8.showList.length > pages) {
+            that.allGoodsList.push(_this8.showList[pages]);
+
+          }
         }
       });
-      // 全部列表的内容 删除
+
     },
-    delColor: function delColor(pages1) {var _this7 = this;
+    // 全部列表的内容 删除
+    delColor: function delColor(pages1) {var _this9 = this;
       this.cateFlag = false;
       this.sels = 1;
       this.sel = -3;
       var pages = pages1;
       var that = this;
-
       uni.wjw_http({
         url: 'saleevent/listByPage',
         data: {
           page: pages,
-          pageSize: 6,
+          pageSize: 4,
           ower_type: 2 } }).
 
       then(function (res) {
         if (res.status == 0) {
-          _this7.pageallSizes = res.result.pages;
+          _this9.pageallSizes = res.result.pages;
           if (pages != 1) {
             var ii = res.result.list;
             var jj = that.allGoodsList;
@@ -798,13 +933,42 @@ var _default =
           } else {
             that.allGoodsList = res.result.list;
           }
+
+          if (_this9.showList.length > pages) {
+            that.allGoodsList.push(_this9.showList[pages]);
+
+          }
+
+
         }
       });
     },
     cateDetail: function cateDetail(ids) {
-      uni.navigateTo({
-        url: '../goods/goods?id=' + ids });
+      if (wx.getStorageSync('user').id) {
+        uni.navigateTo({
+          url: '../goods/goods?id=' + ids });
 
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
+
+    },
+
+    getVideoList: function getVideoList() {var _this10 = this;
+      uni.wjw_http({
+        url: 'app/cdhomevideo/list',
+        method: 'get' }).
+      then(function (res) {
+        if (res.code == 0) {
+          _this10.showList = res.data;
+          _this10.showList.map(function (res) {
+            res.url = 'https://zxyp.hzbixin.cn' + res.url;
+          });
+        }
+
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

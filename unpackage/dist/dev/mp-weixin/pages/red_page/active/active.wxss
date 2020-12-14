@@ -550,6 +550,7 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: #d0513b;
+  width: 230rpx;
   position: absolute;
   bottom: calc(100% + 12rpx + (62rpx - 55rpx));
   bottom: calc(100% + 12rpx);

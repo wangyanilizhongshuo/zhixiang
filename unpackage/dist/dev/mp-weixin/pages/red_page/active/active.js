@@ -460,7 +460,7 @@ var _default =
       this.getLittleRed();
       return {
         title: "智享婴品",
-        path: "/pages/index/index?" + _this.getShareUrlParams() };
+        path: "/pages/login/login?" + _this.getShareSmallRed() };
 
     } else
     if (res.from === 'menu') {
@@ -753,9 +753,20 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
-          _this7.videoList = res.data.list[0];
-          _this7.watchTimes = res.data.list[0].watchTime / 1000;
-          _this7.videoUrl = 'https://zxyp.hzbixin.cn' + res.data.list[0].videoLink;
+          var that = _this7;
+          that.videoList = res.data.list[0];
+          that.watchTimes = res.data.list[0].watchTime / 1000;
+          console.log(that.watchTimes);
+          console.log("that.watchTimes");
+          that.videoUrl = 'https://zxyp.hzbixin.cn' + res.data.list[0].videoLink;
+          var timer = setInterval(function () {
+            that.watchTimes = that.watchTimes - 1;
+            if (that.watchTimes < 1) {
+              clearInterval(timer);
+            }
+          }, 1000);
+
+
         }
 
       });

@@ -23,7 +23,7 @@
 			</view>
 			<view class="top_nav_search_box ">
 				<!-- <view class="top_nav_search_occupy flex_c height_percent" @click='search_input=true' v-else> -->
-				<view class="top_nav_search_occupy flex_c height_percent" @tap.stop="jump" data-url='/pages/index/search'>
+				<view class="top_nav_search_occupy flex_c height_percent" @tap.stop="searchJump">
 					<img  class="top_nav_search_icon no_shrink" src='http://zxyp.hzbixin.cn/files/82361600399373094.jpg' />
 					<view class="top_nav_search_input">搜索</view>
 				</view>
@@ -38,7 +38,7 @@
 			<view class="bannar_bottom"></view>
 		</view>
 		<view class="category_list flex flex_wrap">
-			<view class="category_li" style="text-align:center;" v-for="(item,index) in category_list" :key='index'@tap.stop='jump' :data-url='item.url'>
+			<view class="category_li" style="text-align:center;" v-for="(item,index) in category_list" :key='index' @tap.stop='fourLogoJump(item.url)' >
 				<img class="category_li_img no_shrink" :src='item.img' />
 				<view class="category_li_name">{{item.name}}</view>
 			</view>
@@ -57,10 +57,10 @@
 		<view class="title_li flex_c">
 			<view class=" flex_grow "></view>
 			<view class="title_li_name no_shrink ta_c flex flex_c">
-				<img src="http://zxyp.hzbixin.cn/files/1031600396565502.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/10081605681580347.jpg" alt=""
 				 class="title_li_img">
 				快速抢购专区
-				<img src="http://zxyp.hzbixin.cn/files/47291600396602720.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/10081605681580347.jpg" alt=""
 				 class="title_li_img">
 			</view>
 			<view class=" flex_grow"></view>
@@ -77,10 +77,10 @@
 		<view class="title_li flex_c" v-if="videoFlag">
 			<view class=" flex_grow "></view>
 			<view class="title_li_name no_shrink ta_c flex flex_c">
-				<img src="http://zxyp.hzbixin.cn/files/60131600405673460.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/32461605681636022.jpg" alt=""
 				 class="title_li_img">
 				视频答题专区
-				<img src="http://zxyp.hzbixin.cn/files/60131600405673460.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/32461605681636022.jpg" alt=""
 				 class="title_li_img">
 			</view>
 			<view class=" flex_grow"></view>
@@ -97,10 +97,10 @@
 		<view class="title_li flex_c">
 			<view class=" flex_grow "></view>
 			<view class="title_li_name no_shrink ta_c flex flex_c">
-				<img src="http://zxyp.hzbixin.cn/files/58611600405752432.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/97711605681734683.jpg" alt=""
 				 class="title_li_img">
 				猜您喜欢
-				<img src="http://zxyp.hzbixin.cn/files/58611600405752432.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/97711605681734683.jpg" alt=""
 				 class="title_li_img">
 			</view>
 			<view class=" flex_grow"></view>
@@ -113,10 +113,10 @@
 		<view class="title_li flex_c" v-if="huodongList.length>0">
 			<view class=" flex_grow "></view>
 			<view class="title_li_name no_shrink ta_c flex flex_c">
-				<img src="http://zxyp.hzbixin.cn/files/91551600406014031.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/10081605681580347.jpg" alt=""
 				 class="title_li_img">
 				活动专题页
-				<img src="http://zxyp.hzbixin.cn/files/91551600406014031.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/10081605681580347.jpg" alt=""
 				 class="title_li_img">
 			</view>
 			<view class=" flex_grow"></view>
@@ -130,10 +130,10 @@
 		<view class="title_li flex_c">
 			<view class=" flex_grow "></view>
 			<view class="title_li_name no_shrink ta_c flex flex_c">
-				<img src="http://zxyp.hzbixin.cn/files/49881600682210218.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/46991605681812015.jpg" alt=""
 				 class="title_li_img">
 				门店专区
-				<img src="http://zxyp.hzbixin.cn/files/73101600406996737.jpg" alt=""
+				<img src="http://zxyp.hzbixin.cn/files/46991605681812015.jpg" alt=""
 				 class="title_li_img">
 			</view>
 			<view class=" flex_grow"></view>
@@ -149,24 +149,33 @@
 				<!-- :class="'activeWord+'index" -->
 			</view>
 		</scroll-view>
-		<view class="goods_list flex flex_wrap">
-
-			<view class="goods_li" v-for="(item,index) in allGoodsList" :key='index' @tap='cateDetail(item.id)'>
-				<img class="goods_li_img" :src="item.pic" />
-				<view class="goods_li_info">
-					<view class="goods_li_title">{{item.title}}</view>
-					<view class="goods_li_price">￥<text style="margin-right:10rpx">{{item.price/100}}</text> 积分<text>{{item.total_reper || 0}}</text></view>
+	 	 <view   class="goods_list flex flex_wrap" >
+			<view   v-for="(item,index) in allGoodsList" :key='index'>
+				<view class="goods_li"  v-if="item.goods_id"  @tap='cateDetail(item.id)'>
+					<img class="goods_li_img" :src="item.pic" />
+					<view class="goods_li_info">
+						<view  class=" signalLine goods_li_title">{{item.title}}</view>
+						<view class="goods_li_price">￥<text style="margin-right:10rpx">{{item.price/100}}</text> 积分<text>{{item.total_reper || 0}}</text></view>
+					</view>
 				</view>
-			</view>
-
-		</view>
-
+				<video v-if="item.url"  style="border-radius: 10rpx;width: 690rpx;margin-left:30rpx;height: 300rpx;" 
+                       id="myVideo" :src="item.url"   controls="false" >
+			     </video>
+				   
+			 </view>
+			
+      </view>
+	  <view  class="uni-call" v-if="xehb">
+	  	<view class="mask"></view>
+	  	<image class="uni-img" @tap.stop="getInvitedsuc"  src="http://zxyp.hzbixin.cn/files/27351597214998680.jpg"></image>
+	  </view>
 	</view>
 </template>
 <script>
 	export default {
 		data() {
 			return {
+				showList:'',
 				//快速抢购专区的图片
 				quickgetVipURl: [],
                    // 个人信息
@@ -207,22 +216,22 @@
 					// http://zxyp.hzbixin.cn/files/96291600396055431.jpg
 					// http://zxyp.hzbixin.cn/files/3301600682315523.jpg
 					{
-						img: 'http://zxyp.hzbixin.cn/files/3301600682315523.jpg',
+						img: 'http://zxyp.hzbixin.cn/files/21661605681147791.jpg',
 						name: '热销爆品',
 						url: '/pages/category/hot/hot',
 					},
 					{
-						img: 'http://zxyp.hzbixin.cn/files/80991600396130536.jpg',
+						img: 'http://zxyp.hzbixin.cn/files/23981605681343881.jpg',
 						name: '母婴百科',
 						url: '/pages/category/mybk/mybk',
 					},
 					{
-						img: 'http://zxyp.hzbixin.cn/files/16271600396195924.jpg',
+						img: 'http://zxyp.hzbixin.cn/files/31241605681450688.jpg',
 						name: '特惠赚钱',
 						url: '/pages/category/thzq/thzq',
 					},
 					{
-						img: 'http://zxyp.hzbixin.cn/files/5871600396249764.jpg',
+						img: 'http://zxyp.hzbixin.cn/files/52691605681506747.jpg',
 						name: '孕婴服务',
 						url: '/pages/category/childServe/childServe',
 					},
@@ -240,7 +249,9 @@
 				openId:'',
 				code:'',
 				addresslist:'',
-				mer_id:''
+				mer_id:'',
+				// 小额红包
+				xehb:''
 			}
 		},
 		onLoad(options) {
@@ -248,12 +259,20 @@
 			this.setData(options);
 			this.get_banner();
 			// 公告
+			console.log(that.mer_id)
+			console.log(that.invite_id)
+			console.log("that.invite_id")
 			this.getNews();
 			this.quickVIP();
 			this.getActivityTopic();
 			this.getAllGoodsClassificate();
 			this.delColor(1);
+			if(this.mer_id){
+				uni.setStorageSync('mer_id',this.mer_id)
+			}
 			if(this.invite_id){
+				console.log('有invite')
+				uni.setStorageSync('invite_id',this.invite_id)
 				uni.login({
 					  provider: 'weixin',
 					  success: function (res) {
@@ -262,6 +281,8 @@
 					  }
 					})	
 			}
+			
+			this.getVideoList();
 			
 		},
 		onShareAppMessage: function () {
@@ -279,9 +300,23 @@
 				this.bindShop();
 				this.videoFlag=true;
 			}
-			if(wx.getStorageSync('token') && this.invite_id ){
+			let inviteId =uni.getStorageSync('invite_id')
+			if(wx.getStorageSync('token') && inviteId ){
+				console.log('token invite')
+				let that =this;
+				uni.login({
+					  provider: 'weixin',
+					  success: function (res) {
+						  console.log(1111)
+						   that.code=res.code;
+						   that.getOpenId(); 
+						   console.log(222)
+						    that.bindRelation();
+					  }
+					})	
 				  // 绑定上下级关系
-				 this.bindRelation();
+				  
+				
 			}
 		},
 		components: {
@@ -289,24 +324,45 @@
 		},
 		onReachBottom() {
 			// 所有商品 以及其分类后的数据的上拉加载
-			this.page = this.page + 1;
-			this.catePage = this.catePage + 1;
+		
+			
 			if (this.cateFlag == false) {
+					this.page = this.page + 1;
 				if (this.pageallSizes >= this.page) {
 					this.delColor(this.page)
 				} else {}
 			} else if (this.cateFlag == true) {
+				this.catePage = this.catePage + 1;
 				if (this.pageSizes >= this.catePage) {
 					this.category(this.sel, this.catePage)
 				} else {}
 			}
 		},
+		onReady(){
+			
+		},
 		methods: {
+			// 获取小额 红包
+			getInvitedsuc(){
+				let that =this;
+				uni.showToast({
+					title:'分享成功!',
+					duration:2500
+				})
+				setTimeout((res)=>{
+					that.xehb=false
+					
+				},2800)
+			},
 			// 绑定店铺
 			bindShop(){
 				let that =this;
 				let id =wx.getStorageSync('user').id;
+			    console.log(that.mer_id)
+				console.log(that.mer_id!==0)
+				console.log(typeof id !='undefined')
 				if(that.mer_id!==0 && (typeof id !='undefined')){
+				
 					uni.wjw_http({
 						url:'user/setMer',
 						data:{
@@ -314,6 +370,7 @@
 							merId:that.mer_id
 						}
 					}).then(()=>{
+						console.log('bindShop');
 						console.log('绑点店铺成功');
 						that.getAddress()
 					}).catch((res)=>{
@@ -352,6 +409,7 @@
 			bindRelation(){
 				let that=this;
 				let  id =wx.getStorageSync('user').id;
+				let inviteId=wx.getStorageSync('invite_id')
 				console.log('调用函数bindrelation')
 				uni.wjw_http({
 					// header:{
@@ -362,7 +420,7 @@
 					data:{
 						userId:id,
 						openId:that.openId,
-						supUserId:that.invite_id
+						supUserId:inviteId
 					}
 				}).then(res=>{
 					if(res.code ==0){
@@ -390,6 +448,7 @@
 					}
 				}).then(res=>{
 					if(res.code ==0){
+						console.log('成功获取openid')
 						this.openId=res.data.openid;
 						// 判断用户是否登录
 						// console.log('openId 获取之后，进行下一步调用函数')
@@ -399,7 +458,7 @@
 						// }
 					}
 				}).catch(res=>{
-					
+					console.log('s失败获取openid')
 				})
 			},
 			// 调用地图
@@ -434,13 +493,29 @@
 			// 获取店名字
 			getAddress() {
 				let that = this;
-				let id = wx.getStorageSync('user').mer_id;						
+				console.log('获取店铺come');
+				let id=''
+				// let id = wx.getStorageSync('user').mer_id;
+				if(wx.getStorageSync('mer_id')){
+					 id = wx.getStorageSync('mer_id');
+				}else if(wx.getStorageSync('user').mer_id){
+					id=wx.getStorageSync('user').mer_id
+				}else {
+					return false 
+				}
+					console.log(id)
+				console.log('merid 获取')
+				
 				uni.wjw_http({
 					url: 'merchant/info/' + id,
 					type: 'post'
 				}).then(res => {					
 					if (res.status == 0) {						
 						 that.addressName = res.result.shop_name;
+						 
+						 this.$forceUpdate();	
+						console.log("获取店铺 名字成功")
+						 console.log(that.addressName)
 						 that.addresslist=res.result;
 						
 					}else{	
@@ -482,8 +557,11 @@
 					if (res.status == 0) {
 						let a = res.result;
 						let num = Math.floor(Math.random() + 1);
-						a = a.slice(num, num + 3)
+						a = a.slice(num, num + 3);
+						
 						that.videolist = a;
+						console.log('anwser');
+						console.log(that.videolist)
 					}
 				}).catch(res=>{
 					console.log(res)
@@ -492,15 +570,30 @@
 			},
 			// 视频跳到 视频详情
 			videoJump(ids) {
-				uni.navigateTo({
-					url: '/pages/video/detail?id=' + ids
-				})
+				if(wx.getStorageSync('user').id){
+					uni.navigateTo({
+						url: '/pages/video/detail?id=' + ids
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
+				
 			},
 			// 快速购买的时候跳转到list
 			quickList(ids) {
-				uni.navigateTo({
-					url: '/pages/goods/goods?id=' + ids
-				})
+				if(wx.getStorageSync('user').id){
+					uni.navigateTo({
+						url: '/pages/goods/goods?id=' + ids
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
+				
+				
 			},
 			// 轮播图
 			get_banner(e) {
@@ -532,11 +625,45 @@
 					}
 				})
 			},
+			//搜索页面
+			searchJump(){
+				if(wx.getStorageSync('user').id){
+					uni.navigateTo({
+						url:'/pages/index/search'
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
+			},
+			// 轮播图
 			bannerJump(id) {
-				let num = this.bannerLink[id];
-				uni.navigateTo({
-					url: '../goods/goods?id=' + num
-				})
+				if(wx.getStorageSync('user').id){
+					let num = this.bannerLink[id];
+					uni.navigateTo({
+						url: '../goods/goods?id=' + num
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
+				
+				
+			},
+			// 四个按钮
+			fourLogoJump(urls){
+				console.log('wangyaniddsfdskjlfasd')
+				if(wx.getStorageSync('user').id){
+					uni.navigateTo({
+						url: urls
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
 			},
 			// 公告
 			getNews(e) {
@@ -573,10 +700,15 @@
 			},
 			// 猜你喜欢的跳转
 			actiTop(ids) {
-				let that = this;
-				uni.navigateTo({
-					url: '/pages/goods/goods?id=' + ids
-				})
+				if(wx.getStorageSync('user').id){
+					uni.navigateTo({
+						url: '/pages/goods/goods?id=' + ids
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
 			},
 			// 获取所有商品的分类
 			getAllGoodsClassificate() {
@@ -594,7 +726,7 @@
 			//获取所有产品当中的某一类进行渲染
 			category(i, page) {
 				// 来判断是全部还是分类的
-
+               
 				this.cateFlag = true;
 				this.sels = 0;
 				this.sel = i;
@@ -607,7 +739,7 @@
 					url: 'saleevent/listByPage',
 					data: {
 						page: pages,
-						pageSize: 6,
+						pageSize: 4,
 						ower_type: 2,
 						class_id: ids
 					}
@@ -623,23 +755,26 @@
 							that.allGoodsList = res.result.list;
 						}
 						that.cateORallFlag = true;
-						console.log(that.allGoodsList)
+						if(this.showList.length>pages){
+							that.allGoodsList.push(this.showList[pages])
+						    
+						}
 					}
 				})
-				// 全部列表的内容 删除
+				
 			},
+			// 全部列表的内容 删除
 			delColor(pages1) {
 				this.cateFlag = false;
 				this.sels = 1;
 				this.sel = -3;
 				let pages = pages1;
 				let that = this;
-
 				uni.wjw_http({
 					url: 'saleevent/listByPage',
 					data: {
 						page: pages,
-						pageSize: 6,
+						pageSize: 4,
 						ower_type: 2,
 					}
 				}).then(res => {
@@ -653,14 +788,44 @@
 						} else {
 							that.allGoodsList = res.result.list;
 						}
+					
+						if(this.showList.length>pages){
+							that.allGoodsList.push(this.showList[pages])
+						    
+						}
+						
+						
 					}
 				})
 			},
 			cateDetail(ids) {
-				uni.navigateTo({
-					url: '../goods/goods?id=' + ids
+				if(wx.getStorageSync('user').id){
+					uni.navigateTo({
+						url: '../goods/goods?id=' + ids
+					})
+				}else{
+					uni.navigateTo({
+						url:'/pages/login/login'
+					})
+				}
+				
+			},
+	
+			getVideoList(){
+				uni.wjw_http({
+					url: 'app/cdhomevideo/list',
+					method: 'get',
+				}).then(res => {
+					if(res.code ==0){
+						this.showList=res.data	;
+						this.showList.map(res=>{
+							res.url='https://zxyp.hzbixin.cn'+res.url
+						})
+					}
+					
 				})
 			}
+			
 		}
 	}
 </script>
@@ -1048,5 +1213,34 @@
 
 	.ksqgSwiper {
 		height: 170rpx !important;
+	}
+	.signalLine{
+		display: -webkit-box !important;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-break: break-all;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+	}
+	.uni-call{
+		.mask{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 10;
+			background-color: #000;
+			
+			 }
+			.uni-img{
+				width: 500rpx;
+				height: 700rpx;
+				position:absolute;
+				left:125rpx;
+				top:300rpx;
+				z-index: 20;;
+			
+		}
 	}
 </style>
