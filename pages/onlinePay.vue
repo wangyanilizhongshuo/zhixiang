@@ -25,17 +25,7 @@
 		},
 		onLoad(){
 			this.getRecord();
-			// let id =uni.getStorageSync('user').id;
-			// uni.wjw_http({
-			// 	url:'app/cduserredenvelopeassistance/assistance',
-			// 	data:{
-			// 		envelopeId:42,
-			// 		assistanceType:4,
-			// 		userId:id
-			// 	}
-			// }).then(res=>{
-				
-			// })
+			
 		},
 		onReachBottom(){
 			if(this.pageSize>this.page){
@@ -57,7 +47,7 @@
 					if(res.status ==0){
 						// that.recordList=res.result.list;
 						that.pageSize=res.result.pages;
-					   console.log(res)
+					  
 								let aa=res.result.list;
 								for(let i in aa){
 									 let a = new Date(aa[i].create_time);
@@ -65,31 +55,11 @@
 								}
 								let bb =that.recordList;	
 								that.recordList=bb.concat(aa);
-								// that.recordList=(bb.concat(aa)).reverse();
+								
 					}
 				})
 				
-				// let id =wx.getStorageSync('user').id;
-				// uni.wjw_http({
-				// 	url:'app/cduserspecialbalancechangerecord/list',
-				// 	type:'get',
-				// 	data:{
-				// 		userId:id,
-				// 		page:this.page,
-				// 		pageSize:10
-				// 	}
-				// }).then(res=>{
-				//      if(res.code ==0){
-				// 		that.pageSize=res.data.pages;
-				// 		let aa=res.data.list;
-				// 		for(let i in aa){
-				// 			 let a = new Date(aa[i].createTime);
-				// 			aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')+" "+a.getHours().toString().padStart(2,'0')+"-"+a.getMinutes().toString().padStart(2,'0')+"-"+a.getSeconds().toString().padStart(2,'0')
-				// 		}
-				// 		let bb =that.recordList;	
-				// 		that.recordList=bb.concat(aa);
-				// 	 }
-				// })
+				
 			}
 		}
 	}

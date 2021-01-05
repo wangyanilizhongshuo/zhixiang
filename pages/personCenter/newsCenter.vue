@@ -52,7 +52,7 @@
 				 let that=this;
 				 let id=wx.getStorageSync('user').id;
 				 uni.wjw_http({
-					 url:'usermessage/listByPage',
+					 url:' ',
 					 type:'post',
 					 data:{
 						 page:that.pagess,

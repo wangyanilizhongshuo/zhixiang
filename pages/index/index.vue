@@ -155,7 +155,7 @@
 					<img class="goods_li_img" :src="item.pic" />
 					<view class="goods_li_info">
 						<view  class=" signalLine goods_li_title">{{item.title}}</view>
-						<view class="goods_li_price">￥<text style="margin-right:10rpx">{{item.price/100}}</text> 积分<text>{{item.total_reper || 0}}</text></view>
+						<view class="goods_li_price">￥<text style="margin-right:10rpx">{{item.raisePrice/100}}</text> 积分<text>{{item.total_reper || 0}}</text></view>
 					</view>
 				</view>
 				<video v-if="item.url"  style="border-radius: 10rpx;width: 690rpx;margin-left:30rpx;height: 300rpx;" 
@@ -654,7 +654,7 @@
 			},
 			// 四个按钮
 			fourLogoJump(urls){
-				console.log('wangyaniddsfdskjlfasd')
+				
 				if(wx.getStorageSync('user').id){
 					uni.navigateTo({
 						url: urls
@@ -733,7 +733,6 @@
 				let pages = page;
 				let that = this;
 				//这里出现的classid 是根据官网随便填写的 
-				
 				let ids = that.allGoodsCateIdList[i]
 				uni.wjw_http({
 					url: 'saleevent/listByPage',

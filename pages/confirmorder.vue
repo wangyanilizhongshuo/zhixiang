@@ -674,8 +674,9 @@
 		padding: 0rpx !important;
 		font-size: 30rpx;
 		text-align: center;
-		height: 100rpx;
-		line-height: 100rpx;
+		height: 90rpx;
+		line-height: 90rpx!important;
+		box-sizing: border-box;
 	}
 	.position{
 		top:50rpx!important;

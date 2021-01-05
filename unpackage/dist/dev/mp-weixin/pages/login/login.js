@@ -161,7 +161,7 @@ var _default =
   methods: {
     getPhoneNumber: function getPhoneNumber(e) {
       console.log(e);
-      console.log('wangnina');
+      console.log('e');
       var _this = this;
       if (e.detail.errMsg !== 'getPhoneNumber:ok') {
 
@@ -171,10 +171,13 @@ var _default =
       //   title: "正在登录",
       //   mask: true
       // });
+
       uni.login({
         provider: 'weixin',
         success: function success(res) {
           _this.code = res.code;
+
+
           // 发送用户信息
           uni.wjw_http({
             url: 'app/wechat/bindPhone',

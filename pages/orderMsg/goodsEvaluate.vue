@@ -147,7 +147,6 @@
 	
 	
 </script>
-
 <style scoped lang="scss">
 	.hbyOccurFlag{
 		position: absolute;

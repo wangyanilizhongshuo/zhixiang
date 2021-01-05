@@ -25,7 +25,7 @@
                         <div class="goods-price">
                         	<span>¥</span>
                         	<span style="font-size: 25px">
-		                        {{wjw_wxs.toFixed(goods_info.repertory[0].price/100,2)}} 
+		                        {{wjw_wxs.toFixed(goods_info.repertory[0].raisePrice/100,2)}} 
 		                    </span> 
 		                    <span style='margin-left: 30rpx;'> 积分{{goods_info.repertory[0].points}}</span>
 		                </div>
@@ -125,7 +125,7 @@
             <div class="pop-content">
                 <div class="close-popup btn-close" @click='popup_num_show=false'></div> <img :src="goods_info.pic[0].url" class="goods-img">
                 <div class="current-info">
-                    <div class="current-price"><span class="info-price">￥{{price||wjw_wxs.toFixed((goods_info.repertory[0].price/100),2)}}</span> <span class="points-num" style='margin-left: 30rpx;'> 积分{{points||goods_info.repertory[0].points}}</span></div>
+                    <div class="current-price"><span class="info-price">￥{{price||wjw_wxs.toFixed((goods_info.repertory[0].raisePrice/100),2)}}</span> <span class="points-num" style='margin-left: 30rpx;'> 积分{{points||goods_info.repertory[0].points}}</span></div>
                     <div class="sold-num">已售{{goods_info.repertory[0].sale_num}}件</div>
                     <div class="current-choose">已选择"{{name||goods_info.repertory[0].name}}"</div>
                 </div>
@@ -155,7 +155,7 @@
             <div class="pop-content">
                 <div class="close-popup btn-close" @click='popup_num2_show=false'></div> <img :src="goods_info.pic[0].url" class="goods-img">
                 <div class="current-info">
-                    <div class="current-price"><span class="info-price">￥{{price||wjw_wxs.toFixed((goods_info.repertory[0].price/100),2)}}</span> <span class="points-num" style='margin-left: 30rpx;'> 积分{{points||goods_info.repertory[0].points}}</span></div>
+                    <div class="current-price"><span class="info-price">￥{{price||wjw_wxs.toFixed((goods_info.repertory[0].raisePrice/100),2)}}</span> <span class="points-num" style='margin-left: 30rpx;'> 积分{{points||goods_info.repertory[0].points}}</span></div>
                     <div class="sold-num">已售{{goods_info.repertory[0].sale_num}}件</div>
                     <div class="current-choose">已选择"{{name||goods_info.repertory[0].name}}"</div>
                 </div>
@@ -293,15 +293,7 @@ export default {
 		}
 		});
 		
-		// console.log(currentWebview)
-		// setTimeout(function() {
-		// var wv = currentWebview.children()[0];
-		// console.log(wv);
-		// wv.setStyle({//设置web-view距离顶部的距离以及自己的高度，单位为px
-		// top: 800,
-		// height:height
-		// })
-		// }, 1000);//如页面初始化调用需要写延迟
+		
     },
     methods: {
          detailJump(){

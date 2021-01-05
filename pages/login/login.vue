@@ -28,8 +28,8 @@
 	   },
 	   methods:{
 		   getPhoneNumber: function(e) {
-			   console.log(e)
-			   console.log('wangnina')
+			  console.log(e)
+			  console.log('e')
 		   	let _this = this;
 		   	if (e.detail.errMsg !== 'getPhoneNumber:ok') {
 				
@@ -39,10 +39,13 @@
 			//   title: "正在登录",
 			//   mask: true
 			// });
+			
 		   	uni.login({
 		   	  provider: 'weixin',
 		   	  success: function (res) {
 				    _this.code=res.code;
+					
+			 
 		   	// 发送用户信息
 			uni.wjw_http({
 				url:'app/wechat/bindPhone',

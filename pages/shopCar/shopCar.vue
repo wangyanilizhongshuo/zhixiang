@@ -16,7 +16,7 @@
 								<p class="cart-style" attr_name="锌营养包">{{item.attr_name}}</p>
 								<view class="third-style">
 									<view class="cart-price pull-left" style="font-size: 26rpx;">
-										<span style="margin-right: 10rpx;">￥{{item.price}}</span>
+										<span style="margin-right: 10rpx;">￥{{item.raisePrice}}</span>
 										<span >积分{{item.points}}</span>
 									</view>
 									<view class="carBtns">

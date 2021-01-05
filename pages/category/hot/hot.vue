@@ -28,7 +28,7 @@
 						<img class="goods_li_img" :src="item.pic" />
 						<view class="goods_li_info">
 							<view class="goods_li_title">{{item.title}}</view>
-							<view class="goods_li_price">￥<text>{{item.price}}</text> 积分<text>{{item.total_reper}}</text></view>
+							<view class="goods_li_price">￥<text>{{item.raisePrice/100}}</text>元<text>{{item.total_reper}}</text></view>
 						</view>
 					</view>
 			   </view>
@@ -244,10 +244,13 @@
    	 height:10rpx;
     }
   .scrollBg{
+	  height:80rpx;
+	  line-height: 80rpx;
 	  background-color: white;
   }
    .classify_box{
    	height:80rpx; 
+	line-height: 80rpx;
    	background:rgba(255,255,255,1);
    	box-shadow:0rpx 3rpx 3rpx 0rpx rgba(255,114,149,0.15);
 	
@@ -327,6 +330,11 @@
    	font-family:PingFang SC;
    	font-weight:500;
    	color:rgba(51,51,51,1);
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
    }
    .goods_li_price{
    	font-size:26rpx;

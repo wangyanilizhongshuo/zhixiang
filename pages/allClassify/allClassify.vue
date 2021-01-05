@@ -15,10 +15,10 @@
 		   <view style="width:180rpx;height: 100vh;"></view>
 		   <view class="uni-right">
 			   <view class="lists"  v-for="(item,index) in allGoodsList" :key="index"   :data-id="item.id"
-                                @tap='jump' data-url='/pages/goods/goods'>
+                              @tap='jump' data-url='/pages/goods/goods'>
 				   <image class="img" :src="item.pic"></image>
 				   <view class="firstWord">{{item.title}}</view>
-				   <view class="secondWord"><text style="display: inline-block;margin-right:10rpx;">￥{{item.price}}</text> <text>积分{{item.points}}</text></view>
+				   <view class="secondWord"><text style="display: inline-block;margin-right:10rpx;">￥{{item.raisePrice/100}}</text> <text>积分{{item.points}}</text></view>
 				   <!--  -->
 			   </view>
 		   </view>
@@ -114,7 +114,8 @@
 								let ii = res.result.list;
 								let jj = that.allGoodsList;
 								jj = jj.concat(ii);
-								that.allGoodsList = jj
+								that.allGoodsList = jj;
+								console.log(that.allGoodsList)
 							} else {
 								that.allGoodsList = res.result.list;
 							}

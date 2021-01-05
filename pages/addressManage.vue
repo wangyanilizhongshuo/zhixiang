@@ -85,7 +85,6 @@
         methods: {
              // 获取地址列表
              addlist() {
-				 console.log(12321343523)
                  var userData = wx.getStorageSync('user');
                  if (userData) {
                      var id = userData.id;
@@ -97,8 +96,6 @@
 					 }).then(res => {
 						 if(res.status ==0){
 							  this.articleList = res.result||[];
-							  console.log(this.articleList);
-							  console.log(123213432)
 						 }
 					 })
 				}

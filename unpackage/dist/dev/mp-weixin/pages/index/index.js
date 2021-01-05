@@ -799,7 +799,7 @@ var _default =
     },
     // 四个按钮
     fourLogoJump: function fourLogoJump(urls) {
-      console.log('wangyaniddsfdskjlfasd');
+
       if (wx.getStorageSync('user').id) {
         uni.navigateTo({
           url: urls });
@@ -878,7 +878,6 @@ var _default =
       var pages = page;
       var that = this;
       //这里出现的classid 是根据官网随便填写的 
-
       var ids = that.allGoodsCateIdList[i];
       uni.wjw_http({
         url: 'saleevent/listByPage',

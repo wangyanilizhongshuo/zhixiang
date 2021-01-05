@@ -2,7 +2,7 @@
 	// 已确定流程
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 			// 已确定流
-				
+			
 			{
 				"path": "pages/index/index",
 				"style": {
@@ -19,7 +19,7 @@
 				"style": {
 					"navigationBarTitleText": "登录"
 				}
-			},
+			},	
 		   
 			{
 				"path": "pages/login/specialPwd",
@@ -90,12 +90,7 @@
 					// ,"styleIsolation": "shared"// 无效
 				}
 			},
-			{
-				"path": "pages/resetPwd",
-				"style": {
-					"navigationBarTitleText": "重置密码"
-				}
-			},
+			
 			// 登录 -end -----------------------
 	        {
 				"path": "pages/orderMsg/successPage",
@@ -264,12 +259,7 @@
 					"navigationBarTitleText": "支付"
 				}
 			},
-			{
-				"path": "pages/setPayPassword",
-				"style": {
-					"navigationBarTitleText": "设置支付密码"
-				}
-			},
+			
 			{
 				"path": "pages/gainNum",
 				"style": {
@@ -353,26 +343,7 @@
 					"navigationBarTitleText": "修改支付密码"
 				}
 			},
-			{
-				"path": "pages/setPassword",
-				"style": {
-					"navigationBarTitleText": "设置密码"
-				}
-			},
-
-			{
-				"path": "pages/setPasswordSecond",
-				"style": {
-					"navigationBarTitleText": "设置密码-再次输入" // 修改后->首页
-				}
-			},
-			{
-				"path": "pages/alterSuccess",
-				"style": {
-					"navigationBarTitleText": "支付密码修改成功" // 您的支付密码已修改成功
-				}
-			},
-
+			
 			{
 				"path": "pages/personCenter/newsCenter",
 				"style": {
@@ -392,13 +363,8 @@
 					"navigationBarTitleText": "我的积分"
 				}
 			},
-			{
-				"path": "pages/onlinePayDetails",
-				"style": {
-					"navigationBarTitleText": "积分明细"
-				}
-			},
-
+			
+			
 
 			{
 				"path": "pages/personCenter/shopCoupon",
@@ -429,19 +395,9 @@
 					"navigationBarTitleText": "退货售后" // 入口: personCenter-个人中心
 				}
 			},
-			{
-				"path": "pages/allMyOrder-Retreat-suborder",
-				"style": {
-					"navigationBarTitleText": "退货信息"
-				}
-			},
+			
 		
-			{
-				"path": "pages/Pendingpayment",
-				"style": {
-					"navigationBarTitleText": "订单详情//待付款 " //  订单详情//待付款 
-				}
-			},
+			
 			
 			 {
 				"path": "pages/video/video",
