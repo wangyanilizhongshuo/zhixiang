@@ -127,7 +127,7 @@
 					sourceType: ['album', 'camera'], //从相册选择
 					success: function(res) {
 						uni.uploadFile({
-							 url:'http://zxyptest.hzbixin.cn/file/upload',
+							 url:'https://zxyptest.hzbixin.cn/file/upload',
 							 filePath:res.tempFilePaths[0],
 							 name:'file',
 							 success:function(datas){
@@ -140,15 +140,26 @@
 										userId:id,
 										head_photo:aa
 									}
-								}).then(ress=>{
-									console.log('修改头像')
-									console.log(ress)
-									if(ress.status ==0){
-										uni.showToast({
-										    title: '头像上传成功',
-										    duration: 1000
-										});
+								}).then(data1=>{
+									// console.log('修改头像')
+									// console.log(ress)
+									uni.showToast({
+										title:data1.msg,
+										duration: 1000
+									});
+									if(data1.status==0){
+										// uni.showToast({
+										//     title: '头像上传成功',
+										//     duration: 1000
+										// });
 										that.getPersonMsg()
+									}
+									 else{
+										uni.showToast({
+											title:data1.status,
+											duration: 1000
+										});
+										 that.getPersonMsg()
 									}
 								})
 							 }

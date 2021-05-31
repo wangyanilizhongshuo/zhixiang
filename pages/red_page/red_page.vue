@@ -34,7 +34,6 @@
 			</div>
 		</div>
 		<!-- 弹窗 -end ----------------------  -->
-
 		<div class="red_page_info relative">
 			<div class="red_page_info_bg_box flex_c ov_hid">
 				<img src="http://zxyp.hzbixin.cn/files/38691600399942625.jpg" alt="" class="red_page_info_bg no_shrink">
@@ -125,9 +124,37 @@
 				}else{
 					this.red_page_cash_show=true;
 					this.percents=((a/b)*100);
-					this.cPrice=(b-a).toFixed(2);
+					this.cPrice=(b-a);
+					this.keepTwoDecimalFull(this.cPrice,1)
 				}
 			},
+			// 价格处理的方法
+			keepTwoDecimalFull(num,type) {
+						  var result = parseFloat(num);
+						  if (isNaN(result)) {
+						    return false;
+						  }
+						  result = Math.round(num * 100) / 100;
+						  var s_x = result.toString(); //将数字转换为字符串
+						 
+						  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+						
+						  // 当整数时，pos_decimal=-1 自动补0
+						  if (pos_decimal < 0) {
+						    pos_decimal = s_x.length;
+						    s_x += '.';
+						  }
+					
+						  // 当数字的长度< 小数点索引+2时，补0
+						  while (s_x.length <= pos_decimal + 2) {
+						    s_x += '0';
+						  }
+						  if(type ==1){
+							    this.cPrice=s_x;
+						  }
+						
+						 
+						},
 			// 红包得详情
 			getRedDetail(){
 				let id =wx.getStorageSync('user').id
@@ -167,7 +194,8 @@
 					
 				}).then(res=>{
 					if(res.code ==0){
-						
+						// console.log(res)
+						// console.log('hongbalieb')
 					
 					}
 				})
@@ -179,15 +207,12 @@
 				uni.wjw_http({
 					url:'app/cduserredenvelope/finalAmount',
 					type:'get',
-					
 					data:{
 						userId:id
 					}
 				}).then(res=>{
 					if(res.code ==0){
 						this.numericalValue=res.data;
-						
-						
 					}
 				}).catch(res=>{
 					
@@ -197,7 +222,6 @@
 			jumpNext(){
 				this.red_page_cash_show=false;
 				 if(this.numericalValue ){
-					 
 				 }
 				uni.redirectTo({
 					url:'/pages/red_page/active/active?sumMoney='+this.numericalValue+'&sxtime='+this.redDetail.expirationTime+'&precent='+this.percents+'&cPrice='+this.cPrice
@@ -224,7 +248,7 @@
 								aa.push(res)
 							}
 						})
-						console.log(aa)
+						
 						for(let i in aa){
 							 let a = new Date(aa[i].createTime);
 							aa[i].createTime= a.getFullYear()+"-"+(a.getMonth()+1).toString().padStart(2,'0')+"-"+a.getDate().toString().padStart(2,'0')

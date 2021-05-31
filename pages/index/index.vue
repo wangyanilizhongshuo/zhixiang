@@ -155,7 +155,7 @@
 					<img class="goods_li_img" :src="item.pic" />
 					<view class="goods_li_info">
 						<view  class=" signalLine goods_li_title">{{item.title}}</view>
-						<view class="goods_li_price">￥<text style="margin-right:10rpx">{{item.raisePrice/100}}</text> 积分<text>{{item.total_reper || 0}}</text></view>
+						<view class="goods_li_price">￥<text style="margin-right:10rpx">{{item.raisePrice}}</text> 积分<text>{{item.total_reper || 0}}</text></view>
 					</view>
 				</view>
 				<video v-if="item.url"  style="border-radius: 10rpx;width: 690rpx;margin-left:30rpx;height: 300rpx;" 
@@ -251,7 +251,10 @@
 				addresslist:'',
 				mer_id:'',
 				// 小额红包
-				xehb:''
+				xehb:'',
+				cc:'',
+				smallRed:''
+				
 			}
 		},
 		onLoad(options) {
@@ -269,6 +272,7 @@
 			this.delColor(1);
 			if(this.mer_id){
 				uni.setStorageSync('mer_id',this.mer_id)
+				console.log('havemerId')
 			}
 			if(this.invite_id){
 				console.log('有invite')
@@ -283,6 +287,15 @@
 			}
 			
 			this.getVideoList();
+			// 红包 active通过分享
+			if(this.smallRed==11){
+				this.xehb=true;
+				console.log('nei')
+				console.log(this.smallRed)
+				console.log('nei')
+			}
+			console.log('wai')
+			console.log(this.smallRed)
 			
 		},
 		onShareAppMessage: function () {
@@ -362,7 +375,7 @@
 				console.log(that.mer_id!==0)
 				console.log(typeof id !='undefined')
 				if(that.mer_id!==0 && (typeof id !='undefined')){
-				
+				  console.log(that.mer_id)
 					uni.wjw_http({
 						url:'user/setMer',
 						data:{
@@ -378,6 +391,7 @@
 					})
 				}
 			},
+			
 			//跳转到红包页面+
 			jumpRed(){
 				uni.redirectTo({
@@ -500,28 +514,28 @@
 					 id = wx.getStorageSync('mer_id');
 				}else if(wx.getStorageSync('user').mer_id){
 					id=wx.getStorageSync('user').mer_id
-				}else {
-					return false 
 				}
-					console.log(id)
+				console.log(id)
 				console.log('merid 获取')
+				if(id!=0){
+					uni.wjw_http({
+						url: 'merchant/info/' + id,
+						type: 'post'
+					}).then(res => {					
+						if (res.status == 0) {						
+							 that.addressName = res.result.shop_name;
+							 
+							 this.$forceUpdate();	
+							console.log("获取店铺 名字成功")
+							 console.log(that.addressName)
+							 that.addresslist=res.result;
+							
+						}else{	
+						}
+					})
+					this.$forceUpdate()
+				}
 				
-				uni.wjw_http({
-					url: 'merchant/info/' + id,
-					type: 'post'
-				}).then(res => {					
-					if (res.status == 0) {						
-						 that.addressName = res.result.shop_name;
-						 
-						 this.$forceUpdate();	
-						console.log("获取店铺 名字成功")
-						 console.log(that.addressName)
-						 that.addresslist=res.result;
-						
-					}else{	
-					}
-				})
-				this.$forceUpdate()
 			},
 			//快速抢购专区
 			quickVIP() {
@@ -740,19 +754,30 @@
 						page: pages,
 						pageSize: 4,
 						ower_type: 2,
-						class_id: ids
+						class_id: ids,
+						
 					}
 				}).then(res => {
 					if (res.status == 0) {
 						that.pageSizes = res.result.pages;
+						that.cc=res.result.list;
+					   	that.cc.map((items,index,array)=>{
+						     items.raisePrice=(items.raisePrice/100).toFixed(2);
+							that.keepTwoDecimalFull(items.raisePrice,index)
+						})
 						if (pages != 1) {
-							let ii = res.result.list;
+							// let ii = res.result.list;
+							 let ii = that.cc;
 							let jj = that.allGoodsList;
 							jj = jj.concat(ii);
 							that.allGoodsList = jj
 						} else {
-							that.allGoodsList = res.result.list;
+							// that.allGoodsList = res.result.list;
+							that.allGoodsList = that.cc;
 						}
+						console.log(that.allGoodsList);
+						
+						
 						that.cateORallFlag = true;
 						if(this.showList.length>pages){
 							that.allGoodsList.push(this.showList[pages])
@@ -761,6 +786,33 @@
 					}
 				})
 				
+			},
+			// 价格处理的方法
+			keepTwoDecimalFull(num,indexss) {
+				          // num=num/100;
+						  var result = parseFloat(num);
+						  if (isNaN(result)) {
+						    return false;
+						  }
+						  result = Math.round(num * 100) / 100;
+						  var s_x = result.toString(); //将数字转换为字符串
+						 
+						  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+						
+						  // 当整数时，pos_decimal=-1 自动补0
+						  if (pos_decimal < 0) {
+						    pos_decimal = s_x.length;
+						    s_x += '.';
+						  }
+					
+						  // 当数字的长度< 小数点索引+2时，补0
+						  while (s_x.length <= pos_decimal + 2) {
+						    s_x += '0';
+						  }
+						  console.log(s_x);
+						  this.cc[indexss].raisePrice=s_x;
+						  
+						 
 			},
 			// 全部列表的内容 删除
 			delColor(pages1) {
@@ -779,21 +831,28 @@
 				}).then(res => {
 					if (res.status == 0) {
 						this.pageallSizes = res.result.pages;
+						that.cc=res.result.list;
+						that.cc.map((items,index,array)=>{
+						      items.raisePrice=(items.raisePrice/100).toFixed(2);
+							  that.keepTwoDecimalFull(items.raisePrice,index)
+						})
 						if (pages != 1) {
-							let ii = res.result.list;
-							let jj = that.allGoodsList;
-							jj = jj.concat(ii);
-							that.allGoodsList = jj
+							// let ii = res.result.list;
+							 let ii = that.cc;
+							 let jj = that.allGoodsList;
+							 jj = jj.concat(ii);
+							 that.allGoodsList = jj
 						} else {
-							that.allGoodsList = res.result.list;
+							//that.allGoodsList = res.result.list;
+							that.allGoodsList =that.cc;
 						}
-					
+						// that.allGoodsList.map((items,index,array)=>{
+						// 	// items.raisePrice=(items.raisePrice/100).toFixed(2);
+						// 	that.keepTwoDecimalFull(items.raisePrice,index)
+						// })
 						if(this.showList.length>pages){
 							that.allGoodsList.push(this.showList[pages])
-						    
 						}
-						
-						
 					}
 				})
 			},

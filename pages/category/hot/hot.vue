@@ -28,7 +28,7 @@
 						<img class="goods_li_img" :src="item.pic" />
 						<view class="goods_li_info">
 							<view class="goods_li_title">{{item.title}}</view>
-							<view class="goods_li_price">￥<text>{{item.raisePrice/100}}</text>元<text>{{item.total_reper}}</text></view>
+							<view class="goods_li_price">￥<text>{{item.raisePrice}}</text>元<text>{{item.total_reper}}</text></view>
 						</view>
 					</view>
 			   </view>
@@ -65,6 +65,7 @@
 				fixedFlag:true,
 				pageSizes:0,
 				pageallSizes:0,
+				cc:''
                 
             }
         },
@@ -146,7 +147,12 @@
             		}
             	}).then(res=>{
 					if(res.status ==0 ){
-						this.pageSizes=res.result.pages;
+						that.pageSizes=res.result.pages;
+						that.cc=res.result.list;
+					    that.cc.map((items,index,array)=>{
+					    items.raisePrice=(items.raisePrice/100).toFixed(2);
+						that.keepTwoDecimalFull(items.raisePrice,index)
+					})
 						if(pages !=1){
             			let ii =res.result.list;
             			let jj =that.allGoodsList;
@@ -185,6 +191,11 @@
 					if(res.status ==0){
 						
 						this.pageallSizes=res.result.pages;
+						that.cc=res.result.list;
+						that.cc.map((items,index,array)=>{
+						     items.raisePrice=(items.raisePrice/100).toFixed(2);
+							that.keepTwoDecimalFull(items.raisePrice,index)
+						})
 						if(pages !=1){
             			let ii =res.result.list;
             			let jj =that.allGoodsList;
@@ -197,6 +208,33 @@
 					}
             	})
             },
+			// 价格处理的方法
+			keepTwoDecimalFull(num,indexss) {
+				          // num=num/100;
+						  var result = parseFloat(num);
+						  if (isNaN(result)) {
+						    return false;
+						  }
+						  result = Math.round(num * 100) / 100;
+						  var s_x = result.toString(); //将数字转换为字符串
+						 
+						  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+						
+						  // 当整数时，pos_decimal=-1 自动补0
+						  if (pos_decimal < 0) {
+						    pos_decimal = s_x.length;
+						    s_x += '.';
+						  }
+					
+						  // 当数字的长度< 小数点索引+2时，补0
+						  while (s_x.length <= pos_decimal + 2) {
+						    s_x += '0';
+						  }
+						 
+						  this.cc[indexss].raisePrice=s_x;
+						  
+						 
+			},
             cateDetail(ids){
             	uni.navigateTo({
             		url:'../../goods/goods?id='+ids

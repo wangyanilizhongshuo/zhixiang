@@ -460,7 +460,7 @@ var _default =
       this.getLittleRed();
       return {
         title: "智享婴品",
-        path: "/pages/login/login?" + _this.getShareSmallRed() };
+        path: "/pages/index/index?" + _this.getShareSmallRed() };
 
     } else
     if (res.from === 'menu') {
@@ -498,6 +498,7 @@ var _default =
             if (res.code == 0) {
               var _a = res.data;
               that.cPrice = that.sumMoney - _a.currentAmount;
+              that.keepTwoDecimalFull(that.cPrice, 1);
             }
           }).catch(function (res) {
 
@@ -505,6 +506,33 @@ var _default =
 
         }
       });
+    },
+    // 价格处理的方法
+    keepTwoDecimalFull: function keepTwoDecimalFull(num, type) {
+      var result = parseFloat(num);
+      if (isNaN(result)) {
+        return false;
+      }
+      result = Math.round(num * 100) / 100;
+      var s_x = result.toString(); //将数字转换为字符串
+
+      var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+
+      // 当整数时，pos_decimal=-1 自动补0
+      if (pos_decimal < 0) {
+        pos_decimal = s_x.length;
+        s_x += '.';
+      }
+
+      // 当数字的长度< 小数点索引+2时，补0
+      while (s_x.length <= pos_decimal + 2) {
+        s_x += '0';
+      }
+      if (type == 1) {
+        this.cPrice = s_x;
+      }
+
+
     },
     // 跳转到提现的页面
     withDrawals: function withDrawals() {
@@ -528,6 +556,8 @@ var _default =
             aa[i].createTime = a.getHours().toString().padStart(2, '0') + ":" + a.getMinutes().toString().padStart(2, '0');
           }
           _this2.redRecord = aa;
+          console.log(_this2.redRecord);
+          console.log(113234645);
         }
       });
     },

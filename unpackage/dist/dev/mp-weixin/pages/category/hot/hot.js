@@ -196,7 +196,8 @@ var _default =
       no_more: false,
       fixedFlag: true,
       pageSizes: 0,
-      pageallSizes: 0 };
+      pageallSizes: 0,
+      cc: '' };
 
 
   },
@@ -254,7 +255,7 @@ var _default =
       });
     },
     //获取所有产品当中的某一类进行渲染
-    category: function category(i, page) {var _this2 = this;
+    category: function category(i, page) {
       // 来判断是全部还是分类的
       this.cateFlag = true;
       this.sels = 0;
@@ -278,7 +279,12 @@ var _default =
 
       then(function (res) {
         if (res.status == 0) {
-          _this2.pageSizes = res.result.pages;
+          that.pageSizes = res.result.pages;
+          that.cc = res.result.list;
+          that.cc.map(function (items, index, array) {
+            items.raisePrice = (items.raisePrice / 100).toFixed(2);
+            that.keepTwoDecimalFull(items.raisePrice, index);
+          });
           if (pages != 1) {
             var ii = res.result.list;
             var jj = that.allGoodsList;
@@ -293,7 +299,7 @@ var _default =
       // 全部列表的内容 删除
       this.cateORallFlag = true;
     },
-    delColor: function delColor(pages1) {var _this3 = this;
+    delColor: function delColor(pages1) {var _this2 = this;
       this.cateFlag = false;
       this.sels = 1;
       this.sel = -3;
@@ -316,7 +322,12 @@ var _default =
       then(function (res) {
         if (res.status == 0) {
 
-          _this3.pageallSizes = res.result.pages;
+          _this2.pageallSizes = res.result.pages;
+          that.cc = res.result.list;
+          that.cc.map(function (items, index, array) {
+            items.raisePrice = (items.raisePrice / 100).toFixed(2);
+            that.keepTwoDecimalFull(items.raisePrice, index);
+          });
           if (pages != 1) {
             var ii = res.result.list;
             var jj = that.allGoodsList;
@@ -328,6 +339,33 @@ var _default =
           }
         }
       });
+    },
+    // 价格处理的方法
+    keepTwoDecimalFull: function keepTwoDecimalFull(num, indexss) {
+      // num=num/100;
+      var result = parseFloat(num);
+      if (isNaN(result)) {
+        return false;
+      }
+      result = Math.round(num * 100) / 100;
+      var s_x = result.toString(); //将数字转换为字符串
+
+      var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+
+      // 当整数时，pos_decimal=-1 自动补0
+      if (pos_decimal < 0) {
+        pos_decimal = s_x.length;
+        s_x += '.';
+      }
+
+      // 当数字的长度< 小数点索引+2时，补0
+      while (s_x.length <= pos_decimal + 2) {
+        s_x += '0';
+      }
+
+      this.cc[indexss].raisePrice = s_x;
+
+
     },
     cateDetail: function cateDetail(ids) {
       uni.navigateTo({

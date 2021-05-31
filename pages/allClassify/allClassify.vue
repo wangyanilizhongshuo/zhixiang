@@ -18,7 +18,7 @@
                               @tap='jump' data-url='/pages/goods/goods'>
 				   <image class="img" :src="item.pic"></image>
 				   <view class="firstWord">{{item.title}}</view>
-				   <view class="secondWord"><text style="display: inline-block;margin-right:10rpx;">￥{{item.raisePrice/100}}</text> <text>积分{{item.points}}</text></view>
+				   <view class="secondWord"><text style="display: inline-block;margin-right:10rpx;">￥{{item.raisePrice}}</text> <text>积分{{item.points}}</text></view>
 				   <!--  -->
 			   </view>
 		   </view>
@@ -40,7 +40,8 @@
 				ids:1,
 				pageallSizes:1,
 				allGoodsList:'',
-				i:''
+				i:'',
+				cc:[]
 				
 			}
 		},
@@ -87,6 +88,33 @@
 						}
 					})
 				},
+				// 价格处理的方法
+				keepTwoDecimalFull(num,indexss) {
+					          num=num/100;
+							  var result = parseFloat(num);
+							  if (isNaN(result)) {
+							    return false;
+							  }
+							  result = Math.round(num * 100) / 100;
+							  var s_x = result.toString(); //将数字转换为字符串
+							 
+							  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+							
+							  // 当整数时，pos_decimal=-1 自动补0
+							  if (pos_decimal < 0) {
+							    pos_decimal = s_x.length;
+							    s_x += '.';
+							  }
+						
+							  // 当数字的长度< 小数点索引+2时，补0
+							  while (s_x.length <= pos_decimal + 2) {
+							    s_x += '0';
+							  }
+							 
+							  this.cc[indexss].raisePrice=s_x;
+							  
+							 
+				},
 				categorys(i,pages,msg){
 					if(msg==1){
 						uni.pageScrollTo({
@@ -110,6 +138,12 @@
 					}).then(res => {
 						if (res.status == 0) {
 							that.pageallSizes = res.result.pages;
+							that.cc=res.result.list;
+							console.log(that.cc)
+							that.cc.map((items,index,array)=>{
+							      // items.raisePrice=(items.raisePrice/100).toFixed(2);
+								that.keepTwoDecimalFull(items.raisePrice,index)
+							})
 							if (that.pages != 1) {
 								let ii = res.result.list;
 								let jj = that.allGoodsList;

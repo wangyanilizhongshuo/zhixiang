@@ -244,7 +244,6 @@ var _default = { data: function data() {return { userId: '', signalFlag: false, 
             expertId: that.userId,
             issues: that.content,
             userId: userid,
-
             openId: that.openId,
             picture: that.upUrlList } }).
 

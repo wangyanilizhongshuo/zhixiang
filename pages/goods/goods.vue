@@ -1,6 +1,7 @@
 <template>
     <view class="uni-details">
         <div class="page goods-detail page-current page-inited" id="page-1589596989584">
+			  <view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
             <div class="content">
                 <div class="goods-info-1">
 
@@ -125,7 +126,7 @@
             <div class="pop-content">
                 <div class="close-popup btn-close" @click='popup_num_show=false'></div> <img :src="goods_info.pic[0].url" class="goods-img">
                 <div class="current-info">
-                    <div class="current-price"><span class="info-price">￥{{price||wjw_wxs.toFixed((goods_info.repertory[0].raisePrice/100),2)}}</span> <span class="points-num" style='margin-left: 30rpx;'> 积分{{points||goods_info.repertory[0].points}}</span></div>
+                    <div class="current-price"><span class="info-price">￥{{wjw_wxs.toFixed((goods_info.repertory[0].raisePrice/100),2)}}</span> <span class="points-num" style='margin-left: 30rpx;'> 积分{{points||goods_info.repertory[0].points}}</span></div>
                     <div class="sold-num">已售{{goods_info.repertory[0].sale_num}}件</div>
                     <div class="current-choose">已选择"{{name||goods_info.repertory[0].name}}"</div>
                 </div>
@@ -180,11 +181,11 @@
                     </div>
                 </div>
                 <!-- type=0&id="+id+"&num="+num+'&name='+name+'&price='+price+'&points='+points -->
-                <div class="btn-ok" id="cmBtn2" @click='jump' :data-url='"/pages/confirmorder"+"?"+"type=0&id="+id+"&id2="+(id2||goods_info.repertory[0].id)+"&num="+amount+"&name="+(name||goods_info.repertory[0].name)+"&price="+(price||wjw_wxs.toFixed((goods_info.repertory[0].price/100),2))+"&points="+(points||goods_info.repertory[0].points)+"&specialMakeMoney="+specialMakeMoney'>确定</div>
+                <div class="btn-ok" id="cmBtn2" @click='jump' :data-url='"/pages/confirmorder"+"?"+"type=0&id="+id+"&id2="+(id2||goods_info.repertory[0].id)+"&num="+amount+"&name="+(name||goods_info.repertory[0].name)+"&price="+(wjw_wxs.toFixed((goods_info.repertory[0].raisePrice/100),2))+"&points="+(points||goods_info.repertory[0].points)+"&specialMakeMoney="+specialMakeMoney'>确定</div>
             </div>
         </div>
         <div class="popup-overlay modal-overlay-visible" @click='popup_num2_show=false' v-if='popup_num2_show'></div>
-
+       
 
         <div class="popup" id="popup-share">
             <div class="pop-content">
@@ -201,8 +202,7 @@
                 <div class="close-popup btn-close3">取消</div>
             </div>
         </div>
-        <!-- <div class="popup-overlay modal-overlay-visible" @click='popup_num_show=false' v-if='popup_num_show'></div> -->
-
+		
 
     </view>
 </template>
@@ -225,6 +225,8 @@ export default {
     },
     data() {
         return {
+			signalFlag:false,
+			signalMsg:'',
         	id: '',
         	id2: '',
             popup_num_show: false,
@@ -363,23 +365,18 @@ export default {
         get_phone(e) {
             //console.log('获取服务电话', e);
             var userData = wx.getStorageSync('user');
-
          //   console.log(userData.user.mer_id)
-            if(!userData.mer_id){
-                return
-            }
-
-            uni.wjw_http({
-                url: 'merchant/info/' + userData.mer_id,
-                method: 'post',
-                data: {
-                },
-            }).then(res => {
-              //  console.log('获取服务电话 接口 请求成功', res);
-		        this.phone = res.result.phone;
-
-
-            })
+            if(userData.mer_id!=0){
+					uni.wjw_http({
+						url: 'merchant/info/' + userData.mer_id,
+						method: 'post',
+						data: {
+						},
+					}).then(res => {
+					  //  console.log('获取服务电话 接口 请求成功', res);
+						this.phone = res.result.phone;
+					})
+			 }
 
         },
 
@@ -421,9 +418,10 @@ export default {
         // 确定加入购物车
         cmBtn1_fn(e) {
            // console.log('确定加入购物车');
+		   let that=this;
             var userData = wx.getStorageSync('userData');
-			if(this.id2==''){
-				this.id2=this.goods_info.repertory[0].id;
+			if(that.id2==''){
+				that.id2=that.goods_info.repertory[0].id;
 			}
             uni.wjw_http({
             	url: 'shoppingcart/save',
@@ -431,16 +429,26 @@ export default {
                 data: {
             	   
             	    userId: userData.id,
-            	    sub_event_id: this.id2,
-            	    buy_num: this.amount,
+            	    sub_event_id: that.id2,
+            	    buy_num: that.amount,
                 },
             }).then(res => {
-                // console.log('确定加入购物车 接口 请求成功', res);
-		        this.cmBtn1_show=true;
-				this.getCarList()
-		        setTimeout(res=>{
-		        	this.cmBtn1_show=false;
-		        },500)
+				if(res.state ==0){
+					console.log('确定加入购物车 接口 请求成功', res);
+					that.cmBtn1_show=true;
+					that.getCarList()
+					setTimeout(res=>{
+						that.cmBtn1_show=false;
+					},500)
+				}else{
+					console.log('xiajidaf')
+					that.signalMsg=res.msg;
+					that.signalFlag=true;
+					setTimeout(()=>{
+						that.signalFlag=false;
+					},2500)
+				}
+               
             }).catch(res=>{
 				
 				console.log('error')
@@ -492,5 +500,20 @@ export default {
 	-webkit-appearance: none;
 	-webkit-appearance: none;
  }
+ .hbyOccurFlag{
+ 		position: absolute;
+ 		top:400rpx;
+ 		left:250rpx;
+ 		background-color: green;
+ 		width:300rpx;
+ 		height:100rpx;
+ 		line-height: 100rpx;
+ 		background-color:#000;
+ 		color:#fff;
+ 		text-align: center;
+ 		opacity: 0.7;
+		z-index: 100;
+ 		border-radius: 20rpx;
+ 	}
 
 </style>

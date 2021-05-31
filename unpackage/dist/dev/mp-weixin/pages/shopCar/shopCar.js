@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 535));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swipeout = function light7_swipeout() {__webpack_require__.e(/*! require.ensure | component/css/light7_swipeout */ "component/css/light7_swipeout").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swipeout */ 668));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 647));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 570));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var jzl = function jzl() {__webpack_require__.e(/*! require.ensure | component/css/jzl */ "component/css/jzl").then((function () {return resolve(__webpack_require__(/*! @/component/css/jzl */ 556));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopCar = function shopCar() {__webpack_require__.e(/*! require.ensure | component/css/page/shopCar */ "component/css/page/shopCar").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/shopCar */ 675));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 537));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swipeout = function light7_swipeout() {__webpack_require__.e(/*! require.ensure | component/css/light7_swipeout */ "component/css/light7_swipeout").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swipeout */ 670));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 649));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 572));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var jzl = function jzl() {__webpack_require__.e(/*! require.ensure | component/css/jzl */ "component/css/jzl").then((function () {return resolve(__webpack_require__(/*! @/component/css/jzl */ 558));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopCar = function shopCar() {__webpack_require__.e(/*! require.ensure | component/css/page/shopCar */ "component/css/page/shopCar").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/shopCar */ 677));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -213,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
       allChoiceFlag: true,
       //付款是总积分 和总共需要的钱
       integral: 0,
-      sumMoney: 0,
+      sumMoney: 0.00,
       // 最上方的删除
       deleFlag: true,
       // 更新购物车数据userid  id 
@@ -236,8 +236,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getCarList();
   },
   onShow: function onShow() {
+
     this.integral = 0;
-    this.sumMoney = 0;
+    this.sumMoney = 0.00;
     this.getCarList();
   },
   onShareAppMessage: function onShareAppMessage() {
@@ -264,12 +265,12 @@ __webpack_require__.r(__webpack_exports__);
           if (that.chooseMove == true) {
             that.carList.map(function (currentValue, index, arr) {
               aa[index].flagChoice = currentValue.flagChoice;
-              aa[index].price = (aa[index].price / 100).toFixed(2);
+              aa[index].raisePrice = (aa[index].raisePrice / 100).toFixed(2);
             });
           } else {
             aa.map(function (res) {
               res.flagChoice = false;
-              res.price = (res.price / 100).toFixed(2);
+              res.raisePrice = (res.raisePrice / 100).toFixed(2);
             });
           }
           that.carList = aa;
@@ -280,18 +281,46 @@ __webpack_require__.r(__webpack_exports__);
     },
     //计算总共多少钱以及总积分
     calculMoney: function calculMoney() {var _this2 = this;
-      this.sumMoney = 0;
+      this.sumMoney = 0.00;
       this.integral = 0;
+      var smallMoney = 0.00;
       this.carList.map(function (res) {
+        console.log(res);
         if (res.flagChoice == true) {
-          var smallMoney = res.buy_num * res.price;
+          smallMoney += res.buy_num * res.raisePrice;
           var smallintegral = res.buy_num * res.points;
-          _this2.sumMoney = _this2.sumMoney + smallMoney;
           _this2.integral = _this2.integral + smallintegral;
+          _this2.keepTwoDecimalFull(smallMoney);
         }
       });
       this.$forceUpdate();
     },
+    // 价格处理的方法
+    keepTwoDecimalFull: function keepTwoDecimalFull(num) {
+      var result = parseFloat(num);
+      if (isNaN(result)) {
+        return false;
+      }
+      result = Math.round(num * 100) / 100;
+      var s_x = result.toString(); //将数字转换为字符串
+
+      var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+
+      // 当整数时，pos_decimal=-1 自动补0
+      if (pos_decimal < 0) {
+        pos_decimal = s_x.length;
+        s_x += '.';
+      }
+
+      // 当数字的长度< 小数点索引+2时，补0
+      while (s_x.length <= pos_decimal + 2) {
+        s_x += '0';
+      }
+      this.sumMoney = s_x;
+
+    },
+
+
     //加减商品 将数据传到后台
     sendNum: function sendNum(num, index) {var _this3 = this;
       var token = wx.getStorageSync('token');

@@ -112,7 +112,6 @@
 							expertId: that.userId,
 							issues: that.content,
 							userId: userid,
-							
 							openId:that.openId,
 							picture: that.upUrlList
 						},

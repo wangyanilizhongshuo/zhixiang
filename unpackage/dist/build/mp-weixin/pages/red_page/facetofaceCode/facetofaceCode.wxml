@@ -1,1 +1,1 @@
-<view>面对面扫码</view>
+<view class="uni-call data-v-6970957a"><view class="mask data-v-6970957a"></view><image class="uni-img data-v-6970957a" src="http://zxyp.hzbixin.cn/files/27351597214998680.jpg" data-event-opts="{{[['tap',[['decision',['$event']]]]]}}" catchtap="__e"></image></view>

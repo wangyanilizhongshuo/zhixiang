@@ -47,7 +47,7 @@ function token_false(res){
     uni.clearStorageSync();
     uni.showToast({
         // title: res.data.msg,
-		title: '请重新登录',
+		title: res.data.msg,
         icon: 'none', 
     });
     setTimeout(res=>{
@@ -359,6 +359,7 @@ function isCardNo(card) {
 	   /**
 	   * 生成转发的url参数getShareUrlParams
 	   */
+	
 	function  getShareUrlParams(params) {
 	      let _this = this;
 		   // console.log(getMerId())
@@ -392,5 +393,6 @@ module.exports = {
     is_zh_CN, // 验证中文
     isCardNo, // 验证身份证号码
     urlEncode,
-	getShareUrlParams
+	getShareUrlParams,
+	getShareSmallRed
 }

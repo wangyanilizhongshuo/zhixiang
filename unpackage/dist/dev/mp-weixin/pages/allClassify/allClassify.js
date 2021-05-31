@@ -172,7 +172,8 @@ var _default =
       ids: 1,
       pageallSizes: 1,
       allGoodsList: '',
-      i: '' };
+      i: '',
+      cc: [] };
 
 
   },
@@ -219,6 +220,33 @@ var _default =
         }
       });
     },
+    // 价格处理的方法
+    keepTwoDecimalFull: function keepTwoDecimalFull(num, indexss) {
+      num = num / 100;
+      var result = parseFloat(num);
+      if (isNaN(result)) {
+        return false;
+      }
+      result = Math.round(num * 100) / 100;
+      var s_x = result.toString(); //将数字转换为字符串
+
+      var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+
+      // 当整数时，pos_decimal=-1 自动补0
+      if (pos_decimal < 0) {
+        pos_decimal = s_x.length;
+        s_x += '.';
+      }
+
+      // 当数字的长度< 小数点索引+2时，补0
+      while (s_x.length <= pos_decimal + 2) {
+        s_x += '0';
+      }
+
+      this.cc[indexss].raisePrice = s_x;
+
+
+    },
     categorys: function categorys(i, pages, msg) {
       if (msg == 1) {
         uni.pageScrollTo({
@@ -242,6 +270,12 @@ var _default =
       then(function (res) {
         if (res.status == 0) {
           that.pageallSizes = res.result.pages;
+          that.cc = res.result.list;
+          console.log(that.cc);
+          that.cc.map(function (items, index, array) {
+            // items.raisePrice=(items.raisePrice/100).toFixed(2);
+            that.keepTwoDecimalFull(items.raisePrice, index);
+          });
           if (that.pages != 1) {
             var ii = res.result.list;
             var jj = that.allGoodsList;

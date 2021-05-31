@@ -94,10 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   passwordInput: function() {
-    return __webpack_require__.e(/*! import() | components/password-input/password-input */ "components/password-input/password-input").then(__webpack_require__.bind(null, /*! @/components/password-input/password-input.vue */ 633))
+    return __webpack_require__.e(/*! import() | components/password-input/password-input */ "components/password-input/password-input").then(__webpack_require__.bind(null, /*! @/components/password-input/password-input.vue */ 635))
   },
   numberKeyboard: function() {
-    return __webpack_require__.e(/*! import() | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then(__webpack_require__.bind(null, /*! @/components/number-keyboard/number-keyboard.vue */ 640))
+    return __webpack_require__.e(/*! import() | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then(__webpack_require__.bind(null, /*! @/components/number-keyboard/number-keyboard.vue */ 642))
   }
 }
 var render = function() {
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 535));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 647));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 570));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 549));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var payment = function payment() {__webpack_require__.e(/*! require.ensure | component/css/page/payment */ "component/css/page/payment").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/payment */ 654));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var numberKeyboard = function numberKeyboard() {__webpack_require__.e(/*! require.ensure | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then((function () {return resolve(__webpack_require__(/*! @/components/number-keyboard/number-keyboard.vue */ 640));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var passwordInput = function passwordInput() {__webpack_require__.e(/*! require.ensure | components/password-input/password-input */ "components/password-input/password-input").then((function () {return resolve(__webpack_require__(/*! @/components/password-input/password-input.vue */ 633));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 537));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var light7_swiper_min = function light7_swiper_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_swiper_min */ "component/css/light7_swiper_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_swiper_min */ 649));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 572));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var wq = function wq() {__webpack_require__.e(/*! require.ensure | component/css/wq */ "component/css/wq").then((function () {return resolve(__webpack_require__(/*! @/component/css/wq */ 551));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var payment = function payment() {__webpack_require__.e(/*! require.ensure | component/css/page/payment */ "component/css/page/payment").then((function () {return resolve(__webpack_require__(/*! @/component/css/page/payment */ 656));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var numberKeyboard = function numberKeyboard() {__webpack_require__.e(/*! require.ensure | components/number-keyboard/number-keyboard */ "components/number-keyboard/number-keyboard").then((function () {return resolve(__webpack_require__(/*! @/components/number-keyboard/number-keyboard.vue */ 642));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var passwordInput = function passwordInput() {__webpack_require__.e(/*! require.ensure | components/password-input/password-input */ "components/password-input/password-input").then((function () {return resolve(__webpack_require__(/*! @/components/password-input/password-input.vue */ 635));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -202,6 +202,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+
       money: '',
       jifen_show: false,
       zhifu_show: false,
@@ -393,6 +394,12 @@ __webpack_require__.r(__webpack_exports__);
             that.password = '';
             callback(that.filed);
 
+          } else if (res.status == -5) {
+            _this2.signalFlag = true;
+            _this2.signalMsg = res.msg;
+            setTimeout(function () {
+              _this2.signalFlag = false;
+            }, 2500);
           }
         }
       }).catch(function (res) {

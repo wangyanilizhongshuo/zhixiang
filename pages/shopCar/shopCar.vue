@@ -81,7 +81,7 @@
 				allChoiceFlag: true,
 				//付款是总积分 和总共需要的钱
 				integral: 0,
-				sumMoney: 0,
+				sumMoney: 0.00,
 				// 最上方的删除
 				deleFlag: true,
 				// 更新购物车数据userid  id 
@@ -104,8 +104,9 @@
 			this.getCarList();
 		},
 		onShow() {
+			
 			this.integral = 0;
-			this.sumMoney = 0;
+			this.sumMoney = 0.00;
 		    this.getCarList();
 		},
         onShareAppMessage: function () {
@@ -132,12 +133,12 @@
 						if(that.chooseMove==true){	
 							that.carList.map((currentValue, index,arr)=>{
 								aa[index].flagChoice=currentValue.flagChoice;
-								aa[index].price=(aa[index].price/100).toFixed(2)
+								aa[index].raisePrice=(aa[index].raisePrice/100).toFixed(2)
 							})
 						}else{
 							aa.map(res => {
 								 res.flagChoice = false;
-								 res.price = (res.price / 100).toFixed(2);
+								 res.raisePrice = (res.raisePrice / 100).toFixed(2);
 							})
 						}
 						 that.carList=aa;
@@ -148,18 +149,46 @@
 			},
 			//计算总共多少钱以及总积分
 			calculMoney() {
-				this.sumMoney = 0;
+				this.sumMoney = 0.00;
 				this.integral = 0;
+				let smallMoney=0.00;
 				this.carList.map(res => {
+					console.log(res)
 					if (res.flagChoice == true) {
-						let smallMoney = res.buy_num * res.price;
-						let smallintegral = res.buy_num * res.points;
-						this.sumMoney = this.sumMoney + smallMoney;
-						this.integral = this.integral + smallintegral;
+						 smallMoney += res.buy_num * res.raisePrice;
+						 let smallintegral = res.buy_num * res.points;
+						 this.integral = this.integral + smallintegral;
+						 this.keepTwoDecimalFull(smallMoney);
 					}
 				})
 				this.$forceUpdate()
 			},
+			// 价格处理的方法
+			keepTwoDecimalFull(num) {
+						  var result = parseFloat(num);
+						  if (isNaN(result)) {
+						    return false;
+						  }
+						  result = Math.round(num * 100) / 100;
+						  var s_x = result.toString(); //将数字转换为字符串
+						 
+						  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+						
+						  // 当整数时，pos_decimal=-1 自动补0
+						  if (pos_decimal < 0) {
+						    pos_decimal = s_x.length;
+						    s_x += '.';
+						  }
+					
+						  // 当数字的长度< 小数点索引+2时，补0
+						  while (s_x.length <= pos_decimal + 2) {
+						    s_x += '0';
+						  }
+						  this.sumMoney=s_x;
+						 
+			},
+			
+			
 			//加减商品 将数据传到后台
 			sendNum(num, index) {
 				let token = wx.getStorageSync('token');

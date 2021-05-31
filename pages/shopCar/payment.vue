@@ -58,6 +58,7 @@
 		},
 		data() {
 			return {
+			
 				money: '',
 				jifen_show: false,
 				zhifu_show: false,
@@ -249,6 +250,12 @@
 						that.password = '';
 						callback(that.filed);	
 						
+					  }else if(res.status==-5){
+						 this.signalFlag=true;
+						 this.signalMsg=res.msg;
+						 setTimeout(()=>{
+						 	this.signalFlag=false
+						 },2500);
 					  }
 					}					
 				}).catch(res => {					

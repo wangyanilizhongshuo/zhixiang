@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   ePicker: function() {
-    return Promise.all(/*! import() | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then(__webpack_require__.bind(null, /*! @/components/e-picker/e-picker.vue */ 689))
+    return Promise.all(/*! import() | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then(__webpack_require__.bind(null, /*! @/components/e-picker/e-picker.vue */ 691))
   }
 }
 var render = function() {
@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 535));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mobiscroll = function mobiscroll() {__webpack_require__.e(/*! require.ensure | component/css/mobiscroll */ "component/css/mobiscroll").then((function () {return resolve(__webpack_require__(/*! @/component/css/mobiscroll */ 695));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 570));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var jzl = function jzl() {__webpack_require__.e(/*! require.ensure | component/css/jzl */ "component/css/jzl").then((function () {return resolve(__webpack_require__(/*! @/component/css/jzl */ 556));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var personData = function personData() {__webpack_require__.e(/*! require.ensure | component/css/personData */ "component/css/personData").then((function () {return resolve(__webpack_require__(/*! @/component/css/personData */ 702));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ePicker = function ePicker() {Promise.all(/*! require.ensure | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then((function () {return resolve(__webpack_require__(/*! ./../components/e-picker/e-picker.vue */ 689));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var light7_min = function light7_min() {__webpack_require__.e(/*! require.ensure | component/css/light7_min */ "component/css/light7_min").then((function () {return resolve(__webpack_require__(/*! @/component/css/light7_min */ 537));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mobiscroll = function mobiscroll() {__webpack_require__.e(/*! require.ensure | component/css/mobiscroll */ "component/css/mobiscroll").then((function () {return resolve(__webpack_require__(/*! @/component/css/mobiscroll */ 697));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var main = function main() {__webpack_require__.e(/*! require.ensure | component/css/main */ "component/css/main").then((function () {return resolve(__webpack_require__(/*! @/component/css/main */ 572));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var jzl = function jzl() {__webpack_require__.e(/*! require.ensure | component/css/jzl */ "component/css/jzl").then((function () {return resolve(__webpack_require__(/*! @/component/css/jzl */ 558));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var personData = function personData() {__webpack_require__.e(/*! require.ensure | component/css/personData */ "component/css/personData").then((function () {return resolve(__webpack_require__(/*! @/component/css/personData */ 704));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ePicker = function ePicker() {Promise.all(/*! require.ensure | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then((function () {return resolve(__webpack_require__(/*! ./../components/e-picker/e-picker.vue */ 691));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -268,7 +268,7 @@ __webpack_require__.r(__webpack_exports__);
         sourceType: ['album', 'camera'], //从相册选择
         success: function success(res) {
           uni.uploadFile({
-            url: 'http://zxyptest.hzbixin.cn/file/upload',
+            url: 'https://zxyptest.hzbixin.cn/file/upload',
             filePath: res.tempFilePaths[0],
             name: 'file',
             success: function success(datas) {
@@ -281,12 +281,23 @@ __webpack_require__.r(__webpack_exports__);
                   userId: id,
                   head_photo: aa } }).
 
-              then(function (ress) {
-                console.log('修改头像');
-                console.log(ress);
-                if (ress.status == 0) {
+              then(function (data1) {
+                // console.log('修改头像')
+                // console.log(ress)
+                uni.showToast({
+                  title: data1.msg,
+                  duration: 1000 });
+
+                if (data1.status == 0) {
+                  // uni.showToast({
+                  //     title: '头像上传成功',
+                  //     duration: 1000
+                  // });
+                  that.getPersonMsg();
+                } else
+                {
                   uni.showToast({
-                    title: '头像上传成功',
+                    title: data1.status,
                     duration: 1000 });
 
                   that.getPersonMsg();

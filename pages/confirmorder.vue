@@ -21,7 +21,7 @@
 					<img :src="goods.pic" alt="">
 					<p class="confirmorder-middle-num">{{ goods.title}}</p>
 					<p class="confirmorder-middle-gg">规格：<span>{{goods.attr_name}}</span></p>
-					<p class="confirmorder-middle-price"><span>¥{{goods.price}}</span><span style="
+					<p class="confirmorder-middle-price"><span>¥{{goods.raisePrice}}</span><span style="
                     margin-left: 20rpx;">积分：{{goods.points}}</span></p>
 					<span class="confirmorder-middle-amount">×<span>{{goods.buy_num}}</span></span>
 				</view>
@@ -49,9 +49,6 @@
 					<view class="right" style="display: flex;">
 						<p>合计:</p>
 						<p id="zong" style="color:#ff4d49">¥{{ totalmPrice || ( type==0 ? num*price :carSumMoney) }} 积分{{total_points||( type==0?points*num:carSumji )}}</p>
-						<!-- <p id="zong" style="color:#ff4d49">¥{{ totalmPrice || ( type==0 ? price*num :carList.reduce( function(prev, goods, idx, arr){return prev + (goods.price / 100) * goods.buy_num;
-							   }, 0)) }} 积分{{total_points||( type==0?points*num:carList.reduce(function(prev, goods, idx, arr){return prev + (goods.points / 100) * goods.buy_num;},0) )}}</p
-							> -->
 					</view>
 				</view>
 			</view>
@@ -82,17 +79,12 @@
 		<view class="confirmorder-botton styleAll">
 			<view class="botton-mon">
 				实付金额:
-				<!-- <text id="zong2" price="" points="" style="color:#ff4d49">{{ totalmPrice ||
-                    ( type==0? 
-					  price*num :
-					 carList.reduce(function(prev, goods, idx, arr){ return prev + (goods.price / 100) * goods.buy_num; },
-                   0 )  )}}</text> -->
 				<text id="zong2" price="" points="" style="color:#ff4d49">{{ totalmPrice ||
 				    ( type==0? 
 					  detailSumMoney :
 					userRedSumMoney)}}</text>
 			</view>
-			<view class="botton-finish" @click='jifen_show=true'>结算</view>
+			<view class="botton-finish" @click='getJsDialog'>结算</view>
 			<input type="hidden" id="couponid" value="">
 		</view>
 		<!--遮罩-->
@@ -103,7 +95,7 @@
 			<view class="tips-button">
 				<view class="tips-cancle" @click='jifen_show=false'>取消</view>
 				<view class="tip-line"></view>
-				<view class="tips-confirm" @click='payMoney' >确定</view>
+				<view class="tips-confirm" @click='payMoney'>确定</view>
 			</view>
 		</view>
 		<view class="packets">
@@ -144,10 +136,6 @@
 				</view>
 			</view>
 			<view class="app-cont">
-				<!-- <view class="tab">
-					<view class="tab-box"><a class="atian" status="0" href="javascript:;">未使用</a></view>
-					<view class="tab-box"><a status="1" href="javascript:;">已使用</a></view>
-				</view> -->
 				<view class="tab-cont" style="height: 482px;">
 			 	<view class="list-main-mian infinite" id="listwrap" style="height:100%; position: relative;  overflow:auto;  z-index: 1">
 						<view class="scroll-box">
@@ -227,7 +215,7 @@
 
 			<input type="hidden" id="status" value="0">
 		</view>
-		<view class="hbyOccurFlag" v-if="signalFlag">请重新登录</view>
+		<view class="hbyOccurFlag" v-if="signalFlag">{{signalMsg}}</view>
 	</view>
 </template>
 <script module="wjw_wxs" lang="wxs" src="@/common/wjw_uni/wjw_com.wxs"></script>
@@ -298,14 +286,15 @@
 				// 备注
 				// 订单号:
 				orderNumber:0,
-				specialMakeMoney:''
+				specialMakeMoney:'',
+				jsFlag:true
 				 
 			}
 		},
 
 		onLoad(options) {
 			 this.setData(options);
-			 console.log(options);
+			 // console.log(options);
 			 if(wx.getStorageSync('cartBuy')){
 				  this.carList = wx.getStorageSync('cartBuy');
 				  this.carList.map(res=>{
@@ -319,8 +308,12 @@
 			this.get_redList();
 			  // 从详情页面过来的总金额
 			this.detailSumMoney=this.num*this.price;
+			this.keepTwoDecimalFull(this.detailSumMoney,2);
+			// console.log(11234)
+			// console.log(this.detailSumMoney)
 			// 打开需要
 			 this.addlist();
+			
 		},
 		// 页面显示
 		onShow() {
@@ -332,6 +325,14 @@
 			this.$forceUpdate();
 		},
 		methods: {
+			getJsDialog(){
+				if(this.jsFlag){
+					this.jifen_show=true;
+				}else{
+					this.jifen_show=false;
+				}
+			 // this.jsFlag==false?this.jifen_show=true:''	
+			},
 			//商品详情页的商品
 			goodsDetail(ids) {
 				uni.wjw_http({
@@ -341,7 +342,7 @@
 						id: ids || this.id,
 					},
 				}).then(res => {
-					// console.log('商品详情页的商品 接口 请求成功', res);
+					
 					var goods = res.result || {};
 					this.goods = goods;
 					
@@ -357,6 +358,8 @@
 				this.carSumji = wx.getStorageSync('sunJifen');
 				this.carList = wx.getStorageSync('cartBuy');
 				this.userRedSumMoney=this.carSumMoney;
+				this.totalmPrice=this.carSumMoney;
+				 
 				if(this.carList){
 					this.carList.map(res => {
 					let a =Number(res.buy_num) 
@@ -366,16 +369,67 @@
 						this.type = 1;
 					}
 				}
-				this.$forceUpdate()
+				
+				this.$forceUpdate();
 			},
+			// 价格处理的方法
+			keepTwoDecimalFull(num,type) {
+						  var result = parseFloat(num);
+						  if (isNaN(result)) {
+						    return false;
+						  }
+						  result = Math.round(num * 100) / 100;
+						  var s_x = result.toString(); //将数字转换为字符串
+						 
+						  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+						
+						  // 当整数时，pos_decimal=-1 自动补0
+						  if (pos_decimal < 0) {
+						    pos_decimal = s_x.length;
+						    s_x += '.';
+						  }
+					
+						  // 当数字的长度< 小数点索引+2时，补0
+						  while (s_x.length <= pos_decimal + 2) {
+						    s_x += '0';
+						  }
+						  if(type ==1){
+							  this.orderNumber=s_x;
+						  }else if(type ==2){
+							    this.detailSumMoney=s_x;
+						  }else if(type ==3){
+							  this.totalmPrice=s_x;
+						  }
+						  
+						 
+			},
+			// keepTwoDecimalFull1(num) {
+			// 			  var result = parseFloat(num);
+			// 			  if (isNaN(result)) {
+			// 			    return false;
+			// 			  }
+			// 			  result = Math.round(num * 100) / 100;
+			// 			  var s_x = result.toString(); //将数字转换为字符串
+						 
+			// 			  var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+						
+			// 			  // 当整数时，pos_decimal=-1 自动补0
+			// 			  if (pos_decimal < 0) {
+			// 			    pos_decimal = s_x.length;
+			// 			    s_x += '.';
+			// 			  }
+					
+			// 			  // 当数字的长度< 小数点索引+2时，补0
+			// 			  while (s_x.length <= pos_decimal + 2) {
+			// 			    s_x += '0';
+			// 			  }
+			// 			  this.detailSumMoney=s_x;
+						 
+			// },
+			
 			// 获取地址列表_回调
 			addlist_back(res) {
 				console.log('获取地址列表_回调', res);
-				// if(this.articleList.length>0){
-				// 	this.addressid = this.articleList[0].id
-				// }else{
-				// 	this.addressid = this.addressid;
-				// }
 				 this.addressid || (this.addressid = this.articleList[0].id);
 			
 				if (this.type == "0") {
@@ -421,12 +475,13 @@
 						var data = res;
 						this.orderNumber=data.order_code
 						that.createExpressOk(data);
-						console.log(res)
 					}else{
+						
+						that.jsFlag=false;
 						that.signalMsg=res.msg;
 						that.signalFlag=true;
 						setTimeout(()=>{
-							this.signalFlag=false;
+							that.signalFlag=false;
 						},2500)
 					}
 					
@@ -463,14 +518,15 @@
 				}).then(res => {
 					// console.log('获取运费信息-购物车结算 接口 请求成功', res);
 					var data = res;
-					 this.orderNumber=data.order_code
-					this.createExpressOk(data);
+					 this.orderNumber=data.order_code;
+					 this.keepTwoDecimalFull(this.orderNumber,1);
+					 this.createExpressOk(data);
 				})
 			},
 
 			// 获取运费信息-砍价商品
 			bargainExpress(addressid, bargainId) {
-				console.log('获取运费信息-砍价商品', arguments);
+				// console.log('获取运费信息-砍价商品', arguments);
 				var userData = wx.getStorageSync('userData');
 				if (userData) {
 					var id = userData.id;
@@ -487,7 +543,7 @@
 					},
 				}).then(res => {
 					if(res.status ==0){
-						console.log('获取运费信息-砍价商品 接口 请求成功', res);
+						// console.log('获取运费信息-砍价商品 接口 请求成功', res);
 						var data = res;
 						// bargainExpressOk
 						this.createExpressOk(data);
@@ -512,7 +568,7 @@
 				if (data) {
 					var info = data.result;
 					if (data.status == 0) {
-						var totalmPrice = (info.total_price / 100).toFixed(2);
+						var totalmPrice = (info.raiseTotalPrice / 100).toFixed(2);
 						var freight = (info.freight / 100).toFixed(2);
 						if (info.freight <= 0) {
 							this.express = '0.00';
@@ -521,6 +577,7 @@
 						}
 						totalmPrice = totalmPrice - info.freight; //减去邮费
 						this.totalmPrice = totalmPrice;
+						 this.keepTwoDecimalFull(this.totalmPrice,3);
 						this.total_points = info.total_points;
 					}
 				}
@@ -540,7 +597,7 @@
 						status:0
 					},
 				}).then(res => {
-					console.log('获得红包列表 接口 请求成功', res);
+					// console.log('获得红包列表 接口 请求成功', res);
 					that.redList = res.result;
 					that.redList.map(res=>{
                    // 判断红包是否可以使用
@@ -585,13 +642,16 @@
 			//不用红包
 			useless(){
 				this.redList.map(res=>{
-					res.flags=false
+					res.flags=false;
 				})
 				this.useRedPacket=0;
 				// 购物车过来的不使用红包的时候的钱
 				this.userRedSumMoney=this.carSumMoney;
 				this.detailSumMoney=this.num*this.price;
+				this.keepTwoDecimalFull(this.detailSumMoney,2);
 				this.$forceUpdate()
+				// console.log('useless')
+				// console.log(this.userRedSumMoney)
 			},
 			//使用红包
 			useful(){
@@ -604,12 +664,14 @@
 				})				
 				if(this.type ==0){
 					this.detailSumMoney=(this.num*this.price)-this.useRedPacket;
+					this.keepTwoDecimalFull(this.detailSumMoney,2);
 					this.totalmPrice=this.detailSumMoney;					
 				}else if(this.type ==1){
 					this.userRedSumMoney=this.carSumMoney-this.useRedPacket;
 					this.totalmPrice=this.userRedSumMoney;
 				}
-				this.$forceUpdate()
+				this.$forceUpdate();
+				
 			},
 			// 关闭红包页面 所有的金额回到最初
 			closeRed(){
@@ -618,6 +680,7 @@
 					this.useRedPacket=0;
 					if(this.type ==0){
 						this.detailSumMoney=this.num*this.price;
+						this.keepTwoDecimalFull(this.detailSumMoney,2);
 						this.totalmPrice=this.detailSumMoney;
 					}else if(this.type ==1){
 						this.userRedSumMoney=this.carSumMoney;
@@ -628,14 +691,15 @@
 			},
 			// 结算 去付钱
 			payMoney(){
-				this.jifen_show=false;
-				this.addlist_back();
-				uni.redirectTo({
-					url:'/pages/shopCar/payment?money='+this.totalmPrice+'&orderNumber='+ this.orderNumber+'&memo='+ this.memo+'&isSelfTake='+ this.isSelfTake+'&repIds='+ this.repIds+'&id='+ this.id+'&addressId='+this.addressid+'&cartId='+this.cartid+'&type='+this.type+'&counts='+this.num+'&specialMakeMoney='+this.specialMakeMoney
-				})
+				
+					this.jifen_show=false;
+					this.addlist_back();
+					uni.redirectTo({
+						url:'/pages/shopCar/payment?money='+this.totalmPrice+'&orderNumber='+ this.orderNumber+'&memo='+ this.memo+'&isSelfTake='+ this.isSelfTake+'&repIds='+ this.repIds+'&id='+ this.id+'&addressId='+this.addressid+'&cartId='+this.cartid+'&type='+this.type+'&counts='+this.num+'&specialMakeMoney='+this.specialMakeMoney
+					})
+				
 			}
 		},
-
 	}
 </script>
 <style scoped lang="scss">

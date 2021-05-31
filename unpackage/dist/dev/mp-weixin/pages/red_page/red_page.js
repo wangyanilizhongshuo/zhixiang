@@ -213,7 +213,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -263,8 +262,36 @@ var _default =
       } else {
         this.red_page_cash_show = true;
         this.percents = a / b * 100;
-        this.cPrice = (b - a).toFixed(2);
+        this.cPrice = b - a;
+        this.keepTwoDecimalFull(this.cPrice, 1);
       }
+    },
+    // 价格处理的方法
+    keepTwoDecimalFull: function keepTwoDecimalFull(num, type) {
+      var result = parseFloat(num);
+      if (isNaN(result)) {
+        return false;
+      }
+      result = Math.round(num * 100) / 100;
+      var s_x = result.toString(); //将数字转换为字符串
+
+      var pos_decimal = s_x.indexOf('.'); //小数点的索引值
+
+      // 当整数时，pos_decimal=-1 自动补0
+      if (pos_decimal < 0) {
+        pos_decimal = s_x.length;
+        s_x += '.';
+      }
+
+      // 当数字的长度< 小数点索引+2时，补0
+      while (s_x.length <= pos_decimal + 2) {
+        s_x += '0';
+      }
+      if (type == 1) {
+        this.cPrice = s_x;
+      }
+
+
     },
     // 红包得详情
     getRedDetail: function getRedDetail() {var _this2 = this;
@@ -305,7 +332,8 @@ var _default =
 
       then(function (res) {
         if (res.code == 0) {
-
+          // console.log(res)
+          // console.log('hongbalieb')
 
         }
       });
@@ -317,15 +345,12 @@ var _default =
       uni.wjw_http({
         url: 'app/cduserredenvelope/finalAmount',
         type: 'get',
-
         data: {
           userId: id } }).
 
       then(function (res) {
         if (res.code == 0) {
           _this3.numericalValue = res.data;
-
-
         }
       }).catch(function (res) {
 
@@ -335,7 +360,6 @@ var _default =
     jumpNext: function jumpNext() {
       this.red_page_cash_show = false;
       if (this.numericalValue) {
-
       }
       uni.redirectTo({
         url: '/pages/red_page/active/active?sumMoney=' + this.numericalValue + '&sxtime=' + this.redDetail.expirationTime + '&precent=' + this.percents + '&cPrice=' + this.cPrice });
@@ -362,7 +386,7 @@ var _default =
               aa.push(res);
             }
           });
-          console.log(aa);
+
           for (var i in aa) {
             var _a = new Date(aa[i].createTime);
             aa[i].createTime = _a.getFullYear() + "-" + (_a.getMonth() + 1).toString().padStart(2, '0') + "-" + _a.getDate().toString().padStart(2, '0');
